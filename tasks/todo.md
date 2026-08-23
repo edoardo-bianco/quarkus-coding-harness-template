@@ -32,10 +32,11 @@
 
 ## Incremento 2 — Goals e specs reutilizáveis
 
-- [ ] Criar README e template de goal.
-- [ ] Criar README e template de especificação.
-- [ ] Ensaiar preenchimento em cópias descartáveis.
-- [ ] Registrar evidência.
+- [x] Criar README e template de goal.
+- [x] Criar README e template de especificação.
+- [x] Ensaiar preenchimento em cópias descartáveis.
+- [x] Registrar evidência: goal com 53 marcadores e spec com 139 marcadores preenchidos somente em
+  memória; seções obrigatórias, links locais, diff e auditoria textual aprovados.
 
 ## Incremento 3 — Planos e checklists reutilizáveis
 
@@ -142,4 +143,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 2 está autorizado. O próximo item é criar o README e o template de goal. O Checkpoint A formal permanece após o Incremento 3.
+O Incremento 2 foi concluído. Nenhum trabalho adicional está autorizado. A próxima decisão é o
+`GO` humano para o Incremento 3 — planos e checklists reutilizáveis. O Checkpoint A formal permanece
+após o Incremento 3.
