@@ -1,0 +1,138 @@
+# Checklist — Bootstrap do harness Quarkus
+
+## Regra de execução
+
+- Executar somente o próximo item pendente após os checkpoints exigidos.
+- Somente o humano marca GO, NO-GO, aceitação excepcional, ADR aceito ou encerramento.
+- Mudança de escopo atualiza `specs/template-harness/spec.md`, `tasks/plan.md` e este checklist antes da implementação.
+
+## Planejamento
+
+- [x] Criar repositório privado e branch curta.
+- [x] Registrar especificação inicial.
+- [x] Obter aprovação humana da especificação e das quatro decisões abertas.
+- [x] Registrar goal, definição de pronto, evidências e condições de parada.
+- [x] Propor arquitetura consolidada.
+- [x] Propor ADR-0001 — Java 25, Quarkus LTS e Maven.
+- [x] Propor ADR-0002 — DDD e arquitetura hexagonal pragmática.
+- [x] Propor ADR-0003 — Governança do SDLC entre humano e agente.
+- [x] Propor ADR-0004 — SonarQube como checkpoint técnico com decisão humana.
+- [x] Propor ADR-0005 — Consistência com Outbox aplicacional.
+- [x] Elaborar plano e checklist por dependência.
+- [ ] Revisar arquitetura, ADRs, plano e contratos neutros com o humano.
+- [ ] Registrar decisão humana sobre cada ADR e sobre o GO de implementação.
+
+## Incremento 1 — Entrada operacional
+
+- [ ] Atualizar README com início rápido e navegação.
+- [ ] Criar `AGENTS.md` com ordem de leitura, limites e checkpoints.
+- [ ] Criar guia humano de início.
+- [ ] Verificar links e ausência de duplicação de decisões.
+- [ ] Checkpoint A: obter aprovação humana da governança operacional.
+
+## Incremento 2 — Goals e specs reutilizáveis
+
+- [ ] Criar README e template de goal.
+- [ ] Criar README e template de especificação.
+- [ ] Ensaiar preenchimento em cópias descartáveis.
+- [ ] Registrar evidência.
+
+## Incremento 3 — Planos e checklists reutilizáveis
+
+- [ ] Criar `tasks/README.md`.
+- [ ] Criar templates de plano e todo.
+- [ ] Incluir checklist arquitetural e de dupla escrita.
+- [ ] Ensaiar feature fictícia com tarefas de até cinco arquivos.
+
+## Incremento 4 — Build Maven
+
+- [ ] Confirmar fontes oficiais e versões antes do tooling.
+- [ ] Criar teste/configuração mínima que inicialmente falhe quando aplicável.
+- [ ] Adicionar `pom.xml`, Maven Wrapper e `.gitignore`.
+- [ ] Verificar JDK 25 e `./mvnw -q validate`.
+
+## Incremento 5 — Núcleo neutro
+
+- [ ] Congelar nome, regras e pacote após checkpoint humano.
+- [ ] RED: testes do valor e caso de uso.
+- [ ] GREEN: implementação mínima.
+- [ ] REFACTOR: simplificar sem mudar comportamento.
+- [ ] Executar testes focados e suíte.
+
+## Incremento 6 — HTTP
+
+- [ ] Congelar path, verbo, status, JSON, validação e OpenAPI.
+- [ ] RED: teste HTTP de sucesso e falha.
+- [ ] GREEN: DTOs, mapper simples e resource.
+- [ ] REFACTOR e verificar independência da borda.
+- [ ] Checkpoint B: obter aprovação humana do contrato público.
+
+## Incremento 7 — ArchUnit
+
+- [ ] RED: provar que violações-exemplo seriam detectadas.
+- [ ] Proteger domain, application e adapters.
+- [ ] Proteger contratos independentes por borda.
+- [ ] Confirmar que framework não é proibido genericamente.
+
+## Incremento 8 — Observabilidade
+
+- [ ] Confirmar fontes oficiais de logging, OTel, Micrometer e health.
+- [ ] RED: testes de contrato observável.
+- [ ] GREEN: log, span, métrica e health mínimos.
+- [ ] Verificar baixa cardinalidade e ausência de conteúdo sensível.
+- [ ] Checkpoint C: obter aprovação humana de arquitetura, segurança e sinais.
+
+## Incremento 9 — Cobertura e Sonar build
+
+- [ ] RED: teste da configuração esperada.
+- [ ] Configurar JaCoCo XML e propriedades Sonar justificadas.
+- [ ] Verificar política 85%/5% e exclusões.
+- [ ] Executar `./mvnw -q verify`.
+
+## Incremento 10 — Sessão e análise Sonar
+
+- [ ] RED: testes de token, ausência de servidor e argumentos.
+- [ ] Destilar script seguro de início de sessão.
+- [ ] Destilar script de análise sem acoplamento de negócio.
+- [ ] Verificar que token não é persistido nem exibido.
+
+## Incremento 11 — Baseline e decisão
+
+- [ ] RED: testes local, local+offline e offline-only.
+- [ ] RED: testes NON_COMPLIANT e três decisões humanas.
+- [ ] Implementar módulo e script de checkpoint.
+- [ ] Verificar fingerprint e estado UNVERIFIED.
+
+## Incremento 12 — Hooks
+
+- [ ] RED: eventos session-start e stop.
+- [ ] RED: isenção Markdown-only.
+- [ ] Implementar hooks e configuração Codex.
+- [ ] Verificar lembrete sem bloqueio ou decisão automática.
+
+## Incremento 13 — Evidência offline
+
+- [ ] RED: exportação sem segredo e leitura adversarial.
+- [ ] Implementar exportação e documentação offline.
+- [ ] Verificar imutabilidade e instruções ignoradas.
+- [ ] Checkpoint D: apresentar harness Sonar ao humano.
+
+## Incremento 14 — Materialização
+
+- [ ] Criar guia e checklist de materialização.
+- [ ] Ensaiar em diretório temporário com identidade diferente.
+- [ ] Criar goal e baseline próprios na cópia.
+- [ ] Verificar ausência de placeholders, histórico e artefatos proibidos.
+
+## Incremento 15 — Entrega
+
+- [ ] Executar Maven verify e suíte PowerShell.
+- [ ] Executar checkpoint Sonar aplicável ou registrar UNVERIFIED.
+- [ ] Auditar termos de negócio, segredos, estados e builds.
+- [ ] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [ ] Atualizar goal e checklist com evidências.
+- [ ] Parar e solicitar aceite/encerramento humanos.
+
+## Próximo item autorizado
+
+Nenhuma implementação está autorizada. O próximo item é a revisão humana da arquitetura, dos cinco ADRs, do plano e dos contratos neutros propostos.
