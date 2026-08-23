@@ -8,7 +8,7 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente Incremento 1**
+- Implementação autorizada: **Incremento 1 concluído; aguardando Checkpoint A**
 - Próximo checkpoint: Checkpoint A, após a entrada operacional.
 
 ## Intenção
