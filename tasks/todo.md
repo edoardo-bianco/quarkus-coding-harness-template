@@ -52,10 +52,12 @@
 - [x] Confirmar documentação coerente e navegável: 21 arquivos Markdown com links locais válidos.
 - [x] Confirmar templates ensaiados em memória: goal 53, spec 139, plan 176 e todo 76 marcadores.
 - [x] Auditar ausência de negócio do repositório-fonte, possíveis segredos e arquivos não Markdown.
-- [ ] Obter GO humano antes da fundação Maven executável.
+- [x] Obter `GO` humano para o Incremento 4 em 2026-08-23.
 
 ## Incremento 4 — Build Maven
 
+- [x] Verificar pré-condição Sonar: nenhum pacote `sonar/` e nenhum script de baseline/checkpoint;
+  situação `UNVERIFIED`, sem aprovação implícita.
 - [ ] Confirmar fontes oficiais e versões antes do tooling.
 - [ ] Criar teste/configuração mínima que inicialmente falhe quando aplicável.
 - [ ] Adicionar `pom.xml`, Maven Wrapper e `.gitignore`.
@@ -145,6 +147,6 @@
 
 ## Próximo item autorizado
 
-Nenhum trabalho adicional está autorizado. O Incremento 3 e as verificações técnicas do Checkpoint
-A foram concluídos. O próximo item depende da revisão humana: aprovar ou rejeitar o Checkpoint A e,
-se aprovado, registrar `GO` explícito para o Incremento 4 — fundação Maven reproduzível.
+O Incremento 4 está autorizado. O próximo item é confirmar em fontes oficiais as versões e os
+comandos do scaffold Maven. Depois, criar somente a fundação prevista, verificar pelo Wrapper e
+parar para revisão humana. O Incremento 5 permanece sem autorização.
