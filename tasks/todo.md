@@ -71,7 +71,10 @@
 
 ## Incremento 5 — Núcleo neutro
 
-- [ ] Congelar nome, regras e pacote após checkpoint humano.
+- [x] Congelar nome, regras e pacote após checkpoint humano em 2026-08-23: `sample`,
+  `template.harness.sample`, rejeição de `null`/blank, trim e colapso de whitespace Unicode,
+  preservação de conteúdo/capitalização e tamanho por pontos de código Unicode.
+- [ ] Verificar novamente a pré-condição Sonar antes do primeiro arquivo em `src/`.
 - [ ] RED: testes do valor e caso de uso.
 - [ ] GREEN: implementação mínima.
 - [ ] REFACTOR: simplificar sem mudar comportamento.
@@ -153,6 +156,6 @@
 
 ## Próximo item autorizado
 
-Nenhum novo item de implementação está autorizado. O Incremento 4 foi concluído tecnicamente e o
-agente deve parar para revisão humana. Somente um `GO` explícito pode autorizar o Incremento 5.
-Antes desse GO, não criar arquivos em `src/` nem implementar a feature neutra.
+O Incremento 5 está autorizado. O próximo item é verificar a pré-condição Sonar e então criar
+somente os dois testes planejados para comprovar o RED. Depois, implementar os dois arquivos de
+produção mínimos, verificar a suíte e parar. O Incremento 6 e o adapter HTTP não estão autorizados.
