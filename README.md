@@ -10,7 +10,8 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Arquitetura e ADRs 0001–0005 | `Aceito` |
 | Plano e contratos neutros | `Aprovado` |
 | Incremento 1 — entrada operacional | `Concluído` |
-| Incremento 2 — goals e specs reutilizáveis | `Concluído; decisão para o Incremento 3 pendente` |
+| Incremento 2 — goals e specs reutilizáveis | `Concluído` |
+| Incremento 3 — planos e checklists reutilizáveis | `Concluído; Checkpoint A humano pendente` |
 | Build Quarkus e feature neutra | Não implementados |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
@@ -35,6 +36,7 @@ Leia [AGENTS.md](AGENTS.md) e siga a ordem de contexto indicada. O próximo item
 - [Guia e template de spec](specs/README.md): requisitos, contratos, testes e limites de uma mudança.
 - [Arquitetura](doc/arquitetura/arquitetura-harness.md): desenho do produto, SDLC e controles.
 - [Índice de ADRs](doc/adr/README.md): decisões aceitas e aplicabilidade.
+- [Guia e templates de plan/todo](tasks/README.md): planejamento e execução por feature.
 - [Plano](tasks/plan.md): dependências, incrementos, verificações e riscos.
 - [Checklist](tasks/todo.md): andamento e próximo checkpoint.
 
