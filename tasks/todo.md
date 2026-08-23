@@ -62,9 +62,12 @@
   Maven 3.9.16 e Maven Wrapper Plugin 3.3.4 `only-script`, com checksum da distribuição.
 - [x] Ensaiar scaffold oficial em pasta temporária: `platformVersion` precisa ser explícito para
   impedir que o plugin 3.33.3.1 selecione uma plataforma mais nova.
-- [ ] Criar teste/configuração mínima que inicialmente falhe quando aplicável.
-- [ ] Adicionar `pom.xml`, Maven Wrapper e `.gitignore`.
-- [ ] Verificar JDK 25 e `./mvnw -q validate`.
+- [x] Executar verificação RED mínima: confirmar que `pom.xml`, `mvnw`, `mvnw.cmd`,
+  `.mvn/wrapper/maven-wrapper.properties` e `.gitignore` ainda não existiam; cinco falhas esperadas.
+- [x] Adicionar `pom.xml`, Maven Wrapper e `.gitignore` sem código de aplicação.
+- [x] Verificar pelo Wrapper: Maven 3.9.16, Temurin JDK 25.0.3 e `mvnw.cmd -q validate` verdes.
+- [x] Registrar limitação: checkpoint Sonar `UNVERIFIED` porque os scripts do harness ainda não
+  existem; nenhuma aprovação ou Quality Gate foi inferido.
 
 ## Incremento 5 — Núcleo neutro
 
@@ -150,6 +153,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 4 está autorizado. O próximo item é comprovar a ausência da configuração esperada e
-criar somente `pom.xml`, Maven Wrapper e `.gitignore` com as versões confirmadas. Depois, verificar
-pelo Wrapper e parar para revisão humana. O Incremento 5 permanece sem autorização.
+Nenhum novo item de implementação está autorizado. O Incremento 4 foi concluído tecnicamente e o
+agente deve parar para revisão humana. Somente um `GO` explícito pode autorizar o Incremento 5.
+Antes desse GO, não criar arquivos em `src/` nem implementar a feature neutra.

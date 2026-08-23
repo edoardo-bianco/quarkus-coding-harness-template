@@ -8,7 +8,7 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 4 em execução**
+- Implementação autorizada: **nenhum novo incremento; Incremento 4 concluído tecnicamente**
 - Próxima decisão: revisão humana da fundação Maven e eventual `GO` para o Incremento 5.
 - Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
 
@@ -74,7 +74,8 @@ O GO humano de 2026-08-23 aceitou:
 5. os cinco ADRs em estado `Aceito`.
 
 Esses contratos orientam os incrementos futuros. Em 2026-08-23, o humano aprovou o Checkpoint A e
-registrou `GO` limitado ao Incremento 4; o Incremento 5 permanece sem autorização.
+registrou `GO` limitado ao Incremento 4. A fundação Maven foi concluída tecnicamente; o Incremento
+5 permanece sem autorização.
 
 ## Estratégia de implementação
 
@@ -159,6 +160,14 @@ registrou `GO` limitado ao Incremento 4; o Incremento 5 permanece sem autorizaç
 - `.gitignore` exclui target, IDE, `.env*`, `.codex/.state`, `sonar/` e segredos sem esconder documentação-fonte.
 
 **Verificação:** `./mvnw --version` usa JDK 25 e `./mvnw -q validate` passa.
+
+**Estado de execução:** `Concluído tecnicamente em 2026-08-23`.
+
+**Evidência:** o RED inicial confirmou a ausência dos cinco artefatos planejados. O POM fixa Java
+25, Quarkus 3.33.3.1 e a identidade transitória do template. O Wrapper oficial 3.3.4, no modo
+`only-script`, resolve Maven 3.9.16 com checksum SHA-256 fixado; `mvnw.cmd --version` confirmou
+Temurin 25.0.3 e `mvnw.cmd -q validate` passou. O checkpoint Sonar segue `UNVERIFIED` porque os
+scripts de baseline e checkpoint serão implementados apenas nos incrementos próprios.
 
 ### Incremento 5 — Núcleo e caso de uso neutros por TDD
 
@@ -389,5 +398,5 @@ registrou `GO` para o Incremento 3 em 2026-08-23. O guia e os templates de plano
 concluídos e ensaiados com uma feature fictícia somente em memória. A autorização não alcança o
 Incremento 4. Em 2026-08-23, o humano aprovou o Checkpoint A e registrou `GO` para a fundação Maven.
 A pré-verificação confirmou ausência de pacotes `sonar/` e dos scripts Sonar ainda planejados;
-baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A autorização não alcança
-o Incremento 5.
+baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A fundação Maven foi
+concluída e verificada em 2026-08-23. A autorização não alcança o Incremento 5.

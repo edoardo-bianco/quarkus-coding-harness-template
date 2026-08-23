@@ -9,6 +9,13 @@
 
 Este documento consolida o desenho atual. ADRs explicam decisões permanentes; execução e decisões específicas do bootstrap ficam em `tasks/`.
 
+### Estado implementado
+
+A governança reutilizável e a fundação Maven estão implementadas. O build fixa Java 25 e Quarkus
+3.33.3.1, usa Maven Wrapper 3.9.16 verificável por checksum e exclui estados e segredos locais. A
+feature neutra, as regras ArchUnit, a observabilidade e o harness Sonar continuam planejados. Até
+a implementação dos scripts próprios, qualquer checkpoint Sonar permanece `UNVERIFIED`.
+
 ## Visão do sistema
 
 O template combina três planos que se verificam mutuamente:

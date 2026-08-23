@@ -11,12 +11,13 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Plano e contratos neutros | `Aprovado` |
 | Incremento 1 — entrada operacional | `Concluído` |
 | Incremento 2 — goals e specs reutilizáveis | `Concluído` |
-| Incremento 3 — planos e checklists reutilizáveis | `Concluído; Checkpoint A humano pendente` |
-| Build Quarkus e feature neutra | Não implementados |
+| Incremento 3 — planos e checklists reutilizáveis | `Concluído; Checkpoint A aprovado` |
+| Incremento 4 — fundação Maven reproduzível | `Concluído tecnicamente; revisão humana pendente` |
+| Feature neutra | Não implementada |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
 
-Neste checkpoint o repositório contém documentação e instruções, mas ainda não possui `pom.xml`, Maven Wrapper, código executável ou harness Sonar. Não interprete ausência desses componentes como sucesso ou disponibilidade.
+Neste checkpoint o repositório contém documentação, instruções e uma fundação Maven validada. Ainda não possui a feature neutra nem o harness Sonar. O Incremento 5 não está autorizado, e a situação Sonar permanece `UNVERIFIED`; não interprete essas ausências como sucesso ou disponibilidade.
 
 ## Comece por aqui
 
@@ -44,7 +45,7 @@ Leia [AGENTS.md](AGENTS.md) e siga a ordem de contexto indicada. O próximo item
 
 - JDK 25.
 - Quarkus 3.33.3.1 da linha 3.33 LTS.
-- Maven 3.9+ com Maven Wrapper planejado.
+- Maven Wrapper 3.9.16 no modo `only-script`, com checksum da distribuição fixado.
 - Package-by-domain e DDD hexagonal pragmático.
 - Quarkus e bibliotecas estáveis permitidos quando simplificam uma necessidade concreta sem inverter dependências.
 - Quarkus Flow na aplicação para orquestrações longas ou duráveis, não para chamadas triviais.
@@ -67,11 +68,18 @@ Set-Location quarkus-coding-harness-template
 git status -sb
 ```
 
-Depois, leia os documentos acima. Comandos Maven e Sonar serão publicados e testados nos incrementos correspondentes; não existem ainda.
+Confirme a toolchain e a fundação do build no Windows:
+
+```powershell
+.\mvnw.cmd --version
+.\mvnw.cmd -q validate
+```
+
+Em ambientes POSIX, use `./mvnw` nos mesmos comandos. A saída verificada no bootstrap foi Maven 3.9.16 com Temurin JDK 25.0.3. Ainda não há código de aplicação ou testes comportamentais.
 
 ## SonarQube
 
-Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e configuração executável exigirão o fluxo Sonar descrito em [AGENTS.md](AGENTS.md) quando o harness estiver implementado.
+Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e configuração executável exigem o fluxo Sonar descrito em [AGENTS.md](AGENTS.md). Neste bootstrap, os scripts de baseline/checkpoint ainda não existem; por isso o Incremento 4 está tecnicamente verificado pelo Maven, mas o estado Sonar permanece `UNVERIFIED`.
 
 Regras centrais:
 
