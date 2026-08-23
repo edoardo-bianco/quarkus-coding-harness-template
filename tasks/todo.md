@@ -24,10 +24,10 @@
 
 ## Incremento 1 — Entrada operacional
 
-- [ ] Atualizar README com início rápido e navegação.
-- [ ] Criar `AGENTS.md` com ordem de leitura, limites e checkpoints.
-- [ ] Criar guia humano de início.
-- [ ] Verificar links e ausência de duplicação de decisões.
+- [x] Atualizar README com início rápido e navegação.
+- [x] Criar `AGENTS.md` com ordem de leitura, limites e checkpoints.
+- [x] Criar guia humano de início.
+- [x] Verificar links e ausência de duplicação de decisões.
 - [ ] Checkpoint A: obter aprovação humana da governança operacional.
 
 ## Incremento 2 — Goals e specs reutilizáveis
@@ -135,4 +135,4 @@
 
 ## Próximo item autorizado
 
-O Incremento 1 está autorizado. O próximo item é atualizar o README com início rápido e navegação; o agente deve parar no Checkpoint A após concluir o incremento.
+O Incremento 1 foi concluído. Nenhum incremento adicional está autorizado; o próximo item é o Checkpoint A e uma decisão humana sobre a governança operacional.
