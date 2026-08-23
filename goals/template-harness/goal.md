@@ -87,6 +87,14 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
+## Evidências parciais
+
+- Incrementos 1–3 e o Checkpoint A de governança foram concluídos e aprovados pelo humano.
+- O Incremento 4 criou somente a fundação Maven planejada: POM, Wrapper e exclusões locais.
+- O Wrapper confirmou Maven 3.9.16 sobre Temurin JDK 25.0.3; `mvnw.cmd -q validate` passou.
+- Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
+- Esta evidência não encerra o goal nem autoriza o Incremento 5.
+
 ## Decisões já registradas
 
 - Quarkus 3.33.3.1 LTS com JDK 25.
