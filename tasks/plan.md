@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhum novo incremento; Incremento 4 concluído tecnicamente**
-- Próxima decisão: revisão humana da fundação Maven e eventual `GO` para o Incremento 5.
+- Implementação autorizada: **Incremento 5 em execução**
+- Próxima decisão: revisão humana do núcleo neutro e eventual `GO` para o Incremento 6.
 - Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
 
 ## Intenção
@@ -68,7 +68,9 @@ O fluxo é sequencial nos pontos de contrato e build. Documentação Sonar pode 
 O GO humano de 2026-08-23 aceitou:
 
 1. identidade compilável do template: `template.harness:quarkus-coding-harness-template`, substituída obrigatoriamente na materialização;
-2. feature neutra: `sample`, com transformação determinística e sem persistência;
+2. feature neutra: `sample`, com transformação determinística e sem persistência; no Incremento 5,
+   `NormalizedText` rejeita entrada `null`/blank, remove whitespace Unicode das extremidades,
+   colapsa sequências internas, preserva conteúdo/capitalização e mede pontos de código Unicode;
 3. endpoint de prova: `POST /api/sample/normalize`, validando texto e retornando valor normalizado e tamanho;
 4. logs, spans e métricas da feature neutra, limitados a nomes e atributos de baixa cardinalidade, sem conteúdo recebido;
 5. os cinco ADRs em estado `Aceito`.
@@ -399,4 +401,6 @@ concluídos e ensaiados com uma feature fictícia somente em memória. A autoriz
 Incremento 4. Em 2026-08-23, o humano aprovou o Checkpoint A e registrou `GO` para a fundação Maven.
 A pré-verificação confirmou ausência de pacotes `sonar/` e dos scripts Sonar ainda planejados;
 baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A fundação Maven foi
-concluída e verificada em 2026-08-23. A autorização não alcança o Incremento 5.
+concluída e verificada em 2026-08-23. Após a revisão, o humano registrou `GO` para o Incremento 5
+e aprovou explicitamente as regras de normalização Unicode. A autorização não alcança o Incremento
+6 nem o adapter HTTP.

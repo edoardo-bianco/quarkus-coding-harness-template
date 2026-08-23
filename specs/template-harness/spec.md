@@ -133,6 +133,18 @@ A implementação deverá incluir um caso de uso sem significado de negócio esp
 
 O nome e o contrato exatos serão decididos no desenho da solução e submetidos a checkpoint humano antes da implementação.
 
+### Contrato aprovado da primeira fatia
+
+Em 2026-08-23, o humano aprovou para o Incremento 5:
+
+- capacidade e pacote-base: `sample` sob `template.harness.sample`;
+- objeto de valor: `NormalizedText`; caso de uso: `NormalizeTextUseCase`;
+- entrada `null`, vazia ou composta apenas por whitespace é rejeitada com `IllegalArgumentException`;
+- whitespace Unicode nas extremidades é removido e sequências internas são reduzidas a um espaço;
+- letras, acentos, capitalização e demais conteúdos não-whitespace são preservados;
+- o tamanho corresponde aos pontos de código Unicode do valor normalizado;
+- o caso de uso recebe texto e devolve o objeto de valor, sem I/O, persistência ou adapter.
+
 ## Inicialização de um projeto derivado
 
 O template deverá fornecer um procedimento reproduzível que solicite:
