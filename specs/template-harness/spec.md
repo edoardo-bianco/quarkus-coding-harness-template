@@ -2,11 +2,18 @@
 
 ## Metadados
 
-- Estado: `Rascunho`
+- Estado: `Aprovado`
 - Fase do SDLC: `SPECIFY`
 - Responsável pela aprovação: humano
 - Data de elaboração: 2026-08-22
-- Versão da especificação: 0.1
+- Versão da especificação: 0.2
+
+## Aprovação humana
+
+- Decisão: `APROVADO`
+- Data: 2026-08-22
+- Registro: aprovação explícita do usuário na conversa de criação do repositório-template.
+- Efeito: autoriza desenho arquitetural, ADRs propostos, plano e checklist; não autoriza ainda a implementação do harness.
 
 ## Problema
 
@@ -183,12 +190,12 @@ Se a tecnologia solicitada não for Java 25 + Quarkus LTS + Maven, o agente deve
 - Fixar versões sem política explícita de atualização e suporte.
 - Criar scaffolding de banco ou mensageria antes de existir um caso real.
 
-## Questões para a revisão humana
+## Decisões fechadas na revisão humana
 
-1. O identificador Maven padrão deve ser neutro e substituível, por exemplo `br.com.organizacao:projeto-template`, ou existe um namespace organizacional obrigatório?
-2. A feature neutra deve permanecer nos projetos derivados como exemplo executável ou o procedimento deve removê-la depois que a primeira feature real comprovar o harness?
-3. O primeiro bootstrap incluirá somente execução local e SonarQube local, mantendo CI/CD como backlog explícito?
-4. A versão patch do Quarkus deve permanecer fixada em `3.33.3.1` até uma atualização humana ou o template terá um procedimento periódico de atualização dentro da linha 3.33 LTS?
+1. Não existe namespace Maven fixo: `groupId`, `artifactId` e pacote-base são entradas obrigatórias ao materializar cada projeto.
+2. A feature neutra permanece até a primeira feature real comprovar o harness; sua remoção será uma tarefa planejada e verificável.
+3. A primeira versão inclui execução local e SonarQube local; CI/CD permanece backlog explícito até existirem requisitos organizacionais.
+4. Quarkus permanece fixado em `3.33.3.1`; atualizações dentro da linha 3.33 LTS são manuais, planejadas e aprovadas por humano.
 
 ## Fontes técnicas oficiais
 
@@ -200,11 +207,11 @@ Se a tecnologia solicitada não for Java 25 + Quarkus LTS + Maven, o agente deve
 
 ## Condição para avançar
 
-O estado muda de `Rascunho` para `Aprovado` somente após revisão humana explícita. Depois disso serão produzidos, nesta ordem:
+A aprovação desta especificação foi registrada. Serão produzidos, nesta ordem:
 
 1. desenho arquitetural detalhado;
 2. ADRs em estado `Proposto`;
 3. plano de implementação;
 4. checklist executável;
-5. novo checkpoint humano;
+5. novo checkpoint humano para aceitar ou rejeitar arquitetura, ADRs e plano;
 6. implementação incremental do harness e da feature neutra.
