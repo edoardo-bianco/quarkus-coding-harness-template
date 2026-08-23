@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 1 concluído; aguardando Checkpoint A**
-- Próximo checkpoint: Checkpoint A, após a entrada operacional.
+- Implementação autorizada: **Incremento 1 concluído; aguardando GO para o Incremento 2**
+- Próxima decisão: GO humano para o Incremento 2; o Checkpoint A formal ocorre após o Incremento 3.
 
 ## Intenção
 
@@ -380,4 +380,4 @@ Comandos exatos serão confirmados contra o scaffold gerado e registrados antes 
 
 ## Autorização de implementação
 
-Em 2026-08-23, o humano aprovou arquitetura, ADRs, plano, checklist e contratos neutros e registrou `GO` para o Incremento 1. O GO não se estende automaticamente aos incrementos seguintes. Ao concluir a entrada operacional, o agente para no Checkpoint A e solicita nova decisão.
+Em 2026-08-23, o humano aprovou arquitetura, ADRs, plano, checklist e contratos neutros e registrou `GO` para o Incremento 1. O GO não se estende automaticamente aos incrementos seguintes. Ao concluir a entrada operacional, o agente para e solicita GO para o Incremento 2. O Checkpoint A formal permanece depois do Incremento 3, quando toda a governança reutilizável estiver implementada.

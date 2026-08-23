@@ -28,7 +28,7 @@
 - [x] Criar `AGENTS.md` com ordem de leitura, limites e checkpoints.
 - [x] Criar guia humano de início.
 - [x] Verificar links e ausência de duplicação de decisões.
-- [ ] Checkpoint A: obter aprovação humana da governança operacional.
+- [ ] Obter decisão humana sobre a entrada operacional e GO para o Incremento 2.
 
 ## Incremento 2 — Goals e specs reutilizáveis
 
@@ -43,6 +43,13 @@
 - [ ] Criar templates de plano e todo.
 - [ ] Incluir checklist arquitetural e de dupla escrita.
 - [ ] Ensaiar feature fictícia com tarefas de até cinco arquivos.
+
+## Checkpoint A — Governança reutilizável
+
+- [ ] Confirmar documentação coerente e navegável.
+- [ ] Confirmar templates de goal, spec, plano e todo ensaiados.
+- [ ] Auditar ausência de negócio do repositório-fonte.
+- [ ] Obter GO humano antes da fundação Maven executável.
 
 ## Incremento 4 — Build Maven
 
@@ -135,4 +142,4 @@
 
 ## Próximo item autorizado
 
-O Incremento 1 foi concluído. Nenhum incremento adicional está autorizado; o próximo item é o Checkpoint A e uma decisão humana sobre a governança operacional.
+O Incremento 1 foi concluído. Nenhum incremento adicional está autorizado; o próximo item é a decisão humana sobre a entrada operacional e eventual GO para o Incremento 2. O Checkpoint A formal permanece após o Incremento 3.
