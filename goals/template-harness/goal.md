@@ -81,7 +81,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Checkpoint | Estado | Autoridade |
 | --- | --- | --- |
 | Especificação e decisões de escopo | `APROVADO` em 2026-08-22 | Humano |
-| Arquitetura, ADRs propostos e plano | `PENDENTE` | Humano |
+| Arquitetura, ADRs e plano | `APROVADO` em 2026-08-23 | Humano |
 | Primeira alteração de código/tooling | `PENDENTE` | Humano |
 | Contratos, arquitetura, segurança e observabilidade | `PENDENTE conforme incremento` | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |

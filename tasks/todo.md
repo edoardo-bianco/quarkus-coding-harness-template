@@ -19,8 +19,8 @@
 - [x] Propor ADR-0004 — SonarQube como checkpoint técnico com decisão humana.
 - [x] Propor ADR-0005 — Consistência com Outbox aplicacional.
 - [x] Elaborar plano e checklist por dependência.
-- [ ] Revisar arquitetura, ADRs, plano e contratos neutros com o humano.
-- [ ] Registrar decisão humana sobre cada ADR e sobre o GO de implementação.
+- [x] Revisar arquitetura, ADRs, plano e contratos neutros com o humano.
+- [x] Registrar `GO` humano em 2026-08-23 e aceitar ADRs 0001–0005.
 
 ## Incremento 1 — Entrada operacional
 
@@ -135,4 +135,4 @@
 
 ## Próximo item autorizado
 
-Nenhuma implementação está autorizada. O próximo item é a revisão humana da arquitetura, dos cinco ADRs, do plano e dos contratos neutros propostos.
+O Incremento 1 está autorizado. O próximo item é atualizar o README com início rápido e navegação; o agente deve parar no Checkpoint A após concluir o incremento.

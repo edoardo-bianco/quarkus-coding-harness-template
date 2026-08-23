@@ -1,6 +1,6 @@
 # ADR-0001: Java 25, Quarkus LTS e Maven
 
-- **Status:** Proposto
+- **Status:** Aceito
 - **Decisão em uma frase:** usar JDK 25, Quarkus 3.33.3.1 da linha 3.33 LTS e Maven 3.9+ com Maven Wrapper, atualizados somente por mudança planejada e aprovada.
 - **Quando consultar:** alterações de JDK, Quarkus, BOM, plugins Maven, Wrapper, lifecycle ou política de suporte.
 

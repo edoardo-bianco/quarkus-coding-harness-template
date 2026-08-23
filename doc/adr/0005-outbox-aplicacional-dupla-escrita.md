@@ -1,6 +1,6 @@
 # ADR-0005: Consistência de dupla escrita com Outbox aplicacional
 
-- **Status:** Proposto
+- **Status:** Aceito
 - **Decisão em uma frase:** quando uma decisão exigir banco e broker, persistir agregado e outbox na mesma transação local e publicar por relay Quarkus com polling, sem Debezium, XA ou 2PC.
 - **Quando consultar:** introdução de persistência + evento, broker, relay, ack, retry, idempotência, ordenação, concorrência ou quarentena.
 

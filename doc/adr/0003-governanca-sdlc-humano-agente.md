@@ -1,6 +1,6 @@
 # ADR-0003: Governança do SDLC entre humano e agente
 
-- **Status:** Proposto
+- **Status:** Aceito
 - **Decisão em uma frase:** goal, especificação, arquitetura, plano e checklist governam incrementos, enquanto somente o humano concede GO, aceita exceção, aceita ADR e encerra o trabalho.
 - **Quando consultar:** alterações em `AGENTS.md`, goals, specs, tasks, checkpoints, definição de pronto, autonomia ou encerramento.
 
