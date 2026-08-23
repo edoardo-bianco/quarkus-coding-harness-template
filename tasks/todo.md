@@ -58,7 +58,10 @@
 
 - [x] Verificar pré-condição Sonar: nenhum pacote `sonar/` e nenhum script de baseline/checkpoint;
   situação `UNVERIFIED`, sem aprovação implícita.
-- [ ] Confirmar fontes oficiais e versões antes do tooling.
+- [x] Confirmar fontes oficiais e versões antes do tooling: Quarkus 3.33.3.1 LTS, Java 25,
+  Maven 3.9.16 e Maven Wrapper Plugin 3.3.4 `only-script`, com checksum da distribuição.
+- [x] Ensaiar scaffold oficial em pasta temporária: `platformVersion` precisa ser explícito para
+  impedir que o plugin 3.33.3.1 selecione uma plataforma mais nova.
 - [ ] Criar teste/configuração mínima que inicialmente falhe quando aplicável.
 - [ ] Adicionar `pom.xml`, Maven Wrapper e `.gitignore`.
 - [ ] Verificar JDK 25 e `./mvnw -q validate`.
@@ -147,6 +150,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 4 está autorizado. O próximo item é confirmar em fontes oficiais as versões e os
-comandos do scaffold Maven. Depois, criar somente a fundação prevista, verificar pelo Wrapper e
-parar para revisão humana. O Incremento 5 permanece sem autorização.
+O Incremento 4 está autorizado. O próximo item é comprovar a ausência da configuração esperada e
+criar somente `pom.xml`, Maven Wrapper e `.gitignore` com as versões confirmadas. Depois, verificar
+pelo Wrapper e parar para revisão humana. O Incremento 5 permanece sem autorização.
