@@ -37,6 +37,7 @@
 - [x] Ensaiar preenchimento em cópias descartáveis.
 - [x] Registrar evidência: goal com 53 marcadores e spec com 139 marcadores preenchidos somente em
   memória; seções obrigatórias, links locais, diff e auditoria textual aprovados.
+- [x] Obter decisão humana e registrar `GO` para o Incremento 3 em 2026-08-23.
 
 ## Incremento 3 — Planos e checklists reutilizáveis
 
@@ -143,6 +144,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 2 foi concluído. Nenhum trabalho adicional está autorizado. A próxima decisão é o
-`GO` humano para o Incremento 3 — planos e checklists reutilizáveis. O Checkpoint A formal permanece
-após o Incremento 3.
+O Incremento 3 está autorizado. O próximo item é criar `tasks/README.md`. Depois de concluir e
+validar os três artefatos reutilizáveis, o agente apresenta o Checkpoint A e para. O Incremento 4
+permanece sem autorização.

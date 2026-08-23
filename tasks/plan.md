@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma nova; Incremento 2 concluído**
-- Próxima decisão: GO humano para o Incremento 3; o Checkpoint A formal ocorre após o Incremento 3.
+- Implementação autorizada: **Incremento 3 em execução**
+- Próxima decisão: revisão humana do Checkpoint A após concluir o Incremento 3.
 
 ## Intenção
 
@@ -72,8 +72,8 @@ O GO humano de 2026-08-23 aceitou:
 4. logs, spans e métricas da feature neutra, limitados a nomes e atributos de baixa cardinalidade, sem conteúdo recebido;
 5. os cinco ADRs em estado `Aceito`.
 
-Esses contratos orientam os incrementos futuros. O último GO recebido permaneceu limitado ao
-Incremento 2; o Incremento 3 ainda depende de decisão humana explícita.
+Esses contratos orientam os incrementos futuros. O GO recebido em 2026-08-23 autoriza somente o
+Incremento 3; o Incremento 4 ainda depende da revisão humana do Checkpoint A.
 
 ## Estratégia de implementação
 
@@ -383,6 +383,7 @@ Comandos exatos serão confirmados contra o scaffold gerado e registrados antes 
 
 Em 2026-08-23, o humano aprovou arquitetura, ADRs, plano, checklist e contratos neutros e registrou
 `GO` para o Incremento 1. Depois de revisar a entrada operacional, registrou `GO` para o Incremento
-2. Os templates de goal e especificação foram concluídos e validados. Nenhum trabalho do Incremento
-3 está autorizado: o agente para e solicita novo `GO`. O Checkpoint A formal permanece depois do
-Incremento 3, quando toda a governança reutilizável estiver implementada.
+2. Os templates de goal e especificação foram concluídos e validados. Após essa revisão, o humano
+registrou `GO` para o Incremento 3 em 2026-08-23. A autorização não alcança o Incremento 4: ao
+concluir os templates de plano e checklist, o agente apresenta o Checkpoint A e para para decisão
+humana.
