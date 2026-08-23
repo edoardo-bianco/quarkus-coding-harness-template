@@ -2,10 +2,10 @@
 
 ## Estado e finalidade
 
-- Estado: `Proposto`
+- Estado: `Aceito`
 - Data: 2026-08-23
 - Escopo: repositório-template e projetos dele derivados.
-- Aprovação necessária: humana, antes da primeira alteração de código ou tooling.
+- Aprovação humana: `GO` registrado em 2026-08-23.
 
 Este documento consolida o desenho atual. ADRs explicam decisões permanentes; execução e decisões específicas do bootstrap ficam em `tasks/`.
 

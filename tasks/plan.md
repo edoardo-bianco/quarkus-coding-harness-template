@@ -3,13 +3,13 @@
 ## Estado
 
 - Fase: `PLAN`
-- Estado do plano: `Proposto`
+- Estado do plano: `Aprovado`
 - Goal: `goals/template-harness/goal.md`
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
-- Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Proposto`)
-- ADRs: `doc/adr/README.md` (`Propostos`)
-- Implementação autorizada: **não**
-- Próximo checkpoint: aprovação humana de arquitetura, ADRs, plano e checklist.
+- Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
+- ADRs: `doc/adr/README.md` (`Aceitos`)
+- Implementação autorizada: **somente Incremento 1**
+- Próximo checkpoint: Checkpoint A, após a entrada operacional.
 
 ## Intenção
 
@@ -62,17 +62,17 @@ governança aprovada
 
 O fluxo é sequencial nos pontos de contrato e build. Documentação Sonar pode ser elaborada junto aos scripts, mas não será tratada como evidência até os testes do próprio harness passarem.
 
-## Contratos a congelar no GO arquitetural
+## Contratos aceitos no GO arquitetural
 
-O próximo checkpoint deve aceitar ou ajustar:
+O GO humano de 2026-08-23 aceitou:
 
-1. identidade compilável do template: proposta `template.harness:quarkus-coding-harness-template`, substituída obrigatoriamente na materialização;
-2. feature neutra: proposta `sample`, com transformação determinística e sem persistência;
-3. endpoint de prova: proposta `POST /api/sample/normalize`, validando texto e retornando valor normalizado e tamanho;
+1. identidade compilável do template: `template.harness:quarkus-coding-harness-template`, substituída obrigatoriamente na materialização;
+2. feature neutra: `sample`, com transformação determinística e sem persistência;
+3. endpoint de prova: `POST /api/sample/normalize`, validando texto e retornando valor normalizado e tamanho;
 4. logs, spans e métricas da feature neutra, limitados a nomes e atributos de baixa cardinalidade, sem conteúdo recebido;
-5. os cinco ADRs atualmente em estado `Proposto`.
+5. os cinco ADRs em estado `Aceito`.
 
-Nenhum desses contratos será implementado antes da decisão humana.
+Esses contratos orientam os incrementos futuros; o GO atual permanece limitado ao Incremento 1.
 
 ## Estratégia de implementação
 
@@ -378,12 +378,6 @@ Comandos exatos serão confirmados contra o scaffold gerado e registrados antes 
 - documentação atualizada quando o estado arquitetural mudar;
 - checkpoint humano registrado quando aplicável.
 
-## Condição de início da implementação
+## Autorização de implementação
 
-A primeira alteração de código ou tooling só ocorrerá após o humano:
-
-1. aprovar ou ajustar o desenho arquitetural;
-2. aceitar ou rejeitar cada ADR proposto;
-3. aprovar este plano e `tasks/todo.md`;
-4. decidir os três contratos propostos de identidade, feature e endpoint neutros;
-5. registrar `GO` explícito para o Incremento 1.
+Em 2026-08-23, o humano aprovou arquitetura, ADRs, plano, checklist e contratos neutros e registrou `GO` para o Incremento 1. O GO não se estende automaticamente aos incrementos seguintes. Ao concluir a entrada operacional, o agente para no Checkpoint A e solicita nova decisão.

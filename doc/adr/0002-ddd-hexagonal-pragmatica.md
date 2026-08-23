@@ -1,6 +1,6 @@
 # ADR-0002: DDD e arquitetura hexagonal pragmática
 
-- **Status:** Proposto
+- **Status:** Aceito
 - **Decisão em uma frase:** organizar por domínio e usar portas e adapters para proteger responsabilidades e direção de dependência, sem impor pureza de framework.
 - **Quando consultar:** mudanças de packages, camadas, dependências, ownership, APIs de framework no núcleo ou regras ArchUnit.
 

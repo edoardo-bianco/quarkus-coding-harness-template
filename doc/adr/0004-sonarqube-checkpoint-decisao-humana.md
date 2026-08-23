@@ -1,6 +1,6 @@
 # ADR-0004: SonarQube como checkpoint técnico com decisão humana
 
-- **Status:** Proposto
+- **Status:** Aceito
 - **Decisão em uma frase:** usar SonarQube, scripts e hooks para produzir evidência técnica verificável, preservando estados de incerteza e autoridade humana sobre não conformidades.
 - **Quando consultar:** mudanças em hooks, scripts, token, baseline, fingerprint, thresholds, pacotes offline, Quality Gate ou exceções.
 
