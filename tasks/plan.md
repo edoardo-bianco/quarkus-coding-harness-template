@@ -8,8 +8,9 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma nova; Incremento 3 concluído**
-- Próxima decisão: revisão humana do Checkpoint A e eventual `GO` para o Incremento 4.
+- Implementação autorizada: **Incremento 4 em execução**
+- Próxima decisão: revisão humana da fundação Maven e eventual `GO` para o Incremento 5.
+- Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
 
 ## Intenção
 
@@ -72,8 +73,8 @@ O GO humano de 2026-08-23 aceitou:
 4. logs, spans e métricas da feature neutra, limitados a nomes e atributos de baixa cardinalidade, sem conteúdo recebido;
 5. os cinco ADRs em estado `Aceito`.
 
-Esses contratos orientam os incrementos futuros. O Incremento 3 autorizado em 2026-08-23 foi
-concluído; o Incremento 4 ainda depende da revisão humana do Checkpoint A.
+Esses contratos orientam os incrementos futuros. Em 2026-08-23, o humano aprovou o Checkpoint A e
+registrou `GO` limitado ao Incremento 4; o Incremento 5 permanece sem autorização.
 
 ## Estratégia de implementação
 
@@ -386,5 +387,7 @@ Em 2026-08-23, o humano aprovou arquitetura, ADRs, plano, checklist e contratos 
 2. Os templates de goal e especificação foram concluídos e validados. Após essa revisão, o humano
 registrou `GO` para o Incremento 3 em 2026-08-23. O guia e os templates de plano e checklist foram
 concluídos e ensaiados com uma feature fictícia somente em memória. A autorização não alcança o
-Incremento 4: as evidências técnicas do Checkpoint A estão registradas e aguardam revisão e decisão
-humanas.
+Incremento 4. Em 2026-08-23, o humano aprovou o Checkpoint A e registrou `GO` para a fundação Maven.
+A pré-verificação confirmou ausência de pacotes `sonar/` e dos scripts Sonar ainda planejados;
+baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A autorização não alcança
+o Incremento 5.
