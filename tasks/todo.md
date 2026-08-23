@@ -74,7 +74,8 @@
 - [x] Congelar nome, regras e pacote após checkpoint humano em 2026-08-23: `sample`,
   `template.harness.sample`, rejeição de `null`/blank, trim e colapso de whitespace Unicode,
   preservação de conteúdo/capitalização e tamanho por pontos de código Unicode.
-- [ ] Verificar novamente a pré-condição Sonar antes do primeiro arquivo em `src/`.
+- [x] Verificar novamente a pré-condição Sonar antes do primeiro arquivo em `src/`: zero pacotes,
+  zero scripts e zero hooks; situação `UNVERIFIED`, sem aprovação implícita.
 - [ ] RED: testes do valor e caso de uso.
 - [ ] GREEN: implementação mínima.
 - [ ] REFACTOR: simplificar sem mudar comportamento.
