@@ -1,0 +1,53 @@
+# Maven and Quarkus
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+.flattened-pom.xml
+/.quarkus/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+.factorypath
+
+# IntelliJ IDEA
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# NetBeans
+nb-configuration.xml
+
+# Visual Studio Code
+.vscode/
+
+# Local environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+.certs/
+
+# Agent and Sonar local state
+.codex/.state/
+/sonar/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.orig
+*.rej
+hs_err_pid*
+
+# Operating systems
+.DS_Store
+Thumbs.db
