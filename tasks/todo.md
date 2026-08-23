@@ -41,16 +41,17 @@
 
 ## Incremento 3 — Planos e checklists reutilizáveis
 
-- [ ] Criar `tasks/README.md`.
-- [ ] Criar templates de plano e todo.
-- [ ] Incluir checklist arquitetural e de dupla escrita.
-- [ ] Ensaiar feature fictícia com tarefas de até cinco arquivos.
+- [x] Criar `tasks/README.md`.
+- [x] Criar templates de plano e todo.
+- [x] Incluir checklist arquitetural e de dupla escrita.
+- [x] Ensaiar feature fictícia em memória: plan com 176 marcadores, todo com 76, duas tarefas
+  ordenadas e no máximo cinco arquivos por tarefa.
 
 ## Checkpoint A — Governança reutilizável
 
-- [ ] Confirmar documentação coerente e navegável.
-- [ ] Confirmar templates de goal, spec, plano e todo ensaiados.
-- [ ] Auditar ausência de negócio do repositório-fonte.
+- [x] Confirmar documentação coerente e navegável: 21 arquivos Markdown com links locais válidos.
+- [x] Confirmar templates ensaiados em memória: goal 53, spec 139, plan 176 e todo 76 marcadores.
+- [x] Auditar ausência de negócio do repositório-fonte, possíveis segredos e arquivos não Markdown.
 - [ ] Obter GO humano antes da fundação Maven executável.
 
 ## Incremento 4 — Build Maven
@@ -144,6 +145,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 3 está autorizado. O próximo item é criar `tasks/README.md`. Depois de concluir e
-validar os três artefatos reutilizáveis, o agente apresenta o Checkpoint A e para. O Incremento 4
-permanece sem autorização.
+Nenhum trabalho adicional está autorizado. O Incremento 3 e as verificações técnicas do Checkpoint
+A foram concluídos. O próximo item depende da revisão humana: aprovar ou rejeitar o Checkpoint A e,
+se aprovado, registrar `GO` explícito para o Incremento 4 — fundação Maven reproduzível.
