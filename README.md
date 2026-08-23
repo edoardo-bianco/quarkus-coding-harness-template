@@ -9,7 +9,7 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Especificação | `Aprovado` |
 | Arquitetura e ADRs 0001–0005 | `Aceito` |
 | Plano e contratos neutros | `Aprovado` |
-| Incremento 1 — entrada operacional | `Concluído; Checkpoint A pendente` |
+| Incremento 1 — entrada operacional | `Concluído; decisão para o Incremento 2 pendente` |
 | Build Quarkus e feature neutra | Não implementados |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
