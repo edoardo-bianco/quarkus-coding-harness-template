@@ -28,7 +28,7 @@
 - [x] Criar `AGENTS.md` com ordem de leitura, limites e checkpoints.
 - [x] Criar guia humano de início.
 - [x] Verificar links e ausência de duplicação de decisões.
-- [ ] Obter decisão humana sobre a entrada operacional e GO para o Incremento 2.
+- [x] Obter decisão humana sobre a entrada operacional e registrar `GO` para o Incremento 2 em 2026-08-23.
 
 ## Incremento 2 — Goals e specs reutilizáveis
 
@@ -142,4 +142,4 @@
 
 ## Próximo item autorizado
 
-O Incremento 1 foi concluído. Nenhum incremento adicional está autorizado; o próximo item é a decisão humana sobre a entrada operacional e eventual GO para o Incremento 2. O Checkpoint A formal permanece após o Incremento 3.
+O Incremento 2 está autorizado. O próximo item é criar o README e o template de goal. O Checkpoint A formal permanece após o Incremento 3.
