@@ -87,8 +87,8 @@
 
 - [x] Registrar `GO` humano para iniciar o Incremento 6 em 2026-08-24.
 - [x] Preparar proposta de path, verbo, status, JSON, validação, OpenAPI, dependências e limites.
-- [ ] Checkpoint B: obter aprovação humana explícita do contrato público antes do código.
-- [ ] Congelar no plano o contrato aprovado e eventuais ajustes solicitados.
+- [x] Checkpoint B: aprovação humana explícita do contrato público registrada em 2026-08-24.
+- [x] Congelar no plano o contrato aprovado, sem ajustes solicitados pelo humano.
 - [ ] RED: teste HTTP de sucesso e falha.
 - [ ] GREEN: DTOs, mapper simples e resource.
 - [ ] REFACTOR e verificar independência da borda.

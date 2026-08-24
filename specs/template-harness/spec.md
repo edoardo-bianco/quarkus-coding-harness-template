@@ -145,6 +145,29 @@ Em 2026-08-23, o humano aprovou para o Incremento 5:
 - o tamanho corresponde aos pontos de código Unicode do valor normalizado;
 - o caso de uso recebe texto e devolve o objeto de valor, sem I/O, persistência ou adapter.
 
+### Contrato aprovado do adapter HTTP
+
+Em 2026-08-24, o humano aprovou no Checkpoint B para o Incremento 6:
+
+- `POST /api/sample/normalize`, com `operationId` `normalizeSampleText`, consumindo e produzindo
+  `application/json`;
+- request `{"text":"  Olá\t Mundo  "}`, com body e `text` obrigatórios e propriedades adicionais
+  ignoradas para evolução aditiva;
+- sucesso `200 OK` com `{"value":"Olá Mundo","length":9}`, preservando a contagem por pontos de
+  código Unicode;
+- entrada ausente, nula, vazia ou somente whitespace Unicode resulta em `400 Bad Request` com
+  `{"code":"INVALID_TEXT","message":"text must contain non-whitespace content"}`;
+- JSON malformado resulta em `400 Bad Request` do Quarkus, sem tornar o corpo técnico contrato nem
+  expor stack trace;
+- OpenAPI é gerado em `/q/openapi`, com operação, schemas e respostas `200`/`400`, sem snapshot
+  estático;
+- a fatia não adiciona autenticação, CORS, rate limiting, persistência ou integração, não registra
+  a entrada em log/span e preserva o limite HTTP padrão do Quarkus 3.33.
+
+Validação estrutural pertence ao adapter; a regra semântica Unicode permanece em `NormalizedText`.
+O adapter traduz `IllegalArgumentException` para o erro público genérico, sem expor detalhes
+internos. Alterar esse contrato ou seus limites exige novo checkpoint humano.
+
 ## Inicialização de um projeto derivado
 
 O template deverá fornecer um procedimento reproduzível que solicite:
