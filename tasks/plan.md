@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 6 completo**, após aprovação humana do Checkpoint B em
-  2026-08-24.
+- Implementação autorizada: **nenhuma adicional**; o Incremento 6 foi concluído tecnicamente após
+  aprovação humana do Checkpoint B em 2026-08-24.
 - Próxima decisão: revisão humana do Incremento 6 antes de eventual `GO` para o Incremento 7.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
@@ -229,8 +229,7 @@ dependência invertida, I/O, adapter, abstração ou dependência adicional. O c
 
 **Entrega:** fluxo executável da entrada HTTP ao núcleo.
 
-**Estado atual:** `GO` de início e aprovação explícita do Checkpoint B registrados em 2026-08-24;
-contrato congelado e implementação autorizada somente para esta fatia.
+**Estado de execução:** `Concluído tecnicamente em 2026-08-24; revisão humana pendente`.
 
 **Contrato aprovado no Checkpoint B:**
 
@@ -277,6 +276,14 @@ fatia; o `pom.xml`, ausente da previsão anterior, é necessário para as extens
 núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente sem snapshot estático.
 
 **Verificação:** teste HTTP focado e `./mvnw -q test`.
+
+**Evidência:** antes da implementação, os oito testes HTTP/OpenAPI falharam como esperado: o
+endpoint respondia `404` e a operação ainda não existia no documento OpenAPI. O GREEN adicionou
+somente as três dependências oficiais e os cinco arquivos previstos, com mapeamento simples no
+resource e sem DTO no núcleo. O teste focal passou com oito casos; a suíte completa passou com 15
+testes, zero falhas, zero erros e zero ignorados. A revisão confirmou o contrato aprovado,
+independência da borda, ausência de logging no adapter e ausência de integração, persistência ou
+configuração adicional. Sonar permanece `UNVERIFIED` porque o harness ainda não existe.
 
 **Checkpoint B — obrigatório antes do código:**
 
@@ -498,6 +505,7 @@ Incremento 4. Em 2026-08-23, o humano aprovou o Checkpoint A e registrou `GO` pa
 A pré-verificação confirmou ausência de pacotes `sonar/` e dos scripts Sonar ainda planejados;
 baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A fundação Maven foi
 concluída e verificada em 2026-08-23. Após a revisão, o humano registrou `GO` para o Incremento 5
-e aprovou explicitamente as regras de normalização Unicode. A autorização não alcança o Incremento
-6 nem o adapter HTTP. O Incremento 5 foi concluído tecnicamente com sete testes verdes e aguarda
-revisão humana.
+e aprovou explicitamente as regras de normalização Unicode. O Incremento 5 foi concluído
+tecnicamente com sete testes verdes. Em 2026-08-24, o humano registrou `GO` para o Incremento 6 e
+aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído tecnicamente com
+15 testes verdes e aguarda revisão humana; essa autorização não alcança o Incremento 7.

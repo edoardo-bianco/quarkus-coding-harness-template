@@ -89,9 +89,12 @@
 - [x] Preparar proposta de path, verbo, status, JSON, validação, OpenAPI, dependências e limites.
 - [x] Checkpoint B: aprovação humana explícita do contrato público registrada em 2026-08-24.
 - [x] Congelar no plano o contrato aprovado, sem ajustes solicitados pelo humano.
-- [ ] RED: teste HTTP de sucesso e falha.
-- [ ] GREEN: DTOs, mapper simples e resource.
-- [ ] REFACTOR e verificar independência da borda.
+- [x] RED: oito testes HTTP/OpenAPI falharam com endpoint `404` e operação ausente no documento.
+- [x] GREEN: DTOs, mapeamento simples no resource e dependências oficiais implementados.
+- [x] REFACTOR: confirmar contrato, tratamento genérico de erro e independência da borda.
+- [x] Executar teste focal e suíte completa: 15 testes, zero falhas, zero erros e zero ignorados.
+- [x] Registrar Sonar `UNVERIFIED`: scripts de baseline/checkpoint ainda não existem.
+- [ ] Obter revisão humana e eventual `GO` para o Incremento 7.
 
 ## Incremento 7 — ArchUnit
 
@@ -169,6 +172,6 @@
 
 ## Próximo item autorizado
 
-O `GO` para iniciar o Incremento 6 foi registrado em 2026-08-24 e a proposta contratual está no
-plano. O próximo item é o Checkpoint B humano. Antes dessa aprovação explícita, não alterar
-`pom.xml`, não criar teste HTTP, resource ou DTO e não consolidar contrato público.
+O Incremento 6 foi concluído tecnicamente após `GO` e Checkpoint B aprovados em 2026-08-24. O
+próximo item é a revisão humana desta entrega. Não iniciar o Incremento 7 nem criar regras ArchUnit
+antes de novo `GO` explícito.
