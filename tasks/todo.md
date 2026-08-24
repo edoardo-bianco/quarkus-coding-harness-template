@@ -119,7 +119,7 @@
   health; excluir log em arquivo, exporter externo, campos e nomes de negócio.
 - [x] Definir perguntas operacionais, contrato exato, dependências, riscos e duas tasks com no
   máximo quatro arquivos cada.
-- [ ] Checkpoint C: obter aprovação humana explícita do contrato observável antes de qualquer
+- [x] Checkpoint C: aprovação humana explícita registrada em 2026-08-24 antes de qualquer
   alteração em POM, configuração, teste RED ou código.
 - [ ] Reconfirmar ausência do harness Sonar; registrar `UNVERIFIED` sem improvisar baseline.
 - [ ] Task 8A — RED: exigir JSON/MDC, exporter de teste em memória, métricas e health locais.
@@ -193,6 +193,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 7 foi aprovado pelo humano e a proposta do Incremento 8 está preparada. O próximo
-item é a decisão humana do Checkpoint C. Não alterar POM, configuração, testes ou código de
-observabilidade antes dessa aprovação explícita.
+O Checkpoint C foi aprovado explicitamente pelo humano em 2026-08-24. O próximo item autorizado é
+reconfirmar a ausência do harness Sonar e executar a Task 8A em RED → GREEN. As Tasks 8A e 8B são
+o único escopo executável autorizado; o Incremento 9 permanece bloqueado.
