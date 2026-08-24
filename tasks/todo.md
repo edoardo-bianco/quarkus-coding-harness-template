@@ -94,10 +94,11 @@
 - [x] REFACTOR: confirmar contrato, tratamento genérico de erro e independência da borda.
 - [x] Executar teste focal e suíte completa: 15 testes, zero falhas, zero erros e zero ignorados.
 - [x] Registrar Sonar `UNVERIFIED`: scripts de baseline/checkpoint ainda não existem.
-- [ ] Obter revisão humana e eventual `GO` para o Incremento 7.
+- [x] Obter revisão humana e `GO` para o Incremento 7 em 2026-08-24.
 
 ## Incremento 7 — ArchUnit
 
+- [x] Registrar `GO` humano e confirmar Sonar `UNVERIFIED` por ausência do harness.
 - [ ] RED: provar que violações-exemplo seriam detectadas.
 - [ ] Proteger domain, application e adapters.
 - [ ] Proteger contratos independentes por borda.
@@ -172,6 +173,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 6 foi concluído tecnicamente após `GO` e Checkpoint B aprovados em 2026-08-24. O
-próximo item é a revisão humana desta entrega. Não iniciar o Incremento 7 nem criar regras ArchUnit
-antes de novo `GO` explícito.
+O Incremento 7 foi autorizado por `GO` humano em 2026-08-24. O próximo item é o RED com violações
+sintéticas. Não iniciar observabilidade nem o Incremento 8 antes de concluir e revisar esta fatia.

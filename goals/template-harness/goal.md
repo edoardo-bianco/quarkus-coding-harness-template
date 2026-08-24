@@ -85,6 +85,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Primeira alteração de código/tooling | `APROVADO` em 2026-08-23 para o Incremento 4 | Humano |
 | Contrato e implementação do núcleo neutro | `APROVADO` em 2026-08-23 para o Incremento 5 | Humano |
 | Adapter HTTP | `GO` e Checkpoint B `APROVADO` em 2026-08-24 para o Incremento 6 | Humano |
+| Regras arquiteturais executáveis | `GO` em 2026-08-24 para o Incremento 7 | Humano |
 | Contratos, arquitetura, segurança e observabilidade | `PENDENTE conforme incremento` | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
@@ -103,8 +104,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - O Incremento 6 implementou o contrato HTTP e OpenAPI aprovado. O RED teve oito falhas pela
   ausência do endpoint e da operação OpenAPI; depois do GREEN e da revisão, a suíte completa
   passou com 15 testes, zero falhas, zero erros e zero ignorados.
+- O humano revisou essa entrega e registrou `GO` para o Incremento 7 em 2026-08-24.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
-- Esta evidência não encerra o goal e não autoriza o Incremento 7.
+- Esta evidência não encerra o goal e não autoriza o Incremento 8.
 
 ## Decisões já registradas
 
