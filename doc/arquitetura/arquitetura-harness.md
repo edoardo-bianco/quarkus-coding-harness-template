@@ -11,9 +11,9 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 
 ### Estado implementado
 
-A governança reutilizável, a fundação Maven e o fluxo HTTP da feature neutra até seu núcleo estão
-implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16 verificável por
-checksum e exclui estados e segredos locais. As regras ArchUnit, a observabilidade e o harness
+A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo e as
+regras ArchUnit estão implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper
+3.9.16 verificável por checksum e exclui estados e segredos locais. A observabilidade e o harness
 Sonar continuam planejados. Até a implementação dos scripts próprios, qualquer checkpoint Sonar
 permanece `UNVERIFIED`.
 
@@ -112,6 +112,12 @@ domínio. `NormalizeTextUseCase` coordena essa regra na aplicação e depende so
 uso e traduz o resultado ou a falha semântica para o contrato JSON aprovado. OpenAPI é gerado em
 `/q/openapi`. Não há persistência, integração externa, porta artificial ou reutilização do DTO de
 borda pelo núcleo.
+
+ArchUnit importa somente bytecode de produção e protege duas direções: `domain` não depende de
+`application` nem de `adapter`, e `application` não depende de `adapter`. Uma regra adicional
+mantém contratos de `adapter.in.rest` dentro da própria borda. Fixtures exclusivamente de teste
+provam que as três violações são detectadas; uma fixture com `@Unremovable` prova que APIs estáveis
+do Quarkus não são bloqueadas genericamente.
 
 Ela deve provar:
 

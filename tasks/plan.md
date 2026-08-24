@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 7 completo**, após revisão humana do Incremento 6 e `GO`
-  explícito em 2026-08-24.
+- Implementação autorizada: **nenhuma adicional**; o Incremento 7 foi concluído tecnicamente após
+  `GO` explícito em 2026-08-24.
 - Próxima decisão: revisão humana do Incremento 7 antes de eventual `GO` para o Incremento 8.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
@@ -299,8 +299,7 @@ Incremento 8.
 
 **Entrega:** proteger direção de dependência e independência de bordas.
 
-**Estado atual:** `GO` humano registrado em 2026-08-24; implementação autorizada somente para esta
-fatia.
+**Estado de execução:** `Concluído tecnicamente em 2026-08-24; revisão humana pendente`.
 
 **Arquivos prováveis:**
 
@@ -323,6 +322,15 @@ application→adapter e contrato REST compartilhado fora da borda; código de pr
 regras; uso pragmático de APIs estáveis de framework não é bloqueado genericamente.
 
 **Verificação:** testes ArchUnit focados e suíte completa.
+
+**Evidência:** o RED executou seis testes e produziu três falhas ArchUnit esperadas: dependência
+domain→adapter, application→adapter e contrato REST usado fora da borda. O GREEN converteu essas
+violações sintéticas em provas de regressão e confirmou o código de produção. Uma fixture anotada
+com `@Unremovable` demonstrou que a regra não cria blacklist genérica de framework. Os seis testes
+focados passaram; a suíte completa passou com 21 testes, zero falhas, zero erros e zero ignorados.
+O Maven resolveu `com.tngtech.archunit:archunit:1.5.0:test`. A revisão não encontrou alteração de
+produção, segredo, I/O, custo de runtime ou dependência invertida. Sonar permanece `UNVERIFIED`
+porque o harness ainda não existe.
 
 ### Incremento 8 — Observabilidade mínima verificável
 
@@ -525,4 +533,5 @@ e aprovou explicitamente as regras de normalização Unicode. O Incremento 5 foi
 tecnicamente com sete testes verdes. Em 2026-08-24, o humano registrou `GO` para o Incremento 6 e
 aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído tecnicamente com
 15 testes verdes. Após revisar essa entrega, o humano registrou `GO` para o Incremento 7 em
-2026-08-24; essa autorização não alcança o Incremento 8.
+2026-08-24. O Incremento 7 foi concluído tecnicamente com 21 testes verdes e aguarda revisão
+humana; essa autorização não alcança o Incremento 8.

@@ -101,10 +101,14 @@
 - [x] Registrar `GO` humano e confirmar Sonar `UNVERIFIED` por ausência do harness.
 - [x] Confirmar ArchUnit 1.5.0 em fonte oficial e destilar somente o padrão estrutural da
   referência.
-- [ ] RED: provar que violações-exemplo seriam detectadas.
-- [ ] Proteger domain, application e adapters.
-- [ ] Proteger contratos independentes por borda.
-- [ ] Confirmar que framework não é proibido genericamente.
+- [x] RED: seis testes executados; três violações sintéticas falharam como esperado.
+- [x] Proteger domain, application e adapters.
+- [x] Proteger contratos independentes por borda.
+- [x] Confirmar com `@Unremovable` que framework não é proibido genericamente.
+- [x] Executar testes focados e suíte completa: 21 testes, zero falhas, zero erros e zero ignorados.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [x] Registrar Sonar `UNVERIFIED` porque os scripts do harness ainda não existem.
+- [ ] Obter revisão humana e eventual `GO` para o Incremento 8.
 
 ## Incremento 8 — Observabilidade
 
@@ -175,5 +179,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 7 foi autorizado por `GO` humano em 2026-08-24. O próximo item é o RED com violações
-sintéticas. Não iniciar observabilidade nem o Incremento 8 antes de concluir e revisar esta fatia.
+O Incremento 7 foi concluído tecnicamente com 21 testes verdes. O próximo item é a revisão humana
+desta entrega. Não iniciar observabilidade nem o Incremento 8 antes de novo `GO` explícito.
