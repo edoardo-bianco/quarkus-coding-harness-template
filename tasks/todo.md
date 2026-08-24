@@ -108,15 +108,29 @@
 - [x] Executar testes focados e suíte completa: 21 testes, zero falhas, zero erros e zero ignorados.
 - [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
 - [x] Registrar Sonar `UNVERIFIED` porque os scripts do harness ainda não existem.
-- [ ] Obter revisão humana e eventual `GO` para o Incremento 8.
+- [x] Obter revisão humana do Incremento 7 e `GO` em 2026-08-24 para preparar a proposta do
+  Incremento 8, sem substituir seu checkpoint prévio de comportamento observável.
 
 ## Incremento 8 — Observabilidade
 
-- [ ] Confirmar fontes oficiais de logging, OTel, Micrometer e health.
-- [ ] RED: testes de contrato observável.
-- [ ] GREEN: log, span, métrica e health mínimos.
-- [ ] Verificar baixa cardinalidade e ausência de conteúdo sensível.
-- [ ] Checkpoint C: obter aprovação humana de arquitetura, segurança e sinais.
+- [x] Confirmar fontes oficiais de logging JSON, OpenTelemetry, Micrometer/Prometheus e SmallRye
+  Health para Quarkus 3.33.
+- [x] Destilar da referência somente JSON/MDC, correlação OTel, exporter de teste em memória e
+  health; excluir log em arquivo, exporter externo, campos e nomes de negócio.
+- [x] Definir perguntas operacionais, contrato exato, dependências, riscos e duas tasks com no
+  máximo quatro arquivos cada.
+- [ ] Checkpoint C: obter aprovação humana explícita do contrato observável antes de qualquer
+  alteração em POM, configuração, teste RED ou código.
+- [ ] Reconfirmar ausência do harness Sonar; registrar `UNVERIFIED` sem improvisar baseline.
+- [ ] Task 8A — RED: exigir JSON/MDC, exporter de teste em memória, métricas e health locais.
+- [ ] Task 8A — GREEN: adicionar dependências, configuração e infraestrutura mínima.
+- [ ] Task 8B — RED: exigir log correlacionado, span interno, timer/histogram e ausência de payload.
+- [ ] Task 8B — GREEN: instrumentar o bean CDI e preservar o contrato HTTP.
+- [ ] REFACTOR: confirmar apenas `success|invalid`, duas combinações próprias de tags e nenhum
+  check sempre-UP.
+- [ ] Executar testes focados, inspecionar logs JSON e executar `./mvnw.cmd -q verify`.
+- [ ] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [ ] Apresentar diff e evidências para revisão humana antes de eventual `GO` do Incremento 9.
 
 ## Incremento 9 — Cobertura e Sonar build
 
@@ -179,5 +193,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 7 foi concluído tecnicamente com 21 testes verdes. O próximo item é a revisão humana
-desta entrega. Não iniciar observabilidade nem o Incremento 8 antes de novo `GO` explícito.
+O Incremento 7 foi aprovado pelo humano e a proposta do Incremento 8 está preparada. O próximo
+item é a decisão humana do Checkpoint C. Não alterar POM, configuração, testes ou código de
+observabilidade antes dessa aprovação explícita.
