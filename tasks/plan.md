@@ -8,7 +8,7 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 5 em execução**
+- Implementação autorizada: **nenhum novo incremento; Incremento 5 concluído tecnicamente**
 - Próxima decisão: revisão humana do núcleo neutro e eventual `GO` para o Incremento 6.
 - Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
 
@@ -77,7 +77,8 @@ O GO humano de 2026-08-23 aceitou:
 
 Esses contratos orientam os incrementos futuros. Em 2026-08-23, o humano aprovou o Checkpoint A e
 registrou `GO` limitado ao Incremento 4. A fundação Maven foi concluída tecnicamente; o Incremento
-5 permanece sem autorização.
+5 recebeu `GO` humano depois dessa revisão e também foi concluído tecnicamente. O Incremento 6
+permanece sem autorização.
 
 ## Estratégia de implementação
 
@@ -185,6 +186,14 @@ scripts de baseline e checkpoint serão implementados apenas nos incrementos pr�
 **Aceitação:** RED comprova regras ainda ausentes; GREEN implementa apenas regras aprovadas; REFACTOR preserva testes.
 
 **Verificação:** testes focados e depois `./mvnw -q test`.
+
+**Estado de execução:** `Concluído tecnicamente em 2026-08-23`.
+
+**Evidência:** o RED falhou na compilação pela ausência de `NormalizedText` e
+`NormalizeTextUseCase`. O GREEN implementou somente os quatro arquivos planejados; os sete testes
+focados e a suíte completa passaram sem falhas, erros ou testes ignorados. A revisão não encontrou
+dependência invertida, I/O, adapter, abstração ou dependência adicional. O checkpoint Sonar segue
+`UNVERIFIED` porque seus scripts ainda não existem.
 
 ### Incremento 6 — Adapter HTTP vertical
 
@@ -403,4 +412,5 @@ A pré-verificação confirmou ausência de pacotes `sonar/` e dos scripts Sonar
 baseline e checkpoint permanecem `UNVERIFIED`, sem equivaler a aprovação. A fundação Maven foi
 concluída e verificada em 2026-08-23. Após a revisão, o humano registrou `GO` para o Incremento 5
 e aprovou explicitamente as regras de normalização Unicode. A autorização não alcança o Incremento
-6 nem o adapter HTTP.
+6 nem o adapter HTTP. O Incremento 5 foi concluído tecnicamente com sete testes verdes e aguarda
+revisão humana.

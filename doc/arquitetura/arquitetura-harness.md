@@ -11,10 +11,11 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 
 ### Estado implementado
 
-A governança reutilizável e a fundação Maven estão implementadas. O build fixa Java 25 e Quarkus
-3.33.3.1, usa Maven Wrapper 3.9.16 verificável por checksum e exclui estados e segredos locais. A
-feature neutra, as regras ArchUnit, a observabilidade e o harness Sonar continuam planejados. Até
-a implementação dos scripts próprios, qualquer checkpoint Sonar permanece `UNVERIFIED`.
+A governança reutilizável, a fundação Maven e a primeira fatia do núcleo neutro estão
+implementadas. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16 verificável por
+checksum e exclui estados e segredos locais. O adapter HTTP, as regras ArchUnit, a observabilidade
+e o harness Sonar continuam planejados. Até a implementação dos scripts próprios, qualquer
+checkpoint Sonar permanece `UNVERIFIED`.
 
 ## Visão do sistema
 
@@ -101,7 +102,13 @@ Não são aceitos wrappers sem benefício, portas que apenas renomeiam APIs est�
 
 ## Feature neutra
 
-A capacidade inicial terá nome sem semântica de negócio e demonstrará uma transformação determinística de entrada validada em saída. O contrato exato será congelado em checkpoint humano antes da implementação.
+A capacidade inicial chama-se `sample` e demonstra uma transformação determinística de entrada
+validada em saída. O contrato do núcleo foi aprovado pelo humano em 2026-08-23 e está detalhado na
+[especificação](../../specs/template-harness/spec.md#contrato-aprovado-da-primeira-fatia).
+
+No estado implementado, `NormalizedText` concentra normalização, validação e contagem Unicode no
+domínio. `NormalizeTextUseCase` coordena essa regra na aplicação e depende somente do domínio. Não
+há CDI, adapter, I/O ou porta artificial nesta fatia.
 
 Ela deve provar:
 

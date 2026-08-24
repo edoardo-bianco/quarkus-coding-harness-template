@@ -76,10 +76,12 @@
   preservação de conteúdo/capitalização e tamanho por pontos de código Unicode.
 - [x] Verificar novamente a pré-condição Sonar antes do primeiro arquivo em `src/`: zero pacotes,
   zero scripts e zero hooks; situação `UNVERIFIED`, sem aprovação implícita.
-- [ ] RED: testes do valor e caso de uso.
-- [ ] GREEN: implementação mínima.
-- [ ] REFACTOR: simplificar sem mudar comportamento.
-- [ ] Executar testes focados e suíte.
+- [x] RED: sete testes do valor e caso de uso falharam na compilação pelas duas classes ausentes.
+- [x] GREEN: implementação mínima nos dois arquivos de produção planejados.
+- [x] REFACTOR: revisão confirmou solução mínima, sem CDI, adapter, I/O ou abstração adicional.
+- [x] Executar testes focados e suíte: sete testes, zero falhas, zero erros e zero ignorados.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [x] Registrar que o checkpoint Sonar permanece `UNVERIFIED` porque os scripts ainda não existem.
 
 ## Incremento 6 — HTTP
 
@@ -157,6 +159,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 5 está autorizado. O próximo item é verificar a pré-condição Sonar e então criar
-somente os dois testes planejados para comprovar o RED. Depois, implementar os dois arquivos de
-produção mínimos, verificar a suíte e parar. O Incremento 6 e o adapter HTTP não estão autorizados.
+Nenhum novo item de implementação está autorizado. O Incremento 5 foi concluído tecnicamente e o
+agente deve parar para revisão humana. Somente um `GO` explícito pode autorizar o Incremento 6.
+Antes desse GO, não criar o adapter HTTP, DTOs, configuração ou contrato público.
