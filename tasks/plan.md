@@ -8,8 +8,8 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhum novo incremento; Incremento 5 concluído tecnicamente**
-- Próxima decisão: revisão humana do núcleo neutro e eventual `GO` para o Incremento 6.
+- Implementação autorizada: **Incremento 6, limitado à preparação do contrato público**
+- Próxima decisão: Checkpoint B humano sobre path, verbo, status, JSON, validação e OpenAPI.
 - Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
 
 ## Intenção
@@ -77,8 +77,9 @@ O GO humano de 2026-08-23 aceitou:
 
 Esses contratos orientam os incrementos futuros. Em 2026-08-23, o humano aprovou o Checkpoint A e
 registrou `GO` limitado ao Incremento 4. A fundação Maven foi concluída tecnicamente; o Incremento
-5 recebeu `GO` humano depois dessa revisão e também foi concluído tecnicamente. O Incremento 6
-permanece sem autorização.
+5 recebeu `GO` humano depois dessa revisão e também foi concluído tecnicamente. Em 2026-08-24, o
+humano registrou `GO` para iniciar o Incremento 6. Como os detalhes públicos ainda não estavam
+congelados, código e dependências do adapter permanecem bloqueados até o Checkpoint B.
 
 ## Estratégia de implementação
 
@@ -199,23 +200,60 @@ dependência invertida, I/O, adapter, abstração ou dependência adicional. O c
 
 **Entrega:** fluxo executável da entrada HTTP ao núcleo.
 
-**Arquivos prováveis:**
+**Estado atual:** `GO` de início registrado em 2026-08-24; proposta contratual preparada; código
+aguarda o Checkpoint B.
 
+**Contrato proposto para o Checkpoint B:**
+
+| Dimensão | Proposta |
+| --- | --- |
+| Operação | `POST /api/sample/normalize`, com `operationId` `normalizeSampleText` |
+| Media types | consome e produz `application/json` |
+| Request | `{"text":"  Olá\t Mundo  "}`; body e campo `text` obrigatórios; propriedades adicionais são ignoradas para permitir evolução aditiva |
+| Sucesso | `200 OK` com `{"value":"Olá Mundo","length":9}`; `length` conta pontos de código Unicode |
+| Erro semântico | `400 Bad Request` com `{"code":"INVALID_TEXT","message":"text must contain non-whitespace content"}` para body ausente, `text` ausente, `null`, vazio ou somente whitespace Unicode |
+| JSON malformado | `400 Bad Request` do Quarkus; o corpo técnico dessa falha não é contrato desta fatia e não pode expor stack trace |
+| OpenAPI | documento gerado em `/q/openapi`, com operação, schemas e respostas `200`/`400`; sem snapshot estático |
+| Segurança | sem autenticação, CORS, rate limiting, persistência ou integração; entrada não será registrada em log/span e permanece sujeita ao limite HTTP padrão de `10240K` do Quarkus 3.33 |
+
+A validação estrutural de body/campo pertence ao adapter. A regra semântica Unicode continua
+somente em `NormalizedText`; o resource traduz `IllegalArgumentException` para o erro público
+genérico, sem expor mensagem interna nem repetir a regra. Alterar limite de body, autenticação,
+CORS ou formato de erro exige novo checkpoint de contrato/segurança.
+
+**Dependências oficiais previstas após o checkpoint:**
+
+- `io.quarkus:quarkus-rest-jackson` para Jakarta REST e JSON;
+- `io.quarkus:quarkus-smallrye-openapi` para gerar OpenAPI;
+- `io.rest-assured:rest-assured` em escopo de teste para exercitar HTTP com `@QuarkusTest`.
+
+Fontes oficiais: [REST/JSON 3.33](https://quarkus.io/version/3.33/guides/rest-json),
+[referência REST 3.33](https://quarkus.io/version/3.33/guides/rest),
+[testes 3.33](https://quarkus.io/version/3.33/guides/getting-started-testing),
+[OpenAPI 3.33](https://quarkus.io/version/3.33/guides/openapi-swaggerui) e
+[limites HTTP 3.33](https://quarkus.io/version/3.33/guides/http-reference).
+
+**Arquivos prováveis após aprovação:**
+
+- `pom.xml`
 - `src/main/java/template/harness/sample/adapter/in/rest/NormalizeTextResource.java`
 - `src/main/java/template/harness/sample/adapter/in/rest/NormalizeTextRequest.java`
 - `src/main/java/template/harness/sample/adapter/in/rest/NormalizeTextResponse.java`
 - `src/test/java/template/harness/sample/adapter/in/rest/NormalizeTextResourceTest.java`
-- `src/main/resources/application.properties`
 
-**Aceitação:** contrato aprovado, validação de borda e mapeamento sem DTO no núcleo; sucesso e erro testados.
+`application.properties` saiu da lista porque o contrato proposto não exige configuração nesta
+fatia; o `pom.xml`, ausente da previsão anterior, é necessário para as extensões oficiais.
+
+**Aceitação:** Checkpoint B aprovado antes do RED; validação de borda e mapeamento sem DTO no
+núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente sem snapshot estático.
 
 **Verificação:** teste HTTP focado e `./mvnw -q test`.
 
-### Checkpoint B — Contrato público
+**Checkpoint B — obrigatório antes do código:**
 
 - path, verbo, status, JSON, validação e OpenAPI apresentados ao humano;
 - nenhuma persistência ou integração externa adicionada;
-- GO humano antes de consolidar contrato público.
+- decisão humana explícita registrada antes do teste RED e da implementação.
 
 ### Incremento 7 — Regras arquiteturais executáveis
 
