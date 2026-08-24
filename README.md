@@ -13,13 +13,17 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 2 — goals e specs reutilizáveis | `Concluído` |
 | Incremento 3 — planos e checklists reutilizáveis | `Concluído; Checkpoint A aprovado` |
 | Incremento 4 — fundação Maven reproduzível | `Concluído; GO do Incremento 5 registrado` |
-| Incremento 5 — núcleo neutro | `Concluído; GO do Incremento 6 registrado` |
-| Incremento 6 — adapter HTTP | `Contrato proposto; Checkpoint B pendente` |
-| Feature neutra | Núcleo e aplicação implementados; adapter e controles ainda planejados |
+| Incremento 5 — núcleo neutro | `Concluído` |
+| Incremento 6 — adapter HTTP | `Concluído tecnicamente; revisão humana pendente` |
+| Feature neutra | Fluxo HTTP, aplicação e núcleo implementados; controles ainda planejados |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
 
-Neste checkpoint o repositório contém documentação, fundação Maven e o núcleo determinístico da feature neutra, comprovado por testes. O `GO` para iniciar o Incremento 6 foi registrado e seu contrato HTTP está proposto no plano, mas nenhum adapter, DTO ou dependência será criado antes do Checkpoint B humano. ArchUnit, observabilidade e harness Sonar continuam planejados; a situação Sonar permanece `UNVERIFIED`.
+Neste checkpoint o repositório contém documentação, fundação Maven e o fluxo HTTP da feature
+neutra até seu núcleo determinístico, comprovado por testes. O Incremento 6 está tecnicamente
+concluído após o Checkpoint B aprovado e aguarda revisão humana antes de eventual `GO` para o
+Incremento 7. ArchUnit, observabilidade e harness Sonar continuam planejados; a situação Sonar
+permanece `UNVERIFIED`.
 
 ## Comece por aqui
 
@@ -83,11 +87,16 @@ Execute também a suíte disponível:
 .\mvnw.cmd -q test
 ```
 
-Em ambientes POSIX, use `./mvnw` nos mesmos comandos. A saída verificada no bootstrap foi Maven 3.9.16 com Temurin JDK 25.0.3. Neste estágio, a suíte cobre somente o núcleo e o caso de uso; ainda não prova HTTP, arquitetura executável ou observabilidade.
+Em ambientes POSIX, use `./mvnw` nos mesmos comandos. A saída verificada no bootstrap foi Maven
+3.9.16 com Temurin JDK 25.0.3. Neste estágio, a suíte cobre domínio, caso de uso, HTTP e OpenAPI;
+ainda não prova regras arquiteturais executáveis ou observabilidade.
 
 ## SonarQube
 
-Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e configuração executável exigem o fluxo Sonar descrito em [AGENTS.md](AGENTS.md). Neste bootstrap, os scripts de baseline/checkpoint ainda não existem; por isso os Incrementos 4 e 5 estão tecnicamente verificados pelo Maven, mas o estado Sonar permanece `UNVERIFIED`.
+Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e
+configuração executável exigem o fluxo Sonar descrito em [AGENTS.md](AGENTS.md). Neste bootstrap,
+os scripts de baseline/checkpoint ainda não existem; por isso os Incrementos 4–6 estão
+tecnicamente verificados pelo Maven, mas o estado Sonar permanece `UNVERIFIED`.
 
 Regras centrais:
 

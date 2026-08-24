@@ -100,6 +100,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   falhas, zero erros e zero ignorados.
 - O humano registrou `GO` para iniciar o Incremento 6 e aprovou explicitamente o Checkpoint B em
   2026-08-24. Nenhum adapter, DTO ou dependência foi alterado antes dessa decisão.
+- O Incremento 6 implementou o contrato HTTP e OpenAPI aprovado. O RED teve oito falhas pela
+  ausência do endpoint e da operação OpenAPI; depois do GREEN e da revisão, a suíte completa
+  passou com 15 testes, zero falhas, zero erros e zero ignorados.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
 - Esta evidência não encerra o goal e não autoriza o Incremento 7.
 
