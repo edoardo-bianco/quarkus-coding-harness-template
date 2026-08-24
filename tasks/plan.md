@@ -8,11 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma alteração executável adicional**. O humano aprovou o
-  Incremento 7 e registrou `GO` em 2026-08-24 para preparar a proposta do Incremento 8; esse
-  registro não substitui o checkpoint prévio obrigatório de comportamento observável.
-- Próxima decisão: Checkpoint C sobre nomes, atributos, endpoints, dependências, limites e provas
-  exatos do Incremento 8 antes do primeiro RED ou alteração em POM, configuração e código.
+- Implementação autorizada: **somente o Incremento 8**, nas Tasks 8A e 8B e dentro do contrato
+  observável registrado neste plano. O humano aprovou explicitamente o Checkpoint C em
+  2026-08-24.
+- Próxima decisão: revisão humana do Incremento 8 depois das duas tasks verificadas; o
+  Incremento 9 não está autorizado.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -338,7 +338,7 @@ porque o harness ainda não existe.
 
 **Entrega:** logs, span, métrica e health na feature neutra.
 
-**Estado:** `Proposta preparada; implementação executável bloqueada pelo Checkpoint C`.
+**Estado:** `Checkpoint C aprovado em 2026-08-24; Tasks 8A e 8B autorizadas`.
 
 **Perguntas operacionais que os sinais devem responder:**
 
@@ -434,6 +434,9 @@ simplicidade, arquitetura, segurança, desempenho, testes e escopo. O checkpoint
 
 Depois das duas tasks verificadas, o agente apresentará diff e evidências e parará para revisão
 humana do Incremento 8 antes de eventual `GO` para o Incremento 9.
+
+**Decisão:** `APROVADO` pelo humano em 2026-08-24. A aprovação alcança somente o contrato acima e
+as Tasks 8A e 8B; não autoriza cobertura, configuração Sonar ou qualquer item do Incremento 9.
 
 ### Incremento 9 — Cobertura e propriedades Sonar
 
@@ -615,6 +618,6 @@ tecnicamente com sete testes verdes. Em 2026-08-24, o humano registrou `GO` para
 aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído tecnicamente com
 15 testes verdes. Após revisar essa entrega, o humano registrou `GO` para o Incremento 7 em
 2026-08-24. O Incremento 7 foi concluído com 21 testes verdes e posteriormente aprovado pelo
-humano. Um novo `GO` em 2026-08-24 autorizou preparar a proposta do Incremento 8. Por alterar
-comportamento observável, a execução das Tasks 8A e 8B permanece bloqueada até decisão explícita
-no Checkpoint C acima.
+humano. Um novo `GO` em 2026-08-24 autorizou preparar a proposta do Incremento 8. O humano
+aprovou explicitamente o Checkpoint C em 2026-08-24, autorizando somente as Tasks 8A e 8B dentro
+do contrato observável registrado acima.

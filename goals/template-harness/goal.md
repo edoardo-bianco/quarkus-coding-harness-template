@@ -86,7 +86,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Contrato e implementação do núcleo neutro | `APROVADO` em 2026-08-23 para o Incremento 5 | Humano |
 | Adapter HTTP | `GO` e Checkpoint B `APROVADO` em 2026-08-24 para o Incremento 6 | Humano |
 | Regras arquiteturais executáveis | `APROVADO` em 2026-08-24 após o Incremento 7 | Humano |
-| Contrato observável exato — Checkpoint C | `PENDENTE`; o `GO` de 2026-08-24 autoriza somente preparar a proposta do Incremento 8 | Humano |
+| Contrato observável exato — Checkpoint C | `APROVADO` em 2026-08-24 para as Tasks 8A e 8B | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
@@ -109,11 +109,11 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   No RED, três violações sintéticas falharam como esperado; depois do GREEN, os seis testes
   arquiteturais e a suíte completa de 21 testes passaram sem falhas, erros ou ignorados.
 - O humano revisou o Incremento 7 e registrou `GO` em 2026-08-24 para preparar o Incremento 8.
-  Como logs, spans, métricas, health e configuração alteram o comportamento operacional, a
-  implementação executável permanece bloqueada até aprovação explícita do contrato exato no
-  Checkpoint C.
+  Depois de revisar perguntas operacionais, nomes, atributos, endpoints, dependências e limites,
+  aprovou explicitamente o Checkpoint C em 2026-08-24. A decisão autoriza somente as Tasks 8A e
+  8B conforme o contrato registrado no plano.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
-- Esta evidência não encerra o goal nem substitui a decisão pendente do Checkpoint C.
+- Esta evidência não encerra o goal nem autoriza o Incremento 9.
 
 ## Decisões já registradas
 
