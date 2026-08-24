@@ -8,9 +8,9 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma adicional**; o Incremento 6 foi concluído tecnicamente após
-  aprovação humana do Checkpoint B em 2026-08-24.
-- Próxima decisão: revisão humana do Incremento 6 antes de eventual `GO` para o Incremento 7.
+- Implementação autorizada: **Incremento 7 completo**, após revisão humana do Incremento 6 e `GO`
+  explícito em 2026-08-24.
+- Próxima decisão: revisão humana do Incremento 7 antes de eventual `GO` para o Incremento 8.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -229,7 +229,7 @@ dependência invertida, I/O, adapter, abstração ou dependência adicional. O c
 
 **Entrega:** fluxo executável da entrada HTTP ao núcleo.
 
-**Estado de execução:** `Concluído tecnicamente em 2026-08-24; revisão humana pendente`.
+**Estado de execução:** `Concluído e revisado pelo humano em 2026-08-24`.
 
 **Contrato aprovado no Checkpoint B:**
 
@@ -298,6 +298,9 @@ Incremento 8.
 ### Incremento 7 — Regras arquiteturais executáveis
 
 **Entrega:** proteger direção de dependência e independência de bordas.
+
+**Estado atual:** `GO` humano registrado em 2026-08-24; implementação autorizada somente para esta
+fatia.
 
 **Arquivos prováveis:**
 
@@ -508,4 +511,5 @@ concluída e verificada em 2026-08-23. Após a revisão, o humano registrou `GO`
 e aprovou explicitamente as regras de normalização Unicode. O Incremento 5 foi concluído
 tecnicamente com sete testes verdes. Em 2026-08-24, o humano registrou `GO` para o Incremento 6 e
 aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído tecnicamente com
-15 testes verdes e aguarda revisão humana; essa autorização não alcança o Incremento 7.
+15 testes verdes. Após revisar essa entrega, o humano registrou `GO` para o Incremento 7 em
+2026-08-24; essa autorização não alcança o Incremento 8.
