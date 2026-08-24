@@ -99,6 +99,8 @@
 ## Incremento 7 — ArchUnit
 
 - [x] Registrar `GO` humano e confirmar Sonar `UNVERIFIED` por ausência do harness.
+- [x] Confirmar ArchUnit 1.5.0 em fonte oficial e destilar somente o padrão estrutural da
+  referência.
 - [ ] RED: provar que violações-exemplo seriam detectadas.
 - [ ] Proteger domain, application e adapters.
 - [ ] Proteger contratos independentes por borda.
