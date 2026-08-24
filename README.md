@@ -13,12 +13,13 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 2 — goals e specs reutilizáveis | `Concluído` |
 | Incremento 3 — planos e checklists reutilizáveis | `Concluído; Checkpoint A aprovado` |
 | Incremento 4 — fundação Maven reproduzível | `Concluído; GO do Incremento 5 registrado` |
-| Incremento 5 — núcleo neutro | `Concluído tecnicamente; revisão humana pendente` |
+| Incremento 5 — núcleo neutro | `Concluído; GO do Incremento 6 registrado` |
+| Incremento 6 — adapter HTTP | `Contrato proposto; Checkpoint B pendente` |
 | Feature neutra | Núcleo e aplicação implementados; adapter e controles ainda planejados |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
 
-Neste checkpoint o repositório contém documentação, fundação Maven e o núcleo determinístico da feature neutra, comprovado por testes. Ainda não possui adapter HTTP, ArchUnit, observabilidade ou harness Sonar. O Incremento 6 não está autorizado, e a situação Sonar permanece `UNVERIFIED`; não interprete essas ausências como sucesso ou disponibilidade.
+Neste checkpoint o repositório contém documentação, fundação Maven e o núcleo determinístico da feature neutra, comprovado por testes. O `GO` para iniciar o Incremento 6 foi registrado e seu contrato HTTP está proposto no plano, mas nenhum adapter, DTO ou dependência será criado antes do Checkpoint B humano. ArchUnit, observabilidade e harness Sonar continuam planejados; a situação Sonar permanece `UNVERIFIED`.
 
 ## Comece por aqui
 

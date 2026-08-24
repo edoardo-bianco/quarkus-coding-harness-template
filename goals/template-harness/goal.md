@@ -84,6 +84,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Arquitetura, ADRs e plano | `APROVADO` em 2026-08-23 | Humano |
 | Primeira alteração de código/tooling | `APROVADO` em 2026-08-23 para o Incremento 4 | Humano |
 | Contrato e implementação do núcleo neutro | `APROVADO` em 2026-08-23 para o Incremento 5 | Humano |
+| Início do adapter HTTP | `GO` registrado em 2026-08-24; contrato público aguarda Checkpoint B | Humano |
 | Contratos, arquitetura, segurança e observabilidade | `PENDENTE conforme incremento` | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
@@ -97,8 +98,11 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   sem adapter, I/O ou dependência adicional.
 - O RED falhou pelas duas classes ausentes; depois do GREEN, a suíte passou com sete testes, zero
   falhas, zero erros e zero ignorados.
+- O humano registrou `GO` para iniciar o Incremento 6 em 2026-08-24. A proposta de contrato HTTP
+  foi preparada, mas nenhum adapter, DTO ou dependência foi alterado antes do Checkpoint B.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
-- Esta evidência não encerra o goal nem autoriza o Incremento 6.
+- Esta evidência não encerra o goal, não aprova automaticamente o contrato HTTP e não autoriza o
+  Incremento 7.
 
 ## Decisões já registradas
 

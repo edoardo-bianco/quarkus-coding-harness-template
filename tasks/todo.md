@@ -85,11 +85,13 @@
 
 ## Incremento 6 — HTTP
 
-- [ ] Congelar path, verbo, status, JSON, validação e OpenAPI.
+- [x] Registrar `GO` humano para iniciar o Incremento 6 em 2026-08-24.
+- [x] Preparar proposta de path, verbo, status, JSON, validação, OpenAPI, dependências e limites.
+- [ ] Checkpoint B: obter aprovação humana explícita do contrato público antes do código.
+- [ ] Congelar no plano o contrato aprovado e eventuais ajustes solicitados.
 - [ ] RED: teste HTTP de sucesso e falha.
 - [ ] GREEN: DTOs, mapper simples e resource.
 - [ ] REFACTOR e verificar independência da borda.
-- [ ] Checkpoint B: obter aprovação humana do contrato público.
 
 ## Incremento 7 — ArchUnit
 
@@ -159,6 +161,6 @@
 
 ## Próximo item autorizado
 
-Nenhum novo item de implementação está autorizado. O Incremento 5 foi concluído tecnicamente e o
-agente deve parar para revisão humana. Somente um `GO` explícito pode autorizar o Incremento 6.
-Antes desse GO, não criar o adapter HTTP, DTOs, configuração ou contrato público.
+O `GO` para iniciar o Incremento 6 foi registrado em 2026-08-24 e a proposta contratual está no
+plano. O próximo item é o Checkpoint B humano. Antes dessa aprovação explícita, não alterar
+`pom.xml`, não criar teste HTTP, resource ou DTO e não consolidar contrato público.
