@@ -8,8 +8,9 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **Incremento 6, limitado à preparação do contrato público**
-- Próxima decisão: Checkpoint B humano sobre path, verbo, status, JSON, validação e OpenAPI.
+- Implementação autorizada: **Incremento 6 completo**, após aprovação humana do Checkpoint B em
+  2026-08-24.
+- Próxima decisão: revisão humana do Incremento 6 antes de eventual `GO` para o Incremento 7.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -228,10 +229,10 @@ dependência invertida, I/O, adapter, abstração ou dependência adicional. O c
 
 **Entrega:** fluxo executável da entrada HTTP ao núcleo.
 
-**Estado atual:** `GO` de início registrado em 2026-08-24; proposta contratual preparada; código
-aguarda o Checkpoint B.
+**Estado atual:** `GO` de início e aprovação explícita do Checkpoint B registrados em 2026-08-24;
+contrato congelado e implementação autorizada somente para esta fatia.
 
-**Contrato proposto para o Checkpoint B:**
+**Contrato aprovado no Checkpoint B:**
 
 | Dimensão | Proposta |
 | --- | --- |
@@ -282,6 +283,10 @@ núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente s
 - path, verbo, status, JSON, validação e OpenAPI apresentados ao humano;
 - nenhuma persistência ou integração externa adicionada;
 - decisão humana explícita registrada antes do teste RED e da implementação.
+
+**Decisão:** `APROVADO` pelo humano em 2026-08-24. A aprovação alcança somente o contrato acima e
+o Incremento 6; não autoriza arquitetura executável do Incremento 7 nem observabilidade do
+Incremento 8.
 
 ### Incremento 7 — Regras arquiteturais executáveis
 
