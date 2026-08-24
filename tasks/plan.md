@@ -304,10 +304,23 @@ fatia.
 
 **Arquivos prováveis:**
 
+- `pom.xml`
 - `src/test/java/template/harness/architecture/LayerDependencyTest.java`
 - `src/test/java/template/harness/architecture/BoundaryContractTest.java`
+- `src/test/java/template/harness/sample/domain/fixture/DomainAdapterDependencyViolation.java`
+- `src/test/java/template/harness/sample/application/fixture/ApplicationAdapterDependencyViolation.java`
 
-**Aceitação:** testes falham para dependência domain→adapter, application→adapter e DTO compartilhado entre bordas; uso pragmático de Quarkus não é bloqueado genericamente.
+**Dependência:** `com.tngtech.archunit:archunit:1.5.0` em escopo de teste. O core é suficiente
+porque as regras serão executadas como testes JUnit 5 comuns já suportados pelo projeto. A
+referência usa o mesmo padrão com 1.4.2; o template adota a versão atual documentada, construída e
+testada pelo projeto ArchUnit com JDK 25.
+
+Fontes oficiais: [guia ArchUnit 1.5.0](https://www.archunit.org/userguide/html/000_Index.html) e
+[release 1.5.0](https://github.com/TNG/ArchUnit/releases/tag/v1.5.0).
+
+**Aceitação:** fixtures sintéticas comprovam falha para dependência domain→adapter,
+application→adapter e contrato REST compartilhado fora da borda; código de produção respeita as
+regras; uso pragmático de APIs estáveis de framework não é bloqueado genericamente.
 
 **Verificação:** testes ArchUnit focados e suíte completa.
 
