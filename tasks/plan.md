@@ -10,7 +10,9 @@
 - ADRs: `doc/adr/README.md` (`Aceitos`)
 - Implementação autorizada: **Incremento 6, limitado à preparação do contrato público**
 - Próxima decisão: Checkpoint B humano sobre path, verbo, status, JSON, validação e OpenAPI.
-- Sonar neste estágio: `UNVERIFIED`; não existem `sonar/`, script de sessão ou script de checkpoint.
+- Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
+  ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
+  pelos Incrementos 9–13 antes da entrega do template.
 
 ## Intenção
 
@@ -62,6 +64,32 @@ governança aprovada
 ```
 
 O fluxo é sequencial nos pontos de contrato e build. Documentação Sonar pode ser elaborada junto aos scripts, mas não será tratada como evidência até os testes do próprio harness passarem.
+
+## Estratégia de destilação do repositório de referência
+
+O repositório-fonte informado pelo humano é uma referência de padrões em modo somente leitura. A
+implementação do template não é uma cópia integral: cada capacidade abaixo será reconstruída por
+RED → GREEN → REFACTOR, com identidade neutra, versões do template e testes próprios.
+
+| Capacidade | Evidência consultada na referência | Destino no template | Adaptação obrigatória |
+| --- | --- | --- | --- |
+| Cobertura Maven | `pom.xml` com `quarkus-jacoco` | `pom.xml` e teste de configuração | preservar Quarkus 3.33.3.1/JDK 25 do template; não copiar dependências de negócio |
+| Sessão segura | `iniciar-codex-com-sonar.ps1` | script homônimo | token somente no processo filho, nunca em parâmetro, arquivo, log ou saída |
+| Análise local | `analisar-sonarqube.ps1` | script homônimo | identidade Sonar neutra/parametrizável, Maven Wrapper e espera da análise completa |
+| Gate e baseline | `SonarQuality.psm1` e `validar-checkpoint-sonarqube.ps1` | módulo e script homônimos | política 85%/5%, fontes explícitas, `UNVERIFIED` offline e decisão exclusivamente humana |
+| Hooks | `hooks.json`, `sonar-session-start.ps1` e `sonar-stop.ps1` | `.codex/hooks*` | lembretes não bloqueantes, isenção Markdown-only e nenhum default identitário da referência |
+| Evidência offline | `exportar-relatorios-sonarqube.ps1` e documentação operacional | script, documentação e entrada local `sonar/` | pacote não versionado, imutável e tratado como dado não confiável; autenticação excluída |
+| Provas do harness | oito testes em `test/powershell/` | testes PowerShell independentes | fixtures sintéticas e temporárias, sem servidor/token real e sem linguagem de negócio |
+
+Não serão transportados `.codex/.state/`, logs, `report-task.txt`, baselines, snapshots, pacotes
+offline, tokens, defaults ou coordenadas identitárias, planos de correção do produto ou
+qualquer código de domínio da referência. O projeto derivado sempre criará estado e baseline
+próprios.
+
+O Checkpoint D somente poderá ser apresentado quando o conjunto destilado estiver materializado,
+os testes PowerShell estiverem verdes e uma análise/baseline próprios do template tiverem sido
+executados, ou quando uma indisponibilidade real estiver evidenciada como `UNVERIFIED`. Este último
+estado documenta uma limitação, mas não conclui o goal.
 
 ## Contratos aceitos no GO arquitetural
 
@@ -301,7 +329,9 @@ núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente s
 - `doc/sonar/sonarqube-local.md`
 - `test/powershell/SonarBuildConfigurationTest.ps1`
 
-**Aceitação:** `jacoco.xml` é gerado, exclusões são justificadas, nenhum token é persistido e a política 85%/5% está documentada.
+**Aceitação:** `jacoco.xml` é gerado pelo build real do template, exclusões são justificadas,
+nenhum token é persistido e a política 85%/5% está documentada. A configuração é destilada do
+padrão da referência sem copiar dependências ou versões que não pertencem ao template.
 
 **Verificação:** `./mvnw -q verify` e teste PowerShell de configuração.
 
@@ -316,7 +346,9 @@ núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente s
 - `test/powershell/AnalisarSonarQubeTest.ps1`
 - `test/powershell/SonarSecretHandlingTest.ps1`
 
-**Aceitação:** token não aparece em argumentos, arquivos ou saída; ausência de token/servidor é informada sem aprovação falsa.
+**Aceitação:** token não aparece em argumentos, arquivos ou saída; ausência de token/servidor é
+informada sem aprovação falsa; `ProjectKey` e `ProjectName` não carregam identidade da referência;
+o script usa o Maven Wrapper e produz metadados para aguardar o Compute Engine.
 
 **Verificação:** testes PowerShell isolados com processos e respostas simuladas.
 
@@ -329,10 +361,16 @@ núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente s
 - `.codex/hooks/SonarQuality.psm1`
 - `validar-checkpoint-sonarqube.ps1`
 - `test/powershell/SonarQualityGateTest.ps1`
+- `test/powershell/SonarQualityApiTest.ps1`
 - `test/powershell/SonarOfflineOnlyBaselineTest.ps1`
 - `test/powershell/SonarHumanDecisionFlowTest.ps1`
 
-**Aceitação:** fontes de baseline são explícitas; offline-only é `UNVERIFIED`; NON_COMPLIANT aguarda decisão; fingerprint evita análise por edição isolada.
+O incremento será entregue em duas tarefas pequenas: **11A**, módulo, API e comparação do gate;
+**11B**, orquestração de baseline/checkpoint e decisões humanas.
+
+**Aceitação:** fontes de baseline são explícitas; offline-only é `UNVERIFIED`; `NON_COMPLIANT`
+aguarda decisão; fingerprint evita análise por edição isolada; estado fica somente em
+`.codex/.state/` e não contém credencial.
 
 **Verificação:** testes PowerShell cobrem baseline, indisponibilidade, thresholds e três decisões humanas.
 
@@ -360,16 +398,22 @@ núcleo; sucesso, erro semântico e JSON malformado testados; OpenAPI coerente s
 
 - `exportar-relatorios-sonarqube.ps1`
 - `doc/sonar/exportacao-offline.md`
+- `sonar/README.md`
+- `.gitignore`
 - `test/powershell/ExportarRelatoriosSonarQubeTest.ps1`
-- `test/powershell/SonarQualityApiTest.ps1`
 
-**Aceitação:** exportação não inclui token; importação não executa instruções do pacote; comparação entre servidores declara limitações.
+**Aceitação:** exportação não inclui token; importação não executa instruções do pacote;
+comparação entre servidores declara limitações; `sonar/README.md` é versionado, mas pacotes e
+relatórios colocados sob `sonar/` continuam ignorados pelo Git.
 
 **Verificação:** testes com fixtures temporárias e conteúdo adversarial.
 
 ### Checkpoint D — Harness Sonar
 
 - todos os testes PowerShell passam;
+- `jacoco.xml` é produzido e consumido pela análise do template;
+- scripts de sessão, análise, baseline, checkpoint e exportação estão presentes e testados;
+- hooks distinguem Markdown de fingerprint executável e nunca decidem pelo humano;
 - diff não contém segredo, estado ou pacote offline;
 - baseline novo é criado somente após escolha humana da fonte;
 - se NON_COMPLIANT, humano registra uma das três decisões.
