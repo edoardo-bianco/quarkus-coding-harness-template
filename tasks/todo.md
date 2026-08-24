@@ -110,6 +110,8 @@
 
 ## Incremento 9 — Cobertura e Sonar build
 
+- [ ] Destilar a configuração JaCoCo da referência sem copiar dependências, versões ou identidade
+  de negócio.
 - [ ] RED: teste da configuração esperada.
 - [ ] Configurar JaCoCo XML e propriedades Sonar justificadas.
 - [ ] Verificar política 85%/5% e exclusões.
@@ -117,6 +119,7 @@
 
 ## Incremento 10 — Sessão e análise Sonar
 
+- [ ] Destilar os scripts da referência com identidade neutra e Maven Wrapper do template.
 - [ ] RED: testes de token, ausência de servidor e argumentos.
 - [ ] Destilar script seguro de início de sessão.
 - [ ] Destilar script de análise sem acoplamento de negócio.
@@ -124,13 +127,15 @@
 
 ## Incremento 11 — Baseline e decisão
 
-- [ ] RED: testes local, local+offline e offline-only.
-- [ ] RED: testes NON_COMPLIANT e três decisões humanas.
-- [ ] Implementar módulo e script de checkpoint.
+- [ ] Task 11A — RED: testes da API, métricas, severidades e comparação 85%/5%.
+- [ ] Task 11A — implementar o módulo de qualidade e validar paginação/Compute Engine.
+- [ ] Task 11B — RED: testes local, local+offline, offline-only, `NON_COMPLIANT` e três decisões.
+- [ ] Task 11B — implementar o script de baseline/checkpoint e estado sem credencial.
 - [ ] Verificar fingerprint e estado UNVERIFIED.
 
 ## Incremento 12 — Hooks
 
+- [ ] Destilar hooks da referência removendo defaults, estado e vocabulário do produto-fonte.
 - [ ] RED: eventos session-start e stop.
 - [ ] RED: isenção Markdown-only.
 - [ ] Implementar hooks e configuração Codex.
@@ -139,9 +144,12 @@
 ## Incremento 13 — Evidência offline
 
 - [ ] RED: exportação sem segredo e leitura adversarial.
-- [ ] Implementar exportação e documentação offline.
+- [ ] Implementar exportação, documentação e entrada local `sonar/` com somente o README
+  versionado.
 - [ ] Verificar imutabilidade e instruções ignoradas.
-- [ ] Checkpoint D: apresentar harness Sonar ao humano.
+- [ ] Auditar ausência de `.codex/.state`, pacote, log, token e identidade da referência no diff.
+- [ ] Checkpoint D: apresentar JaCoCo, scripts, hooks, testes e baseline do próprio template ao
+  humano.
 
 ## Incremento 14 — Materialização
 
