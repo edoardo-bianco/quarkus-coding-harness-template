@@ -15,15 +15,16 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 4 — fundação Maven reproduzível | `Concluído; GO do Incremento 5 registrado` |
 | Incremento 5 — núcleo neutro | `Concluído` |
 | Incremento 6 — adapter HTTP | `Concluído; GO do Incremento 7 registrado` |
-| Incremento 7 — regras ArchUnit | `Autorizado; implementação pendente` |
-| Feature neutra | Fluxo HTTP, aplicação e núcleo implementados; controles ainda planejados |
+| Incremento 7 — regras ArchUnit | `Concluído tecnicamente; revisão humana pendente` |
+| Feature neutra | Fluxo HTTP, núcleo e regras arquiteturais implementados; observabilidade ainda planejada |
 | Hooks e scripts Sonar | Não implementados |
 | Uso como template de produto | Ainda não liberado |
 
 Neste checkpoint o repositório contém documentação, fundação Maven e o fluxo HTTP da feature
-neutra até seu núcleo determinístico, comprovado por testes. Após revisar o Incremento 6, o humano
-registrou `GO` para o Incremento 7. Somente as regras ArchUnit estão autorizadas; observabilidade
-e harness Sonar continuam planejados, e a situação Sonar permanece `UNVERIFIED`.
+neutra até seu núcleo determinístico, comprovado por testes comportamentais e arquiteturais. O
+Incremento 7 está tecnicamente concluído e aguarda revisão humana antes de eventual `GO` para o
+Incremento 8. Observabilidade e harness Sonar continuam planejados, e a situação Sonar permanece
+`UNVERIFIED`.
 
 ## Comece por aqui
 
@@ -89,13 +90,14 @@ Execute também a suíte disponível:
 
 Em ambientes POSIX, use `./mvnw` nos mesmos comandos. A saída verificada no bootstrap foi Maven
 3.9.16 com Temurin JDK 25.0.3. Neste estágio, a suíte cobre domínio, caso de uso, HTTP e OpenAPI;
-ainda não prova regras arquiteturais executáveis ou observabilidade.
+também prova direção de dependência e isolamento do contrato REST com ArchUnit. Observabilidade
+ainda não está implementada.
 
 ## SonarQube
 
 Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e
 configuração executável exigem o fluxo Sonar descrito em [AGENTS.md](AGENTS.md). Neste bootstrap,
-os scripts de baseline/checkpoint ainda não existem; por isso os Incrementos 4–6 estão
+os scripts de baseline/checkpoint ainda não existem; por isso os Incrementos 4–7 estão
 tecnicamente verificados pelo Maven, mas o estado Sonar permanece `UNVERIFIED`.
 
 Regras centrais:

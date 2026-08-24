@@ -105,6 +105,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   ausência do endpoint e da operação OpenAPI; depois do GREEN e da revisão, a suíte completa
   passou com 15 testes, zero falhas, zero erros e zero ignorados.
 - O humano revisou essa entrega e registrou `GO` para o Incremento 7 em 2026-08-24.
+- O Incremento 7 adicionou regras ArchUnit para direção das camadas e isolamento do contrato REST.
+  No RED, três violações sintéticas falharam como esperado; depois do GREEN, os seis testes
+  arquiteturais e a suíte completa de 21 testes passaram sem falhas, erros ou ignorados.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
 - Esta evidência não encerra o goal e não autoriza o Incremento 8.
 
