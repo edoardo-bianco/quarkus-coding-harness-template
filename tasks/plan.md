@@ -8,9 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma adicional**; o Incremento 7 foi concluído tecnicamente após
-  `GO` explícito em 2026-08-24.
-- Próxima decisão: revisão humana do Incremento 7 antes de eventual `GO` para o Incremento 8.
+- Implementação autorizada: **nenhuma alteração executável adicional**. O humano aprovou o
+  Incremento 7 e registrou `GO` em 2026-08-24 para preparar a proposta do Incremento 8; esse
+  registro não substitui o checkpoint prévio obrigatório de comportamento observável.
+- Próxima decisão: Checkpoint C sobre nomes, atributos, endpoints, dependências, limites e provas
+  exatos do Incremento 8 antes do primeiro RED ou alteração em POM, configuração e código.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -299,7 +301,7 @@ Incremento 8.
 
 **Entrega:** proteger direção de dependência e independência de bordas.
 
-**Estado de execução:** `Concluído tecnicamente em 2026-08-24; revisão humana pendente`.
+**Estado de execução:** `Concluído e revisado pelo humano em 2026-08-24`.
 
 **Arquivos prováveis:**
 
@@ -336,23 +338,102 @@ porque o harness ainda não existe.
 
 **Entrega:** logs, span, métrica e health na feature neutra.
 
-**Arquivos prováveis:**
+**Estado:** `Proposta preparada; implementação executável bloqueada pelo Checkpoint C`.
 
-- `pom.xml`
-- `src/main/resources/application.properties`
-- `src/main/java/template/harness/sample/application/NormalizeTextUseCase.java`
-- `src/test/java/template/harness/observability/ObservabilityContractTest.java`
-- `src/test/java/template/harness/observability/HealthContractTest.java`
+**Perguntas operacionais que os sinais devem responder:**
 
-**Aceitação:** sinais têm nomes estáveis, correlação e baixa cardinalidade; entrada não aparece em log, span ou label; readiness e liveness respondem.
+1. Quantas normalizações chegam ao HTTP, quais terminam em sucesso ou entrada inválida e com que
+   frequência?
+2. A normalização está mais lenta que o esperado, inclusive na cauda da distribuição?
+3. Um evento de normalização pode ser correlacionado ao span HTTP e ao span interno sem registrar
+   o texto recebido?
+4. O processo está vivo e pronto para receber chamadas, sem fingir dependências que não existem?
 
-**Verificação:** testes de contrato, inspeção de logs de teste e `./mvnw -q verify`.
+**Contrato observável proposto:**
 
-### Checkpoint C — Arquitetura, segurança e comportamento observável
+| Sinal | Contrato estável proposto | Limites de cardinalidade e segurança |
+| --- | --- | --- |
+| Log | evento `sample.normalize.completed` em `INFO`; MDC `event` com o mesmo nome e `outcome` em `success` ou `invalid`; `traceId` e `spanId` fornecidos pela integração Quarkus/OpenTelemetry | não registrar texto bruto ou normalizado, tamanho, body, header, token, stack trace de validação nem identificador de usuário |
+| Span | `sample.normalize`, `SpanKind.INTERNAL`, filho do span HTTP automático; atributo `sample.normalize.outcome` em `success` ou `invalid` | nenhum parâmetro recebe `@SpanAttribute`; não incluir texto, tamanho ou mensagem de exceção em atributos próprios |
+| Métrica | timer Micrometer `sample.normalize.duration`, com histogram e tag única `outcome=success|invalid`; o próprio timer fornece contagem e duração | exatamente duas combinações próprias de tags; buckets, count e sum derivam dessas combinações, sem texto, rota bruta, status livre, erro, trace/request ID ou outro valor não limitado |
+| HTTP automático | timer Quarkus `http.server.requests`, exportado pelo registro Prometheus com método, template de URI, status e outcome | aceitar somente os labels automáticos documentados; JSON malformado fica visível neste sinal e no span HTTP, pois não entra no caso de uso |
+| Health | `GET /q/health/live` e `GET /q/health/ready`, ambos com `200` e `status=UP` enquanto não houver dependência real | não criar check customizado sempre-UP; a extensão expõe checks vazios e projetos derivados acrescentam checks somente para dependências concretas |
 
-- diff e evidências apresentados ao humano;
-- dependências novas justificadas por fonte oficial;
-- contrato observável aprovado antes de prosseguir.
+O console será JSON compacto, com MDC em campos planos e `quarkus.application.name` igual à
+identidade transitória do template. Traces serão gerados e correlacionados, mas o exporter será
+`none` por padrão para não abrir conexão externa; no perfil de teste, um exporter CDI em memória
+provará nome, parentesco e atributos. Não haverá log em arquivo nem OpenTelemetry Logs, que é
+preview na linha 3.33.
+
+Os endpoints operacionais ficam na interface HTTP principal, como definido por padrão nas
+extensões. Isso é aceitável somente para a prova local sem autenticação já aprovada. Antes de
+deploy de um projeto derivado, exposição em interface de gerenciamento e controle de acesso devem
+ser especificados e aprovados; este incremento não os inventa.
+
+**Dependências propostas, todas gerenciadas pelo BOM Quarkus 3.33.3.1 salvo a utilidade de teste
+também coberta pela plataforma:**
+
+- `io.quarkus:quarkus-logging-json` para o formatter JSON do console;
+- `io.quarkus:quarkus-opentelemetry` para trace HTTP, contexto e `@WithSpan` em bean CDI;
+- `io.quarkus:quarkus-micrometer-registry-prometheus` para Micrometer, métricas HTTP e
+  `/q/metrics` verificável localmente;
+- `io.quarkus:quarkus-smallrye-health` para liveness e readiness;
+- `io.opentelemetry:opentelemetry-sdk-testing` somente em teste para `InMemorySpanExporter`.
+
+A referência possui as extensões de logging JSON, OpenTelemetry e SmallRye Health, configuração
+de console JSON/MDC e producer CDI do exporter em memória. O template destila somente esses
+padrões. Não copia log em arquivo, exporter externo, campos, nomes ou wrappers de negócio. Como a
+referência não possui Micrometer, o timer e o endpoint local seguem diretamente o guia oficial do
+Quarkus 3.33.
+
+**Task 8A — infraestrutura observável local, três arquivos:**
+
+- `pom.xml`;
+- `src/main/resources/application.properties`;
+- `src/test/java/template/harness/observability/ObservabilityInfrastructureTest.java`.
+
+O RED exigirá JSON/MDC configurados, exporter sem rede por padrão e CDI em memória nos testes,
+`/q/metrics`, `/q/health/live` e `/q/health/ready`. O GREEN adicionará apenas extensões,
+configuração e o producer de teste aninhado documentado pelo Quarkus.
+
+**Task 8B — sinais da feature neutra, quatro arquivos:**
+
+- `src/main/java/template/harness/sample/application/NormalizeTextUseCase.java`;
+- `src/main/java/template/harness/sample/adapter/in/rest/NormalizeTextResource.java`;
+- `src/test/java/template/harness/sample/application/NormalizeTextUseCaseTest.java`;
+- `src/test/java/template/harness/observability/ObservabilityContractTest.java`.
+
+O caso de uso passará a ser bean CDI instrumentado e receberá `MeterRegistry` por construtor. O
+resource receberá o caso de uso por construtor, preservando o contrato HTTP. O RED provará evento
+e MDC correlacionados, span interno e parentesco, timer/histogram com somente dois outcomes e
+ausência de um marcador de payload em logs, atributos e labels. O teste unitário continuará
+isolado com `SimpleMeterRegistry` real, sem mock.
+
+**Aceitação:** nomes e valores correspondem à tabela; sucesso e entrada inválida são provados;
+entrada não aparece em log, span ou label; health e métricas respondem; JSON malformado preserva o
+contrato HTTP e não é falsamente atribuído ao caso de uso; nenhuma rede ou credencial é exigida.
+
+**Verificação após aprovação:** RED focado por task, GREEN focado, inspeção dos registros
+capturados e do JSON de console, suíte completa e `./mvnw.cmd -q verify`; revisão de correção,
+simplicidade, arquitetura, segurança, desempenho, testes e escopo. O checkpoint Sonar continuará
+`UNVERIFIED` até os scripts próprios existirem.
+
+**Fontes oficiais:** [logging JSON](https://quarkus.io/extensions/io.quarkus/quarkus-logging-json/),
+[OpenTelemetry 3.33](https://quarkus.io/version/3.33/guides/opentelemetry),
+[tracing 3.33](https://quarkus.io/version/3.33/guides/opentelemetry-tracing),
+[Micrometer 3.33](https://quarkus.io/version/3.33/guides/telemetry-micrometer) e
+[SmallRye Health 3.33](https://quarkus.io/version/3.33/guides/smallrye-health).
+
+### Checkpoint C — antes de código, dependência ou configuração
+
+- aprovar ou ajustar as quatro perguntas operacionais;
+- aprovar ou ajustar nomes, campos, outcomes, endpoints e ausência de payload;
+- aprovar ou ajustar as cinco dependências e o exporter `none` por padrão;
+- aceitar que `/q/metrics` e health ficam na interface principal somente nesta prova local;
+- autorizar explicitamente as Tasks 8A e 8B antes do primeiro RED.
+
+Depois das duas tasks verificadas, o agente apresentará diff e evidências e parará para revisão
+humana do Incremento 8 antes de eventual `GO` para o Incremento 9.
 
 ### Incremento 9 — Cobertura e propriedades Sonar
 
@@ -533,5 +614,7 @@ e aprovou explicitamente as regras de normalização Unicode. O Incremento 5 foi
 tecnicamente com sete testes verdes. Em 2026-08-24, o humano registrou `GO` para o Incremento 6 e
 aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído tecnicamente com
 15 testes verdes. Após revisar essa entrega, o humano registrou `GO` para o Incremento 7 em
-2026-08-24. O Incremento 7 foi concluído tecnicamente com 21 testes verdes e aguarda revisão
-humana; essa autorização não alcança o Incremento 8.
+2026-08-24. O Incremento 7 foi concluído com 21 testes verdes e posteriormente aprovado pelo
+humano. Um novo `GO` em 2026-08-24 autorizou preparar a proposta do Incremento 8. Por alterar
+comportamento observável, a execução das Tasks 8A e 8B permanece bloqueada até decisão explícita
+no Checkpoint C acima.

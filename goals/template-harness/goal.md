@@ -85,8 +85,8 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Primeira alteração de código/tooling | `APROVADO` em 2026-08-23 para o Incremento 4 | Humano |
 | Contrato e implementação do núcleo neutro | `APROVADO` em 2026-08-23 para o Incremento 5 | Humano |
 | Adapter HTTP | `GO` e Checkpoint B `APROVADO` em 2026-08-24 para o Incremento 6 | Humano |
-| Regras arquiteturais executáveis | `GO` em 2026-08-24 para o Incremento 7 | Humano |
-| Contratos, arquitetura, segurança e observabilidade | `PENDENTE conforme incremento` | Humano |
+| Regras arquiteturais executáveis | `APROVADO` em 2026-08-24 após o Incremento 7 | Humano |
+| Contrato observável exato — Checkpoint C | `PENDENTE`; o `GO` de 2026-08-24 autoriza somente preparar a proposta do Incremento 8 | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
@@ -108,8 +108,12 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - O Incremento 7 adicionou regras ArchUnit para direção das camadas e isolamento do contrato REST.
   No RED, três violações sintéticas falharam como esperado; depois do GREEN, os seis testes
   arquiteturais e a suíte completa de 21 testes passaram sem falhas, erros ou ignorados.
+- O humano revisou o Incremento 7 e registrou `GO` em 2026-08-24 para preparar o Incremento 8.
+  Como logs, spans, métricas, health e configuração alteram o comportamento operacional, a
+  implementação executável permanece bloqueada até aprovação explícita do contrato exato no
+  Checkpoint C.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
-- Esta evidência não encerra o goal e não autoriza o Incremento 8.
+- Esta evidência não encerra o goal nem substitui a decisão pendente do Checkpoint C.
 
 ## Decisões já registradas
 
