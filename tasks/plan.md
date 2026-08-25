@@ -359,11 +359,13 @@ porque o harness ainda não existe.
 | HTTP automático | timer Quarkus `http.server.requests`, exportado pelo registro Prometheus com método, template de URI, status e outcome | aceitar somente os labels automáticos documentados; JSON malformado fica visível neste sinal e no span HTTP, pois não entra no caso de uso |
 | Health | `GET /q/health/live` e `GET /q/health/ready`, ambos com `200` e `status=UP` enquanto não houver dependência real | não criar check customizado sempre-UP; a extensão expõe checks vazios e projetos derivados acrescentam checks somente para dependências concretas |
 
-O console será JSON compacto, com MDC em campos planos e `quarkus.application.name` igual à
-identidade transitória do template. Traces serão gerados e correlacionados, mas o exporter será
-`none` por padrão para não abrir conexão externa; no perfil de teste, um exporter CDI em memória
-provará nome, parentesco e atributos. Não haverá log em arquivo nem OpenTelemetry Logs, que é
-preview na linha 3.33.
+O console será JSON compacto, com os campos de correlação e do evento dentro do objeto `mdc`, e
+`quarkus.application.name` igual à identidade transitória do template. A propriedade
+`quarkus.log.console.json.mdc.flat-fields` não será configurada: ela não existe no artefato exato
+`quarkus-logging-json` 3.33.3.1 e, portanto, não altera o formato nessa versão. Traces serão gerados
+e correlacionados, mas o exporter será `none` por padrão para não abrir conexão externa; no perfil
+de teste, um exporter CDI em memória provará nome, parentesco e atributos. Não haverá formatter
+customizado, log em arquivo nem OpenTelemetry Logs, que é preview na linha 3.33.
 
 Os endpoints operacionais ficam na interface HTTP principal, como definido por padrão nas
 extensões. Isso é aceitável somente para a prova local sem autenticação já aprovada. Antes de
@@ -381,10 +383,11 @@ também coberta pela plataforma:**
 - `io.opentelemetry:opentelemetry-sdk-testing` somente em teste para `InMemorySpanExporter`.
 
 A referência possui as extensões de logging JSON, OpenTelemetry e SmallRye Health, configuração
-de console JSON/MDC e producer CDI do exporter em memória. O template destila somente esses
-padrões. Não copia log em arquivo, exporter externo, campos, nomes ou wrappers de negócio. Como a
-referência não possui Micrometer, o timer e o endpoint local seguem diretamente o guia oficial do
-Quarkus 3.33.
+de console JSON/MDC e producer CDI do exporter em memória. O template destila somente os padrões
+suportados pela versão fixada; não replica a configuração sem efeito de MDC plano encontrada na
+referência. Também não copia log em arquivo, exporter externo, campos, nomes ou wrappers de
+negócio. Como a referência não possui Micrometer, o timer e o endpoint local seguem diretamente o
+guia oficial do Quarkus 3.33.
 
 **Task 8A — infraestrutura observável local, três arquivos:**
 
@@ -437,6 +440,9 @@ humana do Incremento 8 antes de eventual `GO` para o Incremento 9.
 
 **Decisão:** `APROVADO` pelo humano em 2026-08-24. A aprovação alcança somente o contrato acima e
 as Tasks 8A e 8B; não autoriza cobertura, configuração Sonar ou qualquer item do Incremento 9.
+Após inspeção do JSON real e do artefato 3.33.3.1, o humano aprovou em 2026-08-24 o ajuste do
+formato para o objeto `mdc` aninhado, sem formatter customizado; os nomes, valores, correlação e
+limites de segurança do contrato permanecem iguais.
 
 ### Incremento 9 — Cobertura e propriedades Sonar
 
