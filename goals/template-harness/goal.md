@@ -86,7 +86,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Contrato e implementação do núcleo neutro | `APROVADO` em 2026-08-23 para o Incremento 5 | Humano |
 | Adapter HTTP | `GO` e Checkpoint B `APROVADO` em 2026-08-24 para o Incremento 6 | Humano |
 | Regras arquiteturais executáveis | `APROVADO` em 2026-08-24 após o Incremento 7 | Humano |
-| Contrato observável exato — Checkpoint C | `APROVADO` em 2026-08-24 para as Tasks 8A e 8B | Humano |
+| Contrato observável exato — Checkpoint C | `APROVADO` em 2026-08-24 para as Tasks 8A e 8B; MDC aninhado aprovado após evidência da versão | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
@@ -112,6 +112,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   Depois de revisar perguntas operacionais, nomes, atributos, endpoints, dependências e limites,
   aprovou explicitamente o Checkpoint C em 2026-08-24. A decisão autoriza somente as Tasks 8A e
   8B conforme o contrato registrado no plano.
+- A inspeção do JSON real e do artefato `quarkus-logging-json` 3.33.3.1 mostrou que a propriedade
+  de MDC plano usada pela referência não existe nessa versão. O humano aprovou manter os campos
+  correlacionados no objeto `mdc` aninhado, sem formatter customizado.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
 - Esta evidência não encerra o goal nem autoriza o Incremento 9.
 

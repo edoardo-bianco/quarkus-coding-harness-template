@@ -121,6 +121,8 @@
   máximo quatro arquivos cada.
 - [x] Checkpoint C: aprovação humana explícita registrada em 2026-08-24 antes de qualquer
   alteração em POM, configuração, teste RED ou código.
+- [x] Ajuste do Checkpoint C aprovado em 2026-08-24 após evidência do runtime: manter correlação
+  OpenTelemetry no objeto `mdc` aninhado e não criar formatter customizado.
 - [ ] Reconfirmar ausência do harness Sonar; registrar `UNVERIFIED` sem improvisar baseline.
 - [ ] Task 8A — RED: exigir JSON/MDC, exporter de teste em memória, métricas e health locais.
 - [ ] Task 8A — GREEN: adicionar dependências, configuração e infraestrutura mínima.
@@ -193,6 +195,6 @@
 
 ## Próximo item autorizado
 
-O Checkpoint C foi aprovado explicitamente pelo humano em 2026-08-24. O próximo item autorizado é
-reconfirmar a ausência do harness Sonar e executar a Task 8A em RED → GREEN. As Tasks 8A e 8B são
-o único escopo executável autorizado; o Incremento 9 permanece bloqueado.
+O Checkpoint C e seu ajuste para MDC aninhado foram aprovados explicitamente pelo humano em
+2026-08-24. As Tasks 8A e 8B são o único escopo executável autorizado; o Incremento 9 permanece
+bloqueado.
