@@ -169,6 +169,7 @@
 
 ## Incremento 11 — Baseline e decisão
 
+- [x] Registrar revisão humana do Incremento 10 e `GO` para somente o Incremento 11 em 2026-08-27.
 - [ ] Task 11A — RED: testes da API, métricas, severidades e comparação 85%/5%.
 - [ ] Task 11A — implementar o módulo de qualidade e validar paginação/Compute Engine.
 - [ ] Task 11B — RED: testes local, local+offline, offline-only, `NON_COMPLIANT` e três decisões.
@@ -211,5 +212,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 10 está concluído tecnicamente e aguarda revisão humana. Não há próximo item
-executável autorizado; os Incrementos 11–13 permanecem bloqueados.
+O humano revisou o Incremento 10 e o `GO` de 2026-08-27 autoriza somente o Incremento 11. O
+próximo item é o RED da Task 11A; os Incrementos 12–13 permanecem bloqueados.
