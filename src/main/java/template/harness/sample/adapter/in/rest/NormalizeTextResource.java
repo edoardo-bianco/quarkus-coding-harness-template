@@ -23,7 +23,11 @@ public final class NormalizeTextResource {
     private static final String INVALID_TEXT_CODE = "INVALID_TEXT";
     private static final String INVALID_TEXT_MESSAGE = "text must contain non-whitespace content";
 
-    private final NormalizeTextUseCase useCase = new NormalizeTextUseCase();
+    private final NormalizeTextUseCase useCase;
+
+    public NormalizeTextResource(NormalizeTextUseCase useCase) {
+        this.useCase = useCase;
+    }
 
     @POST
     @Operation(operationId = "normalizeSampleText", summary = "Normalize sample text")
