@@ -8,11 +8,10 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: o **Incremento 9** foi concluído tecnicamente dentro do contrato de
-  cobertura e propriedades Sonar registrado neste plano. O humano revisou o Incremento 8 e
-  registrou o `GO` correspondente em 2026-08-27.
-- Próxima decisão: revisão humana do Incremento 9; nenhum item dos Incrementos 10–13 está
-  autorizado.
+- Implementação autorizada: **somente o Incremento 10**, dentro do contrato de sessão segura e
+  análise Sonar registrado neste plano. O humano revisou o Incremento 9 e registrou `GO` em
+  2026-08-27.
+- Próxima decisão: revisão humana do Incremento 10; os Incrementos 11–13 não estão autorizados.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -503,6 +502,9 @@ o script usa o Maven Wrapper e produz metadados para aguardar o Compute Engine.
 
 **Verificação:** testes PowerShell isolados com processos e respostas simuladas.
 
+**Autorização:** `GO` registrado pelo humano em 2026-08-27 somente para este incremento. Baseline,
+decisão, hooks e evidência offline permanecem bloqueados nos Incrementos 11–13.
+
 ### Incremento 11 — Baseline, checkpoint e decisão humana
 
 **Entrega:** núcleo do controle Sonar local/offline.
@@ -653,4 +655,6 @@ humano. Um novo `GO` em 2026-08-24 autorizou preparar a proposta do Incremento 8
 aprovou explicitamente o Checkpoint C em 2026-08-24, autorizando somente as Tasks 8A e 8B dentro
 do contrato observável registrado acima. Após a conclusão técnica e a apresentação das evidências,
 o humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar somente o Incremento
-9. A autorização não alcança sessão, análise, baseline, hooks nem os Incrementos 10–13.
+9. Depois da conclusão técnica e da revisão do Incremento 9, o humano registrou novo `GO` em
+2026-08-27 para executar somente o Incremento 10. A autorização não alcança baseline, decisão,
+hooks nem os Incrementos 11–13.
