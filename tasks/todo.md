@@ -154,11 +154,18 @@
 ## Incremento 10 — Sessão e análise Sonar
 
 - [x] Registrar `GO` humano para iniciar somente o Incremento 10 em 2026-08-27.
-- [ ] Destilar os scripts da referência com identidade neutra e Maven Wrapper do template.
-- [ ] RED: testes de token, ausência de servidor e argumentos.
-- [ ] Destilar script seguro de início de sessão.
-- [ ] Destilar script de análise sem acoplamento de negócio.
-- [ ] Verificar que token não é persistido nem exibido.
+- [x] Destilar os scripts da referência com identidade neutra e Maven Wrapper do template.
+- [x] RED: testes falharam pela ausência do launcher e do analisador.
+- [x] Destilar script seguro de início de sessão com prompt protegido, escopo de processo e limpeza.
+- [x] Destilar script de análise sem acoplamento de negócio e com scanner fixado.
+- [x] Verificar token/servidor ausentes, argumentos exatos, URL/nomes seguros, falha Maven e
+  metadado obsoleto usando somente fixtures sintéticas.
+- [x] Verificar que token não é persistido, passado como argumento nem exibido.
+- [x] Executar três testes PowerShell e `./mvnw.cmd -q verify`: 26 testes Maven, zero falhas, zero
+  erros e zero ignorados.
+- [x] Auditar segredo e identidade do repositório-fonte; nenhuma ocorrência versionada.
+- [x] Registrar Sonar `UNVERIFIED` por ausência de análise autenticada, baseline e checkpoint.
+- [x] Preparar diff e evidências do Incremento 10 para revisão humana.
 
 ## Incremento 11 — Baseline e decisão
 
@@ -204,6 +211,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 9 foi revisado pelo humano e o `GO` de 2026-08-27 autoriza somente o Incremento 10.
-O próximo item é destilar os scripts de sessão e análise sem alterar o repositório-fonte. Os
-Incrementos 11–13 permanecem bloqueados.
+O Incremento 10 está concluído tecnicamente e aguarda revisão humana. Não há próximo item
+executável autorizado; os Incrementos 11–13 permanecem bloqueados.
