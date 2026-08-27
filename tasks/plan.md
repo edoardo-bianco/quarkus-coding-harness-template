@@ -12,9 +12,9 @@
   análise Sonar registrado neste plano. O humano revisou o Incremento 9 e registrou `GO` em
   2026-08-27.
 - Próxima decisão: revisão humana do Incremento 10; os Incrementos 11–13 não estão autorizados.
-- Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
-  ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
-  pelos Incrementos 9–13 antes da entrega do template.
+- Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, baseline, script de
+  checkpoint ou estado de decisão. Esse estado não satisfaz a definição de pronto e deve ser
+  eliminado pelos Incrementos 11–13 antes da entrega do template.
 
 ## Intenção
 
@@ -504,6 +504,23 @@ o script usa o Maven Wrapper e produz metadados para aguardar o Compute Engine.
 
 **Autorização:** `GO` registrado pelo humano em 2026-08-27 somente para este incremento. Baseline,
 decisão, hooks e evidência offline permanecem bloqueados nos Incrementos 11–13.
+
+**Estado:** concluído tecnicamente em 2026-08-27 e aguardando revisão humana. A Task 10A teve RED
+pela ausência do launcher e GREEN para prompt protegido, herança somente no processo filho,
+restauração do ambiente, encaminhamento de argumentos e propagação de falha. A Task 10B teve RED
+pela ausência do analisador e GREEN para identidade derivada do POM, entradas validadas, servidor
+`UP`, Maven Wrapper, scanner `5.5.0.6356`, JDK atual, oito argumentos preservados e metadado novo.
+Os testes também cobriram token/servidor ausentes, URL com credencial, metacaractere, falha Maven e
+artefato obsoleto. Os três testes PowerShell e os 26 testes Maven passaram sem falhas; auditorias
+não encontraram segredo nem identidade da referência. A análise real e o checkpoint permanecem
+`UNVERIFIED`, pois esta sessão não herdou token e o Incremento 11 não está autorizado.
+
+**Fontes oficiais:** [SonarScanner for Maven](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner-for-maven),
+[parâmetros de análise](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/analysis-parameters/parameters-not-settable-in-ui),
+[`Read-Host -AsSecureString`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/read-host),
+[escopos de ambiente](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables),
+[`SecureStringToBSTR`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.securestringtobstr) e
+[`cmd /c`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd).
 
 ### Incremento 11 — Baseline, checkpoint e decisão humana
 

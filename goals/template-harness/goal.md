@@ -131,11 +131,21 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   obsoleta, exclusão, identidade fixa ou segredo. O `./mvnw.cmd -q verify` passou com os mesmos 26
   testes e gerou `target/jacoco-report/jacoco.xml`. O relatório cobriu 61 de 62 linhas (98,4%), sem
   exclusões de produção. A política 85%/5% e seus limites estão documentados.
-- Sonar permanece `UNVERIFIED`: cobertura local não verifica duplicação, issues, Quality Gate ou
-  estado do servidor, e os scripts de sessão, análise, baseline e checkpoint ainda não existem.
+- O Incremento 10 implementou um launcher com prompt protegido, `SONAR_TOKEN` limitado ao processo
+  e restauração do ambiente, além de um analisador neutro que valida identidade/URL, exige servidor
+  `UP`, usa o Maven Wrapper e o scanner fixado e rejeita metadado obsoleto. Os testes usam somente
+  segredo, servidor, wrapper e metadados sintéticos.
+- Os três testes PowerShell passaram. O `./mvnw.cmd -q verify` passou com 26 testes, zero falhas,
+  zero erros e zero ignorados. A auditoria do conteúdo versionado não encontrou token Sonar nem
+  identidade do repositório-fonte.
+- Sonar permanece `UNVERIFIED`: a sessão atual não foi iniciada com credencial e não houve análise
+  autenticada de servidor; baseline, espera do Compute Engine, checkpoint e decisão serão tratados
+  somente nos incrementos ainda bloqueados.
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.
+- O Incremento 10 está concluído tecnicamente e aguarda revisão humana; nenhuma autorização para o
+  Incremento 11 foi inferida.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas
