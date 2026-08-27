@@ -89,6 +89,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Contrato observável exato — Checkpoint C | `APROVADO` em 2026-08-24 para as Tasks 8A e 8B; MDC aninhado aprovado após evidência da versão | Humano |
 | Cobertura e configuração Sonar build | `GO` em 2026-08-27 para o Incremento 9 | Humano |
 | Sessão segura e análise Sonar | `GO` em 2026-08-27 para o Incremento 10 | Humano |
+| Baseline, checkpoint e decisão Sonar | `GO` em 2026-08-27 para o Incremento 11 | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
@@ -144,8 +145,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.
-- O Incremento 10 está concluído tecnicamente e aguarda revisão humana; nenhuma autorização para o
-  Incremento 11 foi inferida.
+- O humano revisou o Incremento 10 e registrou `GO` em 2026-08-27 para executar somente o
+  Incremento 11. A decisão autoriza baseline, checkpoint e o fluxo das três decisões, mas não
+  autoriza hooks nem evidência offline dos Incrementos 12–13.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas

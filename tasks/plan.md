@@ -8,10 +8,10 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 10**, dentro do contrato de sessão segura e
-  análise Sonar registrado neste plano. O humano revisou o Incremento 9 e registrou `GO` em
-  2026-08-27.
-- Próxima decisão: revisão humana do Incremento 10; os Incrementos 11–13 não estão autorizados.
+- Implementação autorizada: **somente o Incremento 11**, dentro do contrato de baseline,
+  checkpoint e decisão Sonar registrado neste plano. O humano revisou o Incremento 10 e registrou
+  `GO` em 2026-08-27.
+- Próxima decisão: revisão humana do Incremento 11; os Incrementos 12–13 não estão autorizados.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, baseline, script de
   checkpoint ou estado de decisão. Esse estado não satisfaz a definição de pronto e deve ser
   eliminado pelos Incrementos 11–13 antes da entrega do template.
@@ -505,7 +505,7 @@ o script usa o Maven Wrapper e produz metadados para aguardar o Compute Engine.
 **Autorização:** `GO` registrado pelo humano em 2026-08-27 somente para este incremento. Baseline,
 decisão, hooks e evidência offline permanecem bloqueados nos Incrementos 11–13.
 
-**Estado:** concluído tecnicamente em 2026-08-27 e aguardando revisão humana. A Task 10A teve RED
+**Estado:** concluído tecnicamente e revisado pelo humano em 2026-08-27. A Task 10A teve RED
 pela ausência do launcher e GREEN para prompt protegido, herança somente no processo filho,
 restauração do ambiente, encaminhamento de argumentos e propagação de falha. A Task 10B teve RED
 pela ausência do analisador e GREEN para identidade derivada do POM, entradas validadas, servidor
@@ -513,7 +513,8 @@ pela ausência do analisador e GREEN para identidade derivada do POM, entradas v
 Os testes também cobriram token/servidor ausentes, URL com credencial, metacaractere, falha Maven e
 artefato obsoleto. Os três testes PowerShell e os 26 testes Maven passaram sem falhas; auditorias
 não encontraram segredo nem identidade da referência. A análise real e o checkpoint permanecem
-`UNVERIFIED`, pois esta sessão não herdou token e o Incremento 11 não está autorizado.
+`UNVERIFIED`, pois aquela sessão não herdou token; a resolução pertence ao Incremento 11 agora
+autorizado.
 
 **Fontes oficiais:** [SonarScanner for Maven](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner-for-maven),
 [parâmetros de análise](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/analysis-parameters/parameters-not-settable-in-ui),
@@ -543,6 +544,9 @@ aguarda decisão; fingerprint evita análise por edição isolada; estado fica s
 `.codex/.state/` e não contém credencial.
 
 **Verificação:** testes PowerShell cobrem baseline, indisponibilidade, thresholds e três decisões humanas.
+
+**Autorização:** `GO` registrado pelo humano em 2026-08-27 somente para este incremento. Hooks e
+evidência offline permanecem bloqueados nos Incrementos 12–13.
 
 ### Incremento 12 — Hooks Codex e isenção documental
 
@@ -674,4 +678,6 @@ do contrato observável registrado acima. Após a conclusão técnica e a aprese
 o humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar somente o Incremento
 9. Depois da conclusão técnica e da revisão do Incremento 9, o humano registrou novo `GO` em
 2026-08-27 para executar somente o Incremento 10. A autorização não alcança baseline, decisão,
-hooks nem os Incrementos 11–13.
+hooks nem os Incrementos 11–13. Depois da conclusão técnica e da revisão do Incremento 10, o
+humano registrou novo `GO` em 2026-08-27 para executar somente o Incremento 11. A autorização não
+alcança hooks, evidência offline nem os Incrementos 12–13.
