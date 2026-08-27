@@ -8,11 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 8**, nas Tasks 8A e 8B e dentro do contrato
-  observável registrado neste plano. O humano aprovou explicitamente o Checkpoint C em
-  2026-08-24.
-- Próxima decisão: revisão humana do Incremento 8 depois das duas tasks verificadas; o
-  Incremento 9 não está autorizado.
+- Implementação autorizada: **somente o Incremento 9**, dentro do contrato de cobertura e
+  propriedades Sonar registrado neste plano. O humano revisou o Incremento 8 e registrou `GO`
+  em 2026-08-27.
+- Próxima decisão: revisão humana do Incremento 9 depois da cobertura verificada; os Incrementos
+  10–13 não estão autorizados.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -338,7 +338,7 @@ porque o harness ainda não existe.
 
 **Entrega:** logs, span, métrica e health na feature neutra.
 
-**Estado:** `Concluído tecnicamente em 2026-08-27; aguardando revisão humana`.
+**Estado:** `Concluído e revisado pelo humano em 2026-08-27`.
 
 **Perguntas operacionais que os sinais devem responder:**
 
@@ -430,8 +430,8 @@ O `./mvnw.cmd -q verify` completo passou com 26 testes, zero falhas, zero erros 
 O JSON real mostrou `event`, `outcome`, `traceId` e `spanId` dentro de `mdc`; os contratos também
 provaram span interno filho do HTTP, somente duas combinações próprias de tags, histogram,
 health sem check sintético, ausência do payload e nenhum sinal próprio para JSON malformado.
-A revisão multidimensional não encontrou alteração fora do Checkpoint C. O Incremento 9 continua
-bloqueado até nova decisão humana.
+A revisão multidimensional não encontrou alteração fora do Checkpoint C. O humano revisou a
+entrega e registrou `GO` em 2026-08-27 para executar somente o Incremento 9.
 
 **Fontes oficiais:** [logging JSON](https://quarkus.io/extensions/io.quarkus/quarkus-logging-json/),
 [OpenTelemetry 3.33](https://quarkus.io/version/3.33/guides/opentelemetry),
@@ -638,4 +638,6 @@ aprovou seu contrato no Checkpoint B antes do RED. O Incremento 6 foi concluído
 2026-08-24. O Incremento 7 foi concluído com 21 testes verdes e posteriormente aprovado pelo
 humano. Um novo `GO` em 2026-08-24 autorizou preparar a proposta do Incremento 8. O humano
 aprovou explicitamente o Checkpoint C em 2026-08-24, autorizando somente as Tasks 8A e 8B dentro
-do contrato observável registrado acima.
+do contrato observável registrado acima. Após a conclusão técnica e a apresentação das evidências,
+o humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar somente o Incremento
+9. A autorização não alcança sessão, análise, baseline, hooks nem os Incrementos 10–13.

@@ -87,6 +87,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Adapter HTTP | `GO` e Checkpoint B `APROVADO` em 2026-08-24 para o Incremento 6 | Humano |
 | Regras arquiteturais executáveis | `APROVADO` em 2026-08-24 após o Incremento 7 | Humano |
 | Contrato observável exato — Checkpoint C | `APROVADO` em 2026-08-24 para as Tasks 8A e 8B; MDC aninhado aprovado após evidência da versão | Humano |
+| Cobertura e configuração Sonar build | `GO` em 2026-08-27 para o Incremento 9 | Humano |
 | Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
@@ -122,7 +123,10 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   erros ou ignorados. O JSON inspecionado manteve `event`, `outcome`, `traceId` e `spanId` dentro de
   `mdc`, e os testes provaram ausência do payload nos sinais próprios.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
-- Esta evidência não encerra o goal nem autoriza o Incremento 9.
+- O humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar somente o
+  Incremento 9. A decisão não autoriza sessão, análise, baseline, hooks ou qualquer item dos
+  Incrementos 10–13.
+- Esta evidência não encerra o goal.
 
 ## Decisões já registradas
 
