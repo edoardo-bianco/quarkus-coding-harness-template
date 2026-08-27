@@ -149,9 +149,11 @@
 - [x] Executar o GREEN PowerShell da configuração.
 - [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
 - [x] Preparar diff e evidências do Incremento 9 para revisão humana.
+- [x] Obter revisão humana do Incremento 9 e registrar `GO` para o Incremento 10 em 2026-08-27.
 
 ## Incremento 10 — Sessão e análise Sonar
 
+- [x] Registrar `GO` humano para iniciar somente o Incremento 10 em 2026-08-27.
 - [ ] Destilar os scripts da referência com identidade neutra e Maven Wrapper do template.
 - [ ] RED: testes de token, ausência de servidor e argumentos.
 - [ ] Destilar script seguro de início de sessão.
@@ -202,5 +204,6 @@
 
 ## Próximo item autorizado
 
-O Incremento 9 está tecnicamente concluído. O próximo passo é a revisão humana dessa entrega;
-nenhum item dos Incrementos 10–13 está autorizado.
+O Incremento 9 foi revisado pelo humano e o `GO` de 2026-08-27 autoriza somente o Incremento 10.
+O próximo item é destilar os scripts de sessão e análise sem alterar o repositório-fonte. Os
+Incrementos 11–13 permanecem bloqueados.
