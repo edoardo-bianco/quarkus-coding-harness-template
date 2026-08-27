@@ -30,13 +30,60 @@ if ($launcherText -match 'SetEnvironmentVariable\([^\r\n]+,\s*"(User|Machine)"\)
 
 $previousToken = [Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process")
 $syntheticSecret = "segredo-sintetico-" + [guid]::NewGuid().ToString("N")
+$secretBytes = [Text.Encoding]::UTF8.GetBytes($syntheticSecret)
+try {
+    $syntheticSecretHash = [Convert]::ToHexString(
+        [Security.Cryptography.SHA256]::HashData($secretBytes)
+    )
+}
+finally {
+    [Array]::Clear($secretBytes, 0, $secretBytes.Length)
+}
 $global:syntheticSecureSecret = [Security.SecureString]::new()
 foreach ($character in $syntheticSecret.ToCharArray()) {
     $global:syntheticSecureSecret.AppendChar($character)
 }
 $global:syntheticSecureSecret.MakeReadOnly()
-$global:capturedChildToken = $null
-$global:capturedChildArguments = @()
+
+$testRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    "sonar-session-test-" + [guid]::NewGuid().ToString("N")
+)
+$resolvedTestRoot = [IO.Path]::GetFullPath($testRoot)
+New-Item -ItemType Directory -Path $resolvedTestRoot | Out-Null
+$childScriptPath = Join-Path $resolvedTestRoot "codex-child-test-double.ps1"
+@'
+param(
+    [ValidateSet("success", "failure")][string]$Mode,
+    [string]$ExpectedTokenHash,
+    [Parameter(ValueFromRemainingArguments = $true)][string[]]$ForwardedArguments = @()
+)
+
+$token = [Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process")
+$tokenBytes = [Text.Encoding]::UTF8.GetBytes($token)
+try {
+    $actualTokenHash = [Convert]::ToHexString(
+        [Security.Cryptography.SHA256]::HashData($tokenBytes)
+    )
+}
+finally {
+    [Array]::Clear($tokenBytes, 0, $tokenBytes.Length)
+    $token = $null
+}
+
+if ($actualTokenHash -cne $ExpectedTokenHash) {
+    exit 92
+}
+if ($Mode -eq "failure") {
+    Write-Output "falha-segura-do-processo-filho"
+    exit 7
+}
+
+Write-Output "token-sintetico-confirmado-por-hash"
+foreach ($argument in $ForwardedArguments) {
+    Write-Output "argumento=$argument"
+}
+exit 0
+'@ | Set-Content -LiteralPath $childScriptPath -Encoding UTF8
 
 function global:Read-Host {
     param($Prompt, [switch]$AsSecureString)
@@ -47,34 +94,27 @@ function global:Read-Host {
     return $global:syntheticSecureSecret
 }
 
-function global:codex-session-test-double {
-    param([Parameter(ValueFromRemainingArguments = $true)][object[]]$Arguments)
-
-    $global:capturedChildToken = [Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process")
-    $global:capturedChildArguments = @($Arguments)
-    $global:LASTEXITCODE = 0
-    Write-Output "saida-segura-do-processo-filho"
-}
-
-function global:codex-session-failing-double {
-    $global:LASTEXITCODE = 7
-    Write-Output "falha-segura-do-processo-filho"
-}
-
 try {
     [Environment]::SetEnvironmentVariable("SONAR_TOKEN", "valor-anterior", "Process")
 
     $launcherOutput = @(
         & $launcherPath `
-            -CodexCommand "codex-session-test-double" `
-            -CodexArguments @("primeiro", "argumento com espaco")
+            -CodexCommand "pwsh" `
+            -CodexArguments @(
+                "-NoProfile",
+                "-File",
+                $childScriptPath,
+                "success",
+                $syntheticSecretHash,
+                "primeiro",
+                "argumento com espaco"
+            )
     )
 
-    if ($global:capturedChildToken -ne $syntheticSecret) {
-        throw "O processo filho nao recebeu o token somente pelo ambiente."
-    }
-    if (($global:capturedChildArguments -join "|") -ne "primeiro|argumento com espaco") {
-        throw "Os argumentos do processo filho nao foram preservados."
+    if ($launcherOutput -notcontains "token-sintetico-confirmado-por-hash" -or
+        $launcherOutput -notcontains "argumento=primeiro" -or
+        $launcherOutput -notcontains "argumento=argumento com espaco") {
+        throw "O processo filho não confirmou token e argumentos preservados."
     }
     if ([Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process") -ne "valor-anterior") {
         throw "O ambiente anterior nao foi restaurado depois da sessao."
@@ -89,7 +129,13 @@ try {
     $global:syntheticSecureSecret = [Security.SecureString]::new()
     $emptyTokenFailed = $false
     try {
-        & $launcherPath -CodexCommand "codex-session-test-double"
+        & $launcherPath -CodexCommand "pwsh" -CodexArguments @(
+            "-NoProfile",
+            "-File",
+            $childScriptPath,
+            "success",
+            $syntheticSecretHash
+        )
     }
     catch {
         $emptyTokenFailed = $_.Exception.Message -match "não pode ser vazio"
@@ -108,7 +154,13 @@ try {
     $global:syntheticSecureSecret.MakeReadOnly()
     $childFailureMessage = $null
     try {
-        & $launcherPath -CodexCommand "codex-session-failing-double"
+        & $launcherPath -CodexCommand "pwsh" -CodexArguments @(
+            "-NoProfile",
+            "-File",
+            $childScriptPath,
+            "failure",
+            $syntheticSecretHash
+        )
     }
     catch {
         $childFailureMessage = $_.Exception.Message
@@ -125,13 +177,12 @@ try {
 }
 finally {
     Remove-Item Function:\Read-Host -ErrorAction SilentlyContinue
-    Remove-Item Function:\codex-session-test-double -ErrorAction SilentlyContinue
-    Remove-Item Function:\codex-session-failing-double -ErrorAction SilentlyContinue
     if ($null -ne $global:syntheticSecureSecret) {
         $global:syntheticSecureSecret.Dispose()
     }
     Remove-Variable syntheticSecureSecret -Scope Global -ErrorAction SilentlyContinue
-    Remove-Variable capturedChildToken -Scope Global -ErrorAction SilentlyContinue
-    Remove-Variable capturedChildArguments -Scope Global -ErrorAction SilentlyContinue
     [Environment]::SetEnvironmentVariable("SONAR_TOKEN", $previousToken, "Process")
+    if ($resolvedTestRoot.StartsWith([IO.Path]::GetFullPath([IO.Path]::GetTempPath()))) {
+        Remove-Item -LiteralPath $resolvedTestRoot -Recurse -Force
+    }
 }
