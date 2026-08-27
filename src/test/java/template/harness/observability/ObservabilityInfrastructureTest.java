@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,7 +36,7 @@ class ObservabilityInfrastructureTest {
         assertEquals("quarkus-coding-harness-template", properties.getProperty("quarkus.application.name"));
         assertEquals("true", properties.getProperty("quarkus.log.console.json.enabled"));
         assertEquals("false", properties.getProperty("quarkus.log.console.json.pretty-print"));
-        assertEquals("true", properties.getProperty("quarkus.log.console.json.mdc.flat-fields"));
+        assertFalse(properties.containsKey("quarkus.log.console.json.mdc.flat-fields"));
         assertEquals("none", properties.getProperty("quarkus.otel.traces.exporter"));
         assertEquals("false", properties.getProperty("quarkus.otel.logs.enabled"));
         assertEquals("false", properties.getProperty("quarkus.otel.logs.handler.enabled"));
