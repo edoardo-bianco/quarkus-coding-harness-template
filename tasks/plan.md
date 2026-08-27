@@ -539,6 +539,31 @@ autorizado.
 O incremento será entregue em duas tarefas pequenas: **11A**, módulo, API e comparação do gate;
 **11B**, orquestração de baseline/checkpoint e decisões humanas.
 
+**Contrato da Task 11A:** o módulo usa exclusivamente `SONAR_TOKEN` herdado pelo processo e
+`Authorization: Bearer`; valida URLs HTTP(S) sem credencial embutida, query ou fragmento; consulta
+análises, métricas e issues pelas Web APIs oficiais; pagina todas as issues abertas; normaliza as
+severidades dos modos Standard Experience e MQR; bloqueia `HIGH`, `BLOCKER` e `CRITICAL`; exige
+zero issue nova, cobertura mínima de 85% e duplicação máxima de 5%; e aguarda o Compute Engine até
+`SUCCESS`, falhando de forma fechada em erro, cancelamento, timeout, resposta incompleta ou URL de
+tarefa fora do endpoint esperado na mesma origem.
+
+**Contrato da Task 11B:** o script aceita somente fontes explícitas de baseline — SonarQube local,
+local mais pacote offline específico ou pacote offline específico sem servidor —, mantém
+fingerprint do escopo executável e estado atômico em `.codex/.state/`, nunca persiste credencial,
+trata offline-only e indisponibilidade como `UNVERIFIED`, produz `NON_COMPLIANT` sem inferir decisão
+humana e registra somente `Reprovar`, `AceitarExcepcionalmente` ou `ContinuarAjustes` quando houver
+decisão pendente.
+
+**Fora de escopo:** hooks Codex, exportação de pacote, identidade de produto derivado, dependência
+nova e qualquer alteração no repositório-fonte de referência.
+
+**Risco de compatibilidade:** o template não fixa versão do servidor SonarQube. O módulo usa os
+endpoints V1 ainda documentados pelo servidor e valida os campos consumidos; incompatibilidade de
+API é limitação explícita e nunca resultado conforme. Fontes oficiais consultadas: documentação de
+[autenticação da Web API](https://docs.sonarsource.com/sonarqube-server/extension-guide/web-api),
+[métricas](https://docs.sonarsource.com/sonarqube-server/user-guide/code-metrics/metrics-definition)
+e [severidades](https://docs.sonarsource.com/sonarqube-server/user-guide/issues/managing).
+
 **Aceitação:** fontes de baseline são explícitas; offline-only é `UNVERIFIED`; `NON_COMPLIANT`
 aguarda decisão; fingerprint evita análise por edição isolada; estado fica somente em
 `.codex/.state/` e não contém credencial.
