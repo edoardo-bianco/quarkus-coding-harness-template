@@ -134,10 +134,11 @@
   zero falhas, zero erros e zero ignorados.
 - [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
 - [x] Preparar diff e evidências do Incremento 8 para revisão humana.
-- [ ] Obter revisão humana do Incremento 8 antes de eventual `GO` do Incremento 9.
+- [x] Obter revisão humana do Incremento 8 e registrar `GO` para o Incremento 9 em 2026-08-27.
 
 ## Incremento 9 — Cobertura e Sonar build
 
+- [x] Registrar `GO` humano para iniciar somente o Incremento 9 em 2026-08-27.
 - [ ] Destilar a configuração JaCoCo da referência sem copiar dependências, versões ou identidade
   de negócio.
 - [ ] RED: teste da configuração esperada.
@@ -197,6 +198,6 @@
 
 ## Próximo item autorizado
 
-As Tasks 8A e 8B estão concluídas tecnicamente e verificadas. Não há próximo item executável
-autorizado: o agente deve apresentar as evidências e aguardar a revisão humana do Incremento 8.
-O Incremento 9 permanece bloqueado.
+O Incremento 8 foi revisado pelo humano e o `GO` de 2026-08-27 autoriza somente o Incremento 9.
+O próximo item é destilar a configuração JaCoCo sem alterar o repositório-fonte. Os Incrementos
+10–13 permanecem bloqueados.
