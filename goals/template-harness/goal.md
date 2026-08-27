@@ -115,6 +115,12 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - A inspeção do JSON real e do artefato `quarkus-logging-json` 3.33.3.1 mostrou que a propriedade
   de MDC plano usada pela referência não existe nessa versão. O humano aprovou manter os campos
   correlacionados no objeto `mdc` aninhado, sem formatter customizado.
+- O Incremento 8 implementou JSON/MDC, traces, métricas e health locais nas Tasks 8A e 8B. A
+  correção contratual teve RED com três testes e uma falha esperada pela propriedade incompatível;
+  após remover somente essa propriedade, o GREEN passou com três testes. Os quatro testes focados
+  da Task 8B e o `./mvnw.cmd -q verify` completo passaram; a suíte totalizou 26 testes, sem falhas,
+  erros ou ignorados. O JSON inspecionado manteve `event`, `outcome`, `traceId` e `spanId` dentro de
+  `mdc`, e os testes provaram ausência do payload nos sinais próprios.
 - Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
 - Esta evidência não encerra o goal nem autoriza o Incremento 9.
 

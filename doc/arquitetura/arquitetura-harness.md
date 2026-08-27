@@ -11,11 +11,11 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 
 ### Estado implementado
 
-A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo e as
-regras ArchUnit estão implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper
-3.9.16 verificável por checksum e exclui estados e segredos locais. A observabilidade e o harness
-Sonar continuam planejados. Até a implementação dos scripts próprios, qualquer checkpoint Sonar
-permanece `UNVERIFIED`.
+A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo, as
+regras ArchUnit e a observabilidade mínima estão implementados. O build fixa Java 25 e Quarkus
+3.33.3.1, usa Maven Wrapper 3.9.16 verificável por checksum e exclui estados e segredos locais. O
+harness Sonar continua planejado. Até a implementação dos scripts próprios, qualquer checkpoint
+Sonar permanece `UNVERIFIED`.
 
 ## Visão do sistema
 
@@ -215,6 +215,19 @@ O template fornece um mínimo funcional, não um modelo operacional universal:
 - Micrometer para métricas;
 - readiness e liveness;
 - testes de contrato para nomes e atributos essenciais.
+
+No estado implementado, `NormalizeTextUseCase` é um bean CDI instrumentado com um span interno
+`sample.normalize`, evento estruturado `sample.normalize.completed` e timer Micrometer
+`sample.normalize.duration`. Os sinais próprios aceitam somente `outcome=success|invalid`; não
+recebem texto, tamanho, erro livre nem identificador. O console usa JSON compacto e mantém
+`traceId`, `spanId`, `event` e `outcome` dentro do objeto `mdc`, formato suportado pelo artefato
+`quarkus-logging-json` 3.33.3.1.
+
+O exporter de traces é `none` por padrão e um exporter CDI em memória existe somente nos testes.
+Prometheus expõe métricas automáticas e próprias em `/q/metrics`; SmallRye Health expõe
+`/q/health/live` e `/q/health/ready` sem check sintético sempre-UP. Testes de contrato provam
+correlação, parentesco do span, cardinalidade limitada, ausência do payload e que JSON malformado
+produz apenas sinais HTTP automáticos.
 
 Novos sinais, timeouts, retries ou circuit breakers alteram comportamento observável e exigem checkpoint humano. Dados pessoais, credenciais e payloads completos não entram em logs ou atributos sem decisão de segurança explícita.
 

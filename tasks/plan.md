@@ -338,7 +338,7 @@ porque o harness ainda não existe.
 
 **Entrega:** logs, span, métrica e health na feature neutra.
 
-**Estado:** `Checkpoint C aprovado em 2026-08-24; Tasks 8A e 8B autorizadas`.
+**Estado:** `Concluído tecnicamente em 2026-08-27; aguardando revisão humana`.
 
 **Perguntas operacionais que os sinais devem responder:**
 
@@ -420,6 +420,18 @@ contrato HTTP e não é falsamente atribuído ao caso de uso; nenhuma rede ou cr
 capturados e do JSON de console, suíte completa e `./mvnw.cmd -q verify`; revisão de correção,
 simplicidade, arquitetura, segurança, desempenho, testes e escopo. O checkpoint Sonar continuará
 `UNVERIFIED` até os scripts próprios existirem.
+
+**Evidência:** a ausência de `sonar/`, scripts, hooks, JaCoCo e configuração Sonar foi
+reconfirmada, mantendo o estado `UNVERIFIED`. A Task 8A materializou as cinco dependências,
+configuração e três testes de infraestrutura. Após a aprovação do MDC aninhado, um RED corretivo
+executou três testes e falhou somente pela presença de `mdc.flat-fields`; a remoção exclusiva
+dessa propriedade produziu o GREEN com os três testes. A Task 8B passou em quatro testes focados.
+O `./mvnw.cmd -q verify` completo passou com 26 testes, zero falhas, zero erros e zero ignorados.
+O JSON real mostrou `event`, `outcome`, `traceId` e `spanId` dentro de `mdc`; os contratos também
+provaram span interno filho do HTTP, somente duas combinações próprias de tags, histogram,
+health sem check sintético, ausência do payload e nenhum sinal próprio para JSON malformado.
+A revisão multidimensional não encontrou alteração fora do Checkpoint C. O Incremento 9 continua
+bloqueado até nova decisão humana.
 
 **Fontes oficiais:** [logging JSON](https://quarkus.io/extensions/io.quarkus/quarkus-logging-json/),
 [OpenTelemetry 3.33](https://quarkus.io/version/3.33/guides/opentelemetry),
