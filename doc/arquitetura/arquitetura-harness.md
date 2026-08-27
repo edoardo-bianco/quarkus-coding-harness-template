@@ -12,10 +12,11 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 ### Estado implementado
 
 A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo, as
-regras ArchUnit e a observabilidade mínima estão implementados. O build fixa Java 25 e Quarkus
-3.33.3.1, usa Maven Wrapper 3.9.16 verificável por checksum e exclui estados e segredos locais. O
-harness Sonar continua planejado. Até a implementação dos scripts próprios, qualquer checkpoint
-Sonar permanece `UNVERIFIED`.
+regras ArchUnit, a observabilidade mínima e a cobertura XML estão implementados. O build fixa Java
+25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16 verificável por checksum, gera JaCoCo XML e exclui
+estados e segredos locais. Os scripts de sessão, análise, baseline e checkpoint Sonar continuam
+planejados. Até a implementação desses componentes, qualquer checkpoint Sonar permanece
+`UNVERIFIED`.
 
 ## Visão do sistema
 
@@ -152,7 +153,20 @@ O agente pode propor e atualizar evidências técnicas. Somente o humano registr
 
 ## Harness SonarQube
 
-### Componentes planejados
+### Componentes implementados
+
+- dependência de teste `io.quarkus:quarkus-jacoco` no build;
+- propriedade `sonar.coverage.jacoco.xmlReportPaths` apontando para
+  `target/jacoco-report/jacoco.xml`;
+- teste PowerShell do contrato de build, incluindo ausência de segredo, identidade fixa,
+  configuração obsoleta e exclusão de cobertura;
+- guia local com a política 85%/5% e os limites do estado `UNVERIFIED`.
+
+Não há `jacoco-maven-plugin` paralelo nem exclusão de classes de produção. O relatório do build do
+Incremento 9 cobriu 61 de 62 linhas da feature neutra. Esse resultado comprova a geração local de
+cobertura, mas não mede duplicação nem substitui uma análise SonarQube.
+
+### Componentes ainda planejados
 
 ```text
 .codex/hooks.json
@@ -163,8 +177,7 @@ iniciar-codex-com-sonar.ps1
 analisar-sonarqube.ps1
 validar-checkpoint-sonarqube.ps1
 exportar-relatorios-sonarqube.ps1
-test/powershell/*Sonar*Test.ps1
-doc/sonar/
+demais test/powershell/*Sonar*Test.ps1
 ```
 
 Esses componentes serão destilados do repositório-fonte e testados para remover acoplamento de negócio. Não serão copiados estados, relatórios nem credenciais.

@@ -8,11 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 9**, dentro do contrato de cobertura e
-  propriedades Sonar registrado neste plano. O humano revisou o Incremento 8 e registrou `GO`
-  em 2026-08-27.
-- Próxima decisão: revisão humana do Incremento 9 depois da cobertura verificada; os Incrementos
-  10–13 não estão autorizados.
+- Implementação autorizada: o **Incremento 9** foi concluído tecnicamente dentro do contrato de
+  cobertura e propriedades Sonar registrado neste plano. O humano revisou o Incremento 8 e
+  registrou o `GO` correspondente em 2026-08-27.
+- Próxima decisão: revisão humana do Incremento 9; nenhum item dos Incrementos 10–13 está
+  autorizado.
 - Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, script de sessão
   ou script de checkpoint. Esse estado não satisfaz a definição de pronto e deve ser eliminado
   pelos Incrementos 9–13 antes da entrega do template.
@@ -472,6 +472,19 @@ nenhum token é persistido e a política 85%/5% está documentada. A configuraç
 padrão da referência sem copiar dependências ou versões que não pertencem ao template.
 
 **Verificação:** `./mvnw -q verify` e teste PowerShell de configuração.
+
+**Estado:** concluído tecnicamente em 2026-08-27 e aguardando revisão humana. O RED PowerShell
+falhou pela ausência da dependência `io.quarkus:quarkus-jacoco`. No GREEN, o mesmo teste aprovou a
+extensão em escopo de teste, o caminho `target/jacoco-report/jacoco.xml`, a ausência de plugin
+duplicado, propriedade obsoleta, exclusão, identidade fixa ou segredo. O `./mvnw.cmd -q verify`
+passou com 26 testes, zero falhas, zero erros e zero ignorados; o XML real cobriu 61 de 62 linhas
+(98,4%). Não há exclusões de produção. Duplicação, issues e Quality Gate permanecem `UNVERIFIED`
+até a implementação e execução do harness Sonar.
+
+**Fontes oficiais:** [cobertura no Quarkus 3.33](https://quarkus.io/version/3.33/guides/tests-with-coverage),
+[extensão Quarkus JaCoCo](https://quarkus.io/extensions/io.quarkus/quarkus-jacoco/),
+[cobertura Java no SonarQube](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/test-coverage/java-test-coverage) e
+[parâmetros de cobertura](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/test-coverage/test-coverage-parameters).
 
 ### Incremento 10 — Sessão segura e análise Sonar
 

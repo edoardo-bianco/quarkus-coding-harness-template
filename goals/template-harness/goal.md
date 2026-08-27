@@ -122,10 +122,18 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   da Task 8B e o `./mvnw.cmd -q verify` completo passaram; a suíte totalizou 26 testes, sem falhas,
   erros ou ignorados. O JSON inspecionado manteve `event`, `outcome`, `traceId` e `spanId` dentro de
   `mdc`, e os testes provaram ausência do payload nos sinais próprios.
-- Sonar permanece `UNVERIFIED`, pois os scripts de baseline e checkpoint ainda não existem.
 - O humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 9. A decisão não autoriza sessão, análise, baseline, hooks ou qualquer item dos
   Incrementos 10–13.
+- O Incremento 9 teve RED esperado pela ausência de `io.quarkus:quarkus-jacoco`; após o GREEN, o
+  teste PowerShell aprovou dependência, caminho XML e ausência de plugin duplicado, configuração
+  obsoleta, exclusão, identidade fixa ou segredo. O `./mvnw.cmd -q verify` passou com os mesmos 26
+  testes e gerou `target/jacoco-report/jacoco.xml`. O relatório cobriu 61 de 62 linhas (98,4%), sem
+  exclusões de produção. A política 85%/5% e seus limites estão documentados.
+- Sonar permanece `UNVERIFIED`: cobertura local não verifica duplicação, issues, Quality Gate ou
+  estado do servidor, e os scripts de sessão, análise, baseline e checkpoint ainda não existem.
+- O Incremento 9 está tecnicamente concluído e aguarda revisão humana; nenhum item do Incremento 10
+  está autorizado.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas

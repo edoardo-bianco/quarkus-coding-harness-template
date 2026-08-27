@@ -139,12 +139,16 @@
 ## Incremento 9 — Cobertura e Sonar build
 
 - [x] Registrar `GO` humano para iniciar somente o Incremento 9 em 2026-08-27.
-- [ ] Destilar a configuração JaCoCo da referência sem copiar dependências, versões ou identidade
+- [x] Destilar a configuração JaCoCo da referência sem copiar dependências, versões ou identidade
   de negócio.
-- [ ] RED: teste da configuração esperada.
-- [ ] Configurar JaCoCo XML e propriedades Sonar justificadas.
-- [ ] Verificar política 85%/5% e exclusões.
-- [ ] Executar `./mvnw -q verify`.
+- [x] RED: teste da configuração esperada falhou pela ausência de `quarkus-jacoco`.
+- [x] Configurar JaCoCo XML e propriedades Sonar justificadas.
+- [x] Verificar política 85%/5% e exclusões: 61/62 linhas (98,4%), nenhuma exclusão; duplicação
+  permanece `UNVERIFIED` sem análise Sonar.
+- [x] Executar `./mvnw.cmd -q verify`: 26 testes, zero falhas, zero erros e zero ignorados.
+- [x] Executar o GREEN PowerShell da configuração.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [x] Preparar diff e evidências do Incremento 9 para revisão humana.
 
 ## Incremento 10 — Sessão e análise Sonar
 
@@ -198,6 +202,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 8 foi revisado pelo humano e o `GO` de 2026-08-27 autoriza somente o Incremento 9.
-O próximo item é destilar a configuração JaCoCo sem alterar o repositório-fonte. Os Incrementos
-10–13 permanecem bloqueados.
+O Incremento 9 está tecnicamente concluído. O próximo passo é a revisão humana dessa entrega;
+nenhum item dos Incrementos 10–13 está autorizado.
