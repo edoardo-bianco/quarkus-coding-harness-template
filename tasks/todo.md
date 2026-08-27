@@ -123,16 +123,18 @@
   alteração em POM, configuração, teste RED ou código.
 - [x] Ajuste do Checkpoint C aprovado em 2026-08-24 após evidência do runtime: manter correlação
   OpenTelemetry no objeto `mdc` aninhado e não criar formatter customizado.
-- [ ] Reconfirmar ausência do harness Sonar; registrar `UNVERIFIED` sem improvisar baseline.
-- [ ] Task 8A — RED: exigir JSON/MDC, exporter de teste em memória, métricas e health locais.
-- [ ] Task 8A — GREEN: adicionar dependências, configuração e infraestrutura mínima.
-- [ ] Task 8B — RED: exigir log correlacionado, span interno, timer/histogram e ausência de payload.
-- [ ] Task 8B — GREEN: instrumentar o bean CDI e preservar o contrato HTTP.
-- [ ] REFACTOR: confirmar apenas `success|invalid`, duas combinações próprias de tags e nenhum
+- [x] Reconfirmar ausência do harness Sonar; registrar `UNVERIFIED` sem improvisar baseline.
+- [x] Task 8A — RED: exigir JSON/MDC, exporter de teste em memória, métricas e health locais.
+- [x] Task 8A — GREEN: adicionar dependências, configuração e infraestrutura mínima.
+- [x] Task 8B — RED: exigir log correlacionado, span interno, timer/histogram e ausência de payload.
+- [x] Task 8B — GREEN: instrumentar o bean CDI e preservar o contrato HTTP.
+- [x] REFACTOR: confirmar apenas `success|invalid`, duas combinações próprias de tags e nenhum
   check sempre-UP.
-- [ ] Executar testes focados, inspecionar logs JSON e executar `./mvnw.cmd -q verify`.
-- [ ] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
-- [ ] Apresentar diff e evidências para revisão humana antes de eventual `GO` do Incremento 9.
+- [x] Executar testes focados, inspecionar logs JSON e executar `./mvnw.cmd -q verify`: 26 testes,
+  zero falhas, zero erros e zero ignorados.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [x] Preparar diff e evidências do Incremento 8 para revisão humana.
+- [ ] Obter revisão humana do Incremento 8 antes de eventual `GO` do Incremento 9.
 
 ## Incremento 9 — Cobertura e Sonar build
 
@@ -195,6 +197,6 @@
 
 ## Próximo item autorizado
 
-O Checkpoint C e seu ajuste para MDC aninhado foram aprovados explicitamente pelo humano em
-2026-08-24. As Tasks 8A e 8B são o único escopo executável autorizado; o Incremento 9 permanece
-bloqueado.
+As Tasks 8A e 8B estão concluídas tecnicamente e verificadas. Não há próximo item executável
+autorizado: o agente deve apresentar as evidências e aguardar a revisão humana do Incremento 8.
+O Incremento 9 permanece bloqueado.
