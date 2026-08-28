@@ -131,7 +131,8 @@ function ConvertTo-SonarMetric {
             throw "Métrica SonarQube inválida: $MetricName."
         }
     }
-    if ([double]::IsNaN($parsed) -or [double]::IsInfinity($parsed) -or $parsed -lt 0) {
+    if ([double]::IsNaN($parsed) -or [double]::IsInfinity($parsed) -or
+        $parsed -lt 0 -or $parsed -gt 100) {
         throw "Métrica SonarQube inválida: $MetricName."
     }
     return $parsed
@@ -141,10 +142,56 @@ function Get-SonarIssueKey {
     param([Parameter(Mandatory)][object]$Issue)
 
     $key = [string](Get-SonarObjectProperty -InputObject $Issue -Name "key")
-    if ([string]::IsNullOrWhiteSpace($key)) {
+    if ([string]::IsNullOrWhiteSpace($key) -or $key.Length -gt 500 -or
+        $key -match "[\x00-\x1F\x7F]") {
         throw "Issue SonarQube sem chave."
     }
     return $key
+}
+
+function ConvertTo-SonarIssue {
+    param([Parameter(Mandatory)][object]$Issue)
+
+    $key = Get-SonarIssueKey -Issue $Issue
+    $rule = [string](Get-SonarObjectProperty -InputObject $Issue -Name "rule")
+    if ($rule.Length -gt 200 -or $rule -notmatch "^[A-Za-z0-9_.:-]*$") {
+        $rule = ""
+    }
+    $severity = [string](Get-SonarObjectProperty -InputObject $Issue -Name "severity")
+    $severity = $severity.ToUpperInvariant()
+    if ($severity -notmatch "^[A-Z_]{0,30}$") {
+        $severity = ""
+    }
+
+    $rawImpacts = @(Get-SonarObjectProperty -InputObject $Issue -Name "impacts")
+    if ($rawImpacts.Count -gt 20) {
+        throw "Issue SonarQube com impactos em excesso."
+    }
+    $impacts = @(
+        foreach ($impact in $rawImpacts) {
+            if ($null -eq $impact) {
+                throw "Issue SonarQube com impacto nulo."
+            }
+            $quality = [string](Get-SonarObjectProperty -InputObject $impact -Name "softwareQuality")
+            $impactSeverity = [string](Get-SonarObjectProperty -InputObject $impact -Name "severity")
+            $quality = $quality.ToUpperInvariant()
+            $impactSeverity = $impactSeverity.ToUpperInvariant()
+            if ($quality -notmatch "^[A-Z_]{0,50}$" -or
+                $impactSeverity -notmatch "^[A-Z_]{0,30}$") {
+                throw "Issue SonarQube com impacto inválido."
+            }
+            [pscustomobject]@{
+                softwareQuality = $quality
+                severity = $impactSeverity
+            }
+        }
+    )
+    return [pscustomobject]@{
+        key = $key
+        rule = $rule
+        severity = $severity
+        impacts = $impacts
+    }
 }
 
 function Assert-SonarSnapshot {
@@ -275,6 +322,249 @@ function Compare-SonarQualitySnapshot {
         HighOrBlockerIssueKeys = @($blockingIssueKeys)
         Coverage = $currentData.Coverage
         DuplicatedLinesDensity = $currentData.Duplication
+        IssueCount = $currentData.Issues.Count
+        BaselineIssueCount = $baselineData.Issues.Count
+    }
+}
+
+function Get-SonarCodeFingerprint {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    $root = [IO.Path]::GetFullPath($RepositoryRoot).TrimEnd('\', '/')
+    $files = [Collections.Generic.List[IO.FileInfo]]::new()
+    foreach ($relativeDirectory in @("src", ".mvn", ".codex/hooks", "test/powershell")) {
+        $directory = Join-Path $root $relativeDirectory
+        if (Test-Path -LiteralPath $directory -PathType Container) {
+            foreach ($file in @(Get-ChildItem -LiteralPath $directory -Recurse -File)) {
+                $files.Add($file)
+            }
+        }
+    }
+    foreach ($relativePath in @("pom.xml", "mvnw", "mvnw.cmd", ".codex/hooks.json")) {
+        $candidate = Join-Path $root $relativePath
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+            $files.Add((Get-Item -LiteralPath $candidate))
+        }
+    }
+    foreach ($file in @(Get-ChildItem -LiteralPath $root -File -Filter "*.ps1")) {
+        $files.Add($file)
+    }
+
+    $lines = foreach ($file in @($files | Sort-Object FullName -Unique)) {
+        $relativePath = $file.FullName.Substring($root.Length).TrimStart('\', '/') `
+            -replace '\\', '/'
+        $hash = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+        "$relativePath=$hash"
+    }
+    $bytes = [Text.Encoding]::UTF8.GetBytes(($lines -join "`n"))
+    return [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
+}
+
+function Get-SonarAgentStateDirectory {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    $root = [IO.Path]::GetFullPath($RepositoryRoot).TrimEnd('\', '/')
+    $stateDirectory = Join-Path $root ".codex/.state"
+    Assert-SonarPathWithoutReparsePoint -Root $root -Candidate $stateDirectory
+    return $stateDirectory
+}
+
+function Assert-SonarPathWithoutReparsePoint {
+    param(
+        [Parameter(Mandatory)][string]$Root,
+        [Parameter(Mandatory)][string]$Candidate
+    )
+
+    $resolvedRoot = [IO.Path]::GetFullPath($Root).TrimEnd('\', '/')
+    $current = [IO.Path]::GetFullPath($Candidate).TrimEnd('\', '/')
+    while ($true) {
+        if (Test-Path -LiteralPath $current) {
+            $item = Get-Item -LiteralPath $current -Force
+            if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "Caminho SonarQube não pode conter link ou reparse point."
+            }
+        }
+        if ($current.Equals($resolvedRoot, [StringComparison]::OrdinalIgnoreCase)) {
+            return
+        }
+        $parent = Split-Path -Parent $current
+        if ([string]::IsNullOrWhiteSpace($parent) -or $parent -eq $current) {
+            throw "Caminho SonarQube fora da raiz permitida."
+        }
+        $current = $parent.TrimEnd('\', '/')
+    }
+}
+
+function Get-SonarOfflineReportSummary {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$ReportPath,
+        [Parameter(Mandatory)][string]$RepositoryRoot
+    )
+
+    $root = [IO.Path]::GetFullPath($RepositoryRoot)
+    $allowedRoot = [IO.Path]::GetFullPath((Join-Path $root "sonar")).TrimEnd('\', '/')
+    $resolvedReportPath = [IO.Path]::GetFullPath($ReportPath).TrimEnd('\', '/')
+    $allowedPrefix = $allowedRoot + [IO.Path]::DirectorySeparatorChar
+    if (-not $resolvedReportPath.Equals($allowedRoot, [StringComparison]::OrdinalIgnoreCase) -and
+        -not $resolvedReportPath.StartsWith($allowedPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "OfflineReportPath deve estar dentro da pasta sonar/ do projeto."
+    }
+    if (-not (Test-Path -LiteralPath $resolvedReportPath -PathType Container)) {
+        throw "Pacote offline não encontrado dentro de sonar/."
+    }
+    Assert-SonarPathWithoutReparsePoint -Root $allowedRoot -Candidate $resolvedReportPath
+
+    $manifestPath = Join-Path $resolvedReportPath "manifest.json"
+    $issuesJsonPath = Join-Path $resolvedReportPath "issues.json"
+    $issuesCsvPath = Join-Path $resolvedReportPath "issues.csv"
+    $hasJson = Test-Path -LiteralPath $issuesJsonPath -PathType Leaf
+    $hasCsv = Test-Path -LiteralPath $issuesCsvPath -PathType Leaf
+    if (-not $hasJson -and -not $hasCsv) {
+        throw "O pacote offline deve conter issues.json ou issues.csv."
+    }
+    foreach ($candidate in @($manifestPath, $issuesJsonPath, $issuesCsvPath)) {
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+            Assert-SonarPathWithoutReparsePoint -Root $allowedRoot -Candidate $candidate
+        }
+    }
+    if ((Test-Path -LiteralPath $manifestPath -PathType Leaf) -and
+        (Get-Item -LiteralPath $manifestPath).Length -gt 5MB) {
+        throw "manifest.json excede o limite de 5 MB."
+    }
+    $selectedIssuesPath = if ($hasJson) { $issuesJsonPath } else { $issuesCsvPath }
+    if ((Get-Item -LiteralPath $selectedIssuesPath).Length -gt 100MB) {
+        throw "O arquivo de issues excede o limite de 100 MB."
+    }
+
+    try {
+        $manifest = if (Test-Path -LiteralPath $manifestPath -PathType Leaf) {
+            Get-Content -Raw -LiteralPath $manifestPath | ConvertFrom-Json -Depth 30
+        }
+        else {
+            [pscustomobject]@{}
+        }
+    }
+    catch {
+        throw "manifest.json do pacote offline é inválido."
+    }
+    try {
+        $issues = if ($hasJson) {
+            $json = Get-Content -Raw -LiteralPath $issuesJsonPath |
+                ConvertFrom-Json -Depth 30 -NoEnumerate
+            $issuesProperty = $json.PSObject.Properties["issues"]
+            if ($null -ne $issuesProperty) { @($issuesProperty.Value) } else { @($json) }
+        }
+        else {
+            @(Import-Csv -LiteralPath $issuesCsvPath)
+        }
+    }
+    catch {
+        throw "Arquivo de issues do pacote offline é inválido."
+    }
+    if ($issues.Count -gt 1000000) {
+        throw "O pacote offline excede o limite de 1000000 issues."
+    }
+
+    $severityCounts = [ordered]@{}
+    $ruleCounts = [ordered]@{}
+    $blockingCount = 0
+    foreach ($issue in $issues) {
+        if ($null -eq $issue) {
+            throw "O pacote offline contém issue nula."
+        }
+        $severity = [string](Get-SonarObjectProperty -InputObject $issue -Name "severity")
+        $severity = $severity.ToUpperInvariant()
+        if ($severity -notmatch "^[A-Z_]{1,30}$") { $severity = "UNKNOWN" }
+        if (-not $severityCounts.Contains($severity)) { $severityCounts[$severity] = 0 }
+        $severityCounts[$severity]++
+
+        $rule = [string](Get-SonarObjectProperty -InputObject $issue -Name "rule")
+        if ($rule -notmatch "^[A-Za-z0-9_.:-]{1,200}$") { $rule = "UNKNOWN" }
+        if (-not $ruleCounts.Contains($rule)) { $ruleCounts[$rule] = 0 }
+        $ruleCounts[$rule]++
+        if (Test-SonarIssueIsBlocking -Issue $issue) { $blockingCount++ }
+    }
+
+    $evidenceFiles = @($manifestPath, $issuesJsonPath, $issuesCsvPath) | Where-Object {
+        Test-Path -LiteralPath $_ -PathType Leaf
+    }
+    $fingerprintLines = foreach ($file in @($evidenceFiles | Sort-Object)) {
+        "$(Split-Path -Leaf $file)=$((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash)"
+    }
+    $bytes = [Text.Encoding]::UTF8.GetBytes(($fingerprintLines -join "`n"))
+    $fingerprint = [Convert]::ToHexString(
+        [Security.Cryptography.SHA256]::HashData($bytes)
+    ).ToLowerInvariant()
+
+    $manifestProjectKey = [string](Get-SonarObjectProperty -InputObject $manifest -Name "projectKey")
+    if ($manifestProjectKey -notmatch "^[A-Za-z0-9_.:-]{1,400}$" -or
+        $manifestProjectKey -match "^\d+$") {
+        $manifestProjectKey = ""
+    }
+    $manifestSonarUrl = ""
+    $rawManifestSonarUrl = [string](Get-SonarObjectProperty -InputObject $manifest -Name "sonarUrl")
+    if (-not [string]::IsNullOrWhiteSpace($rawManifestSonarUrl)) {
+        try {
+            $manifestSonarUrl = (Assert-SonarUrl -Url $rawManifestSonarUrl).AbsoluteUri.TrimEnd('/')
+        }
+        catch {
+            $manifestSonarUrl = ""
+        }
+    }
+
+    $relativeSuffix = $resolvedReportPath.Substring($allowedRoot.Length).TrimStart('\', '/') `
+        -replace '\\', '/'
+    return [pscustomobject]@{
+        path = if ([string]::IsNullOrWhiteSpace($relativeSuffix)) {
+            "sonar"
+        }
+        else {
+            "sonar/$relativeSuffix"
+        }
+        fingerprint = $fingerprint
+        issueCount = $issues.Count
+        blockingIssueCount = $blockingCount
+        severityCounts = [pscustomobject]$severityCounts
+        ruleCounts = [pscustomobject]$ruleCounts
+        projectKey = $manifestProjectKey
+        sonarUrl = $manifestSonarUrl
+        importedAtUtc = [DateTime]::UtcNow.ToString("O", [Globalization.CultureInfo]::InvariantCulture)
+        immutableEvidence = $true
+    }
+}
+
+function Write-SonarAgentState {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [Parameter(Mandatory)][object]$State
+    )
+
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    $directory = Split-Path -Parent $fullPath
+    New-Item -ItemType Directory -Path $directory -Force | Out-Null
+    Assert-SonarPathWithoutReparsePoint -Root $directory -Candidate $directory
+    if ((Test-Path -LiteralPath $fullPath) -and
+        ((Get-Item -LiteralPath $fullPath -Force).Attributes -band
+            [IO.FileAttributes]::ReparsePoint) -ne 0) {
+        throw "O arquivo de estado não pode ser link ou reparse point."
+    }
+
+    $temporaryPath = Join-Path $directory (
+        ".$(Split-Path -Leaf $fullPath).$([guid]::NewGuid().ToString('N')).tmp"
+    )
+    try {
+        $json = $State | ConvertTo-Json -Depth 30
+        [IO.File]::WriteAllText($temporaryPath, $json, [Text.UTF8Encoding]::new($false))
+        [IO.File]::Move($temporaryPath, $fullPath, $true)
+    }
+    finally {
+        if (Test-Path -LiteralPath $temporaryPath) {
+            Remove-Item -LiteralPath $temporaryPath -Force
+        }
     }
 }
 
@@ -390,7 +680,7 @@ function Get-SonarQualitySnapshot {
             if (-not $issueKeys.Add($issueKey)) {
                 throw "Resposta SonarQube com issue duplicada entre páginas: $issueKey."
             }
-            $issues.Add($issue)
+            $issues.Add((ConvertTo-SonarIssue -Issue $issue))
         }
         $page++
     } while ($issues.Count -lt $expectedTotal)
@@ -489,6 +779,10 @@ function Wait-SonarComputeEngine {
 Export-ModuleMember -Function @(
     "Assert-SonarUrl",
     "Compare-SonarQualitySnapshot",
+    "Get-SonarAgentStateDirectory",
+    "Get-SonarCodeFingerprint",
+    "Get-SonarOfflineReportSummary",
     "Get-SonarQualitySnapshot",
-    "Wait-SonarComputeEngine"
+    "Wait-SonarComputeEngine",
+    "Write-SonarAgentState"
 )
