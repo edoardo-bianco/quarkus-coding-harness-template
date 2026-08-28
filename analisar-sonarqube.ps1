@@ -99,6 +99,7 @@ if ($wrapperName -eq "mvnw.cmd" -and $mavenWrapper.Contains("%", [StringComparis
 # A versão fixa evita mudanças involuntárias do scanner. O metadado contém o ceTaskId:
 # https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/analysis-parameters/parameters-not-settable-in-ui
 $metadataRelativePath = "target/sonar/report-task.txt"
+$metadataPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $metadataRelativePath))
 $scannerGoal = "org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar"
 $mavenArguments = @(
     "clean",
@@ -109,11 +110,10 @@ $analysisProperties = @(
     "-Dsonar.projectKey=$ProjectKey",
     "-Dsonar.projectName=$ProjectName",
     "-Dsonar.host.url=$normalizedSonarUrl",
-    "-Dsonar.scanner.metadataFilePath=$metadataRelativePath",
+    "-Dsonar.scanner.metadataFilePath=$metadataPath",
     "-Dsonar.scanner.skipJreProvisioning=true"
 )
 $mavenArguments += $analysisProperties
-$metadataPath = Join-Path $PSScriptRoot $metadataRelativePath
 if (Test-Path -LiteralPath $metadataPath -PathType Leaf) {
     Remove-Item -LiteralPath $metadataPath -Force
 }
