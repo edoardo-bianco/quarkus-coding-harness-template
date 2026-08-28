@@ -170,11 +170,15 @@
 ## Incremento 11 — Baseline e decisão
 
 - [x] Registrar revisão humana do Incremento 10 e `GO` para somente o Incremento 11 em 2026-08-27.
-- [ ] Task 11A — RED: testes da API, métricas, severidades e comparação 85%/5%.
-- [ ] Task 11A — implementar o módulo de qualidade e validar paginação/Compute Engine.
-- [ ] Task 11B — RED: testes local, local+offline, offline-only, `NON_COMPLIANT` e três decisões.
-- [ ] Task 11B — implementar o script de baseline/checkpoint e estado sem credencial.
-- [ ] Verificar fingerprint e estado UNVERIFIED.
+- [x] Task 11A — RED: testes da API, métricas, severidades e comparação 85%/5%.
+- [x] Task 11A — implementar o módulo de qualidade e validar paginação/Compute Engine.
+- [x] Task 11B — RED: testes local, local+offline, offline-only, `NON_COMPLIANT` e três decisões.
+- [x] Task 11B — implementar o script de baseline/checkpoint e estado sem credencial.
+- [x] Verificar fingerprint, estado `UNVERIFIED` e persistência atômica sem credencial.
+- [x] Registrar `ContinuarAjustes` humano em 2026-08-28 após o baseline local
+  `NON_COMPLIANT` e repetir o checkpoint depois do ajuste.
+- [x] Confirmar checkpoint local `COMPLIANT`: zero issue nova, zero issue bloqueante,
+  cobertura 97,6% e duplicação 0%.
 
 ## Incremento 12 — Hooks
 
@@ -212,5 +216,5 @@
 
 ## Próximo item autorizado
 
-O humano revisou o Incremento 10 e o `GO` de 2026-08-27 autoriza somente o Incremento 11. O
-próximo item é o RED da Task 11A; os Incrementos 12–13 permanecem bloqueados.
+O Incremento 11 está concluído tecnicamente e aguarda revisão humana. Nenhum item do Incremento
+12 está autorizado; os Incrementos 12–13 permanecem bloqueados até nova decisão humana explícita.

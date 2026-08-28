@@ -8,13 +8,13 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 11**, dentro do contrato de baseline,
-  checkpoint e decisão Sonar registrado neste plano. O humano revisou o Incremento 10 e registrou
-  `GO` em 2026-08-27.
+- Implementação autorizada: o `GO` de 2026-08-27 para **somente o Incremento 11** foi consumido;
+  o incremento está concluído tecnicamente e aguarda revisão humana. Nenhum novo incremento
+  executável está autorizado.
 - Próxima decisão: revisão humana do Incremento 11; os Incrementos 12–13 não estão autorizados.
-- Sonar neste estágio: `UNVERIFIED` **transitório**; não existem ainda `sonar/`, baseline, script de
-  checkpoint ou estado de decisão. Esse estado não satisfaz a definição de pronto e deve ser
-  eliminado pelos Incrementos 11–13 antes da entrega do template.
+- Sonar neste estágio: baseline e checkpoint locais executados. Após `ContinuarAjustes` humano,
+  o checkpoint ficou `COMPLIANT`, com zero issue nova, zero issue bloqueante, cobertura 97,6% e
+  duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline permanecem locais e ignorados.
 
 ## Intenção
 
@@ -573,6 +573,18 @@ aguarda decisão; fingerprint evita análise por edição isolada; estado fica s
 **Autorização:** `GO` registrado pelo humano em 2026-08-27 somente para este incremento. Hooks e
 evidência offline permanecem bloqueados nos Incrementos 12–13.
 
+**Estado de execução:** concluído tecnicamente em 2026-08-28; aguarda revisão humana.
+
+**Evidência:** os REDs das Tasks 11A e 11B falharam pela ausência do comportamento planejado e os
+GREENs passaram com sete testes PowerShell. O primeiro baseline local encontrou sete issues
+abertas, uma bloqueante (`java:S1192`), cobertura 97,6% e duplicação 0%, produzindo
+`NON_COMPLIANT`. O humano registrou `ContinuarAjustes`; a chave observável repetida foi extraída
+sem alterar seu nome público. O checkpoint posterior ficou `COMPLIANT`, com seis issues abertas,
+zero issue nova, zero issue bloqueante, cobertura 97,6% e duplicação 0%. O Maven verificou 26
+testes sem falhas, erros ou ignorados. O estado atômico permanece em `.codex/.state/`, ignorado
+pelo Git e sem credencial. A compatibilidade real também exigiu que o caminho de metadados do
+SonarScanner fosse absoluto; o teste de regressão cobre esse contrato.
+
 ### Incremento 12 — Hooks Codex e isenção documental
 
 **Entrega:** lembretes de início/parada sem bloqueio indevido.
@@ -705,4 +717,6 @@ o humano revisou o Incremento 8 e registrou `GO` em 2026-08-27 para executar som
 2026-08-27 para executar somente o Incremento 10. A autorização não alcança baseline, decisão,
 hooks nem os Incrementos 11–13. Depois da conclusão técnica e da revisão do Incremento 10, o
 humano registrou novo `GO` em 2026-08-27 para executar somente o Incremento 11. A autorização não
-alcança hooks, evidência offline nem os Incrementos 12–13.
+alcança hooks, evidência offline nem os Incrementos 12–13. O Incremento 11 foi concluído
+tecnicamente em 2026-08-28, recebeu `ContinuarAjustes` após a primeira não conformidade e chegou a
+um checkpoint local `COMPLIANT`; sua revisão humana ainda não autoriza o Incremento 12.

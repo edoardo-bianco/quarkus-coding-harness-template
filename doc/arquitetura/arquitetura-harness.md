@@ -14,9 +14,10 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo, as
 regras ArchUnit, a observabilidade mínima, a cobertura XML, a sessão segura e o envio de análise
 Sonar estão implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16
-verificável por checksum, gera JaCoCo XML e exclui estados e segredos locais. Baseline, checkpoint,
-decisão, hooks e evidência offline Sonar continuam planejados. Até sua implementação e execução,
-qualquer checkpoint Sonar permanece `UNVERIFIED`.
+verificável por checksum, gera JaCoCo XML e exclui estados e segredos locais. Baseline, checkpoint
+e decisão Sonar também estão implementados e foram verificados contra o servidor local. Hooks e
+exportação de evidência offline continuam planejados. O checkpoint atual está `COMPLIANT`, sem
+substituir a revisão humana do incremento.
 
 ## Visão do sistema
 
@@ -163,32 +164,35 @@ O agente pode propor e atualizar evidências técnicas. Somente o humano registr
 - launcher que lê a credencial em prompt protegido, expõe `SONAR_TOKEN` somente ao processo Codex
   filho e restaura o ambiente anterior ao encerrar;
 - analisador que deriva identidade do POM, valida entradas, exige servidor `UP`, usa o Maven
-  Wrapper com scanner fixado e exige metadados novos do Compute Engine;
+  Wrapper com scanner fixado e exige metadados novos do Compute Engine em caminho absoluto;
 - testes PowerShell isolados para build, ciclo de vida do segredo, argumentos, indisponibilidade,
   falha Maven e metadado obsoleto;
+- módulo de qualidade que pagina e normaliza dados permitidos da API, aguarda o Compute Engine,
+  aplica a política 85%/5% e compara baseline e análise corrente;
+- script de baseline e checkpoint com fontes explícitas, fingerprint executável, estado atômico
+  ignorado, modo offline-only `UNVERIFIED` e registro estrito das três decisões humanas;
+- testes PowerShell para API, gate, baseline offline-only e fluxo de decisão humana;
 - guia local com a política 85%/5%, o fluxo operacional e os limites do estado `UNVERIFIED`.
 
 Não há `jacoco-maven-plugin` paralelo nem exclusão de classes de produção. O relatório do build do
-Incremento 9 cobriu 61 de 62 linhas da feature neutra. Esse resultado comprova a geração local de
-cobertura, mas não mede duplicação nem substitui uma análise SonarQube.
+Incremento 9 cobriu 61 de 62 linhas da feature neutra. No Incremento 11, a análise real produziu
+checkpoint `COMPLIANT`, com seis issues abertas, zero issue nova, zero issue bloqueante, cobertura
+97,6% e duplicação 0%. O baseline e o estado são locais, ignorados e não são transportados para
+projetos derivados.
 
 ### Componentes ainda planejados
 
 ```text
 .codex/hooks.json
-.codex/hooks/SonarQuality.psm1
 .codex/hooks/sonar-session-start.ps1
 .codex/hooks/sonar-stop.ps1
-validar-checkpoint-sonarqube.ps1
 exportar-relatorios-sonarqube.ps1
-test/powershell/*Quality*Test.ps1
 test/powershell/*Hooks*Test.ps1
-test/powershell/*Offline*Test.ps1
-test/powershell/*HumanDecision*Test.ps1
 test/powershell/Exportar*Test.ps1
 ```
 
-Esses componentes serão destilados do repositório-fonte e testados para remover acoplamento de negócio. Não serão copiados estados, relatórios nem credenciais.
+Esses componentes restantes serão destilados do repositório-fonte e testados para remover
+acoplamento de negócio. Não serão copiados estados, relatórios nem credenciais.
 
 ```mermaid
 flowchart TD
