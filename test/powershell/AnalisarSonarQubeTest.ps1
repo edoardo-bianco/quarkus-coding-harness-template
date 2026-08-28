@@ -192,7 +192,7 @@ try {
         "-Dsonar.projectKey=fixture.group:fixture-artifact",
         "-Dsonar.projectName=Fixture Project",
         "-Dsonar.host.url=http://localhost:9000",
-        "-Dsonar.scanner.metadataFilePath=target/sonar/report-task.txt",
+        "-Dsonar.scanner.metadataFilePath=$metadataPath",
         "-Dsonar.scanner.skipJreProvisioning=true"
     )
     if ($capturedArguments.Count -ne $expectedArguments.Count) {
