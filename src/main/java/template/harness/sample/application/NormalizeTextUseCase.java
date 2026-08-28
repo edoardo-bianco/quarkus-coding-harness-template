@@ -19,6 +19,7 @@ public class NormalizeTextUseCase {
     private static final String SPAN_NAME = "sample.normalize";
     private static final String OUTCOME_ATTRIBUTE = "sample.normalize.outcome";
     private static final String METRIC_NAME = "sample.normalize.duration";
+    private static final String OUTCOME_KEY = "outcome";
     private static final String SUCCESS = "success";
     private static final String INVALID = "invalid";
 
@@ -41,7 +42,7 @@ public class NormalizeTextUseCase {
             Span.current().setAttribute(OUTCOME_ATTRIBUTE, outcome);
             sample.stop(Timer.builder(METRIC_NAME)
                     .description("Duration of sample text normalization")
-                    .tag("outcome", outcome)
+                    .tag(OUTCOME_KEY, outcome)
                     .publishPercentileHistogram()
                     .register(meterRegistry));
             logCompletion(outcome);
@@ -51,10 +52,10 @@ public class NormalizeTextUseCase {
     private static void logCompletion(String outcome) {
         try {
             MDC.put("event", EVENT);
-            MDC.put("outcome", outcome);
+            MDC.put(OUTCOME_KEY, outcome);
             LOG.info(EVENT);
         } finally {
-            MDC.remove("outcome");
+            MDC.remove(OUTCOME_KEY);
             MDC.remove("event");
         }
     }
