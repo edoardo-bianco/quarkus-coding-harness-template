@@ -182,6 +182,7 @@
 
 ## Incremento 12 — Hooks
 
+- [x] Registrar revisão humana do Incremento 11 e `GO` para somente o Incremento 12 em 2026-08-28.
 - [ ] Destilar hooks da referência removendo defaults, estado e vocabulário do produto-fonte.
 - [ ] RED: eventos session-start e stop.
 - [ ] RED: isenção Markdown-only.
@@ -216,5 +217,5 @@
 
 ## Próximo item autorizado
 
-O Incremento 11 está concluído tecnicamente e aguarda revisão humana. Nenhum item do Incremento
-12 está autorizado; os Incrementos 12–13 permanecem bloqueados até nova decisão humana explícita.
+O humano revisou o Incremento 11 e o `GO` de 2026-08-28 autoriza somente o Incremento 12. O
+próximo item é destilar os hooks da referência; o Incremento 13 permanece bloqueado.

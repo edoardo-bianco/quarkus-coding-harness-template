@@ -8,10 +8,10 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: o `GO` de 2026-08-27 para **somente o Incremento 11** foi consumido;
-  o incremento está concluído tecnicamente e aguarda revisão humana. Nenhum novo incremento
-  executável está autorizado.
-- Próxima decisão: revisão humana do Incremento 11; os Incrementos 12–13 não estão autorizados.
+- Implementação autorizada: **somente o Incremento 12**, dentro do contrato de hooks Codex e
+  isenção Markdown-only registrado neste plano. O humano revisou o Incremento 11 e registrou
+  `GO` em 2026-08-28.
+- Próxima decisão: revisão humana do Incremento 12; o Incremento 13 não está autorizado.
 - Sonar neste estágio: baseline e checkpoint locais executados. Após `ContinuarAjustes` humano,
   o checkpoint ficou `COMPLIANT`, com zero issue nova, zero issue bloqueante, cobertura 97,6% e
   duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline permanecem locais e ignorados.
@@ -601,6 +601,9 @@ SonarScanner fosse absoluto; o teste de regressão cobre esse contrato.
 
 **Verificação:** testes PowerShell com eventos JSON e estados temporários descartáveis.
 
+**Autorização:** `GO` registrado pelo humano em 2026-08-28 somente para este incremento. Evidência
+offline permanece bloqueada no Incremento 13.
+
 ### Incremento 13 — Exportação e leitura offline
 
 **Entrega:** pacote de evidência imutável tratado como dado não confiável.
@@ -719,4 +722,6 @@ hooks nem os Incrementos 11–13. Depois da conclusão técnica e da revisão do
 humano registrou novo `GO` em 2026-08-27 para executar somente o Incremento 11. A autorização não
 alcança hooks, evidência offline nem os Incrementos 12–13. O Incremento 11 foi concluído
 tecnicamente em 2026-08-28, recebeu `ContinuarAjustes` após a primeira não conformidade e chegou a
-um checkpoint local `COMPLIANT`; sua revisão humana ainda não autoriza o Incremento 12.
+um checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou novo `GO` em
+2026-08-28 para executar somente o Incremento 12. A autorização não alcança evidência offline nem
+o Incremento 13.
