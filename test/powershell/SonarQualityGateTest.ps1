@@ -92,4 +92,16 @@ if (-not $invalidFailed) {
     throw "Metrica invalida nao falhou de forma fechada."
 }
 
+$outOfRangeSnapshot = New-SonarSnapshot -Issues @() -Coverage 101 -Duplication 0
+$outOfRangeFailed = $false
+try {
+    Compare-SonarQualitySnapshot -Baseline $baseline -Current $outOfRangeSnapshot | Out-Null
+}
+catch {
+    $outOfRangeFailed = $_.Exception.Message -match "coverage"
+}
+if (-not $outOfRangeFailed) {
+    throw "Metrica percentual acima de 100 nao falhou de forma fechada."
+}
+
 Write-Host "GREEN: politica Sonar 85/5, issues novas e severidades bloqueantes aprovadas."
