@@ -90,7 +90,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Cobertura e configuração Sonar build | `GO` em 2026-08-27 para o Incremento 9 | Humano |
 | Sessão segura e análise Sonar | `GO` em 2026-08-27 para o Incremento 10 | Humano |
 | Baseline, checkpoint e decisão Sonar | `GO` em 2026-08-27 para o Incremento 11 | Humano |
-| Não conformidade Sonar, se houver | `PENDENTE conforme evidência` | Humano |
+| Não conformidade Sonar do Incremento 11 | `ContinuarAjustes` em 2026-08-28; checkpoint posterior `COMPLIANT` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências parciais
@@ -139,15 +139,26 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - Os três testes PowerShell passaram. O `./mvnw.cmd -q verify` passou com 26 testes, zero falhas,
   zero erros e zero ignorados. A auditoria do conteúdo versionado não encontrou token Sonar nem
   identidade do repositório-fonte.
-- Sonar permanece `UNVERIFIED`: a sessão atual não foi iniciada com credencial e não houve análise
-  autenticada de servidor; baseline, espera do Compute Engine, checkpoint e decisão serão tratados
-  somente nos incrementos ainda bloqueados.
+- O Incremento 11 implementou o módulo de qualidade, paginação da API, espera do Compute Engine,
+  comparação 85%/5%, fontes explícitas de baseline, fingerprint, estado atômico e as três decisões
+  humanas. Os sete testes PowerShell passaram.
+- O primeiro baseline autenticado encontrou sete issues abertas, uma bloqueante (`java:S1192`),
+  cobertura 97,6% e duplicação 0%, portanto ficou `NON_COMPLIANT`. O humano registrou
+  `ContinuarAjustes` em 2026-08-28; nenhuma decisão foi inferida do resultado técnico.
+- Depois do ajuste pontual e do teste de regressão para o caminho absoluto dos metadados do
+  SonarScanner, o checkpoint local ficou `COMPLIANT`: seis issues abertas, zero issue nova, zero
+  issue bloqueante, cobertura 97,6% e duplicação 0%. O Maven passou com 26 testes, sem falhas,
+  erros ou ignorados.
+- Não existem pacotes em `sonar/`. Baseline e estado ficam somente em `.codex/.state/`, ignorado
+  pelo Git, e a auditoria não encontrou credencial persistida nem identidade do repositório-fonte.
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.
 - O humano revisou o Incremento 10 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 11. A decisão autoriza baseline, checkpoint e o fluxo das três decisões, mas não
   autoriza hooks nem evidência offline dos Incrementos 12–13.
+- O Incremento 11 está concluído tecnicamente e aguarda revisão humana. Esse resultado não
+  autoriza o Incremento 12 nem encerra o goal.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas
