@@ -1,0 +1,33 @@
+{
+  "description": "Lembretes SonarQube para mudanças executáveis; Markdown é isento.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -File \"$(git rev-parse --show-toplevel)/.codex/hooks/sonar-session-start.ps1\"",
+            "commandWindows": "pwsh.exe -NoProfile -Command \"& (Join-Path (git rev-parse --show-toplevel) '.codex/hooks/sonar-session-start.ps1')\"",
+            "timeout": 30,
+            "statusMessage": "Verificando o estado local do SonarQube",
+            "additionalContextLimit": 1000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -File \"$(git rev-parse --show-toplevel)/.codex/hooks/sonar-stop.ps1\"",
+            "commandWindows": "pwsh.exe -NoProfile -Command \"& (Join-Path (git rev-parse --show-toplevel) '.codex/hooks/sonar-stop.ps1')\"",
+            "timeout": 30,
+            "statusMessage": "Verificando pendências do checkpoint SonarQube"
+          }
+        ]
+      }
+    ]
+  }
+}
