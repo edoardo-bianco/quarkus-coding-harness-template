@@ -92,6 +92,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Baseline, checkpoint e decisão Sonar | `GO` em 2026-08-27 para o Incremento 11 | Humano |
 | Não conformidade Sonar do Incremento 11 | `ContinuarAjustes` em 2026-08-28; checkpoint posterior `COMPLIANT` | Humano |
 | Hooks Codex e isenção documental | `GO` em 2026-08-28 para o Incremento 12 | Humano |
+| Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências parciais
@@ -171,6 +172,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - O humano revisou o Incremento 11 e registrou `GO` em 2026-08-28 para executar somente o
   Incremento 12. A decisão autoriza hooks Codex e isenção Markdown-only, mas não autoriza a
   evidência offline do Incremento 13 nem encerra o goal.
+- O humano revisou o Incremento 12 e registrou `GO` em 2026-08-29 para executar somente o
+  Incremento 13. A decisão autoriza exportação e leitura offline dentro do plano aprovado, mas
+  não autoriza materialização, os Incrementos 14–15 nem o encerramento do goal.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas

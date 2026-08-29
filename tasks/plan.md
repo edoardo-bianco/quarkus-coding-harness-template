@@ -8,9 +8,10 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma nova implementação**. O Incremento 12 foi concluído
-  tecnicamente dentro do contrato aprovado e aguarda revisão humana.
-- Próxima decisão: revisão humana do Incremento 12; o Incremento 13 não está autorizado.
+- Implementação autorizada: **somente o Incremento 13**. O Incremento 12 foi revisado pelo humano,
+  que registrou `GO` em 2026-08-29 para exportação e leitura offline dentro do contrato aprovado.
+- Próxima decisão: revisão humana do Incremento 13 e Checkpoint D; os Incrementos 14–15 não estão
+  autorizados.
 - Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 12
   ficou `COMPLIANT`, com seis issues abertas contra sete no baseline, zero issue nova, zero issue
   bloqueante, cobertura 97,6% e duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline
@@ -620,6 +621,9 @@ fora do sandbox terminaram com código zero e não alteraram o contrato do incre
 
 ### Incremento 13 — Exportação e leitura offline
 
+**Autorização:** `GO` registrado pelo humano em 2026-08-29 somente para este incremento.
+Materialização e os Incrementos 14–15 permanecem bloqueados.
+
 **Entrega:** pacote de evidência imutável tratado como dado não confiável.
 
 **Arquivos prováveis:**
@@ -739,5 +743,6 @@ tecnicamente em 2026-08-28, recebeu `ContinuarAjustes` após a primeira não con
 um checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou novo `GO` em
 2026-08-28 para executar somente o Incremento 12. A autorização não alcança evidência offline nem
 o Incremento 13. O Incremento 12 foi concluído tecnicamente em 2026-08-29 com as suítes Maven e
-PowerShell verdes e checkpoint local `COMPLIANT`; nenhuma autorização para o Incremento 13 foi
-inferida.
+PowerShell verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou
+`GO` em 2026-08-29 para executar somente o Incremento 13. A autorização não alcança
+materialização nem os Incrementos 14–15.

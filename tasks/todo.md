@@ -196,6 +196,7 @@
 
 ## Incremento 13 — Evidência offline
 
+- [x] Registrar revisão humana do Incremento 12 e `GO` para somente o Incremento 13 em 2026-08-29.
 - [ ] RED: exportação sem segredo e leitura adversarial.
 - [ ] Implementar exportação, documentação e entrada local `sonar/` com somente o README
   versionado.
@@ -222,5 +223,6 @@
 
 ## Próximo item autorizado
 
-NENHUM — AGUARDANDO DECISAO. O Incremento 12 foi concluído tecnicamente em 2026-08-29 e aguarda
-revisão humana. O Incremento 13 permanece bloqueado até `GO` explícito.
+O humano revisou o Incremento 12 e registrou `GO` em 2026-08-29 para somente o Incremento 13. O
+próximo item autorizado é RED: exportação sem segredo e leitura adversarial. Os Incrementos 14–15
+permanecem bloqueados.
