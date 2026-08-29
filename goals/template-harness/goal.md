@@ -93,6 +93,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Não conformidade Sonar do Incremento 11 | `ContinuarAjustes` em 2026-08-28; checkpoint posterior `COMPLIANT` | Humano |
 | Hooks Codex e isenção documental | `GO` em 2026-08-28 para o Incremento 12 | Humano |
 | Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
+| Checkpoint D — Harness Sonar | Evidências técnicas apresentadas em 2026-08-29; revisão `PENDENTE` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências parciais
@@ -163,6 +164,18 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - A revisão do Incremento 12 não encontrou segredo, identidade fixa, estado, pacote offline,
   dependência nova ou alteração fora de escopo. A conclusão técnica não autoriza o Incremento 13
   nem substitui a revisão humana.
+- O Incremento 13 implementou exportação sanitizada e atômica sob `sonar/`, sem sobrescrita, ZIP,
+  credencial ou texto livre. Somente `sonar/README.md` é versionado; pacotes permanecem ignorados.
+- O primeiro RED falhou pela ausência do exportador. Um segundo RED provou que chave de issue com
+  texto livre era exportada; o GREEN passou a rejeitá-la antes de criar o pacote. A leitura
+  adversarial não executou script nem promoveu instruções para o estado.
+- A suíte PowerShell completa passou com dez testes. O Maven passou com 26 testes, zero falhas,
+  zero erros e zero ignorados, e o JaCoCo XML foi consumido pela análise. O checkpoint final ficou
+  `COMPLIANT`: seis issues abertas contra sete no baseline, zero issue nova, zero issue bloqueante,
+  cobertura 97,6% e duplicação 0%.
+- A revisão do Incremento 13 não encontrou segredo, estado, pacote, log, identidade da referência,
+  dependência nova ou alteração fora de escopo. A conclusão técnica aguarda revisão humana no
+  Checkpoint D e não autoriza materialização nem os Incrementos 14–15.
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.

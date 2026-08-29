@@ -197,13 +197,14 @@
 ## Incremento 13 — Evidência offline
 
 - [x] Registrar revisão humana do Incremento 12 e `GO` para somente o Incremento 13 em 2026-08-29.
-- [ ] RED: exportação sem segredo e leitura adversarial.
-- [ ] Implementar exportação, documentação e entrada local `sonar/` com somente o README
+- [x] RED: exportação sem segredo e leitura adversarial.
+- [x] Implementar exportação, documentação e entrada local `sonar/` com somente o README
   versionado.
-- [ ] Verificar imutabilidade e instruções ignoradas.
-- [ ] Auditar ausência de `.codex/.state`, pacote, log, token e identidade da referência no diff.
-- [ ] Checkpoint D: apresentar JaCoCo, scripts, hooks, testes e baseline do próprio template ao
-  humano.
+- [x] Verificar imutabilidade e instruções ignoradas.
+- [x] Auditar ausência de `.codex/.state`, pacote, log, token e identidade da referência no diff.
+- [x] Preparar evidências técnicas do Checkpoint D: JaCoCo, scripts, hooks, dez testes PowerShell,
+  26 testes Maven e baseline/checkpoint do próprio template.
+- [ ] Obter revisão humana do Incremento 13 e do Checkpoint D antes do Incremento 14.
 
 ## Incremento 14 — Materialização
 
@@ -223,6 +224,5 @@
 
 ## Próximo item autorizado
 
-O humano revisou o Incremento 12 e registrou `GO` em 2026-08-29 para somente o Incremento 13. O
-próximo item autorizado é RED: exportação sem segredo e leitura adversarial. Os Incrementos 14–15
-permanecem bloqueados.
+NENHUM — AGUARDANDO DECISAO. O Incremento 13 foi concluído tecnicamente em 2026-08-29 e aguarda
+revisão humana no Checkpoint D. Os Incrementos 14–15 permanecem bloqueados até `GO` explícito.
