@@ -204,10 +204,12 @@
 - [x] Auditar ausência de `.codex/.state`, pacote, log, token e identidade da referência no diff.
 - [x] Preparar evidências técnicas do Checkpoint D: JaCoCo, scripts, hooks, dez testes PowerShell,
   26 testes Maven e baseline/checkpoint do próprio template.
-- [ ] Obter revisão humana do Incremento 13 e do Checkpoint D antes do Incremento 14.
+- [x] Obter revisão humana do Incremento 13, aprovação do Checkpoint D e `GO` para o Incremento
+  14 em 2026-08-29.
 
 ## Incremento 14 — Materialização
 
+- [x] Registrar `GO` humano para executar somente o Incremento 14 em 2026-08-29.
 - [ ] Criar guia e checklist de materialização.
 - [ ] Ensaiar em diretório temporário com identidade diferente.
 - [ ] Criar goal e baseline próprios na cópia.
@@ -224,5 +226,5 @@
 
 ## Próximo item autorizado
 
-NENHUM — AGUARDANDO DECISAO. O Incremento 13 foi concluído tecnicamente em 2026-08-29 e aguarda
-revisão humana no Checkpoint D. Os Incrementos 14–15 permanecem bloqueados até `GO` explícito.
+Criar o guia e o checklist de materialização do Incremento 14. O Incremento 15 permanece
+bloqueado até revisão humana e novo `GO` explícito.

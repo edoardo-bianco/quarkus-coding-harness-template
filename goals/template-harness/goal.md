@@ -93,7 +93,8 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Não conformidade Sonar do Incremento 11 | `ContinuarAjustes` em 2026-08-28; checkpoint posterior `COMPLIANT` | Humano |
 | Hooks Codex e isenção documental | `GO` em 2026-08-28 para o Incremento 12 | Humano |
 | Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
-| Checkpoint D — Harness Sonar | Evidências técnicas apresentadas em 2026-08-29; revisão `PENDENTE` | Humano |
+| Checkpoint D — Harness Sonar | `APROVADO` em 2026-08-29; `GO` para o Incremento 14 | Humano |
+| Materialização descartável | `GO` em 2026-08-29 para o Incremento 14; evidências `PENDENTES` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências parciais
@@ -176,6 +177,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - A revisão do Incremento 13 não encontrou segredo, estado, pacote, log, identidade da referência,
   dependência nova ou alteração fora de escopo. A conclusão técnica aguarda revisão humana no
   Checkpoint D e não autoriza materialização nem os Incrementos 14–15.
+- O humano revisou o Incremento 13, aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para
+  executar somente o Incremento 14. A decisão autoriza o guia, o checklist e o ensaio descartável
+  de materialização, mas não autoriza o Incremento 15 nem o encerramento do goal.
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.

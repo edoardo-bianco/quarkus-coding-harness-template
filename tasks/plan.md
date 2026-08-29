@@ -8,10 +8,9 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **nenhuma nova implementação**. O Incremento 13 foi concluído
-  tecnicamente dentro do contrato aprovado e aguarda revisão humana no Checkpoint D.
-- Próxima decisão: revisão humana do Incremento 13 e do Checkpoint D; os Incrementos 14–15 não
-  estão autorizados.
+- Implementação autorizada: **somente o Incremento 14**. O humano revisou o Incremento 13,
+  aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para a materialização descartável.
+- Próxima decisão: revisão humana do Incremento 14; o Incremento 15 não está autorizado.
 - Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 13
   ficou `COMPLIANT`, com seis issues abertas contra sete no baseline, zero issue nova, zero issue
   bloqueante, cobertura 97,6% e duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline
@@ -663,10 +662,15 @@ incremento.
 - baseline novo é criado somente após escolha humana da fonte;
 - se NON_COMPLIANT, humano registra uma das três decisões.
 
-**Situação técnica:** evidências satisfeitas em 2026-08-29; revisão humana pendente. Esta situação
-não autoriza o Incremento 14.
+**Decisão:** evidências revisadas e Checkpoint D `APROVADO` pelo humano em 2026-08-29, com `GO`
+limitado ao Incremento 14. A decisão não autoriza o Incremento 15.
 
 ### Incremento 14 — Guia e ensaio de materialização
+
+**Autorização:** `GO` registrado pelo humano em 2026-08-29 somente para este incremento. O
+Incremento 15 e o encerramento do goal permanecem bloqueados.
+
+**Estado:** autorizado; implementação pendente.
 
 **Entrega:** procedimento humano-agente para transformar uma cópia do template em projeto real.
 
@@ -762,5 +766,6 @@ o Incremento 13. O Incremento 12 foi concluído tecnicamente em 2026-08-29 com a
 PowerShell verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou
 `GO` em 2026-08-29 para executar somente o Incremento 13. A autorização não alcança
 materialização nem os Incrementos 14–15. O Incremento 13 foi concluído tecnicamente em 2026-08-29
-com suítes PowerShell e Maven verdes e checkpoint local `COMPLIANT`; nenhuma autorização para o
-Incremento 14 foi inferida.
+com suítes PowerShell e Maven verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega,
+o humano aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para executar somente o Incremento
+14. A autorização não alcança o Incremento 15 nem o encerramento do goal.
