@@ -8,11 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 13**. O Incremento 12 foi revisado pelo humano,
-  que registrou `GO` em 2026-08-29 para exportação e leitura offline dentro do contrato aprovado.
-- Próxima decisão: revisão humana do Incremento 13 e Checkpoint D; os Incrementos 14–15 não estão
-  autorizados.
-- Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 12
+- Implementação autorizada: **nenhuma nova implementação**. O Incremento 13 foi concluído
+  tecnicamente dentro do contrato aprovado e aguarda revisão humana no Checkpoint D.
+- Próxima decisão: revisão humana do Incremento 13 e do Checkpoint D; os Incrementos 14–15 não
+  estão autorizados.
+- Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 13
   ficou `COMPLIANT`, com seis issues abertas contra sete no baseline, zero issue nova, zero issue
   bloqueante, cobertura 97,6% e duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline
   permanecem locais e ignorados.
@@ -590,7 +590,7 @@ SonarScanner fosse absoluto; o teste de regressão cobre esse contrato.
 
 **Entrega:** lembretes de início/parada sem bloqueio indevido.
 
-**Estado:** concluído tecnicamente em 2026-08-29; aguarda revisão humana.
+**Estado:** concluído e revisado pelo humano em 2026-08-29.
 
 **Arquivos prováveis:**
 
@@ -624,6 +624,8 @@ fora do sandbox terminaram com código zero e não alteraram o contrato do incre
 **Autorização:** `GO` registrado pelo humano em 2026-08-29 somente para este incremento.
 Materialização e os Incrementos 14–15 permanecem bloqueados.
 
+**Estado:** concluído tecnicamente em 2026-08-29; aguarda revisão humana no Checkpoint D.
+
 **Entrega:** pacote de evidência imutável tratado como dado não confiável.
 
 **Arquivos prováveis:**
@@ -640,6 +642,17 @@ relatórios colocados sob `sonar/` continuam ignorados pelo Git.
 
 **Verificação:** testes com fixtures temporárias e conteúdo adversarial.
 
+**Evidência:** o primeiro RED falhou pela ausência do exportador, e o RED de hardening provou que
+uma chave de issue com texto livre ainda era exportada. O GREEN cria atomicamente um diretório
+novo somente sob `sonar/`, recusa sobrescrita, mantém token apenas no ambiente, valida caminhos e
+grava somente manifesto/métricas agregadas e issues allowlisted. Mensagens e payloads brutos foram
+excluídos; script e instruções adversariais não foram executados nem persistidos no estado. Somente
+`sonar/README.md` é versionado. Os dez testes PowerShell e os 26 testes Maven passaram; JaCoCo XML
+foi consumido e o checkpoint final ficou `COMPLIANT`, com seis issues abertas contra sete no
+baseline, zero issue nova, zero issue bloqueante, cobertura 97,6% e duplicação 0%. A auditoria não
+encontrou segredo, estado, pacote, log, identidade da referência, dependência ou mudança fora do
+incremento.
+
 ### Checkpoint D — Harness Sonar
 
 - todos os testes PowerShell passam;
@@ -649,6 +662,9 @@ relatórios colocados sob `sonar/` continuam ignorados pelo Git.
 - diff não contém segredo, estado ou pacote offline;
 - baseline novo é criado somente após escolha humana da fonte;
 - se NON_COMPLIANT, humano registra uma das três decisões.
+
+**Situação técnica:** evidências satisfeitas em 2026-08-29; revisão humana pendente. Esta situação
+não autoriza o Incremento 14.
 
 ### Incremento 14 — Guia e ensaio de materialização
 
@@ -745,4 +761,6 @@ um checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou
 o Incremento 13. O Incremento 12 foi concluído tecnicamente em 2026-08-29 com as suítes Maven e
 PowerShell verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou
 `GO` em 2026-08-29 para executar somente o Incremento 13. A autorização não alcança
-materialização nem os Incrementos 14–15.
+materialização nem os Incrementos 14–15. O Incremento 13 foi concluído tecnicamente em 2026-08-29
+com suítes PowerShell e Maven verdes e checkpoint local `COMPLIANT`; nenhuma autorização para o
+Incremento 14 foi inferida.

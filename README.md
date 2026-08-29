@@ -20,15 +20,16 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 9 — cobertura e Sonar build | `Concluído` |
 | Incremento 10 — sessão e análise Sonar | `Concluído` |
 | Incremento 11 — baseline e decisão | `Concluído; checkpoint local COMPLIANT` |
-| Incremento 12 — hooks Codex | `Concluído tecnicamente; revisão humana pendente` |
+| Incremento 12 — hooks Codex | `Concluído e revisado` |
+| Incremento 13 — evidência offline | `Concluído tecnicamente; revisão humana/Checkpoint D pendentes` |
 | Feature neutra | Fluxo HTTP, núcleo, arquitetura e observabilidade implementados |
-| Hooks e scripts Sonar | Sessão, análise, baseline, checkpoint, decisão e hooks implementados; exportação offline pendente |
+| Hooks e scripts Sonar | Sessão, análise, baseline, checkpoint, decisão, hooks e exportação offline implementados |
 | Uso como template de produto | Ainda não liberado |
 
 Neste checkpoint o repositório contém a governança, a fundação Maven, a feature neutra observável
-e o harness Sonar local até os hooks Codex. O Incremento 12 está tecnicamente concluído e aguarda
-revisão humana; o Incremento 13 e sua exportação offline permanecem bloqueados. O checkpoint do
-fingerprint atual está `COMPLIANT`, sem substituir o aceite humano.
+e o harness Sonar local/offline até a exportação sanitizada. O Incremento 13 está tecnicamente
+concluído e aguarda revisão humana no Checkpoint D; os Incrementos 14–15 permanecem bloqueados. O
+checkpoint do fingerprint atual está `COMPLIANT`, sem substituir a decisão humana.
 
 ## Comece por aqui
 
@@ -107,8 +108,9 @@ arquitetura, observabilidade e os controles PowerShell do SonarQube.
 
 Mudanças exclusivamente Markdown dispensam baseline e checkpoint. Código, build, scripts, hooks e
 configuração executável exigem o fluxo Sonar descrito em [AGENTS.md](AGENTS.md). O harness local
-possui sessão segura, análise, baseline, checkpoint, decisão humana e hooks testados. A exportação
-offline pertence ao Incremento 13 e ainda não está autorizada.
+possui sessão segura, análise, baseline, checkpoint, decisão humana, hooks e
+[exportação offline sanitizada](doc/sonar/exportacao-offline.md) testados. Somente
+`sonar/README.md` é versionado; os pacotes permanecem locais e ignorados.
 
 Regras centrais:
 
