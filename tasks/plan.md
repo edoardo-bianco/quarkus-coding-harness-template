@@ -8,13 +8,13 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 12**, dentro do contrato de hooks Codex e
-  isenção Markdown-only registrado neste plano. O humano revisou o Incremento 11 e registrou
-  `GO` em 2026-08-28.
+- Implementação autorizada: **nenhuma nova implementação**. O Incremento 12 foi concluído
+  tecnicamente dentro do contrato aprovado e aguarda revisão humana.
 - Próxima decisão: revisão humana do Incremento 12; o Incremento 13 não está autorizado.
-- Sonar neste estágio: baseline e checkpoint locais executados. Após `ContinuarAjustes` humano,
-  o checkpoint ficou `COMPLIANT`, com zero issue nova, zero issue bloqueante, cobertura 97,6% e
-  duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline permanecem locais e ignorados.
+- Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 12
+  ficou `COMPLIANT`, com seis issues abertas contra sete no baseline, zero issue nova, zero issue
+  bloqueante, cobertura 97,6% e duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline
+  permanecem locais e ignorados.
 
 ## Intenção
 
@@ -589,6 +589,8 @@ SonarScanner fosse absoluto; o teste de regressão cobre esse contrato.
 
 **Entrega:** lembretes de início/parada sem bloqueio indevido.
 
+**Estado:** concluído tecnicamente em 2026-08-29; aguarda revisão humana.
+
 **Arquivos prováveis:**
 
 - `.codex/hooks.json`
@@ -603,6 +605,18 @@ SonarScanner fosse absoluto; o teste de regressão cobre esse contrato.
 
 **Autorização:** `GO` registrado pelo humano em 2026-08-28 somente para este incremento. Evidência
 offline permanece bloqueada no Incremento 13.
+
+**Evidência:** a configuração usa somente `SessionStart` e `Stop`, resolve os scripts pela raiz
+Git e segue o contrato oficial do Codex para `commandWindows`, matcher e saída JSON. Os hooks
+validam entrada limitada, preservam estado local sem credencial, lembram baseline, checkpoint ou
+decisão pendente e nunca retornam decisão bloqueante. A isenção Markdown-only foi provada por
+fingerprint em fixture descartável. Os nove testes PowerShell passaram; `./mvnw.cmd -q verify`
+passou com 26 testes, zero falhas, zero erros e zero ignorados. O checkpoint local ficou
+`COMPLIANT`: seis issues abertas contra sete no baseline, zero issue nova, zero issue bloqueante,
+cobertura 97,6% e duplicação 0%. A revisão não encontrou segredo, identidade da referência,
+estado, pacote offline, dependência nova ou mudança fora de escopo. A falha intermitente do
+sandbox Windows foi isolada como erro de ACL ao provisionar `.codex`; as verificações concluídas
+fora do sandbox terminaram com código zero e não alteraram o contrato do incremento.
 
 ### Incremento 13 — Exportação e leitura offline
 
@@ -724,4 +738,6 @@ alcança hooks, evidência offline nem os Incrementos 12–13. O Incremento 11 f
 tecnicamente em 2026-08-28, recebeu `ContinuarAjustes` após a primeira não conformidade e chegou a
 um checkpoint local `COMPLIANT`. Depois de revisar a entrega, o humano registrou novo `GO` em
 2026-08-28 para executar somente o Incremento 12. A autorização não alcança evidência offline nem
-o Incremento 13.
+o Incremento 13. O Incremento 12 foi concluído tecnicamente em 2026-08-29 com as suítes Maven e
+PowerShell verdes e checkpoint local `COMPLIANT`; nenhuma autorização para o Incremento 13 foi
+inferida.

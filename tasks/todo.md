@@ -183,11 +183,16 @@
 ## Incremento 12 — Hooks
 
 - [x] Registrar revisão humana do Incremento 11 e `GO` para somente o Incremento 12 em 2026-08-28.
-- [ ] Destilar hooks da referência removendo defaults, estado e vocabulário do produto-fonte.
-- [ ] RED: eventos session-start e stop.
-- [ ] RED: isenção Markdown-only.
-- [ ] Implementar hooks e configuração Codex.
-- [ ] Verificar lembrete sem bloqueio ou decisão automática.
+- [x] Destilar hooks da referência removendo defaults, estado e vocabulário do produto-fonte.
+- [x] RED: eventos session-start e stop.
+- [x] RED: isenção Markdown-only.
+- [x] Implementar hooks e configuração Codex.
+- [x] Verificar lembrete sem bloqueio ou decisão automática: nove testes PowerShell verdes.
+- [x] Executar `./mvnw.cmd -q verify`: 26 testes, zero falhas, zero erros e zero ignorados.
+- [x] Executar checkpoint Sonar: `COMPLIANT`, seis issues abertas contra sete no baseline, zero
+  issue nova, zero issue bloqueante, cobertura 97,6% e duplicação 0%.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo; nenhuma
+  alteração fora do Incremento 12 ou segredo encontrada.
 
 ## Incremento 13 — Evidência offline
 
@@ -217,5 +222,5 @@
 
 ## Próximo item autorizado
 
-O humano revisou o Incremento 11 e o `GO` de 2026-08-28 autoriza somente o Incremento 12. O
-próximo item é destilar os hooks da referência; o Incremento 13 permanece bloqueado.
+NENHUM — AGUARDANDO DECISAO. O Incremento 12 foi concluído tecnicamente em 2026-08-29 e aguarda
+revisão humana. O Incremento 13 permanece bloqueado até `GO` explícito.
