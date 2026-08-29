@@ -14,10 +14,10 @@ Este documento consolida o desenho atual. ADRs explicam decisões permanentes; e
 A governança reutilizável, a fundação Maven, o fluxo HTTP da feature neutra até seu núcleo, as
 regras ArchUnit, a observabilidade mínima, a cobertura XML, a sessão segura e o envio de análise
 Sonar estão implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16
-verificável por checksum, gera JaCoCo XML e exclui estados e segredos locais. Baseline, checkpoint
-e decisão Sonar também estão implementados e foram verificados contra o servidor local. Hooks e
-exportação de evidência offline continuam planejados. O checkpoint atual está `COMPLIANT`, sem
-substituir a revisão humana do incremento.
+verificável por checksum, gera JaCoCo XML e exclui estados e segredos locais. Baseline, checkpoint,
+decisão Sonar e hooks Codex também estão implementados e foram verificados contra o servidor
+local. Somente a exportação de evidência offline continua planejada. O checkpoint atual está
+`COMPLIANT`, sem substituir a revisão humana do incremento.
 
 ## Visão do sistema
 
@@ -172,6 +172,10 @@ O agente pode propor e atualizar evidências técnicas. Somente o humano registr
 - script de baseline e checkpoint com fontes explícitas, fingerprint executável, estado atômico
   ignorado, modo offline-only `UNVERIFIED` e registro estrito das três decisões humanas;
 - testes PowerShell para API, gate, baseline offline-only e fluxo de decisão humana;
+- configuração Codex e hooks `SessionStart`/`Stop` que registram o fingerprint da sessão, lembram
+  baseline, checkpoint ou decisão pendente e nunca bloqueiam nem decidem pelo humano;
+- testes PowerShell dos eventos, do estado descartável e da isenção para mudanças somente
+  Markdown;
 - guia local com a política 85%/5%, o fluxo operacional e os limites do estado `UNVERIFIED`.
 
 Não há `jacoco-maven-plugin` paralelo nem exclusão de classes de produção. O relatório do build do
@@ -183,16 +187,12 @@ projetos derivados.
 ### Componentes ainda planejados
 
 ```text
-.codex/hooks.json
-.codex/hooks/sonar-session-start.ps1
-.codex/hooks/sonar-stop.ps1
 exportar-relatorios-sonarqube.ps1
-test/powershell/*Hooks*Test.ps1
 test/powershell/Exportar*Test.ps1
 ```
 
-Esses componentes restantes serão destilados do repositório-fonte e testados para remover
-acoplamento de negócio. Não serão copiados estados, relatórios nem credenciais.
+Esse conjunto restante será destilado do repositório-fonte e testado para remover acoplamento de
+negócio. Não serão copiados estados, relatórios nem credenciais.
 
 ```mermaid
 flowchart TD

@@ -152,6 +152,16 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
   erros ou ignorados.
 - Não existem pacotes em `sonar/`. Baseline e estado ficam somente em `.codex/.state/`, ignorado
   pelo Git, e a auditoria não encontrou credencial persistida nem identidade do repositório-fonte.
+- O Incremento 12 implementou a configuração Codex e os hooks `SessionStart`/`Stop` com JSON
+  limitado e validado, fingerprint executável, estado atômico e lembretes não bloqueantes. Os
+  hooks não registram decisão humana e dispensam Sonar quando somente arquivos Markdown mudam.
+- A suíte PowerShell completa passou com nove testes. O `./mvnw.cmd -q verify` passou com 26
+  testes, zero falhas, zero erros e zero ignorados. O checkpoint do fingerprint atual ficou
+  `COMPLIANT`: seis issues abertas contra sete no baseline, zero issue nova, zero issue
+  bloqueante, cobertura 97,6% e duplicação 0%.
+- A revisão do Incremento 12 não encontrou segredo, identidade fixa, estado, pacote offline,
+  dependência nova ou alteração fora de escopo. A conclusão técnica não autoriza o Incremento 13
+  nem substitui a revisão humana.
 - O humano revisou o Incremento 9 e registrou `GO` em 2026-08-27 para executar somente o
   Incremento 10. A decisão autoriza sessão segura e análise local, mas não autoriza baseline,
   decisão, hooks ou evidência offline dos Incrementos 11–13.
