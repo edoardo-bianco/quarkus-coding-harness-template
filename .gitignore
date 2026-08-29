@@ -37,7 +37,8 @@ nb-configuration.xml
 
 # Agent and Sonar local state
 .codex/.state/
-/sonar/
+/sonar/*
+!/sonar/README.md
 
 # Logs and temporary files
 *.log
