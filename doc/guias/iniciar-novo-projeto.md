@@ -7,7 +7,7 @@ Este é o ponto de entrada para qualquer pessoa que acesse o repositório sem co
 1. contribuir para construir ou manter o próprio template;
 2. iniciar um produto real a partir de uma versão aceita do template.
 
-O template ainda está em construção. Verifique o estado no [README](../../README.md) antes de tratá-lo como pronto.
+O template está tecnicamente concluído e aguarda aceite humano. Verifique o estado no [README](../../README.md) antes de iniciar um produto.
 
 ## Se você está contribuindo com o template
 
@@ -24,7 +24,7 @@ Não pule o checkpoint indicado no checklist. Um `GO` para um incremento não au
 
 ## Se você quer iniciar um produto real
 
-Use somente uma versão do template que tenha aceite humano e evidências de build, testes e harness. Enquanto o README indicar implementação em andamento, o repositório serve para construção do template, não como release pronta.
+Use somente uma versão do template que tenha aceite humano e evidências de build, testes e harness. Enquanto o README indicar aceite pendente, aguarde essa decisão para iniciar um produto.
 
 Quando a versão estiver aceita, forneça ao agente estas entradas antes de qualquer materialização:
 

@@ -21,15 +21,22 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 10 — sessão e análise Sonar | `Concluído` |
 | Incremento 11 — baseline e decisão | `Concluído; checkpoint local COMPLIANT` |
 | Incremento 12 — hooks Codex | `Concluído e revisado` |
-| Incremento 13 — evidência offline | `Concluído tecnicamente; revisão humana/Checkpoint D pendentes` |
+| Incremento 13 — evidência offline | `Concluído; Checkpoint D aprovado` |
+| Incremento 14 — materialização | `Concluído; GO do Incremento 15 registrado` |
+| Incremento 15 — entrega integrada | `Concluído tecnicamente; aceite final pendente` |
 | Feature neutra | Fluxo HTTP, núcleo, arquitetura e observabilidade implementados |
 | Hooks e scripts Sonar | Sessão, análise, baseline, checkpoint, decisão, hooks e exportação offline implementados |
 | Uso como template de produto | Ainda não liberado |
 
-Neste checkpoint o repositório contém a governança, a fundação Maven, a feature neutra observável
-e o harness Sonar local/offline até a exportação sanitizada. O Incremento 13 está tecnicamente
-concluído e aguarda revisão humana no Checkpoint D; os Incrementos 14–15 permanecem bloqueados. O
-checkpoint do fingerprint atual está `COMPLIANT`, sem substituir a decisão humana.
+A implementação e a verificação técnica estão concluídas. O aceite e o encerramento do goal
+aguardam decisão humana. O procedimento de materialização foi ensaiado com identidade, goal,
+histórico e baseline próprios.
+
+A entrega consolida as evidências de 2026-09-16: 26 testes Maven e 11 testes PowerShell verdes;
+checkpoint `COMPLIANT`, cobertura 97,6%, duplicação 0%, zero issue nova ou bloqueante. Permanecem
+seis issues preexistentes não bloqueantes. No Incremento 15, somente Markdown mudou e o
+fingerprint executável foi conferido contra essas evidências, sem nova execução Maven ou Sonar.
+A rastreabilidade por critério e os limites da verificação estão no [plano](tasks/plan.md).
 
 ## Comece por aqui
 
@@ -52,6 +59,7 @@ Leia [AGENTS.md](AGENTS.md) e siga a ordem de contexto indicada. O próximo item
 - [Guia e templates de plan/todo](tasks/README.md): planejamento e execução por feature.
 - [Plano](tasks/plan.md): dependências, incrementos, verificações e riscos.
 - [Checklist](tasks/todo.md): andamento e próximo checkpoint.
+- [Materialização](doc/guias/materializar-projeto.md) e [checklist de materialização](doc/guias/checklist-materializacao.md): criação e verificação de um projeto derivado após aceite da versão.
 
 ## Stack e decisões-base
 

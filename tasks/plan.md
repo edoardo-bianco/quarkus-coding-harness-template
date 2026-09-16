@@ -8,9 +8,9 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Implementação autorizada: **somente o Incremento 14**. O humano revisou o Incremento 13,
-  aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para a materialização descartável.
-- Próxima decisão: revisão humana do Incremento 14; o Incremento 15 não está autorizado.
+- Incremento autorizado: **somente o Incremento 15**. Após a apresentação da entrega do
+  Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando a verificação final.
+- Próxima decisão: aceite e encerramento humanos do goal; este GO não os substitui.
 - Sonar neste estágio: baseline local preservado e checkpoint da retomada do Incremento 14
   `COMPLIANT` em 2026-09-16 (26 testes Maven, 11 testes PowerShell, cobertura 97,6%, duplicação 0%,
   zero issue nova ou bloqueante). As evidências e limitações estão na seção do Incremento 14.
@@ -673,7 +673,7 @@ limitado ao Incremento 14. A decisão não autoriza o Incremento 15.
 **Autorização:** `GO` registrado pelo humano em 2026-08-29 somente para este incremento. O
 Incremento 15 e o encerramento do goal permanecem bloqueados.
 
-**Estado:** concluído tecnicamente em 2026-09-16; revisão humana pendente.
+**Estado:** concluído tecnicamente em 2026-09-16; humano autorizou prosseguir ao Incremento 15 após a apresentação das evidências.
 
 **Entrega:** procedimento humano-agente para transformar uma cópia do template em projeto real.
 
@@ -750,8 +750,9 @@ existente; o plano e o checklist ativos estão em `tasks/plan.md` e `tasks/todo.
 foi registrada sem reestruturar o histórico fora do incremento.
 
 A revisão do diff cobre correção, simplicidade, arquitetura, segurança, desempenho, testes e
-escopo. Não há alteração de Java, POM, configuração observável, hooks ou dependências. O GO do
-Incremento 15, o aceite e o encerramento do goal continuam pendentes de decisão humana.
+escopo. Não há alteração de Java, POM, configuração observável, hooks ou dependências. Ao concluir
+este incremento, o GO do Incremento 15 e a decisão final ainda estavam pendentes; a autorização
+posterior do Incremento 15 está registrada na seção seguinte.
 
 **Checkpoint final do template após a regressão adicional:** `COMPLIANT` em
 `2026-09-16T20:50:00Z`, análise `d5075170-7514-4372-a12a-36478721c9af`, fingerprint
@@ -764,6 +765,23 @@ e preservação dos arquivos executáveis de produção e de `.codex`.
 
 ### Incremento 15 — Verificação integrada e entrega
 
+**Autorização:** `GO` humano em 2026-09-16, pela resposta "pode proceder" após a entrega do
+Incremento 14 e a solicitação de GO para o 15. Não autoriza aceite, encerramento, merge, release,
+alteração de visibilidade ou habilitação do repositório como template GitHub.
+
+**Estado:** concluído tecnicamente em 2026-09-16; aguardando verificação e decisão final humanas.
+
+**Escopo desta fatia:** somente Markdown para consolidar a entrega. Confirmar offline que o
+fingerprint corresponde às suítes e ao checkpoint já executados no Incremento 14, auditar arquivos
+versionados, links e critérios da spec, corrigir divergências documentais e apresentar evidências.
+Pela isenção do `AGENTS.md`, não repetir Maven, baseline, API Sonar nem checkpoint sem alteração
+executável. Reutilizar as evidências verificadas, identificando explicitamente sua origem.
+
+**Divergências documentais corrigidas:** README e guia de entrada ainda descreviam a construção
+como pendente; agora apresentam a conclusão técnica e o aceite pendente. O goal apontava para
+`tasks/features/bootstrap-harness/`, inexistente; passou a apontar para `tasks/plan.md` e
+`tasks/todo.md`, conforme a exceção de bootstrap documentada em `tasks/README.md`.
+
 **Entrega:** evidência final do goal sem encerramento automático.
 
 **Arquivos prováveis:**
@@ -775,7 +793,67 @@ e preservação dos arquivos executáveis de produção e de `.codex`.
 
 **Aceitação:** todos os critérios da spec e do goal têm evidência; arquitetura reflete o estado implementado; limitações estão explícitas; agente para para aceite humano.
 
-**Verificação:** `./mvnw -q verify`, suíte PowerShell, checkpoint Sonar aplicável, auditorias e revisão multidimensional do diff.
+**Verificação aplicada:** vínculo das evidências Maven/PowerShell e do checkpoint existente por
+fingerprint; auditorias e revisão do diff. A isenção Markdown-only dispensa nova execução Maven
+e Sonar neste incremento.
+
+**Evidências consolidadas em 2026-09-16:**
+
+- O fingerprint calculado offline permanece
+  `28603418642f574744b6edaaff85468759843847fb6d25e6731054fe6ec7731e`, idêntico ao checkpoint final
+  do Incremento 14. A referência de código commitada é `14e24e5`; o HEAD de entrada do Incremento
+  15, `2fce379`, acrescentou somente evidências Markdown.
+- O estado local registra análise `d5075170-7514-4372-a12a-36478721c9af`, de
+  `2026-09-16T20:50:00Z`, task `8fead42f-0342-4619-ad3a-e3e753395646`: `COMPLIANT`, seis issues
+  contra sete no baseline, zero nova, zero HIGH/BLOCKER/CRITICAL, cobertura 97,6%, duplicação 0%.
+  A conferência leu somente o estado já produzido e calculou o hash; não consultou API, token ou
+  pacotes em `sonar/`, nem criou baseline ou análise.
+- Os relatórios Surefire existentes confirmam sete classes e 26 testes, sem falhas, erros ou
+  ignorados: domínio 5, aplicação 2, HTTP/OpenAPI 8, arquitetura 6 e observabilidade 5.
+  O XML JaCoCo contém 61 de 62 linhas cobertas (98,4% de linhas); essa métrica difere da cobertura
+  composta de 97,6% exibida pelo Sonar.
+- Os 11 testes PowerShell passaram na execução final do Incremento 14. Scripts e entradas
+  executáveis permanecem inalterados; este incremento não apresenta essa execução como nova.
+  O guia e o checklist consumidos pelo teste de materialização também permanecem inalterados.
+- A auditoria examinou os 65 caminhos versionados e o conteúdo de 64 arquivos, excluindo o
+  conteúdo de `sonar/` pela isenção documental. Não encontrou artefato proibido versionado,
+  correspondência dos padrões de token/chave privada pesquisados ou termos de negócio da fonte.
+  A revisão dos links relativos verificou a existência dos destinos locais.
+- O ensaio novo do Incremento 14 comprovou goal e contexto próprios, auditoria de oito documentos
+  ativos e 65 arquivos, histórico Git independente e baseline próprio ligado ao commit
+  `123ff7021700aa3d183778ff3d0c66fbd5187b46`. Seus identificadores e limites estão registrados
+  acima; a cópia descartável já foi removida.
+
+**Rastreabilidade dos critérios da especificação:**
+
+| Critério | Evidência examinada |
+| --- | --- |
+| 1 — entrada humana | README e guia de início apresentam leitura, comandos, materialização e parada para aceite. |
+| 2 — contexto e GO antes de produção | `AGENTS.md`, templates de goal/spec/plan/todo e registros dos checkpoints no goal e neste plano; são regras de processo, sem promessa de bloqueio automático. |
+| 3 — stack e execução neutra | POM/Wrapper fixados, build Java 25.0.3 e testes HTTP da execução do Incremento 14. |
+| 4 — testes locais | 26 testes nos relatórios Surefire conferidos, incluindo domínio, aplicação, HTTP, arquitetura e observabilidade. |
+| 5 — cobertura consumida | JaCoCo XML existente e métricas da análise Sonar vinculada ao fingerprint. |
+| 6 — controles Sonar testados | 11 testes PowerShell verdes no Incremento 14; revisão de launcher, scripts, módulo e hooks, sem alteração executável posterior. |
+| 7 — isenção documental | `AGENTS.md`, `SonarDocumentationOnlyFlowTest.ps1` e aplicação da isenção neste incremento. |
+| 8 — fronteiras pragmáticas | `LayerDependencyTest` e `BoundaryContractTest`: violações sintéticas detectadas e uso de Quarkus permitido, seis testes verdes. |
+| 9 — outbox sem infraestrutura | ADR-0005 aceito e templates de planejamento registram transação, relay, ack e idempotência; aplicação neutra não inclui banco ou broker. |
+| 10 — materialização independente | Guia/checklist, teste documental e novo ensaio do Incremento 14 com identidade, goal, commit e baseline próprios. |
+| 11 — fonte preservada | Escopo das alterações desta execução restrito ao template e ao ensaio; não houve escrita no repositório-fonte. Não foi feita comparação histórica de hashes da fonte. |
+| 12 — ausência de convenções de negócio herdadas | Revisão das cinco classes Java de produção e da arquitetura, feature neutra e busca de vocabulário da fonte no conteúdo versionado. |
+
+**Revisão final:** correção e contratos conferidos no núcleo Unicode, adapter HTTP e testes;
+simplicidade e arquitetura preservadas, sem porta artificial nem dependência entre bordas;
+segurança conferida no ciclo do token, exportação allowlisted, exclusões Git e ausência de payload
+nos sinais próprios; normalização linear e cardinalidade limitada, sem alegação de benchmark;
+testes vinculados ao conteúdo executável; diff limitado a cinco documentos Markdown.
+A arquitetura consolidada corresponde ao código e não exige nova decisão ou ADR.
+
+**Limites e parada:** resultados locais em JVM/Windows; perfil nativo/Failsafe não executado.
+As seis issues preexistentes continuam abertas dentro da política aprovada. A busca de padrões
+não é uma auditoria exaustiva de todo tipo de segredo; links externos e anchors não foram
+validados. CI/CD, deploy e uso produtivo dependem de requisitos próprios. A preservação da fonte
+é sustentada pelo escopo observado, sem certificação retrospectiva de seu histórico.
+O agente apresenta esta entrega para decisão humana; `ACEITO` e `ENCERRADO` permanecem pendentes.
 
 ## Estratégia de testes
 
@@ -846,4 +924,6 @@ PowerShell verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega, o
 materialização nem os Incrementos 14–15. O Incremento 13 foi concluído tecnicamente em 2026-08-29
 com suítes PowerShell e Maven verdes e checkpoint local `COMPLIANT`. Depois de revisar a entrega,
 o humano aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para executar somente o Incremento
-14. A autorização não alcança o Incremento 15 nem o encerramento do goal.
+14. Essa autorização não alcançava o Incremento 15 nem o encerramento do goal. Após a entrega do
+Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando o Incremento 15.
+A conclusão técnica foi consolidada; aceite e encerramento permanecem pendentes.
