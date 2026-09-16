@@ -45,6 +45,10 @@ Quando a versão estiver aceita, forneça ao agente estas entradas antes de qual
 
 Os exemplos não são defaults. O agente deve perguntar por qualquer entrada ausente e não pode inventar namespace, destino ou capacidade.
 
+Depois de reunir as entradas e confirmar que a versão do template foi aceita, execute o
+[guia de materialização](materializar-projeto.md) e registre cada evidência no
+[checklist de materialização](checklist-materializacao.md).
+
 Tecnologia suportada nesta versão: **Java 25 + Quarkus 3.33 LTS + Maven**. Para outra tecnologia, pare e crie uma nova especificação/variante; não force este template a fingir suporte genérico.
 
 ## Fluxo do SDLC
