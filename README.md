@@ -23,14 +23,14 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Incremento 12 — hooks Codex | `Concluído e revisado` |
 | Incremento 13 — evidência offline | `Concluído; Checkpoint D aprovado` |
 | Incremento 14 — materialização | `Concluído; GO do Incremento 15 registrado` |
-| Incremento 15 — entrega integrada | `Concluído tecnicamente; aceite final pendente` |
+| Incremento 15 — entrega integrada | `ACEITO pelo humano em 2026-09-16` |
 | Feature neutra | Fluxo HTTP, núcleo, arquitetura e observabilidade implementados |
 | Hooks e scripts Sonar | Sessão, análise, baseline, checkpoint, decisão, hooks e exportação offline implementados |
-| Uso como template de produto | Ainda não liberado |
+| Versão aceita para materialização | Commit `2be35ac`; seguir o guia de materialização |
 
-A implementação e a verificação técnica estão concluídas. O aceite e o encerramento do goal
-aguardam decisão humana. O procedimento de materialização foi ensaiado com identidade, goal,
-histórico e baseline próprios.
+A implementação e a verificação técnica estão concluídas. O humano registrou `ACEITO` em
+2026-09-16 para a entrega do commit `2be35ac`. O encerramento formal do goal permanece pendente.
+O procedimento de materialização foi ensaiado com identidade, goal, histórico e baseline próprios.
 
 A entrega consolida as evidências de 2026-09-16: 26 testes Maven e 11 testes PowerShell verdes;
 checkpoint `COMPLIANT`, cobertura 97,6%, duplicação 0%, zero issue nova ou bloqueante. Permanecem

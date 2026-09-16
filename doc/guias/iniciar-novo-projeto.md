@@ -7,7 +7,7 @@ Este é o ponto de entrada para qualquer pessoa que acesse o repositório sem co
 1. contribuir para construir ou manter o próprio template;
 2. iniciar um produto real a partir de uma versão aceita do template.
 
-O template está tecnicamente concluído e aguarda aceite humano. Verifique o estado no [README](../../README.md) antes de iniciar um produto.
+O template recebeu aceite humano. Verifique a versão aceita e o estado no [README](../../README.md) antes de iniciar um produto.
 
 ## Se você está contribuindo com o template
 

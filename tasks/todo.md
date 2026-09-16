@@ -235,7 +235,7 @@
 
 ## Incremento 15 — Entrega
 
-- [x] Registrar GO humano em 2026-09-16 para a verificação integrada; aceite final continua pendente.
+- [x] Registrar GO humano em 2026-09-16 para a verificação integrada.
 - [x] Confirmar o fingerprint e consolidar as evidências do Incremento 14: 26 testes Maven e 11 PowerShell verdes, sem nova execução.
 - [x] Conferir offline o vínculo do checkpoint `COMPLIANT`; aplicar a isenção Markdown-only.
 - [x] Auditar termos de negócio, padrões de segredo, estados e builds nos arquivos versionados; conferir links locais.
@@ -243,9 +243,10 @@
 - [x] Corrigir README/guia desatualizados e referência inexistente do goal; registrar evidências e limites no plano.
 - [x] Relacionar os 12 critérios da spec às evidências verificadas.
 - [x] Parar no checkpoint de verificação humana e apresentar a entrega.
-- [ ] Registrar decisão humana de aceite e encerramento do goal.
+- [x] Registrar resposta humana `ACEITO` em 2026-09-16 para a entrega do commit `2be35ac`.
+- [ ] Registrar decisão humana de encerramento do goal.
 
 ## Próximo item autorizado
 
-Aguardar verificação e decisão humanas sobre a entrega. Somente o humano pode registrar
-`ACEITO` e `ENCERRADO`; a conclusão técnica e o GO do Incremento 15 não os substituem.
+Aguardar decisão humana de encerramento do goal. O aceite da entrega está registrado;
+`ENCERRADO` permanece pendente.

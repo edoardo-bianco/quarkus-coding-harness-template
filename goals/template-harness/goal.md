@@ -2,7 +2,9 @@
 
 ## Identificação
 
-- Estado técnico: pronto para verificação humana — aceite e encerramento pendentes
+- Estado técnico: concluído
+- Aceite: `ACEITO` pelo humano em 2026-09-16
+- Encerramento: `PENDENTE`
 - Responsável pela decisão final: humano
 - Especificação: `specs/template-harness/spec.md`
 - Implementação do bootstrap: [plano](../../tasks/plan.md) e [checklist](../../tasks/todo.md)
@@ -95,8 +97,9 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
 | Checkpoint D — Harness Sonar | `APROVADO` em 2026-08-29; `GO` para o Incremento 14 | Humano |
 | Materialização descartável | Evidências apresentadas; humano autorizou prosseguir ao Incremento 15 em 2026-09-16 | Humano |
-| Verificação integrada e entrega | `GO` humano em 2026-09-16; evidências técnicas consolidadas, aguardando verificação humana | Humano |
-| Aceite e encerramento do goal | `PENDENTE` | Humano |
+| Verificação integrada e entrega | `ACEITO` em 2026-09-16 após apresentação das evidências do Incremento 15 | Humano |
+| Aceite do goal | `ACEITO` em 2026-09-16 | Humano |
+| Encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências consolidadas da entrega
 
@@ -111,7 +114,9 @@ das fronteiras, e o novo ensaio descartável com goal e baseline próprios do In
 Também registra os limites: execução JVM/Windows, perfil nativo não executado, ausência de CI/CD
 no escopo e verificação documental de links locais sem consulta a destinos externos.
 
-A conclusão é técnica. `ACEITO` e `ENCERRADO` continuam pendentes de manifestação humana.
+O humano respondeu `ACEITO` em 2026-09-16 à entrega apresentada no commit
+`2be35ac8ed4362961a06661d43d781eddc510153`. O aceite está registrado; `ENCERRADO` permanece
+pendente, pois não foi declarado nessa resposta.
 
 ## Histórico de evidências
 

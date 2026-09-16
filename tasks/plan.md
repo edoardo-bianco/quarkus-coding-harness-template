@@ -10,7 +10,8 @@
 - ADRs: `doc/adr/README.md` (`Aceitos`)
 - Incremento autorizado: **somente o Incremento 15**. Após a apresentação da entrega do
   Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando a verificação final.
-- Próxima decisão: aceite e encerramento humanos do goal; este GO não os substitui.
+- Aceite final: `ACEITO` pelo humano em 2026-09-16 para a entrega do commit `2be35ac`.
+- Próxima decisão: encerramento humano do goal, ainda pendente.
 - Sonar neste estágio: baseline local preservado e checkpoint da retomada do Incremento 14
   `COMPLIANT` em 2026-09-16 (26 testes Maven, 11 testes PowerShell, cobertura 97,6%, duplicação 0%,
   zero issue nova ou bloqueante). As evidências e limitações estão na seção do Incremento 14.
@@ -769,7 +770,11 @@ e preservação dos arquivos executáveis de produção e de `.codex`.
 Incremento 14 e a solicitação de GO para o 15. Não autoriza aceite, encerramento, merge, release,
 alteração de visibilidade ou habilitação do repositório como template GitHub.
 
-**Estado:** concluído tecnicamente em 2026-09-16; aguardando verificação e decisão final humanas.
+**Estado:** `ACEITO` pelo humano em 2026-09-16; encerramento do goal pendente.
+
+**Decisão humana posterior à entrega:** resposta literal `ACEITO`, após a apresentação do commit
+`2be35ac8ed4362961a06661d43d781eddc510153`. Registrado somente o aceite; `ENCERRADO` não foi
+declarado. Este registro altera apenas Markdown, sem nova execução Maven ou Sonar.
 
 **Escopo desta fatia:** somente Markdown para consolidar a entrega. Confirmar offline que o
 fingerprint corresponde às suítes e ao checkpoint já executados no Incremento 14, auditar arquivos
@@ -853,7 +858,7 @@ As seis issues preexistentes continuam abertas dentro da política aprovada. A b
 não é uma auditoria exaustiva de todo tipo de segredo; links externos e anchors não foram
 validados. CI/CD, deploy e uso produtivo dependem de requisitos próprios. A preservação da fonte
 é sustentada pelo escopo observado, sem certificação retrospectiva de seu histórico.
-O agente apresenta esta entrega para decisão humana; `ACEITO` e `ENCERRADO` permanecem pendentes.
+O humano aceitou a entrega após sua apresentação; o encerramento formal permanece pendente.
 
 ## Estratégia de testes
 
@@ -926,4 +931,5 @@ com suítes PowerShell e Maven verdes e checkpoint local `COMPLIANT`. Depois de 
 o humano aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para executar somente o Incremento
 14. Essa autorização não alcançava o Incremento 15 nem o encerramento do goal. Após a entrega do
 Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando o Incremento 15.
-A conclusão técnica foi consolidada; aceite e encerramento permanecem pendentes.
+A conclusão técnica foi consolidada e o humano respondeu `ACEITO` em 2026-09-16 à entrega do
+commit `2be35ac`. O encerramento permanece pendente de decisão humana.
