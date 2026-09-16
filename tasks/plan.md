@@ -11,7 +11,10 @@
 - Implementação autorizada: **somente o Incremento 14**. O humano revisou o Incremento 13,
   aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para a materialização descartável.
 - Próxima decisão: revisão humana do Incremento 14; o Incremento 15 não está autorizado.
-- Sonar neste estágio: baseline e checkpoint locais executados. O checkpoint do Incremento 13
+- Sonar neste estágio: baseline local preservado e checkpoint da retomada do Incremento 14
+  `COMPLIANT` em 2026-09-16 (26 testes Maven, 11 testes PowerShell, cobertura 97,6%, duplicação 0%,
+  zero issue nova ou bloqueante). As evidências e limitações estão na seção do Incremento 14.
+  O checkpoint anterior do Incremento 13
   ficou `COMPLIANT`, com seis issues abertas contra sete no baseline, zero issue nova, zero issue
   bloqueante, cobertura 97,6% e duplicação 0%. Não existem pacotes em `sonar/`; estado e baseline
   permanecem locais e ignorados.
@@ -670,7 +673,7 @@ limitado ao Incremento 14. A decisão não autoriza o Incremento 15.
 **Autorização:** `GO` registrado pelo humano em 2026-08-29 somente para este incremento. O
 Incremento 15 e o encerramento do goal permanecem bloqueados.
 
-**Estado:** autorizado; implementação pendente.
+**Estado:** concluído tecnicamente em 2026-09-16; revisão humana pendente.
 
 **Entrega:** procedimento humano-agente para transformar uma cópia do template em projeto real.
 
@@ -683,6 +686,81 @@ Incremento 15 e o encerramento do goal permanecem bloqueados.
 **Aceitação:** solicita identidade, pacote, goal, capacidades, destino e visibilidade; cria baseline próprio; não transporta histórico do template; tecnologia diferente causa parada explícita.
 
 **Verificação:** ensaio em diretório temporário, build/teste da cópia e auditoria de placeholders e artefatos proibidos.
+
+**Evidência da retomada — 2026-09-16:**
+
+- O estado inicial correspondia ao commit `bc80dfc` na branch `docs/bootstrap-template`, com
+  quatro arquivos pendentes e o GO do Incremento 14 já registrado e enviado.
+- O teste `MaterializacaoTemplateTest.ps1` reproduziu o RED com a mensagem de ausência de
+  `commit local antes do baseline`. O guia e o checklist passaram a ordenar verificações,
+  primeiro commit local, confirmação de `HEAD`, baseline próprio e commit documental das evidências.
+- O GREEN focal e os 11 testes PowerShell passaram. `./mvnw.cmd -q verify` passou com Java 25.0.3;
+  os relatórios Surefire da análise posterior confirmaram 26 testes, zero falhas, zero erros e
+  zero ignorados. O perfil nativo/Failsafe continua desativado na configuração existente.
+- `./validar-checkpoint-sonarqube.ps1` executou o build e consumiu o JaCoCo XML. O checkpoint de
+  `2026-09-16T20:10:49Z` ficou `COMPLIANT`: seis issues abertas contra sete no baseline, zero nova,
+  zero HIGH/BLOCKER/CRITICAL, cobertura 97,6% e duplicação 0%.
+- Identificador da análise: `487ae254-ab54-4163-b749-cebf2a3be16f`. Fingerprint executável:
+  `05502b5fbaa7041cbad18436f731b14bd063fe20326c5cee4ce093797046828d`.
+  A revisão SCM era `bc80dfc`; o fingerprint inclui o teste ainda não commitado. A análise Sonar
+  abrangeu Java/XML; o contrato documental e os scripts foram verificados pela suíte PowerShell.
+- O resumo fornecido pelo humano na retomada registra ensaio descartável aprovado anteriormente:
+  26 testes Maven, 11 testes PowerShell e baseline próprio `COMPLIANT`, com cobertura 97,6% e
+  duplicação 0%. Também registra restauração de `.codex` e remoção definitiva da cópia temporária.
+  Esses resultados são evidência da sessão anterior, não uma nova execução na cópia nesta sessão.
+
+**Novo ensaio executado nesta sessão:** após o humano informar que não possuía confirmação do
+goal próprio e da auditoria anteriores, uma nova cópia foi materializada sob `target/`, a partir
+do commit `ad359b8` e com os ajustes documentais abaixo. A origem ainda não é uma release aceita;
+o uso foi exclusivamente o ensaio autorizado pelo GO do Incremento 14.
+
+- Identidade sintética: `verification.materialization:harness-rehearsal-20260916-eaacdbba`, versão
+  `0.1.0-SNAPSHOT`, pacote `verification.materialization`, branch `chore/materialization-rehearsal`;
+  nenhum remoto. Essas entradas são fixtures de teste, não escolhas para um produto real.
+- Goal próprio criado em `goals/ensaio/goal.md`, com valor, escopo, critérios, evidências e parada.
+  Spec, plano e checklist foram recriados dos templates; requisitos de produto ficaram explicitamente
+  pendentes/não aplicáveis. Arquitetura e README próprios; ADRs mantidos como `Proposto`, sem aceite herdado.
+- A primeira execução Maven detectou uma falha em 26 testes: a expectativa do nome da aplicação
+  em `ObservabilityInfrastructureTest` ainda usava a identidade antiga. O guia e o checklist agora
+  exigem adaptar essa expectativa junto de `quarkus.application.name`, preservando a asserção.
+  A regressão documental também teve RED observado e GREEN após a instrução ser adicionada.
+- Depois do ajuste, passaram 26 testes Maven e 11 PowerShell na cópia; os 11 PowerShell do
+  template também passaram novamente. Nenhum teste foi removido ou enfraquecido.
+- O histórico da cópia tem um único commit próprio:
+  `123ff7021700aa3d183778ff3d0c66fbd5187b46`. O baseline final foi inicializado depois dele e
+  registrou exatamente essa revisão SCM.
+- Uma tentativa de análise iniciada antes da conclusão do commit retornou revisão nula e não foi
+  usada como prova da ordem. Após confirmar `HEAD`, o baseline da cópia foi repetido. A análise
+  válida é `b2edaa2e-ee1a-4933-85d2-561fb8198ef8`, capturada em `2026-09-16T20:46:52Z`:
+  `COMPLIANT`, seis issues, zero nova ou bloqueante, cobertura 97,6% e duplicação 0%.
+- Fingerprint da cópia: `3d9a7249a3b814484397943181f9a4fe5b954b076969b3ba7409dad6252e3765`.
+  O baseline original do template foi conferido e permaneceu preservado.
+- Auditoria direta: oito documentos ativos sem placeholders nem histórico operacional anterior;
+  pacote e identidade antigos ausentes do código/configuração; nove links locais dos documentos
+  ativos válidos; 65 arquivos versionados sem estado, baseline, build, pacote Sonar ou segredo.
+  Os diretórios de goal/spec do bootstrap estavam ausentes, ADRs sem aceite herdado e Git sem remoto.
+  Os exemplos dos guias e os marcadores dos templates reutilizáveis permanecem como material de referência.
+- A cópia, o ZIP de origem e o resumo temporário foram removidos após extrair estas evidências.
+  Os dados acima permitem distinguir o novo ensaio diretamente observado do relato anterior.
+
+**Revisão:** o teste documental verifica o conteúdo exigido; a ordem das etapas foi revisada no
+procedimento e comprovada pelo baseline final ligado ao commit próprio.
+A referência do goal a `tasks/features/bootstrap-harness/` não corresponde a um diretório
+existente; o plano e o checklist ativos estão em `tasks/plan.md` e `tasks/todo.md`. Essa divergência
+foi registrada sem reestruturar o histórico fora do incremento.
+
+A revisão do diff cobre correção, simplicidade, arquitetura, segurança, desempenho, testes e
+escopo. Não há alteração de Java, POM, configuração observável, hooks ou dependências. O GO do
+Incremento 15, o aceite e o encerramento do goal continuam pendentes de decisão humana.
+
+**Checkpoint final do template após a regressão adicional:** `COMPLIANT` em
+`2026-09-16T20:50:00Z`, análise `d5075170-7514-4372-a12a-36478721c9af`, fingerprint
+`28603418642f574744b6edaaff85468759843847fb6d25e6731054fe6ec7731e`. A análise usou a revisão SCM
+`ad359b8` e o fingerprint do teste atualizado ainda não commitado. O build executou os 26 testes
+Maven sem falhas, erros ou ignorados; a suíte PowerShell final passou com 11 testes. Permanecem
+seis issues contra sete no baseline, zero nova ou bloqueante, cobertura 97,6% e duplicação 0%.
+A revisão final conferiu links locais, ausência de padrões de segredo, diff restrito ao incremento
+e preservação dos arquivos executáveis de produção e de `.codex`.
 
 ### Incremento 15 — Verificação integrada e entrega
 

@@ -16,8 +16,10 @@ regras ArchUnit, a observabilidade mínima, a cobertura XML, a sessão segura e 
 Sonar estão implementados. O build fixa Java 25 e Quarkus 3.33.3.1, usa Maven Wrapper 3.9.16
 verificável por checksum, gera JaCoCo XML e exclui estados e segredos locais. Baseline, checkpoint,
 decisão Sonar, hooks Codex e exportação offline sanitizada também estão implementados. O conjunto
-foi verificado contra o servidor local; o checkpoint do Incremento 13 está `COMPLIANT`, sem
-substituir sua revisão humana no Checkpoint D.
+foi verificado contra o servidor local e o checkpoint atual está `COMPLIANT`. O procedimento de
+materialização está documentado e possui teste PowerShell: verifica a cópia, exige commit local
+antes do baseline próprio e mantém contexto e histórico independentes. Evidências e pendências
+de revisão humana estão em `tasks/plan.md` e `tasks/todo.md`.
 
 ## Visão do sistema
 
