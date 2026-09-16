@@ -2,10 +2,10 @@
 
 ## Identificação
 
-- Estado: `PLANEJADO`
+- Estado técnico: pronto para verificação humana — aceite e encerramento pendentes
 - Responsável pela decisão final: humano
 - Especificação: `specs/template-harness/spec.md`
-- Feature de implementação: `tasks/features/bootstrap-harness/`
+- Implementação do bootstrap: [plano](../../tasks/plan.md) e [checklist](../../tasks/todo.md)
 
 ## Objetivo
 
@@ -94,10 +94,26 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Hooks Codex e isenção documental | `GO` em 2026-08-28 para o Incremento 12 | Humano |
 | Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
 | Checkpoint D — Harness Sonar | `APROVADO` em 2026-08-29; `GO` para o Incremento 14 | Humano |
-| Materialização descartável | `GO` em 2026-08-29; evidências da retomada em `tasks/plan.md`; revisão humana `PENDENTE` | Humano |
+| Materialização descartável | Evidências apresentadas; humano autorizou prosseguir ao Incremento 15 em 2026-09-16 | Humano |
+| Verificação integrada e entrega | `GO` humano em 2026-09-16; evidências técnicas consolidadas, aguardando verificação humana | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
-## Evidências parciais
+## Evidências consolidadas da entrega
+
+O Incremento 15 conferiu o estado executável e consolidou, sem repetir Maven ou Sonar, a execução
+do Incremento 14 de 2026-09-16. Os 26 testes Maven, 11 testes PowerShell e o checkpoint
+`COMPLIANT` correspondem ao fingerprint preservado. A cobertura Sonar é 97,6%, a duplicação é
+0% e não há issue nova ou bloqueante; seis issues preexistentes permanecem abertas.
+
+A [matriz do Incremento 15 no plano](../../tasks/plan.md) relaciona os 12 critérios da spec aos
+artefatos e às verificações. Inclui a auditoria do conteúdo versionado, a revisão do código e
+das fronteiras, e o novo ensaio descartável com goal e baseline próprios do Incremento 14.
+Também registra os limites: execução JVM/Windows, perfil nativo não executado, ausência de CI/CD
+no escopo e verificação documental de links locais sem consulta a destinos externos.
+
+A conclusão é técnica. `ACEITO` e `ENCERRADO` continuam pendentes de manifestação humana.
+
+## Histórico de evidências
 
 - Incrementos 1–3 e o Checkpoint A de governança foram concluídos e aprovados pelo humano.
 - O Incremento 4 criou somente a fundação Maven planejada: POM, Wrapper e exclusões locais.

@@ -231,19 +231,21 @@
 - [x] Registrar os identificadores de evidência no plano e remover a nova cópia descartável.
 - [x] Repetir o checkpoint final após a regressão documental: análise `d5075170-7514-4372-a12a-36478721c9af`
   `COMPLIANT`, 26 testes Maven e 11 PowerShell verdes.
-- [ ] Obter revisão humana do Incremento 14 e eventual `GO` para o Incremento 15.
+- [x] Registrar resposta humana "pode proceder" em 2026-09-16 após a apresentação do Incremento 14, autorizando o Incremento 15.
 
 ## Incremento 15 — Entrega
 
-- [ ] Executar Maven verify e suíte PowerShell.
-- [ ] Executar checkpoint Sonar aplicável ou registrar UNVERIFIED.
-- [ ] Auditar termos de negócio, segredos, estados e builds.
-- [ ] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
-- [ ] Atualizar goal e checklist com evidências.
-- [ ] Parar e solicitar aceite/encerramento humanos.
+- [x] Registrar GO humano em 2026-09-16 para a verificação integrada; aceite final continua pendente.
+- [x] Confirmar o fingerprint e consolidar as evidências do Incremento 14: 26 testes Maven e 11 PowerShell verdes, sem nova execução.
+- [x] Conferir offline o vínculo do checkpoint `COMPLIANT`; aplicar a isenção Markdown-only.
+- [x] Auditar termos de negócio, padrões de segredo, estados e builds nos arquivos versionados; conferir links locais.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo.
+- [x] Corrigir README/guia desatualizados e referência inexistente do goal; registrar evidências e limites no plano.
+- [x] Relacionar os 12 critérios da spec às evidências verificadas.
+- [x] Parar no checkpoint de verificação humana e apresentar a entrega.
+- [ ] Registrar decisão humana de aceite e encerramento do goal.
 
 ## Próximo item autorizado
 
-Apresentar as evidências do novo ensaio diretamente verificado para revisão humana do
-Incremento 14. Correção, suítes, checkpoint, documentação, commit e push foram autorizados na
-retomada. O Incremento 15 permanece bloqueado até revisão humana e novo `GO` explícito.
+Aguardar verificação e decisão humanas sobre a entrega. Somente o humano pode registrar
+`ACEITO` e `ENCERRADO`; a conclusão técnica e o GO do Incremento 15 não os substituem.
