@@ -210,10 +210,28 @@
 ## Incremento 14 — Materialização
 
 - [x] Registrar `GO` humano para executar somente o Incremento 14 em 2026-08-29.
-- [ ] Criar guia e checklist de materialização.
-- [ ] Ensaiar em diretório temporário com identidade diferente.
-- [ ] Criar goal e baseline próprios na cópia.
-- [ ] Verificar ausência de placeholders, histórico e artefatos proibidos.
+- [x] Criar guia e checklist de materialização, com acesso pelo guia de início.
+- [x] Registrar o ensaio descartável anterior informado pelo humano: 26 testes Maven e 11
+  PowerShell verdes; a cópia foi removida antes desta retomada.
+- [x] Registrar o baseline próprio da cópia informado pelo humano: `COMPLIANT`, cobertura 97,6%
+  e duplicação 0%; o estado do template foi preservado.
+- [x] Reproduzir o RED e corrigir a ordem: verificações, commit local, `HEAD` e baseline Sonar.
+- [x] Executar GREEN focal e suíte completa: 11 testes PowerShell e 26 testes Maven verdes.
+- [x] Executar checkpoint Sonar do template em 2026-09-16: `COMPLIANT`, zero issue nova ou
+  bloqueante, cobertura 97,6% e duplicação 0%.
+- [x] Revisar correção, simplicidade, arquitetura, segurança, desempenho, testes e escopo do diff.
+- [x] Repetir o ensaio após a ausência de confirmação humana sobre a cópia anterior: criar goal,
+  spec, arquitetura/ADRs, plano e checklist próprios, com identidade sintética e sem aceite herdado.
+- [x] Corrigir a omissão de adaptação do nome esperado em `ObservabilityInfrastructureTest`:
+  RED Maven na cópia e RED documental observados; GREEN preservando a asserção.
+- [x] Confirmar na nova cópia 26 testes Maven e 11 PowerShell verdes, commit local próprio antes
+  do baseline final e análise `b2edaa2e-ee1a-4933-85d2-561fb8198ef8` `COMPLIANT`.
+- [x] Auditar diretamente oito documentos ativos e 65 arquivos versionados: sem placeholders,
+  histórico operacional herdado, artefatos proibidos ou remoto; baseline original preservado.
+- [x] Registrar os identificadores de evidência no plano e remover a nova cópia descartável.
+- [x] Repetir o checkpoint final após a regressão documental: análise `d5075170-7514-4372-a12a-36478721c9af`
+  `COMPLIANT`, 26 testes Maven e 11 PowerShell verdes.
+- [ ] Obter revisão humana do Incremento 14 e eventual `GO` para o Incremento 15.
 
 ## Incremento 15 — Entrega
 
@@ -226,5 +244,6 @@
 
 ## Próximo item autorizado
 
-Criar o guia e o checklist de materialização do Incremento 14. O Incremento 15 permanece
-bloqueado até revisão humana e novo `GO` explícito.
+Apresentar as evidências do novo ensaio diretamente verificado para revisão humana do
+Incremento 14. Correção, suítes, checkpoint, documentação, commit e push foram autorizados na
+retomada. O Incremento 15 permanece bloqueado até revisão humana e novo `GO` explícito.

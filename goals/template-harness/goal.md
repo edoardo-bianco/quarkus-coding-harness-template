@@ -94,7 +94,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Hooks Codex e isenção documental | `GO` em 2026-08-28 para o Incremento 12 | Humano |
 | Evidência offline | Incremento 12 revisado; `GO` em 2026-08-29 para o Incremento 13 | Humano |
 | Checkpoint D — Harness Sonar | `APROVADO` em 2026-08-29; `GO` para o Incremento 14 | Humano |
-| Materialização descartável | `GO` em 2026-08-29 para o Incremento 14; evidências `PENDENTES` | Humano |
+| Materialização descartável | `GO` em 2026-08-29; evidências da retomada em `tasks/plan.md`; revisão humana `PENDENTE` | Humano |
 | Aceite e encerramento do goal | `PENDENTE` | Humano |
 
 ## Evidências parciais
@@ -192,6 +192,13 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 - O humano revisou o Incremento 12 e registrou `GO` em 2026-08-29 para executar somente o
   Incremento 13. A decisão autoriza exportação e leitura offline dentro do plano aprovado, mas
   não autoriza materialização, os Incrementos 14–15 nem o encerramento do goal.
+- A retomada de 2026-09-16 corrigiu o RED do Incremento 14: o procedimento exige verificações e
+  commit local antes do baseline Sonar. Passaram 26 testes Maven e 11 testes PowerShell; o
+  checkpoint do template ficou `COMPLIANT`, com zero issue nova ou bloqueante, cobertura 97,6%
+  e duplicação 0%. Um novo ensaio descartável comprovou diretamente goal/contexto próprios,
+  auditoria sem herança operacional, 26 testes Maven, 11 PowerShell e baseline próprio
+  `COMPLIANT` ligado ao commit local anterior. A omissão de adaptação do nome esperado no teste
+  de observabilidade foi corrigida no procedimento. Identificadores e evidências estão no plano.
 - Esta evidência não encerra o goal.
 
 ## Decisões já registradas
