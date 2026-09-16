@@ -32,6 +32,7 @@ humanas explícitas.
 - [ ] `src/main/java` foi movido para o novo pacote-base.
 - [ ] `src/test/java` foi movido para o novo pacote-base.
 - [ ] Declarações `package`, imports e constantes `ROOT_PACKAGE` foram atualizadas.
+- [ ] `ObservabilityInfrastructureTest` espera o novo `artifactId` em `quarkus.application.name`.
 - [ ] A identidade `template.harness` não permanece no POM, código, testes ou configuração.
 - [ ] README contém nome, descrição e comandos do produto.
 - [ ] A feature neutra continua explicitamente temporária até a prova da primeira feature real.

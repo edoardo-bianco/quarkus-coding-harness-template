@@ -72,7 +72,10 @@ documentos históricos ou dependências de terceiros.
 4. Faça o mesmo em `src/test/java/template/harness`.
 5. Atualize declarações `package`, imports e as constantes `ROOT_PACKAGE` dos testes ArchUnit de
    `template.harness` para o novo pacote-base.
-6. Reescreva o `README.md` como entrada do produto: título, descrição, comandos, estado atual e
+6. Em `ObservabilityInfrastructureTest`, substitua o nome esperado da aplicação
+   `quarkus-coding-harness-template` pelo novo `artifactId`, mantendo a asserção sobre
+   `quarkus.application.name`. Alterar só a configuração deixa esse teste em RED.
+7. Reescreva o `README.md` como entrada do produto: título, descrição, comandos, estado atual e
    links próprios. Remova a tabela de incrementos e qualquer narrativa do bootstrap do template.
 
 Mantenha a **feature neutra** `sample` até uma feature real produzir evidência equivalente do
