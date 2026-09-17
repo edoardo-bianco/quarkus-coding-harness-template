@@ -24,6 +24,10 @@ com evidência anterior e posterior, sabendo o que preservar, adaptar, verificar
 Preparar um guia manual reutilizável para diagnosticar um repositório existente e planejar a adoção
 de governança, testes, arquitetura, observabilidade e qualidade Sonar do harness.
 
+A revisão solicitada em 2026-09-17 deve permitir reconstruir manualmente esse ambiente:
+pastas a criar, arquivos a copiar ou mesclar, skills `addyosmani/agent-skills` a instalar,
+uso por Codex e GitHub Copilot (CLI e VS Code) e conexão a SonarQube já instalado em URL própria.
+
 Resultados: matriz de artefatos; roteiro com dependências e critérios de saída; checklist de
 adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão sem reescrever histórico.
 
@@ -35,6 +39,8 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 - Diagnóstico de estruturas, ferramentas e controles já presentes.
 - Preservação de código, identidade, histórico, decisões e configuração operacional do produto.
 - Identificação das adaptações necessárias antes de aplicar o harness.
+- Inventário completo, recursos compartilhados das skills e verificação por agente.
+- Operação manual comum e limites dos hooks específicos; suporte não ensaiado fica explícito.
 
 ## Fora de escopo
 
@@ -42,13 +48,17 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 - Executar instalação, migração, refatoração, análise Sonar, deploy ou ensaio em produto.
 - Criar instalador/gerador, substituir POM ou atualizar versões automaticamente.
 - Implementar suporte para outra stack ou resolver dívida preexistente.
+- Instalar skills nesta máquina, criar adapters Copilot, mudar scripts ou configurar servidor nesta entrega.
 - Aprovar o goal, a spec, ADRs do produto, merge, release ou configuração GitHub por inferência.
 
 ## Critérios de sucesso e pronto
 
 - [ ] Humano revisou o objetivo, limites e critérios da spec.
 - [x] Guia distingue adoção de produto existente da materialização de um produto novo.
-- [x] Cada capacidade do harness possui origem, destino, ação e verificação.
+- [ ] Inventário operacional detalha pastas, origem, destino, ação e verificação de cada capacidade.
+- [ ] Skills e recursos compartilhados possuem instalação e descoberta por agente documentadas.
+- [ ] Codex, Copilot CLI e VS Code possuem passos próprios, limites e critérios de verificação.
+- [ ] Sonar existente com outra URL possui exemplos completos e identidade consistente.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
@@ -87,5 +97,9 @@ arquitetura, segurança ou observabilidade, ou quando o guia estiver pronto para
 | Data | Registro | Efeito |
 | --- | --- | --- |
 | 2026-09-16 | Usuário pediu planejar a adoção em repositório existente e preparar primeiro um guia manual | Autoriza esta preparação documental; não é GO para alterar produto |
+
+Em 2026-09-17, o usuário apontou falta de cópia manual explícita e solicitou reconstrução com
+Codex/Copilot, skills e Sonar existente; confirmou Copilot CLI e VS Code. Isso autoriza revisar
+a documentação, sem aprovar a entrega anterior nem autorizar instalação.
 
 Aprovação do goal/spec, aceite final e encerramento: `PENDENTES`. Somente o humano decide.
