@@ -110,15 +110,22 @@ Somente Markdown; nenhum script, hook, editor, configuração, Maven ou Sonar al
 ## Reconhecimento do ambiente — D9 a D11
 
 - [x] Registrar pedido humano, candidato inspecionado e requisitos A21–A25 antes das instruções.
-- [ ] Atualizar AGENTS e arquitetura; propor ADR e atualizar índice sem aceitar a própria decisão.
-- [ ] Explicar diagnóstico, escolha manter/alterar e locais de configuração no guia.
-- [ ] Alinhar prompts, ficha de retorno Copilot e navegação README.
-- [ ] Conferir fontes, links, sintaxe, cenários documentais e diff; registrar evidências.
+- [x] Atualizar AGENTS e arquitetura; propor ADR e atualizar índice sem aceitar a própria decisão.
+- [x] Explicar diagnóstico, escolha manter/alterar e locais de configuração no guia.
+- [x] Alinhar prompts, ficha de retorno Copilot e navegação README.
+- [x] Conferir fontes, links, sintaxe, cenários documentais e diff; registrar evidências.
 - [ ] Receber escolha de versões e GO específico para aplicação no candidato.
+
+Evidências D11: 99 links locais (25 âncoras) válidos em 11 documentos; 42 caminhos de referência;
+25 exemplos PowerShell sem erro sintático (18 no guia, 7 no ensaio), sem execução.
+Cenários manter/alterar/sem resposta/escolha prévia/ambiente divergente revisados no texto e registrados
+no plano. D9: `f0a8ee6`; D10: `42afd20`. ADR-0006 Proposto, sem aceite inferido.
+Nenhum POM, Wrapper, script, hook, configuração de IDE ou arquivo do candidato foi alterado.
+Somente Markdown; Maven, Sonar e ensaio real não executados.
 
 ## Próximo item autorizado
 
-Executar D10 e D11 documentais e apresentar o conjunto para revisão humana.
+Apresentar D11 e ADR-0006 proposto para revisão documental e decisão humana.
 Nenhum GO de aplicação, aceite ou encerramento foi dado. O candidato foi inspecionado por leitura
 remota; não executar o roteiro nele nem escolher suas versões. O checklist reutilizável fica no guia.
 

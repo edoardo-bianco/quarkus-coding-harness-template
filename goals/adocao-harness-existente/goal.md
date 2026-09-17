@@ -69,9 +69,9 @@ Execução pelo desenvolvedor é alternativa. Hooks apenas lembram; esta entrega
 - [x] Sonar existente com outra URL possui exemplos completos e identidade consistente.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
-- [ ] Agente reconhece versões declaradas e ambiente efetivo, apresenta origens e pede manter ou alterar.
-- [ ] Guia identifica onde ajustar JDK, Quarkus e Maven, incluindo herança, IDE, CI e containers aplicáveis.
-- [ ] Escolha de versões, autorização de aplicação e evidência de compatibilidade permanecem distintas.
+- [x] Instruções exigem reconhecer versões declaradas e ambiente efetivo, apresentar origens e pedir manter/alterar.
+- [x] Guia identifica onde ajustar JDK, Quarkus e Maven, incluindo herança, IDE, CI e containers aplicáveis.
+- [x] Escolha de versões, autorização de aplicação e evidência de compatibilidade permanecem distintas.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
 - [x] Roteiro confere execução pelo agente, decisão humana e ciclo de ajustes em CLI/VS Code;
   execução humana é alternativa e lembretes Copilot possuem verificação separada.
@@ -86,7 +86,7 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 | --- | --- | --- |
 | Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Revisado documentalmente em 2026-09-17; aprovação pendente |
 | Requisitos e critérios | Spec relacionada | Rascunho |
-| Inspeções e revisão documental | Checklist da feature | 72 links locais (20 âncoras), 42 caminhos; 17 blocos do guia e 7 do ensaio conferidos; matriz A01–A20 no plano |
+| Inspeções e revisão documental | Checklist da feature | D11: 99 links locais (25 âncoras) em 11 documentos, 42 caminhos; 18 blocos do guia e 7 do ensaio; A21–A25 e cenários conferidos no texto |
 | Roteiro para ensaio supervisionado pelo humano | [Ensaio Copilot](../../doc/guias/ensaio-manual-copilot.md) | Preparado; resultados do usuário pendentes |
 | Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; usuário conduzirá o ensaio com o agente |
 | Maven/Sonar do template nesta entrega | Não aplicável: somente Markdown | Isenção do AGENTS.md |
