@@ -57,7 +57,10 @@ Os resultados D1/D2 abaixo são históricos e não comprovam esses novos critér
 - Parada: revisão humana documental; sem instalar skills, alterar tooling, habilitar hooks
   Copilot, acessar produto ou executar Sonar/Maven.
 
-## Ensaio humano solicitado — D5 e D6
+## Ensaio humano solicitado — D5 e D6 (histórico)
+
+A opção de execução humana descrita nesta etapa foi substituída como padrão por D7/D8.
+Ela permanece apenas como alternativa no roteiro atual.
 
 - D5: registrar A18–A20 em goal/spec/plano/checklist, antes de redigir o roteiro.
 - D6: criar guia de ensaio, vinculá-lo ao guia de adoção e registrar evidências em goal/plano/todo
@@ -70,6 +73,22 @@ Os resultados D1/D2 abaixo são históricos e não comprovam esses novos critér
   pedir proposta ao agente; não criar, ativar ou simular como instalados esses hooks nesta entrega.
 - Parada desta preparação: entregar instruções ao usuário; execução e resultados ficam pendentes
   de sua devolutiva. Isso não representa aceite do conjunto documental nem GO para alterar produto.
+
+## Alinhamento autorizado — D7 e D8
+
+- D7: atualizar goal, spec, plano e checklist antes de corrigir os guias; A18–A20 passam a
+  exigir o ciclo principal pelo agente, com permissão de ferramenta e decisão humana distintas.
+- D8: alinhar os dois guias, README e evidências em goal/plano/todo. São seis arquivos Markdown
+  para manter o roteiro, sua navegação e os três registros de evidência coerentes no mesmo incremento.
+- Fluxo: agente desenvolve/testa na fatia autorizada, executa checkpoint permitido e acompanha
+  seu término; humano decide eventual NON_COMPLIANT; agente registra a decisão, ajusta e revalida.
+- Credencial: documentar launcher CLI e preparação de VS Code local/terminal; verificar presença
+  no processo efetivo sem valor do token; preservar a regra de não persistir credencial.
+- Execução humana com mensagem de retorno fica como alternativa. Hooks continuam lembretes e
+  não são dependência para o agente executar scripts; sua integração real continua pendente.
+- Verificação: busca de instruções contraditórias, fontes oficiais, links/âncoras, sintaxe dos
+  exemplos em memória, revisão do diff exclusivamente Markdown. Não executar o ensaio, Maven/Sonar,
+  scripts, instalações ou alterações de configuração nesta entrega.
 
 ## Proposta de execução futura no produto
 
@@ -197,7 +216,10 @@ integração com um Sonar externo permanecem verificações do produto; os scrip
 Maven, testes do harness, baseline, API e checkpoint Sonar não foram executados. Nenhum conteúdo
 de `sonar/` foi inspecionado. Publicação documental não autoriza instalação, aplicação ou aceite.
 
-## Roteiro de ensaio humano D6 — 2026-09-17
+## Roteiro de ensaio humano D6 — 2026-09-17 (histórico)
+
+Evidência da versão anterior: sua execução humana obrigatória foi substituída pelo fluxo D7/D8.
+Os resultados abaixo não comprovam o roteiro corrigido nem um ensaio real.
 
 D5 registrado em `c98f14b`. D6 acrescenta o roteiro de ensaio e sua ligação no guia de adoção.
 O usuário executará os passos e devolverá evidências. Nenhum script, hook ou critério foi alterado.

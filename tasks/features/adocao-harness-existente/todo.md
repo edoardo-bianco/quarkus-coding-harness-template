@@ -14,6 +14,7 @@
 | 2026-09-16 | Humano | Planejar adoção em repositório com produção e preparar primeiro guia manual | Preparação documental |
 | 2026-09-17 | Humano | Retomar revisão do guia/links, inclusão no README e apresentação para aprovação | Retomada documental; sem aplicação em produto |
 | 2026-09-17 | Humano | Explicitar reconstrução manual, skills Addy Osmani, Codex e Copilot CLI/VS Code, com Sonar existente em URL própria | Revisão ampliada; sem instalação nem alteração executável |
+| 2026-09-17 | Humano | Corrigir todos os documentos: execução autorizada pelo agente em CLI/VS Code, decisão humana e ciclo de ajustes | Alinhamento documental; sem execução do ensaio nesta entrega |
 | — | Humano | Aprovação do novo goal/spec/plano | `PENDENTE` |
 | — | Humano | GO para aplicação no produto | `PENDENTE`; produto ainda não indicado |
 | — | Humano | Aceite/encerramento deste goal | `PENDENTE` |
@@ -76,7 +77,7 @@ artefato gerado. Commit D1: `945dc12`; navegação e evidências D2 em commit se
 - Revisão A01–A17 no plano; somente Markdown, sem Maven, testes do harness, API/baseline Sonar,
   instalação ou alteração em produto. Nenhuma decisão humana foi inferida.
 
-## Ensaio humano — D5/D6
+## Ensaio humano — D5/D6 (histórico; fluxo principal substituído por D7/D8)
 
 - [x] Registrar pedido humano de instruções para ensaio CLI/VS Code sem mudar comportamento.
 - [x] Especificar A18–A20 antes do roteiro.
@@ -90,9 +91,18 @@ sem erro sintático. Os 16 exemplos anteriores não mudaram. Roteiro ligado ao g
 de pausa/retomada e proposta futura dos lembretes equivalentes. D5: `c98f14b`.
 Nenhum teste em produto, instalação ou alteração executável foi realizado.
 
+## Alinhamento — D7/D8
+
+- [x] Registrar esclarecimento humano: agente executa em CLI/VS Code; humano autoriza e decide.
+- [x] Atualizar A18–A20 e escopo antes dos guias.
+- [ ] Alinhar roteiro, guia de adoção, prompts, credencial, matrizes e README.
+- [ ] Manter execução humana como alternativa e hooks como lembretes independentes.
+- [ ] Conferir documentos, links, sintaxe e ausência de alterações executáveis.
+- [ ] Receber evidências do ensaio real nos dois ambientes.
+
 ## Próximo item autorizado
 
-Apresentar D6; aguardar devolutiva do ensaio e revisão documental humana.
+Concluir D8 e apresentar os documentos alinhados; aguardar ensaio e revisão documental humanos.
 Nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.

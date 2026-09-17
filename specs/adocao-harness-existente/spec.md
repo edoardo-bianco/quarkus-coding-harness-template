@@ -45,19 +45,22 @@ adoção real for iniciada. Não são bloqueios para elaborar este documento gen
 | A15 | Listar todas as pastas e arquivos do harness por origem/destino, necessidade, ordem de cópia e colisões; incluir arquivos ocultos e testes. |
 | A16 | Documentar Sonar já instalado com URL própria: pré-requisitos, identidade, sessão segura e exemplos completos de análise, baseline, checkpoint e exportação. |
 | A17 | Fornecer verificação por agente/componente; declarar hooks Copilot ausentes e instalações/sessões não ensaiadas. |
-| A18 | Fornecer ensaio humano em Copilot CLI e VS Code: pré-condições, prompts, ações do desenvolvedor, resultados esperados e formulário de retorno. |
-| A19 | Descrever pausa explícita, execução humana do checkpoint, conferência de resultado/revisão e retomada por mensagem na mesma conversa; sem esperar retomada automática. |
-| A20 | Preservar scripts, política e autoridade; separar teste manual de futura configuração de lembretes Copilot equivalentes, com critérios de ensaio e sem execução automática de Sonar. |
+| A18 | Fornecer ensaio supervisionado em Copilot CLI e VS Code com execução dos scripts pelo agente: pré-condições, sessão, prompts, permissões e formulário de retorno. |
+| A19 | Descrever o ciclo agente executa/aguarda/avalia; humano decide NON_COMPLIANT; agente registra a resposta, ajusta, testa e repete dentro da autorização. Separar permissão de comando, decisão técnica e aceite final; execução humana é alternativa. |
+| A20 | Preservar scripts, política e autoridade; o ciclo pelo agente independe dos hooks. Lembretes Copilot equivalentes exigem ensaio próprio e não disparam Sonar, bloqueiam nem decidem. |
 
 Revisão ampliada solicitada em 2026-09-17: A03, A08 e A10 exigem detalhamento operacional;
 A13–A17 cobrem Codex, Copilot CLI/VS Code, skills e Sonar existente. Aprovação humana pendente.
-Copilot cloud agent fica fora do escopo. A operação local por Copilot pode usar checkpoints
-manuais; hooks automáticos exigem tarefa executável própria e evidência do runtime.
+Copilot cloud agent fica fora do escopo. No CLI e no VS Code local, o agente executa o checkpoint
+pela ferramenta de terminal, sujeito às permissões e à sessão preparada. Hooks automáticos
+exigem integração própria e não são pré-condição para essa execução.
 
-A orientação humana adicional é testar o comportamento existente. Copilot pode preparar comandos
-ou uma proposta de configuração; o desenvolvedor executa o checkpoint. Hooks equivalentes não
-estão excluídos do objetivo de integração, mas sua implementação e ativação exigem preparação
-executável própria. Esta entrega acrescenta o roteiro, sem executar o ensaio pelo usuário.
+A orientação humana vigente é testar o comportamento existente com execução pelo agente nos
+dois ambientes. O desenvolvedor fornece a credencial pelo mecanismo seguro, autoriza comandos
+quando solicitado e decide sobre os resultados. Copiar resultados manualmente é alternativa.
+Conferir a disponibilidade do token no processo efetivo da ferramenta sem mostrar seu valor;
+um terminal ou editor já aberto não comprova herança. Instalação e ensaio continuam pendentes.
+Hooks equivalentes podem ser planejados sem alterar a função de lembrete.
 
 ## Comandos e verificações
 
@@ -77,7 +80,8 @@ dos perfis e efeitos. O guia inclui comandos do harness somente após integraç�
 - `specs/adocao-harness-existente/spec.md`: requisitos desta entrega.
 - `tasks/features/adocao-harness-existente/`: plano/checklist desta feature documental.
 - `doc/guias/adotar-harness-repositorio-existente.md`: procedimento manual e checklist para o produto.
-- `doc/guias/ensaio-manual-copilot.md`: roteiro de execução humana e devolutiva.
+- `doc/guias/ensaio-manual-copilot.md`: roteiro supervisionado, execução pelo agente e devolutiva;
+  nome do arquivo preservado para manter links existentes.
 - `README.md`: acesso ao novo goal e guia.
 
 Usar português, passos manuais e comandos condicionados a pré-requisitos. Exemplos de destinos

@@ -40,12 +40,14 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 - Preservação de código, identidade, histórico, decisões e configuração operacional do produto.
 - Identificação das adaptações necessárias antes de aplicar o harness.
 - Inventário completo, recursos compartilhados das skills e verificação por agente.
-- Operação manual comum e limites dos hooks específicos; suporte não ensaiado fica explícito.
+- Execução autorizada de scripts pelo agente nos dois ambientes; execução humana como alternativa.
+- Hooks como lembretes independentes desse ciclo; suporte não ensaiado fica explícito.
 
-Em 2026-09-17, o usuário solicitou um ensaio conduzido por ele no Copilot CLI e no VS Code,
-sem mudar o comportamento do harness: agente prepara e aguarda, desenvolvedor executa o script
-e devolve a evidência, agente retoma. A integração de lembretes equivalentes pode ser planejada;
-esta entrega prepara instruções e não implementa hooks.
+Em 2026-09-17, o usuário esclareceu e autorizou o alinhamento de todos os documentos:
+o agente executa o checkpoint com a permissão da ferramenta, aguarda o resultado e solicita a
+decisão humana quando necessária; após ContinuarAjustes, registra a decisão, ajusta, testa e
+repete o checkpoint dentro da fatia autorizada. Isso vale para Copilot CLI e VS Code.
+Execução pelo desenvolvedor é alternativa. Hooks apenas lembram; esta entrega não os implementa.
 
 ## Fora de escopo
 
@@ -67,7 +69,8 @@ esta entrega prepara instruções e não implementa hooks.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
-- [x] Roteiro de ensaio humano distingue fluxo manual, retomada e verificação futura dos lembretes Copilot.
+- [ ] Roteiro confere execução pelo agente, decisão humana e ciclo de ajustes em CLI/VS Code;
+  execução humana é alternativa e lembretes Copilot possuem verificação separada.
 - [x] Evidências documentais foram apresentadas; execução no produto permanece `NÃO_EXECUTADA`.
 
 A entrega documental não comprova adoção em um produto. Um piloto real exige identificação do
@@ -80,8 +83,8 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 | Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Revisado documentalmente em 2026-09-17; aprovação pendente |
 | Requisitos e critérios | Spec relacionada | Rascunho |
 | Inspeções e revisão documental | Checklist da feature | 71 links locais (19 âncoras), 42 caminhos; 16 blocos do guia e 6 do ensaio conferidos; matriz A01–A20 no plano |
-| Roteiro para execução pelo humano | [Ensaio Copilot](../../doc/guias/ensaio-manual-copilot.md) | Preparado; resultados do usuário pendentes |
-| Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; execução a cargo do humano |
+| Roteiro para ensaio supervisionado pelo humano | [Ensaio Copilot](../../doc/guias/ensaio-manual-copilot.md) | Preparado; resultados do usuário pendentes |
+| Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; usuário conduzirá o ensaio com o agente |
 | Maven/Sonar do template nesta entrega | Não aplicável: somente Markdown | Isenção do AGENTS.md |
 
 ## Dependências, riscos e parada
@@ -109,4 +112,6 @@ Em 2026-09-17, o usuário apontou falta de cópia manual explícita e solicitou 
 Codex/Copilot, skills e Sonar existente; confirmou Copilot CLI e VS Code. Isso autoriza revisar
 a documentação, sem aprovar a entrega anterior nem autorizar instalação.
 
+O usuário autorizou corrigir a documentação para esse fluxo. Isso não é aceite do conjunto,
+GO para executar o ensaio aqui nem autorização de alteração em produto.
 Aprovação do goal/spec, aceite final e encerramento: `PENDENTES`. Somente o humano decide.
