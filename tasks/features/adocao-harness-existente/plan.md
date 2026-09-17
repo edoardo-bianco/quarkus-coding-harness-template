@@ -52,6 +52,12 @@ do produto sem cumprir essas condições.
 
 - `Get-SonarCodeFingerprint` cobre `src/`, `.mvn/`, `.codex/hooks/`, `test/powershell/`,
   POM/Wrapper/hooks.json e scripts PowerShell da raiz; módulos em outros diretórios ficam fora.
+- O fingerprint inclui `.md` dentro dos diretórios monitorados. O teste documental cobre apenas
+  README na raiz e `doc/`; a divergência com a isenção por tipo de arquivo exige tarefa futura
+  com regressão. Nenhum hook ou teste foi alterado nesta revisão.
+- O checkpoint comum recusa baseline `OFFLINE_ONLY_READY`; a passagem para análise local precisa
+  preservar evidências e registrar uma inicialização local na revisão acordada. Offline-only
+  dispensa token. O guia explicita ambos os limites.
 - O analisador usa POM/Wrapper da própria raiz, identidade extraída do XML e `clean verify`;
   não expõe parâmetros para perfis, módulos ou propriedades extras do build.
 - Testes de configuração exigem caminhos e decisões particulares do template; não são uma
@@ -77,6 +83,35 @@ Verificação desta entrega: documentação, escopo e consistência. Maven, base
 checkpoint não se aplicam a esta mudança exclusivamente Markdown.
 Revisão: correção da sequência, simplicidade, arquitetura, segurança, custo das verificações,
 preservação dos testes e escopo do diff.
+
+## Revisão documental D1 — 2026-09-17
+
+A retomada humana autoriza revisar o guia, seus links, incluir navegação no README e apresentar
+a proposta. Não aprova goal/spec/plano nem autoriza aplicação em produto.
+O guia foi conferido contra scripts e testes existentes, sem executá-los. Foram esclarecidos
+destinos da matriz, referências de testes, isenção Markdown no fingerprint, credencial offline
+e transição de baseline offline para local.
+
+| Requisito | Evidência documental | Resultado |
+| --- | --- | --- |
+| A01 | Guia, introdução e §2: adoção preserva produto; materialização cria outro contexto | Conferido |
+| A02 | §1: inventário de stack, módulos, perfis, comandos e controles | Conferido |
+| A03 | §4: origem, destino, ação, verificações e testes de cada controle | Conferido |
+| A04 | §3: contexto próprio, convenções e decisões anteriores preservados | Conferido |
+| A05 | §2 e §5: evidência anterior, falhas preexistentes e recursos de teste | Conferido |
+| A06 | §5: baseline próprio válido, Sonar sem harness e bootstrap sem ferramentas | Conferido |
+| A07 | §5: token em memória, fonte humana, offline-only e decisão sobre não conformidade | Conferido |
+| A08 | §4: limites de fingerprint, Markdown, identidade, branch, perfis e testes | Conferido |
+| A09 | §6: fluxo real, fronteiras, sinais e dívida explícita | Conferido |
+| A10 | §1–7 e checklist: ordem, pré-condições, saídas, evidências e reversão | Conferido |
+| A11 | Estado do guia e limites do goal/spec: nenhum ensaio em produto alegado | Conferido |
+| A12 | Navegação no README | Pendente em D2 |
+
+A conferência inicial dos cinco rascunhos e do README encontrou 37 links locais válidos e
+42 caminhos de artefatos de referência existentes. Caminhos ilustrativos do produto, estado,
+pacotes e relatórios gerados não são artefatos instalados a verificar nesta entrega.
+Nenhum destino externo foi consultado e nenhum arquivo em `sonar/` foi inspecionado.
+`git diff --check` passou no guia. A validação será repetida após a navegação D2.
 
 ## Checkpoint
 
