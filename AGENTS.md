@@ -155,9 +155,34 @@ Somente `Reprovar` escolhido pelo humano gera `REJECTED_BY_USER`. O hook `Stop` 
 - Registre execução e decisões específicas somente em goals/specs/tasks, não nos ADRs.
 - Ao alterar Markdown fonte, não gere `.ppt`, `.pptx`, `.pdf` ou `.html` sem solicitação explícita.
 
+## Adoção em repositório existente
+
+Antes de copiar controles ou propor versões, siga o [guia de adoção](doc/guias/adotar-harness-repositorio-existente.md):
+
+1. Reconheça o ambiente real: POMs/parent/perfis, alvo Java, JDK do Maven e toolchains,
+   BOM/plugin Quarkus, distribuição Maven/Wrapper, IDE, CI e imagens quando existentes.
+   Apresente versão, arquivo/chave de origem e evidência; o que não foi observado fica `NÃO_VERIFICADO`.
+   Release Java no POM não comprova JDK instalado; leitura documental não autoriza build.
+2. Pergunte: **“Deseja manter a configuração existente ou alterar JDK, Quarkus e/ou Maven?
+   Se deseja alterar, quais componentes e versões-alvo?”** Registre a resposta explícita.
+   Se a escolha já estiver registrada nesta sessão para esse produto, respeite-a sem perguntar de novo.
+3. Ao manter, preserve versões e planeje a integração dos controles compatíveis. Diferença em
+   relação ao template não é, sozinha, motivo para exigir upgrade ou recusar o planejamento.
+4. Ao alterar, mostre a matriz arquivo/chave, valor atual, valor proposto, impacto e validação.
+   Resolva herança/perfis e confira os demais pontos que fixam a versão. Se faltarem alvos,
+   proponha opções fundamentadas e aguarde escolha; nunca use “latest” ou a stack do template por suposição.
+5. Antes de editar build, Wrapper, ambiente ou código do produto, cumpra plano/GO e baseline
+   quando aplicável. Escolha de versões não equivale a autorização de execução ou aceite final.
+6. Valide cada controle na combinação escolhida. Incompatibilidade real interrompe o controle
+   afetado e exige adaptação/decisão; não altera versões automaticamente nem comprova suporte.
+
+A fundação Java 25/Quarkus LTS/Maven do template permanece a referência verificada para novos
+projetos. A proposta arquitetural para adoção está no [ADR-0006](doc/adr/0006-adocao-ambiente-existente.md),
+ainda `Proposto`; o agente não deve registrá-lo como aceito nem transferir ADRs aceitos ao produto.
+
 ## Materialização de projeto derivado
 
-Antes de adaptar o template, obtenha nome/descrição, `groupId`, `artifactId`, versão, pacote-base, goal inicial, capacidades necessárias, destino local, destino GitHub, visibilidade e branch. Tecnologia diferente de Java 25 + Quarkus LTS + Maven não é suportada nesta versão: pare e informe a limitação.
+Para materializar um projeto novo, obtenha nome/descrição, `groupId`, `artifactId`, versão, pacote-base, goal inicial, capacidades necessárias, destino local, destino GitHub, visibilidade e branch. A fundação verificada desta materialização é Java 25 + Quarkus LTS + Maven; outra stack exige plano próprio. Para um repositório existente, aplique a seção de adoção acima.
 
 Não copie histórico operacional do template para o produto. Crie identidade, goal, tasks e baseline próprios. Não crie nem envie repositório remoto sem destino e autorização explícitos.
 
