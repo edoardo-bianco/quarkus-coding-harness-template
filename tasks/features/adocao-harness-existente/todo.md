@@ -80,14 +80,19 @@ artefato gerado. Commit D1: `945dc12`; navegação e evidências D2 em commit se
 
 - [x] Registrar pedido humano de instruções para ensaio CLI/VS Code sem mudar comportamento.
 - [x] Especificar A18–A20 antes do roteiro.
-- [ ] Preparar prompts, comandos condicionados, pausa/retomada e modelo de retorno.
-- [ ] Distinguir teste manual e futura verificação de lembretes equivalentes.
-- [ ] Validar links, sintaxe e escopo documental; publicar roteiro.
+- [x] Preparar prompts, comandos condicionados, pausa/retomada e modelo de retorno.
+- [x] Distinguir teste manual e futura verificação de lembretes equivalentes.
+- [x] Validar links, sintaxe e escopo documental; preparar roteiro para publicação.
 - [ ] Receber a devolutiva humana do ensaio; execução ainda não realizada nesta entrega.
+
+Evidências D6: 71 links locais válidos, 19 âncoras, 42 caminhos e 6 novos blocos PowerShell
+sem erro sintático. Os 16 exemplos anteriores não mudaram. Roteiro ligado ao guia, com prompts
+de pausa/retomada e proposta futura dos lembretes equivalentes. D5: `c98f14b`.
+Nenhum teste em produto, instalação ou alteração executável foi realizado.
 
 ## Próximo item autorizado
 
-Preparar e apresentar D6; aguardar devolutiva do ensaio e revisão documental humana.
+Apresentar D6; aguardar devolutiva do ensaio e revisão documental humana.
 Nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.

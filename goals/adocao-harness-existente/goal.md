@@ -67,7 +67,7 @@ esta entrega prepara instruções e não implementa hooks.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
-- [ ] Roteiro de ensaio humano distingue fluxo manual, retomada e verificação futura dos lembretes Copilot.
+- [x] Roteiro de ensaio humano distingue fluxo manual, retomada e verificação futura dos lembretes Copilot.
 - [x] Evidências documentais foram apresentadas; execução no produto permanece `NÃO_EXECUTADA`.
 
 A entrega documental não comprova adoção em um produto. Um piloto real exige identificação do
@@ -79,8 +79,9 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 | --- | --- | --- |
 | Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Revisado documentalmente em 2026-09-17; aprovação pendente |
 | Requisitos e critérios | Spec relacionada | Rascunho |
-| Inspeções e revisão documental | Checklist da feature | 63 links locais (15 âncoras), 42 caminhos e 16 blocos PowerShell conferidos; matriz A01–A17 no plano |
-| Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; fora desta entrega |
+| Inspeções e revisão documental | Checklist da feature | 71 links locais (19 âncoras), 42 caminhos; 16 blocos do guia e 6 do ensaio conferidos; matriz A01–A20 no plano |
+| Roteiro para execução pelo humano | [Ensaio Copilot](../../doc/guias/ensaio-manual-copilot.md) | Preparado; resultados do usuário pendentes |
+| Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; execução a cargo do humano |
 | Maven/Sonar do template nesta entrega | Não aplicável: somente Markdown | Isenção do AGENTS.md |
 
 ## Dependências, riscos e parada
