@@ -38,6 +38,25 @@ do bootstrap. Não declarar o produto adaptado nem o guia validado por ensaio.
 Aceitação: A12; links válidos e distinção clara entre materialização e adoção.
 Verificação: links locais e revisão do diff; commit documental separado de D1.
 
+## Revisão ampliada solicitada — D3 e D4
+
+O feedback humano de 2026-09-17 mostrou que a matriz anterior não explicava suficientemente
+a reconstrução manual. A03, A08 e A10 são reabertos em profundidade operacional; A13–A17
+acrescentam Codex, Copilot CLI/VS Code, skills e Sonar existente com URL própria.
+Os resultados D1/D2 abaixo são históricos e não comprovam esses novos critérios.
+
+- D3: atualizar goal, spec, este plano e checklist antes do guia; manter aprovação pendente.
+- D4: completar guia e navegação e consolidar evidências no goal/plano/checklist; até cinco
+  arquivos, em commit separado de D3.
+- Entrega: árvore final, inventário origem/destino, sequência de cópia/mescla, skills com
+  recursos compartilhados, entrada por agente, comandos Sonar com URL explícita e verificação.
+- Verificação: arquivos/parâmetros reais, fontes oficiais abertas, links locais, sintaxe dos
+  exemplos PowerShell sem execução, revisão de diff e escopo Markdown.
+- Riscos: hooks distintos, referências ausentes nas skills, token não herdado por processo
+  já aberto, testes acoplados ao template e diferenças entre servidores.
+- Parada: revisão humana documental; sem instalar skills, alterar tooling, habilitar hooks
+  Copilot, acessar produto ou executar Sonar/Maven.
+
 ## Proposta de execução futura no produto
 
 O guia decompõe o trabalho em diagnóstico, governança, bootstrap técnico, cobertura/baseline,

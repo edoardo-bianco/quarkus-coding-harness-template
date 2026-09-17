@@ -1,6 +1,6 @@
 # Checklist — Preparação do guia de adoção
 
-- Estado: `AGUARDANDO_REVISAO_HUMANA` — preparação documental verificada; rascunhos sem aceite.
+- Estado: `EM_REVISAO_DOCUMENTAL` — ampliação solicitada pelo humano; rascunhos sem aceite.
 - Goal: [adoção](../../../goals/adocao-harness-existente/goal.md).
 - Spec: [rascunho](../../../specs/adocao-harness-existente/spec.md).
 - Plano: [proposta](plan.md).
@@ -13,6 +13,7 @@
 | --- | --- | --- | --- |
 | 2026-09-16 | Humano | Planejar adoção em repositório com produção e preparar primeiro guia manual | Preparação documental |
 | 2026-09-17 | Humano | Retomar revisão do guia/links, inclusão no README e apresentação para aprovação | Retomada documental; sem aplicação em produto |
+| 2026-09-17 | Humano | Explicitar reconstrução manual, skills Addy Osmani, Codex e Copilot CLI/VS Code, com Sonar existente em URL própria | Revisão ampliada; sem instalação nem alteração executável |
 | — | Humano | Aprovação do novo goal/spec/plano | `PENDENTE` |
 | — | Humano | GO para aplicação no produto | `PENDENTE`; produto ainda não indicado |
 | — | Humano | Aceite/encerramento deste goal | `PENDENTE` |
@@ -30,7 +31,21 @@
 - [x] Adicionar acesso pelo README e publicar os commits documentais.
 - [x] Apresentar o conjunto para revisão humana.
 
-## Evidências e limitações
+## Revisão ampliada — D3/D4
+
+A preparação acima registra D1/D2. O feedback humano reabriu o detalhamento operacional;
+essas marcações não significam aceite nem cumprimento de A13–A17.
+
+- [x] Registrar escopo e critérios ampliados antes de reescrever o guia.
+- [ ] Conferir fontes oficiais de Codex/Copilot e instalação das skills.
+- [ ] Explicitar diretórios, arquivos, colisões, dependências e sequência de cópia.
+- [ ] Documentar skills completas, referências compartilhadas e descoberta por agente.
+- [ ] Documentar sessões Codex/Copilot CLI/VS Code e limites dos hooks.
+- [ ] Dar comandos completos com URL/identidade Sonar consistentes.
+- [ ] Validar A01–A17, links, sintaxe dos exemplos e escopo do diff.
+- [ ] Publicar a revisão documental e apresentar o checkpoint humano.
+
+## Evidências anteriores — D1/D2
 
 A inspeção do código identificou os limites descritos no plano, em especial fingerprint de
 diretórios da raiz e ausência de parâmetros de perfis no analisador.
@@ -46,8 +61,8 @@ artefato gerado. Commit D1: `945dc12`; navegação e evidências D2 em commit se
 
 ## Próximo item autorizado
 
-Aguardar revisão humana do goal, spec, plano e guia. Registrar somente a decisão recebida.
-A preparação documental está verificada; nenhum GO de aplicação, aceite ou encerramento foi dado.
+Concluir D4 conforme a revisão ampliada, publicar a documentação e apresentar as evidências.
+Nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.
 

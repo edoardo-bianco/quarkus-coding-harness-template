@@ -40,11 +40,23 @@ adoção real for iniciada. Não são bloqueios para elaborar este documento gen
 | A10 | Fornecer ordem, pré-condições, critérios de saída, checklist, evidências, revisão e reversão por etapa. |
 | A11 | Não alegar testes/adoção em produto sem execução; diferenciar guia proposto de capacidade instalada e verificada. |
 | A12 | Tornar o guia encontrável pelo README, mantendo o histórico do bootstrap encerrado. |
+| A13 | Dar passos distintos para Codex, Copilot CLI e VS Code; distinguir instruções, skills, scripts e hooks. |
+| A14 | Explicar instalação manual de `addyosmani/agent-skills`, revisão de origem, escopo, recursos compartilhados, licença, atualização e descoberta. |
+| A15 | Listar todas as pastas e arquivos do harness por origem/destino, necessidade, ordem de cópia e colisões; incluir arquivos ocultos e testes. |
+| A16 | Documentar Sonar já instalado com URL própria: pré-requisitos, identidade, sessão segura e exemplos completos de análise, baseline, checkpoint e exportação. |
+| A17 | Fornecer verificação por agente/componente; declarar hooks Copilot ausentes e instalações/sessões não ensaiadas. |
+
+Revisão ampliada solicitada em 2026-09-17: A03, A08 e A10 exigem detalhamento operacional;
+A13–A17 cobrem Codex, Copilot CLI/VS Code, skills e Sonar existente. Aprovação humana pendente.
+Copilot cloud agent fica fora do escopo. A operação local por Copilot pode usar checkpoints
+manuais; hooks automáticos exigem tarefa executável própria e evidência do runtime.
 
 ## Comandos e verificações
 
 Nesta entrega: `git diff --check`, revisão de links locais e inspeção dos arquivos referenciados.
 Não executar Maven, scripts PowerShell do harness ou Sonar, conforme isenção exclusivamente Markdown.
+Exemplos de cópia e instalação são conteúdo do guia; não serão executados. Consultar fontes
+oficiais dos agentes e das skills e validar a sintaxe PowerShell em memória, sem invocar os blocos.
 
 No produto: começar por `git status -sb`, `git rev-parse --show-toplevel` e
 `git rev-parse --verify HEAD`. Os comandos de build/teste são os do produto, inspecionados antes
