@@ -65,8 +65,8 @@ Ela permanece apenas como alternativa no roteiro atual.
 - D5: registrar A18–A20 em goal/spec/plano/checklist, antes de redigir o roteiro.
 - D6: criar guia de ensaio, vinculá-lo ao guia de adoção e registrar evidências em goal/plano/todo
   (cinco arquivos). Verificar links e sintaxe dos exemplos sem executá-los.
-- Fluxo: diagnóstico sem Sonar; preparação/baseline conforme estado; incremento já autorizado;
-  agente prepara comando e para; humano executa; humano informa resultado; agente confere e retoma.
+- Na versão D5/D6, o fluxo era: diagnóstico sem Sonar; preparação/baseline; incremento autorizado;
+  agente preparava comando e parava; humano executava e informava resultado; agente retomava.
 - Não introduzir alteração fictícia de produção para testar o fluxo. CLI e VS Code são ensaiados
   separadamente, sem análise concorrente, reset do baseline ou suposição de conversa compartilhada.
 - Lembretes Copilot equivalentes são uma etapa de integração possível. Documentar critérios e como
@@ -233,12 +233,41 @@ O usuário executará os passos e devolverá evidências. Nenhum script, hook ou
 A expressão anterior de excluir hooks do escopo foi esclarecida: configuração equivalente pode
 integrar o objetivo de adoção; esta entrega documental não a implementa nem declara seu ensaio.
 A execução manual não certifica automação. Scripts Sonar continuam disparados explicitamente,
-e retomada neste roteiro depende de uma nova mensagem humana, não de monitoramento automático.
+e a retomada naquela versão dependia de nova mensagem humana. No roteiro vigente, essa passagem
+manual ficou restrita à alternativa pelo desenvolvedor; o fluxo principal recebe a saída da ferramenta.
 
 Verificação: 71 links locais (19 âncoras) válidos em sete documentos; 42 caminhos existentes.
 Os 6 novos blocos PowerShell passaram na análise sintática em memória, sem execução; os 16
 blocos já verificados do guia principal não mudaram. Diff somente Markdown, sem segredo.
 Maven, Sonar, instalação, hooks e ensaio em produto não foram executados. Devolutiva pendente.
+
+## Alinhamento documental D8 — 2026-09-17
+
+D7 registrado em `8b807aa` antes da correção dos guias. O usuário autorizou alinhar todos os
+documentos ao fluxo com execução pelo agente no CLI e no VS Code. Foram corrigidos roteiro,
+guia principal, instruções de exemplo, prompts, matrizes, checklist, README e evidências.
+O histórico D5/D6 foi identificado como substituído, sem apagar decisões ou evidências.
+
+| Critério | Evidência atual | Resultado documental |
+| --- | --- | --- |
+| A13 e A16 | Guia §4.8/5; roteiro §2–4: terminal do agente, permissões, identidade e sessão CLI/VS Code | Conferido |
+| A18 | Roteiro §1–4/9: preparação, prompts, execução supervisionada e devolutiva | Conferido |
+| A19 | Roteiro §4–6: agente aguarda resultado, humano decide, agente registra/ajusta/testa/revalida | Conferido |
+| A20 | Roteiro §7–8: alternativa humana e lembretes independentes do ciclo de execução | Conferido |
+
+A busca nos documentos de orientação encontrou as descrições antigas somente no histórico
+explicitamente substituído ou na alternativa manual. Os demais critérios A01–A17 mantêm seus
+limites e evidências documentais; nenhuma compatibilidade real foi declarada sem ensaio.
+
+Verificação: 72 links locais válidos, incluindo 20 âncoras, em sete documentos; 42 caminhos de
+referência existentes. Os 17 blocos PowerShell do guia e os 7 do roteiro passaram na análise
+sintática em memória, sem execução. As fontes oficiais de execução/permissões e de ambiente/
+sessões do VS Code foram consultadas; `git diff --check` passou.
+
+A preparação do VS Code explica instância existente, restauração de terminais e verificação do
+token no processo efetivo sem exibir seu valor. Nenhum editor foi aberto/configurado, nenhum
+script/hook alterado e nenhum comando do roteiro, Maven ou Sonar foi executado.
+A devolutiva do ensaio e o aceite documental continuam humanos.
 
 ## Checkpoint
 

@@ -28,12 +28,12 @@ Para reconstruir o ambiente, use esta sequência após o diagnóstico e o GO das
 [Sonar existente](#credencial-fonte-e-comandos-do-harness) →
 [verificação](#7-validar-documentar-e-revisar-a-adoção).
 
-Codex possui hooks no template. Copilot CLI e VS Code terão instruções/skills e operação manual
-dos checkpoints; automação equivalente dos hooks continua pendente de implementação e ensaio.
-Este guia documenta instalação e comandos, sem ter executado essas rotas em produto.
-Para testar com o desenvolvedor executando os scripts e o agente aguardando/retomando, siga o
-[roteiro de ensaio Copilot CLI e VS Code](ensaio-manual-copilot.md). Ele também explica a futura
-verificação dos lembretes equivalentes, preservando o comportamento do harness.
+Codex possui hooks no template. Copilot CLI e VS Code podem executar os scripts pela ferramenta
+de terminal, com a sessão preparada e as permissões aplicáveis. O agente aguarda o resultado,
+solicita sua decisão sobre NON_COMPLIANT e realiza os ajustes autorizados antes de revalidar.
+Hooks apenas lembram pendências; sua integração Copilot ainda não foi implementada nem ensaiada.
+Siga o [roteiro supervisionado Copilot CLI e VS Code](ensaio-manual-copilot.md) para testar esse
+ciclo. Execução pelo desenvolvedor é uma alternativa. Nenhuma dessas rotas foi executada nesta entrega.
 
 
 ## 1. Confirmar o alvo e a compatibilidade
@@ -227,7 +227,7 @@ quando houver e ajuste os links. A estrutura de `src/` continua sendo a do produ
 
 Não crie `.github/hooks/` como se já contivesse a integração Sonar para Copilot.
 Ela não existe neste template. A pasta `.codex/hooks/` precisa permanecer no destino mesmo na
-operação manual com Copilot: checkpoint e exportador importam seu módulo por esse caminho.
+execução por Copilot ou pelo desenvolvedor: checkpoint e exportador importam seu módulo por esse caminho.
 Não copie a pasta `.codex/` inteira de uma máquina, pois ela pode conter estado e configuração pessoal.
 
 ### 4.3. Contexto e documentos: origem → destino
@@ -455,7 +455,11 @@ Requisitos em specs/adocao-harness/spec.md; próximo item em tasks/features/adoc
 Use as skills pertinentes de .agents/skills/ e confira seus recursos compartilhados.
 Confirme o GO da fatia antes de alterar código, build, scripts ou hooks.
 Para somente Markdown, não execute Maven nem Sonar.
-Execute o checkpoint Sonar manual após cada incremento executável aprovado.
+Execute o checkpoint Sonar pela ferramenta de terminal após cada incremento executável aprovado.
+Respeite as permissões da ferramenta e aguarde a conclusão; examine a saída e o estado correspondente.
+Em NON_COMPLIANT, apresente evidências e aguarde minha decisão. Registre somente a resposta recebida.
+Depois de ContinuarAjustes, registre a decisão, ajuste, teste e repita o checkpoint dentro do escopo.
+Execução pelo desenvolvedor é alternativa; no fluxo principal você recebe a saída da ferramenta.
 Use a URL e a identidade registradas no plano; não solicite nem imprima token no chat.
 Registre evidências reais; somente o humano aprova, aceita exceções e encerra o goal.
 ```
@@ -477,16 +481,22 @@ invoque, por exemplo, `/spec-driven-development` para uma revisão documental.
 Não copie novamente as skills para `.github/skills/` se já usar a rota comum `.agents/skills/`.
 Fonte: [VS Code — descoberta e uso de skills](https://code.visualstudio.com/docs/agent-customization/agent-skills).
 
+**Execução pelo agente:** CLI e VS Code em modo agente oferecem ferramenta de terminal. O agente
+pode executar o checkpoint autorizado, receber sua saída e continuar a avaliação; não depende
+de hook para isso. Permissão para executar comando, decisão sobre NON_COMPLIANT e aceite final
+são atos diferentes. Fontes: [permissões CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools)
+e [ferramentas VS Code](https://code.visualstudio.com/docs/agents/run/tools).
+
 **Lembretes automáticos:** este template não entrega configuração Sonar nativa para Copilot.
 Os formatos, caminhos e respostas dos hooks devem ser comparados com o runtime escolhido;
 não basta mover `.codex/hooks.json` para `.github/hooks/`. Mesmo quando nomes de eventos ou
 payloads são compatíveis, falta provar que o aviso chega ao agente e que nenhuma decisão
 humana é tomada pelo hook. Consulte a [referência dos hooks Copilot](https://docs.github.com/en/copilot/reference/hooks-reference).
-Copilot CLI e VS Code usam aqui o procedimento de checkpoints manuais.
-No [ensaio com execução humana](ensaio-manual-copilot.md), o agente prepara o comando, aguarda
-sua mensagem com o resultado e retoma a partir da evidência. Configurar lembretes equivalentes
-é uma etapa de integração possível; não significa executar Sonar automaticamente. Se a spec do produto
-exigir lembretes automáticos nos três agentes, registre essa parte como pendente e planeje
+No [ensaio com execução pelo agente](ensaio-manual-copilot.md), o agente acompanha o comando até
+o resultado final e solicita decisão humana somente quando necessária. Na alternativa em que
+o desenvolvedor executa, ele envia uma mensagem com a evidência para o agente retomar.
+Configurar lembretes equivalentes é uma etapa independente; o hook não passa a executar Sonar.
+Se a spec do produto exigir lembretes automáticos nos três agentes, registre essa parte como pendente e planeje
 a implementação/testes dos adapters antes de declarar o harness completo.
 
 **Saída:** matriz completa e lista de adaptações aprováveis. Capacidade faltante não pode ser
@@ -574,22 +584,38 @@ O parâmetro `-CodexCommand` já existe no launcher: ele seleciona o processo fi
 herança/argumentos tem teste com processo sintético; esta entrega não ensaiou o Copilot real.
 O nome do script não configura automaticamente instruções, skills ou hooks do outro agente.
 
-**Copilot no VS Code:** use um terminal PowerShell dedicado para executar os checkpoints manualmente.
-A partir da raiz de P, abra um processo filho protegido usando o mesmo launcher:
+**Copilot no VS Code local:** prepare o editor para que o terminal usado pelo agente herde a
+credencial. Salve o trabalho, desative a persistência de terminais na configuração local
+(`terminal.integrated.enablePersistentSessions`) antes da sessão com token e feche normalmente
+as instâncias existentes. Em PowerShell externo ao editor, na raiz de P:
+
+```powershell
+.\iniciar-codex-com-sonar.ps1 -CodexCommand "code" -CodexArguments @("--new-window", "--wait", ".")
+```
+
+Use Copilot em modo agente com ferramenta de terminal e PowerShell 7 local. Peça ao agente a
+verificação de disponibilidade abaixo no processo que executará o checkpoint. Uma janela nova
+pode reutilizar o ambiente da primeira instância; terminais persistentes podem restaurar seu
+ambiente original. Os passos completos e as fontes oficiais estão no
+[preparo da sessão VS Code](ensaio-manual-copilot.md#copilot-no-vs-code-local).
+A rota precisa ser ensaiada; não houve lançamento de editor ou alteração de configuração nesta entrega.
+
+**Alternativa pelo desenvolvedor**, para qualquer dos agentes: abra um PowerShell filho protegido:
 
 ```powershell
 .\iniciar-codex-com-sonar.ps1 -CodexCommand "pwsh" -CodexArguments @("-NoProfile", "-NoExit")
 ```
 
-Digite os comandos Sonar seguintes **dentro desse PowerShell filho**. O Copilot pode trabalhar no
-editor e receber os resultados sem credencial; não se presume que um VS Code já aberto herdou
-o token. Saia do filho com `exit` quando terminar. Esta rota manual também exige ensaio no
-ambiente do produto; não é integração automática de terminal ou credencial com a extensão.
+Execute os comandos dentro desse filho e envie a evidência ao agente para retomar.
+Essa alternativa é opcional; Copilot CLI e VS Code podem executar os scripts pela própria ferramenta.
+Ao terminar, encerre o filho com `exit`; nas rotas por agente, encerre também seus terminais e a
+sessão/instância iniciada, para não deixar processos com credencial vivos.
 
-Nos três casos, digite o token somente no prompt protegido do launcher, nunca no chat.
+Nas rotas com servidor, digite o token somente no prompt protegido do launcher, nunca no chat.
 Ele fica no ambiente do processo durante a sessão, é herdado pelo filho e o ambiente anterior é
 restaurado ao terminar. Não use arquivo, argumento, atribuição de token em comando, log ou commit.
-A verificação abaixo informa apenas disponibilidade, sem imprimir o valor:
+A verificação abaixo deve ocorrer no processo efetivo da ferramenta, antes da análise;
+autorização de execução não comprova presença da credencial. Ela não imprime o valor:
 
 ```powershell
 if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process"))) {
@@ -615,6 +641,8 @@ $sonarDestino = @{
 ```
 
 Use os três valores em análise, baseline e checkpoints por `@sonarDestino`.
+Ao executar pelo agente, defina o mapa na própria chamada se a ferramenta não preservar
+variáveis entre comandos; não presuma o mesmo shell a cada chamada.
 O parâmetro de URL não é recebido pelo launcher. Ele é informado aos scripts que acessam o servidor.
 O checkpoint não recupera automaticamente a URL/chave dos argumentos usados antes:
 a omissão volta aos defaults e pode causar divergência com o baseline.
@@ -672,12 +700,16 @@ O analisador sozinho apenas envia e confere metadados; não registra um checkpoi
 A política inicial verifica zero issue nova, zero HIGH/BLOCKER/CRITICAL, cobertura mínima de 85%
 e duplicação máxima de 5%. Dívida preexistente não desaparece por ser antiga.
 Se houver `NON_COMPLIANT`, apresente evidências e peça a decisão humana.
-Depois de receber a resposta, registre-a; o prompt abaixo é respondido pelo humano:
+Depois de receber a resposta explícita, o agente registra a decisão pelo script, sujeito à
+permissão da ferramenta. Exemplo **somente se o humano respondeu ContinuarAjustes**:
 
 ```powershell
-$decisaoHumana = Read-Host "Decisão humana recebida: Reprovar, AceitarExcepcionalmente ou ContinuarAjustes"
-.\validar-checkpoint-sonarqube.ps1 -HumanDecision $decisaoHumana
+.\validar-checkpoint-sonarqube.ps1 -HumanDecision ContinuarAjustes
 ```
+
+Use Reprovar ou AceitarExcepcionalmente somente quando essa for a resposta recebida.
+Após ContinuarAjustes, o agente registra, corrige, testa e executa outro checkpoint conforme a
+fatia autorizada. Aprovar a execução do comando não substitui decidir sobre a não conformidade.
 
 `-HumanDecision` atua no estado local existente e não dispara análise. Registre motivo,
 responsável e escopo de exceção. Não reduza a política para obter verde.
@@ -767,8 +799,8 @@ do produto, incluindo versões de agente/extensão. Um item não executado perma
 | Skills | Conferir `SKILL.md`, recursos e `../../references/`; abrir uma skill pelo agente | Caminho da cópia carregada e leitura de recurso compartilhado sem erro |
 | Instruções | Pedir ao agente que identifique goal, spec, próximo item e condição de parada | Referências corretas; nenhum GO inferido |
 | Codex | Conferir skills e hooks de início/parada no runtime | Eventos executados uma vez, lembrete visível e sem decisão automática |
-| Copilot CLI | Conferir skills/instruções; ensaiar sessão segura e checkpoint manual | Herança confirmada sem valor do token, comando/resultado vinculados à revisão |
-| Copilot VS Code | Conferir instruções e menu de skills; usar terminal seguro dedicado | Resultado do checkpoint registrado, sem presumir herança no editor |
+| Copilot CLI | Conferir skills/instruções; agente executa checkpoint em sessão segura | Permissão respeitada, herança sem valor do token, resultado recebido e vinculado ao conteúdo |
+| Copilot VS Code | Conferir instruções/skills e terminal efetivo; agente executa o checkpoint | Credencial disponível sem exibição, comando acompanhado até o fim e resultado recebido pelo agente |
 | Hooks Copilot | Verificar se existe adapter implementado e testado | Nesta referência está ausente; registrar pendência se a spec exigir automação |
 | Build e cobertura | Executar comando aprovado e conferir XML real | Testes, módulos medidos, relatório e consumo pelo scanner |
 | Sonar existente | Executar baseline/checkpoint autorizado com URL/chave explícitas | Servidor/projeto corretos, Compute Engine concluído e estado local correspondente |
@@ -788,9 +820,10 @@ Não exiba variáveis de ambiente nem credenciais.
 ```
 
 Não declare a integração Copilot integralmente automática com base nos testes dos hooks Codex.
-A operação manual pode atender a uma spec que a aceite explicitamente; automação obrigatória
-permanece pendente até implementação e prova. Nesta entrega documental, nenhum desses ensaios
-foi executado em produto.
+A execução autorizada pelo agente é verificada separadamente dos lembretes automáticos.
+A alternativa pelo desenvolvedor deve ser identificada na evidência; não comprova execução
+pelo agente. Hooks exigidos pela spec permanecem pendentes até implementação e prova.
+Nesta entrega documental, nenhum desses ensaios foi executado em produto.
 
 ### Reversão e recuperação
 
@@ -828,7 +861,10 @@ Marque somente fatos observados. Dado ausente vira pendência identificada, não
 - [ ] Preparação verificada commitada antes da primeira análise; HEAD confirmado.
 - [ ] Token somente no processo; fonte offline escolhida pelo humano quando aplicável.
 - [ ] URL/chave/nome Sonar registrados e repetidos nas chamadas; servidor existente preservado.
-- [ ] Herança da credencial e limpeza ensaiadas na rota escolhida sem imprimir o token.
+- [ ] Herança da credencial e limpeza ensaiadas no processo efetivo da ferramenta sem imprimir o token.
+- [ ] Agente executou o comando autorizado, aguardou o término e conferiu a evidência recebida.
+- [ ] Permissão da ferramenta, decisão sobre NON_COMPLIANT e aceite final tratados separadamente.
+- [ ] Ciclo de decisão, ajustes, testes e novo checkpoint exercitado ou marcado não exercitado.
 - [ ] Análise concluída e associada à revisão, fingerprint e escopo corretos.
 - [ ] Dívida preexistente e eventual `NON_COMPLIANT` apresentados com decisão humana.
 - [ ] Hooks anteriores preservados; eventos e isenção Markdown comprovados.
