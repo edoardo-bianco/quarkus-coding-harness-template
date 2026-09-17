@@ -47,12 +47,12 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 ## Critérios de sucesso e pronto
 
 - [ ] Humano revisou o objetivo, limites e critérios da spec.
-- [ ] Guia distingue adoção de produto existente da materialização de um produto novo.
-- [ ] Cada capacidade do harness possui origem, destino, ação e verificação.
-- [ ] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
-- [ ] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
-- [ ] Links, arquivos referenciados e escopo documental foram conferidos.
-- [ ] Evidências documentais foram apresentadas; execução no produto permanece `NÃO_EXECUTADA`.
+- [x] Guia distingue adoção de produto existente da materialização de um produto novo.
+- [x] Cada capacidade do harness possui origem, destino, ação e verificação.
+- [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
+- [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
+- [x] Links, arquivos referenciados e escopo documental foram conferidos.
+- [x] Evidências documentais foram apresentadas; execução no produto permanece `NÃO_EXECUTADA`.
 
 A entrega documental não comprova adoção em um produto. Um piloto real exige identificação do
 repositório, plano próprio, aprovação e GO antes de alterações executáveis.
@@ -61,9 +61,9 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 
 | Evidência | Local | Estado |
 | --- | --- | --- |
-| Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Rascunho para revisão |
+| Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Revisado documentalmente em 2026-09-17; aprovação pendente |
 | Requisitos e critérios | Spec relacionada | Rascunho |
-| Inspeções e revisão documental | Checklist da feature | Registrar fatos observados |
+| Inspeções e revisão documental | Checklist da feature | 48 links locais e 42 caminhos conferidos; matriz A01–A12 no plano |
 | Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; fora desta entrega |
 | Maven/Sonar do template nesta entrega | Não aplicável: somente Markdown | Isenção do AGENTS.md |
 

@@ -1,6 +1,6 @@
 # Checklist — Preparação do guia de adoção
 
-- Estado: `EM_EXECUCAO` — retomada documental autorizada; revisão D1 preparada.
+- Estado: `AGUARDANDO_REVISAO_HUMANA` — preparação documental verificada; rascunhos sem aceite.
 - Goal: [adoção](../../../goals/adocao-harness-existente/goal.md).
 - Spec: [rascunho](../../../specs/adocao-harness-existente/spec.md).
 - Plano: [proposta](plan.md).
@@ -25,10 +25,10 @@
 - [x] Registrar premissas, limitações e divergências encontradas.
 - [x] Criar rascunhos de goal/spec e proposta documental de plano.
 - [x] Preparar guia com matriz de artefatos, sequência, checkpoints e checklist de adoção.
-- [x] Conferir os requisitos A01–A11, links e arquivos referenciados; A12 integra D2.
-- [ ] Revisar escopo e diff, sem segredos nem artefatos gerados.
-- [ ] Adicionar acesso pelo README e publicar os commits documentais.
-- [ ] Apresentar o conjunto para revisão humana.
+- [x] Conferir os requisitos A01–A12, links e arquivos referenciados.
+- [x] Revisar escopo e diff, sem segredos nem artefatos gerados.
+- [x] Adicionar acesso pelo README e publicar os commits documentais.
+- [x] Apresentar o conjunto para revisão humana.
 
 ## Evidências e limitações
 
@@ -40,16 +40,18 @@ análise ou ensaio de adoção. As contagens e métricas do bootstrap não se tr
 Nesta entrega, Markdown é isento de Maven, testes PowerShell, baseline e checkpoint Sonar.
 Revisão D1: 37 links locais válidos nos cinco rascunhos e README; 42 caminhos de artefatos
 existentes. Inspeção de scripts/testes sem execução; matriz A01–A12 no plano.
-Validação documental final após D2: `PENDENTE`.
+Validação documental D2: 48 links locais válidos nos seis documentos e 42 caminhos de referência
+existentes; `git diff --check` e revisão do diff/staging sem alteração executável, segredo ou
+artefato gerado. Commit D1: `945dc12`; navegação e evidências D2 em commit separado na mesma branch.
 
 ## Próximo item autorizado
 
-Concluir D2: adicionar navegação pelo README (A12), conferir novamente links e diff,
-consolidar evidências documentais, publicar os commits e apresentar os rascunhos para revisão humana.
+Aguardar revisão humana do goal, spec, plano e guia. Registrar somente a decisão recebida.
+A preparação documental está verificada; nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.
 
-## Checkpoint de pausa — 2026-09-16
+## Checkpoint de pausa — 2026-09-16 (histórico; retomado em 2026-09-17)
 
 - Humano solicitou parar em ponto seguro e retomar amanhã.
 - Branch de trabalho: `docs/adocao-harness-existente`, criada a partir de `88e68b2`.
