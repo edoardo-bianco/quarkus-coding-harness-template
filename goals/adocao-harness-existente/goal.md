@@ -35,7 +35,8 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 
 - Guia manual e planejamento documental, publicados neste template.
 - Novo goal, spec em rascunho e proposta de etapas, vinculados sem reabrir o bootstrap.
-- Adoção técnica destinada à stack suportada: Java 25, Quarkus LTS e Maven.
+- Adoção em Java/Quarkus/Maven existentes, com diagnóstico e escolha humana de manter ou alterar versões.
+- Separação entre a stack verificada do template e a compatibilidade ainda a verificar no produto.
 - Diagnóstico de estruturas, ferramentas e controles já presentes.
 - Preservação de código, identidade, histórico, decisões e configuração operacional do produto.
 - Identificação das adaptações necessárias antes de aplicar o harness.
@@ -54,7 +55,7 @@ Execução pelo desenvolvedor é alternativa. Hooks apenas lembram; esta entrega
 - Alterar qualquer repositório de produção nesta entrega.
 - Executar instalação, migração, refatoração, análise Sonar, deploy ou ensaio em produto.
 - Criar instalador/gerador, substituir POM ou atualizar versões automaticamente.
-- Implementar suporte para outra stack ou resolver dívida preexistente.
+- Implementar adaptações executáveis para outras versões ou resolver dívida nesta entrega documental.
 - Instalar skills nesta máquina, criar adapters Copilot, mudar scripts ou configurar servidor nesta entrega.
 - Aprovar o goal, a spec, ADRs do produto, merge, release ou configuração GitHub por inferência.
 
@@ -68,6 +69,9 @@ Execução pelo desenvolvedor é alternativa. Hooks apenas lembram; esta entrega
 - [x] Sonar existente com outra URL possui exemplos completos e identidade consistente.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
+- [ ] Agente reconhece versões declaradas e ambiente efetivo, apresenta origens e pede manter ou alterar.
+- [ ] Guia identifica onde ajustar JDK, Quarkus e Maven, incluindo herança, IDE, CI e containers aplicáveis.
+- [ ] Escolha de versões, autorização de aplicação e evidência de compatibilidade permanecem distintas.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
 - [x] Roteiro confere execução pelo agente, decisão humana e ciclo de ajustes em CLI/VS Code;
   execução humana é alternativa e lembretes Copilot possuem verificação separada.
@@ -89,8 +93,11 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 
 ## Dependências, riscos e parada
 
-O repositório piloto ainda não foi informado; isso não impede escrever o guia genérico, mas impede
-declarar sua compatibilidade, comandos de build ou cobertura como verificados.
+O usuário indicou `edoardo-bianco/simtr-documento-assinc`, branch `main`, como candidato.
+A leitura do commit `3ff62495d960936ed334187f57be3d5a21e37e4b` identificou release Java 11,
+Quarkus 2.16.7.Final, Wrapper para Maven 3.8.8 e ausência de `src/test` versionado.
+Isso não verifica o JDK instalado, build, cobertura ou Sonar. Destino local, escolha de versões,
+ambiente de testes e GO de aplicação continuam pendentes.
 
 | Risco | Mitigação |
 | --- | --- |
@@ -114,4 +121,7 @@ a documentação, sem aprovar a entrega anterior nem autorizar instalação.
 
 O usuário autorizou corrigir a documentação para esse fluxo. Isso não é aceite do conjunto,
 GO para executar o ensaio aqui nem autorização de alteração em produto.
+A solicitação seguinte autoriza ajustar o harness documental para reconhecer o ambiente existente,
+perguntar se o humano quer manter ou alterar JDK/Quarkus/Maven e mapear os pontos de configuração.
+Ela não escolhe versões para o candidato, não autoriza upgrade nem comprova suporte à sua stack.
 Aprovação do goal/spec, aceite final e encerramento: `PENDENTES`. Somente o humano decide.

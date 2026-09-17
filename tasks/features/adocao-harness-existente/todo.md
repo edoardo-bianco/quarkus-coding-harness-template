@@ -16,7 +16,8 @@
 | 2026-09-17 | Humano | Explicitar reconstrução manual, skills Addy Osmani, Codex e Copilot CLI/VS Code, com Sonar existente em URL própria | Revisão ampliada; sem instalação nem alteração executável |
 | 2026-09-17 | Humano | Corrigir todos os documentos: execução autorizada pelo agente em CLI/VS Code, decisão humana e ciclo de ajustes | Alinhamento documental; sem execução do ensaio nesta entrega |
 | — | Humano | Aprovação do novo goal/spec/plano | `PENDENTE` |
-| — | Humano | GO para aplicação no produto | `PENDENTE`; produto ainda não indicado |
+| 2026-09-17 | Humano | Reconhecer ambiente existente, perguntar manter/alterar JDK, Quarkus e Maven e mostrar locais de ajuste | D9–D11 documentais; sem escolher versões nem aplicar ao produto |
+| — | Humano | GO para aplicação no produto | `PENDENTE`; candidato `simtr-documento-assinc` indicado; escolha de versões e plano próprio pendentes |
 | — | Humano | Aceite/encerramento deste goal | `PENDENTE` |
 
 ## Preparação
@@ -106,12 +107,20 @@ permanecem somente no histórico substituído ou na alternativa manual. D7: `8b8
 Fluxo principal: agente executa/aguarda/avalia; humano decide; agente registra/ajusta/testa/revalida.
 Somente Markdown; nenhum script, hook, editor, configuração, Maven ou Sonar alterado/executado.
 
+## Reconhecimento do ambiente — D9 a D11
+
+- [x] Registrar pedido humano, candidato inspecionado e requisitos A21–A25 antes das instruções.
+- [ ] Atualizar AGENTS e arquitetura; propor ADR e atualizar índice sem aceitar a própria decisão.
+- [ ] Explicar diagnóstico, escolha manter/alterar e locais de configuração no guia.
+- [ ] Alinhar prompts, ficha de retorno Copilot e navegação README.
+- [ ] Conferir fontes, links, sintaxe, cenários documentais e diff; registrar evidências.
+- [ ] Receber escolha de versões e GO específico para aplicação no candidato.
+
 ## Próximo item autorizado
 
-Apresentar D8 e aguardar revisão documental e devolutiva do ensaio nos dois ambientes.
-Nenhum GO de aplicação, aceite ou encerramento foi dado.
-Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
-fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.
+Executar D10 e D11 documentais e apresentar o conjunto para revisão humana.
+Nenhum GO de aplicação, aceite ou encerramento foi dado. O candidato foi inspecionado por leitura
+remota; não executar o roteiro nele nem escolher suas versões. O checklist reutilizável fica no guia.
 
 ## Checkpoint de pausa — 2026-09-16 (histórico; retomado em 2026-09-17)
 
