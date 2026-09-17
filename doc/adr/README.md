@@ -9,6 +9,7 @@ Leia este índice depois da [arquitetura do harness](../arquitetura/arquitetura-
 | [0003 — Governança do SDLC entre humano e agente](0003-governanca-sdlc-humano-agente.md) | Aceito | Goal, especificação, arquitetura, plano e checklist precedem código; somente humano registra GO, exceção, aceite de ADR e encerramento. | Criar ou alterar instruções do agente, checkpoints, definição de pronto, tasks ou autoridade decisória. |
 | [0004 — SonarQube como checkpoint técnico com decisão humana](0004-sonarqube-checkpoint-decisao-humana.md) | Aceito | Baseline e checkpoints produzem evidência técnica; offline-only é UNVERIFIED, NON_COMPLIANT não reprova sozinho e hooks não substituem a decisão humana. | Alterar hooks, scripts, token, baseline, fingerprint, thresholds, relatórios ou fluxo de exceção. |
 | [0005 — Consistência de dupla escrita com Outbox aplicacional](0005-outbox-aplicacional-dupla-escrita.md) | Aceito | Quando uma decisão exigir banco e broker, agregado e outbox são gravados na mesma transação local e um relay Quarkus publica por polling, sem Debezium, XA ou 2PC. | Introduzir persistência + evento, broker, relay, retry, ack, idempotência, ordenação ou quarentena. |
+| [0006 — Adoção com reconhecimento do ambiente](0006-adocao-ambiente-existente.md) | Proposto | Distingue stack do template e ambiente do produto; exige diagnóstico, escolha humana de manter/alterar JDK/Quarkus/Maven e validação dos controles, sem upgrade implícito. | Adotar o harness em repositório existente, mapear versões ou avaliar compatibilidade. |
 
 ## Ciclo de vida
 

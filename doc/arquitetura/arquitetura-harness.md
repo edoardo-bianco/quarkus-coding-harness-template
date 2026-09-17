@@ -74,6 +74,19 @@ Ferramentas não substituem o humano nos pontos de autoridade. Hooks detectam pe
 - documentos derivados em PDF, PowerPoint ou HTML;
 - decisões de execução específicas do projeto usado como fonte.
 
+### Adoção em produto existente
+
+O [guia de adoção](../guias/adotar-harness-repositorio-existente.md) e o mapa operacional
+[AGENTS.md](../../AGENTS.md#adoção-em-repositório-existente) orientam reconhecimento do ambiente e escolha humana
+de manter ou alterar versões. A política arquitetural está proposta no
+[ADR-0006](../adr/0006-adocao-ambiente-existente.md), com aceite pendente; não modifica o estado
+aceito da fundação descrita acima nem comprova integração executável em outra stack.
+
+A adoção preserva a identidade e o histórico existentes, cria contexto próprio do harness e
+verifica os controles na combinação escolhida. Uma diferença de versão não impõe migração;
+uma incompatibilidade demonstrada exige tratar o controle afetado antes de confiar nele.
+Não existe detector ou instalador novo: reconhecimento e pergunta são instruções para o agente.
+
 ## Arquitetura da aplicação
 
 ### Organização package-by-domain
