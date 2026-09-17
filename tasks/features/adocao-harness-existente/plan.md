@@ -197,6 +197,27 @@ integração com um Sonar externo permanecem verificações do produto; os scrip
 Maven, testes do harness, baseline, API e checkpoint Sonar não foram executados. Nenhum conteúdo
 de `sonar/` foi inspecionado. Publicação documental não autoriza instalação, aplicação ou aceite.
 
+## Roteiro de ensaio humano D6 — 2026-09-17
+
+D5 registrado em `c98f14b`. D6 acrescenta o roteiro de ensaio e sua ligação no guia de adoção.
+O usuário executará os passos e devolverá evidências. Nenhum script, hook ou critério foi alterado.
+
+| Critério | Evidência no roteiro | Resultado documental |
+| --- | --- | --- |
+| A18 | §1–4 e §6–7: ficha, contextos separados, montagem, prompts, comandos e retorno | Conferido |
+| A19 | §3–5: agente termina a resposta, humano executa, informa o resultado e agente retoma | Conferido |
+| A20 | §8: proposta futura de lembretes equivalentes, preservando política e separando ensaios | Conferido |
+
+A expressão anterior de excluir hooks do escopo foi esclarecida: configuração equivalente pode
+integrar o objetivo de adoção; esta entrega documental não a implementa nem declara seu ensaio.
+A execução manual não certifica automação. Scripts Sonar continuam disparados explicitamente,
+e retomada neste roteiro depende de uma nova mensagem humana, não de monitoramento automático.
+
+Verificação: 71 links locais (19 âncoras) válidos em sete documentos; 42 caminhos existentes.
+Os 6 novos blocos PowerShell passaram na análise sintática em memória, sem execução; os 16
+blocos já verificados do guia principal não mudaram. Diff somente Markdown, sem segredo.
+Maven, Sonar, instalação, hooks e ensaio em produto não foram executados. Devolutiva pendente.
+
 ## Checkpoint
 
 Submeter goal/spec/guia ao humano. Não solicitar GO de aplicação antes de existir repositório

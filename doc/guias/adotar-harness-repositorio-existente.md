@@ -31,6 +31,9 @@ Para reconstruir o ambiente, use esta sequência após o diagnóstico e o GO das
 Codex possui hooks no template. Copilot CLI e VS Code terão instruções/skills e operação manual
 dos checkpoints; automação equivalente dos hooks continua pendente de implementação e ensaio.
 Este guia documenta instalação e comandos, sem ter executado essas rotas em produto.
+Para testar com o desenvolvedor executando os scripts e o agente aguardando/retomando, siga o
+[roteiro de ensaio Copilot CLI e VS Code](ensaio-manual-copilot.md). Ele também explica a futura
+verificação dos lembretes equivalentes, preservando o comportamento do harness.
 
 
 ## 1. Confirmar o alvo e a compatibilidade
@@ -479,7 +482,10 @@ Os formatos, caminhos e respostas dos hooks devem ser comparados com o runtime e
 não basta mover `.codex/hooks.json` para `.github/hooks/`. Mesmo quando nomes de eventos ou
 payloads são compatíveis, falta provar que o aviso chega ao agente e que nenhuma decisão
 humana é tomada pelo hook. Consulte a [referência dos hooks Copilot](https://docs.github.com/en/copilot/reference/hooks-reference).
-Copilot CLI e VS Code usam aqui o procedimento de checkpoints manuais. Se a spec do produto
+Copilot CLI e VS Code usam aqui o procedimento de checkpoints manuais.
+No [ensaio com execução humana](ensaio-manual-copilot.md), o agente prepara o comando, aguarda
+sua mensagem com o resultado e retoma a partir da evidência. Configurar lembretes equivalentes
+é uma etapa de integração possível; não significa executar Sonar automaticamente. Se a spec do produto
 exigir lembretes automáticos nos três agentes, registre essa parte como pendente e planeje
 a implementação/testes dos adapters antes de declarar o harness completo.
 
