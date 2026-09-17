@@ -29,7 +29,8 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 | Versão aceita para materialização | Commit `2be35ac`; seguir o guia de materialização |
 
 A implementação e a verificação técnica estão concluídas. O humano registrou `ACEITO` em
-2026-09-16 para a entrega do commit `2be35ac`. O encerramento formal do goal permanece pendente.
+2026-09-16 para a entrega do commit `2be35ac` e, posteriormente, autorizou o encerramento do
+goal na mesma data. O bootstrap está `ENCERRADO`; um próximo goal será definido separadamente.
 O procedimento de materialização foi ensaiado com identidade, goal, histórico e baseline próprios.
 
 A entrega consolida as evidências de 2026-09-16: 26 testes Maven e 11 testes PowerShell verdes;

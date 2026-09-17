@@ -4,7 +4,7 @@
 
 - Estado técnico: concluído
 - Aceite: `ACEITO` pelo humano em 2026-09-16
-- Encerramento: `PENDENTE`
+- Encerramento: `ENCERRADO` por decisão humana em 2026-09-16
 - Responsável pela decisão final: humano
 - Especificação: `specs/template-harness/spec.md`
 - Implementação do bootstrap: [plano](../../tasks/plan.md) e [checklist](../../tasks/todo.md)
@@ -99,7 +99,7 @@ Pronto técnico não encerra este goal. Somente o humano pode registrar `ACEITO`
 | Materialização descartável | Evidências apresentadas; humano autorizou prosseguir ao Incremento 15 em 2026-09-16 | Humano |
 | Verificação integrada e entrega | `ACEITO` em 2026-09-16 após apresentação das evidências do Incremento 15 | Humano |
 | Aceite do goal | `ACEITO` em 2026-09-16 | Humano |
-| Encerramento do goal | `PENDENTE` | Humano |
+| Encerramento do goal | `ENCERRADO` em 2026-09-16, por solicitação explícita | Humano |
 
 ## Evidências consolidadas da entrega
 
@@ -115,8 +115,12 @@ Também registra os limites: execução JVM/Windows, perfil nativo não executad
 no escopo e verificação documental de links locais sem consulta a destinos externos.
 
 O humano respondeu `ACEITO` em 2026-09-16 à entrega apresentada no commit
-`2be35ac8ed4362961a06661d43d781eddc510153`. O aceite está registrado; `ENCERRADO` permanece
-pendente, pois não foi declarado nessa resposta.
+`2be35ac8ed4362961a06661d43d781eddc510153`. O aceite foi registrado no commit `33ab843`.
+Posteriormente, em 2026-09-16, o humano solicitou encerrar este goal e informou que deseja
+adicionar outro depois. Registra-se `ENCERRADO` por essa decisão explícita.
+
+Este goal e suas evidências permanecem como histórico. O próximo objetivo será registrado em
+outro goal quando for informado pelo humano; nenhum novo escopo ou GO foi inferido.
 
 ## Histórico de evidências
 
