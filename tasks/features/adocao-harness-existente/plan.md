@@ -90,6 +90,34 @@ Ela permanece apenas como alternativa no roteiro atual.
   exemplos em memória, revisão do diff exclusivamente Markdown. Não executar o ensaio, Maven/Sonar,
   scripts, instalações ou alterações de configuração nesta entrega.
 
+## Reconhecimento do ambiente e escolha humana — D9 a D11
+
+Pedido humano: reconhecer o ambiente existente e perguntar se deseja manter a configuração
+ou alterar JDK, Quarkus e Maven, mostrando onde ajustar. Autoriza instruções e guias; não é
+escolha de versões, aceite do conjunto nem GO para modificar `simtr-documento-assinc`.
+
+- D9: atualizar goal/spec/plano/todo antes das instruções; critérios A21–A25.
+- D10: ajustar AGENTS e arquitetura, criar ADR proposto e atualizar seu índice (quatro arquivos).
+  Preservar ADR-0001 e o scaffold aceito; diferenciar nova materialização e adoção existente.
+- D11: atualizar guia, ensaio Copilot, README e evidências em goal/plano/todo (seis arquivos para manter roteiro e registros coerentes).
+  Incluir diagnóstico declarado/efetivo, pergunta explícita, matriz de versões e locais de ajuste,
+  caminhos manter/alterar/pendente, limites reais e validação condicionada ao GO do produto.
+- Verificação: fontes oficiais Maven/Quarkus, links/âncoras, análise sintática dos exemplos sem
+  execução e revisão de cenários documentais. Somente Markdown; sem Maven, Sonar ou instalação.
+- Riscos: confundir release com JDK instalado, alterar parent compartilhado, desalinhamento entre
+  BOM/plugin/extensões, Wrapper/distribuição, IDE/CI/container; tratar versão diferente como
+  incompatibilidade comprovada ou presumir que manter versões já valida os controles.
+- Parada: apresentar alterações e ADR proposto para revisão humana; ensaio real permanece pendente.
+
+### Candidato inspecionado somente por leitura
+
+`edoardo-bianco/simtr-documento-assinc`, `main` no commit `3ff62495d960936ed334187f57be3d5a21e37e4b`:
+POM com release 11, Quarkus 2.16.7.Final, um módulo e dependências JUnit/JaCoCo; Wrapper com Maven
+3.8.8; árvore sem `src/test` e sem harness versionado. Fontes: [POM](https://github.com/edoardo-bianco/simtr-documento-assinc/blob/3ff62495d960936ed334187f57be3d5a21e37e4b/pom.xml),
+[Wrapper](https://github.com/edoardo-bianco/simtr-documento-assinc/blob/3ff62495d960936ed334187f57be3d5a21e37e4b/.mvn/wrapper/maven-wrapper.properties)
+e [árvore](https://github.com/edoardo-bianco/simtr-documento-assinc/tree/3ff62495d960936ed334187f57be3d5a21e37e4b).
+Nenhum build, teste ou Sonar foi executado; JDK local e compatibilidade permanecem não verificados.
+
 ## Proposta de execução futura no produto
 
 O guia decompõe o trabalho em diagnóstico, governança, bootstrap técnico, cobertura/baseline,

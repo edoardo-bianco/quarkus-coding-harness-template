@@ -17,12 +17,17 @@ do harness, identificando controles equivalentes já implantados e lacunas que e
 O produto mantém repositório Git, identidade Maven, pacotes, contratos, releases e histórico próprios.
 Não se aplica a criação de histórico novo nem a substituição da aplicação por `sample`.
 
-A adoção técnica nesta versão é limitada a Java 25 + Quarkus LTS + Maven. Outra stack requer
-especificação própria. Mesmo nessa stack, versões, módulos, perfis e caminhos devem ser conferidos;
-o guia não autoriza upgrade. O artefato ensaiado do template usa Quarkus 3.33.3.1 e Maven 3.9.16.
+A adoção começa pelo ambiente Java/Quarkus/Maven do produto, sem impor as versões do template.
+O agente apresenta o diagnóstico e pede escolha explícita entre manter a configuração existente
+ou propor alterações em componentes selecionados. Nenhuma opção é presumida por silêncio.
+Diferença de versão, sozinha, não impede planejar a adoção; incompatibilidade concreta limita
+cada controle afetado até adaptação aprovada e ensaiada. Outra linguagem/build tool exige plano próprio.
+O template continua verificado em Java 25, Quarkus 3.33.3.1 e Maven 3.9.16; essas evidências não
+certificam o produto. Esta entrega altera instruções e documentação, não scripts ou versões reais.
 
-Repo piloto, branch-base, comandos e ambiente de testes: ainda não informados; solicitar quando a
-adoção real for iniciada. Não são bloqueios para elaborar este documento genérico.
+Candidato indicado: `edoardo-bianco/simtr-documento-assinc`, `main`, commit `3ff6249`.
+Inventário remoto: release Java 11, Quarkus 2.16.7.Final, Maven 3.8.8 no Wrapper; ambiente local,
+comandos de teste, escolha de versões e autorização de aplicação ainda não confirmados.
 
 ## Requisitos e critérios de aceitação
 
@@ -48,6 +53,11 @@ adoção real for iniciada. Não são bloqueios para elaborar este documento gen
 | A18 | Fornecer ensaio supervisionado em Copilot CLI e VS Code com execução dos scripts pelo agente: pré-condições, sessão, prompts, permissões e formulário de retorno. |
 | A19 | Descrever o ciclo agente executa/aguarda/avalia; humano decide NON_COMPLIANT; agente registra a resposta, ajusta, testa e repete dentro da autorização. Separar permissão de comando, decisão técnica e aceite final; execução humana é alternativa. |
 | A20 | Preservar scripts, política e autoridade; o ciclo pelo agente independe dos hooks. Lembretes Copilot equivalentes exigem ensaio próprio e não disparam Sonar, bloqueiam nem decidem. |
+| A21 | Antes da cópia, apresentar versões declaradas, origem real, herança/perfis e ambiente efetivo ou NÃO_VERIFICADO; não confundir release Java, JDK de execução e Maven Wrapper. |
+| A22 | Perguntar manter configuração ou alterar componentes selecionados; exigir versões-alvo explícitas e registrar a resposta sem presumir escolha ou GO. |
+| A23 | Mapear arquivos/chaves de JDK, Quarkus e Maven com valores atuais/propostos, BOM/plugin, parent, toolchains, IDE, CI e imagens quando existentes. |
+| A24 | Manter versões permite planejar adaptação dos controles; alterar exige impacto, compatibilidade oficial, plano/GO e validação posterior. Não prometer suporte nem atualizar o legado implicitamente. |
+| A25 | Alinhar AGENTS, guias, prompt Copilot, README e registros; conferir caminhos manter/alterar/indefinido e o exemplo Java 11/Quarkus 2/Maven 3.8.8 sem executar o produto. |
 
 Revisão ampliada solicitada em 2026-09-17: A03, A08 e A10 exigem detalhamento operacional;
 A13–A17 cobrem Codex, Copilot CLI/VS Code, skills e Sonar existente. Aprovação humana pendente.
@@ -83,6 +93,8 @@ dos perfis e efeitos. O guia inclui comandos do harness somente após integraç�
 - `doc/guias/ensaio-manual-copilot.md`: roteiro supervisionado, execução pelo agente e devolutiva;
   nome do arquivo preservado para manter links existentes.
 - `README.md`: acesso ao novo goal e guia.
+- `AGENTS.md`: reconhecimento e escolha de versões antes da adoção.
+- Arquitetura e índice de ADRs: distinguir template, adoção existente e proposta de decisão própria.
 
 Usar português, passos manuais e comandos condicionados a pré-requisitos. Exemplos de destinos
 são formatos, não escolhas para o produto. Não há código de produção novo nem mudança de estilo Java.
