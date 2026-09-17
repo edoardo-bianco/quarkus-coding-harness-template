@@ -2,7 +2,7 @@
 
 Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanhados por um harness de desenvolvimento assistido por agente, arquitetura DDD hexagonal pragmática, qualidade SonarQube e checkpoints humanos.
 
-## Estado atual
+## Estado do bootstrap
 
 | Item | Estado |
 | --- | --- |
@@ -30,7 +30,7 @@ Template interno para iniciar projetos Java 25 com Quarkus LTS e Maven, acompanh
 
 A implementação e a verificação técnica estão concluídas. O humano registrou `ACEITO` em
 2026-09-16 para a entrega do commit `2be35ac` e, posteriormente, autorizou o encerramento do
-goal na mesma data. O bootstrap está `ENCERRADO`; um próximo goal será definido separadamente.
+goal na mesma data. O bootstrap está `ENCERRADO`; a proposta de adoção abaixo possui goal próprio.
 O procedimento de materialização foi ensaiado com identidade, goal, histórico e baseline próprios.
 
 A entrega consolida as evidências de 2026-09-16: 26 testes Maven e 11 testes PowerShell verdes;
@@ -39,27 +39,45 @@ seis issues preexistentes não bloqueantes. No Incremento 15, somente Markdown m
 fingerprint executável foi conferido contra essas evidências, sem nova execução Maven ou Sonar.
 A rastreabilidade por critério e os limites da verificação estão no [plano](tasks/plan.md).
 
+## Proposta em revisão: adoção em repositório existente
+
+O [guia manual de adoção](doc/guias/adotar-harness-repositorio-existente.md) orienta o diagnóstico
+e a integração gradual do harness em um produto existente, preservando identidade, código,
+contratos e histórico. A proposta inclui [goal](goals/adocao-harness-existente/goal.md),
+[spec](specs/adocao-harness-existente/spec.md), [plano](tasks/features/adocao-harness-existente/plan.md)
+e [checklist](tasks/features/adocao-harness-existente/todo.md).
+
+O conjunto está em `RASCUNHO PARA REVISÃO`, com aprovação humana pendente. A revisão foi documental;
+nenhuma adoção em produto foi executada. A aplicação exige inventário e GO específicos.
+
 ## Comece por aqui
 
 ### Para humanos
 
-Leia o [guia Por onde começar](doc/guias/iniciar-novo-projeto.md). Ele explica como contribuir com o template, quais dados fornecer para um projeto derivado e onde o agente deve parar.
+Leia o [guia Por onde começar](doc/guias/iniciar-novo-projeto.md) para contribuir com o template
+ou iniciar um projeto novo pelo [procedimento de materialização](doc/guias/materializar-projeto.md).
+Para um produto que já possui código e histórico, consulte a
+[proposta de adoção manual](doc/guias/adotar-harness-repositorio-existente.md).
 
 ### Para agentes
 
-Leia [AGENTS.md](AGENTS.md) e siga a ordem de contexto indicada. O próximo item autorizado está sempre em [tasks/todo.md](tasks/todo.md); um GO não se estende automaticamente ao incremento seguinte.
+Leia [AGENTS.md](AGENTS.md) e siga a ordem de contexto indicada. Para a proposta de adoção, consulte
+o [checklist da feature](tasks/features/adocao-harness-existente/todo.md), que registra o ponto de
+revisão humana. O [checklist do bootstrap](tasks/todo.md) permanece como histórico encerrado.
+Um GO não se estende automaticamente ao incremento seguinte.
 
 ## Mapa do conhecimento
 
-- [Goal do template](goals/template-harness/goal.md): valor, definição de pronto, evidências e parada.
+- [Goal do template](goals/template-harness/goal.md): bootstrap aceito e encerrado, com suas evidências.
+- [Goal de adoção](goals/adocao-harness-existente/goal.md): proposta documental para repositório existente, em revisão.
 - [Guia e template de goal](goals/README.md): criação do objetivo persistente de um projeto ou épico.
 - [Especificação](specs/template-harness/spec.md): escopo e critérios de aceitação.
 - [Guia e template de spec](specs/README.md): requisitos, contratos, testes e limites de uma mudança.
 - [Arquitetura](doc/arquitetura/arquitetura-harness.md): desenho do produto, SDLC e controles.
 - [Índice de ADRs](doc/adr/README.md): decisões aceitas e aplicabilidade.
 - [Guia e templates de plan/todo](tasks/README.md): planejamento e execução por feature.
-- [Plano](tasks/plan.md): dependências, incrementos, verificações e riscos.
-- [Checklist](tasks/todo.md): andamento e próximo checkpoint.
+- [Plano do bootstrap](tasks/plan.md) e [checklist do bootstrap](tasks/todo.md): histórico dos incrementos encerrados.
+- [Plano de adoção](tasks/features/adocao-harness-existente/plan.md) e [checklist de adoção](tasks/features/adocao-harness-existente/todo.md): revisão documental e checkpoint humano pendente.
 - [Materialização](doc/guias/materializar-projeto.md) e [checklist de materialização](doc/guias/checklist-materializacao.md): criação e verificação de um projeto derivado após aceite da versão.
 
 ## Stack e decisões-base

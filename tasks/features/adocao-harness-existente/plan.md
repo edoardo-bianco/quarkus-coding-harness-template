@@ -105,13 +105,31 @@ e transição de baseline offline para local.
 | A09 | §6: fluxo real, fronteiras, sinais e dívida explícita | Conferido |
 | A10 | §1–7 e checklist: ordem, pré-condições, saídas, evidências e reversão | Conferido |
 | A11 | Estado do guia e limites do goal/spec: nenhum ensaio em produto alegado | Conferido |
-| A12 | Navegação no README | Pendente em D2 |
+| A12 | README: proposta em revisão, goal/spec/plano/checklist e distinção da materialização | Conferido em D2 |
 
 A conferência inicial dos cinco rascunhos e do README encontrou 37 links locais válidos e
 42 caminhos de artefatos de referência existentes. Caminhos ilustrativos do produto, estado,
 pacotes e relatórios gerados não são artefatos instalados a verificar nesta entrega.
 Nenhum destino externo foi consultado e nenhum arquivo em `sonar/` foi inspecionado.
 `git diff --check` passou no guia. A validação será repetida após a navegação D2.
+
+## Navegação e verificação documental D2 — 2026-09-17
+
+O README dá acesso ao conjunto em rascunho e ao checklist desta feature, mantendo explícitos
+o aceite e o encerramento do bootstrap. O commit D1 da revisão é `945dc12`; D2 registra
+a navegação e estas evidências em commit separado.
+
+- Os seis documentos possuem 48 links locais válidos; os 42 caminhos de referência existem.
+- `git diff --check` e revisão do diff/staging confirmam escopo exclusivamente Markdown.
+- A revisão conferiu sequência, fronteiras, preservação de contratos/dados, autoridade humana,
+  custo das verificações e adaptação dos testes. Nenhum segredo ou artefato gerado foi adicionado.
+- Goal, spec, plano e guia continuam em rascunho. Aprovação, GO de aplicação, aceite e encerramento
+  permanecem pendentes; nenhuma decisão foi inferida.
+- Maven, testes PowerShell e Sonar não foram executados. Não houve acesso a produto ou ensaio
+  de adoção; a compatibilidade de um futuro piloto permanece `NÃO_VERIFICADA`.
+
+As divergências do fingerprint/Markdown e da narrativa histórica do guia Sonar ficam registradas
+para tarefas futuras; não foram corrigidas no tooling nem nos documentos do bootstrap.
 
 ## Checkpoint
 
