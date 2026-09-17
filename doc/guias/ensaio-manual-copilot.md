@@ -13,6 +13,7 @@ O nome histórico `ensaio-manual-copilot.md` foi preservado para manter os links
 
 | Interação | Efeito |
 | --- | --- |
+| Manter / alterar versões | Define a configuração pretendida; não substitui GO, teste de compatibilidade ou aceite |
 | GO da fatia | Autoriza o escopo de trabalho definido no plano |
 | Permissão da ferramenta para executar script | Permite aquele comando; não aceita seu resultado |
 | Reprovar / AceitarExcepcionalmente / ContinuarAjustes | Decisão humana sobre NON_COMPLIANT; agente registra somente a resposta recebida |
@@ -37,6 +38,8 @@ Ambiente: Copilot CLI / Copilot em modo agente no VS Code
 Versões do agente/editor/extensão:
 Caminho do repositório, branch e HEAD:
 Revisões do template e das skills:
+JDK/release, Quarkus e Maven/Wrapper: declarados, origens e efetivos ou NÃO_VERIFICADO
+Escolha humana manter/alterar: resposta, componentes, alvos ou pendente
 Caminhos do goal, spec, plano e checklist:
 URL Sonar, ProjectKey e ProjectName autorizados (sem credencial):
 Baseline: ausente / READY / OFFLINE_ONLY_READY / UNVERIFIED
@@ -44,6 +47,8 @@ Fatia executável e referência do GO:
 Modo escolhido: execução pelo agente / alternativa pelo desenvolvedor
 ```
 
+Comece pelo [reconhecimento e escolha de versões](adotar-harness-repositorio-existente.md#12-apresentar-o-diagnóstico-e-pedir-a-escolha).
+Se ainda não houver escolha, use o diagnóstico do §3 e aguarde a resposta antes da montagem.
 Confira a [montagem](adotar-harness-repositorio-existente.md#42-árvore-de-destino),
 as [skills e seus recursos](adotar-harness-repositorio-existente.md#46-instalar-manualmente-as-skills-addy-osmani)
 e as [instruções Copilot](adotar-harness-repositorio-existente.md#48-conectar-o-github-copilot-cli-e-o-vs-code).
@@ -122,6 +127,12 @@ não execute Maven/Sonar, não inspecione sonar/ e não configure hooks.
 
 Identifique AGENTS.md, instruções aplicáveis, goal, spec, plano e checklist.
 Informe o próximo item autorizado e os checkpoints.
+Reconheça release Java, JDK do Maven/toolchains, Quarkus BOM/plugin e Maven/Wrapper.
+Mostre os arquivos/chaves e versões declaradas; ambiente não observado é NÃO_VERIFICADO.
+Inclua parent/perfis, IDE, CI e imagens quando existirem. Não execute comandos de versão Maven agora.
+Pergunte se quero manter a configuração ou alterar componentes; respeite uma escolha já registrada.
+Se eu quiser alterar, peça os alvos faltantes e mostre locais de ajuste, impacto e validação.
+Não copie versões do template nem altere arquivos antes do plano/GO aplicável.
 Abra uma skill pertinente ao plano, informe sua origem e confira um recurso compartilhado.
 Registre ausências sem instalar nem corrigir por suposição.
 
@@ -130,7 +141,8 @@ aguardar o resultado e analisá-lo. Eu autorizo comandos quando solicitado e dec
 NON_COMPLIANT. Não exiba credenciais nem deduza uma decisão humana.
 ```
 
-**Esperado:** referências reais, skill/recurso legíveis, item autorizado correto e nenhum build.
+**Esperado:** referências reais, diagnóstico de versões com origens, escolha solicitada ou já
+registrada, skill/recurso legíveis, item autorizado correto e nenhum build.
 Se esta for uma rodada documental, encerre e devolva a ficha do §9.
 
 Para a etapa executável com servidor e sessão do §2 preparada, peça que **o agente execute pela
@@ -318,6 +330,10 @@ Devolva um registro por ambiente:
 ```text
 Ambiente e versões:
 Branch/HEAD e revisões do template/skills:
+Versões declaradas / efetivas / origens / pendências:
+Agente perguntou manter/alterar ou respeitou decisão anterior: sim/não
+Minha escolha, componentes e alvos; arquivos de ajuste apresentados:
+Preservou versões não autorizadas e distinguiu escolha de GO: sim/não/não exercitado
 Etapa alcançada e tarefa autorizada:
 Instruções, skill e recurso encontrados: sim/não + caminhos
 Credencial disponível no processo da ferramenta, sem exibição: sim/não/não verificado

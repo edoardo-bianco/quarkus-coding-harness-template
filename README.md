@@ -47,8 +47,12 @@ contratos e histórico. A proposta inclui [goal](goals/adocao-harness-existente/
 [spec](specs/adocao-harness-existente/spec.md), [plano](tasks/features/adocao-harness-existente/plan.md)
 e [checklist](tasks/features/adocao-harness-existente/todo.md).
 
-Para reconstruir manualmente o ambiente, consulte
-[pastas e árvore de destino](doc/guias/adotar-harness-repositorio-existente.md#42-árvore-de-destino),
+Para reconstruir manualmente o ambiente, comece pelo
+[diagnóstico e escolha de versões](doc/guias/adotar-harness-repositorio-existente.md#12-apresentar-o-diagnóstico-e-pedir-a-escolha)
+e pelo [mapa de ajustes de JDK, Quarkus e Maven](doc/guias/adotar-harness-repositorio-existente.md#13-onde-ajustar-jdk-quarkus-e-maven).
+O agente pergunta se você quer manter a configuração existente ou alterar componentes específicos;
+compatibilidade é verificada no produto, sem impor as versões do template.
+Depois consulte [pastas e árvore de destino](doc/guias/adotar-harness-repositorio-existente.md#42-árvore-de-destino),
 [scripts a copiar](doc/guias/adotar-harness-repositorio-existente.md#44-scripts-e-hooks-origem--destino),
 [skills Addy Osmani](doc/guias/adotar-harness-repositorio-existente.md#46-instalar-manualmente-as-skills-addy-osmani),
 [Codex](doc/guias/adotar-harness-repositorio-existente.md#47-conectar-o-codex),
@@ -164,7 +168,10 @@ Regras centrais:
 
 Este repositório será configurado como template GitHub somente após atingir sua definição de pronto e receber aceite humano. Um projeto derivado deverá substituir identidade Maven e pacote-base, criar goal e histórico próprios e não transportar baseline, estado Sonar ou histórico do bootstrap.
 
-Tecnologias diferentes de Java 25 + Quarkus LTS + Maven não são suportadas por esta primeira versão.
+A materialização de projetos novos usa a fundação Java 25 + Quarkus LTS + Maven verificada neste
+template. Para adoção em produto existente, o agente reconhece o ambiente e pede manter/alterar
+versões; o [ADR-0006](doc/adr/0006-adocao-ambiente-existente.md) está Proposto e os controles precisam
+ser validados na combinação escolhida. Este fluxo não declara suporte universal.
 
 ## Privacidade
 

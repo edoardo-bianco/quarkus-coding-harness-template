@@ -52,15 +52,16 @@ Antes de modificar arquivos, registre no plano de adoção do produto:
 | Objetivo | Benefício da adoção, capacidades faltantes, critérios de pronto e fora de escopo |
 | Permissões | Quem aprova mudanças, uso do servidor Sonar, branch, push e merge |
 
-Esta versão suporta adoção técnica em **Java 25 + Quarkus LTS + Maven**, com scripts PowerShell.
-A referência foi verificada em Java 25, Quarkus 3.33.3.1, Maven Wrapper 3.9.16 e Windows.
-Não é garantia de compatibilidade com outro patch, sistema operacional ou layout.
+A adoção reconhece o ambiente **Java/Quarkus/Maven do produto** e pede escolha humana de
+manter ou alterar versões antes da cópia. A referência do template foi verificada em Java 25,
+Quarkus 3.33.3.1, Maven Wrapper 3.9.16 e Windows; ela não impõe upgrade ao produto nem garante
+compatibilidade com outra combinação. Scripts continuam PowerShell, sujeitos à validação real.
 
-Se a stack divergir, pare a integração executável e registre a incompatibilidade.
-Mudança de versão ou tecnologia precisa de spec e GO próprios; não atualize o produto para
-encaixá-lo no template. Documentar o diagnóstico não equivale a suporte técnico para outra stack.
+Diferença de versão, por si só, não impede o planejamento. Incompatibilidade demonstrada limita
+o controle afetado até adaptação aprovada; outra linguagem/build tool exige planejamento próprio.
+A proposta arquitetural está no [ADR-0006](../adr/0006-adocao-ambiente-existente.md), ainda Proposto.
 
-### Levantamento manual
+### 1.1. Levantamento manual
 
 Na raiz confirmada do produto, comandos iniciais de leitura:
 
@@ -77,15 +78,138 @@ Inspecione URLs dos remotos localmente sem transportar credenciais embutidas par
 Leia instruções vigentes, POMs, configuração, pipelines e testes relacionados ao fluxo piloto.
 Não execute indiscriminadamente scripts encontrados no repositório.
 
-Confirme disponibilidade de Git, JDK 25, PowerShell 7 e Maven Wrapper. O launcher exige que o
+Confirme disponibilidade de Git, PowerShell 7, JDK compatível com a escolha humana e Maven Wrapper. O launcher exige que o
 comando do agente escolhido esteja instalado e autenticado. Para Sonar já instalado, confirme
 URL, projeto e acesso a partir da máquina de desenvolvimento; Docker só é pré-requisito se você
 escolher hospedar uma instância local em container. Preserve instâncias/volumes existentes.
 Instalação ausente é pré-requisito pendente, não justificativa para instalar versões arbitrárias.
 Aprovar versão/recursos da instância e sua criação é uma tarefa operacional anterior à análise.
 
-**Saída:** inventário real, lacunas e incompatibilidades. Sem alvo informado, esta etapa permanece
-`NÃO_EXECUTADA`.
+**Saída:** inventário real, lacunas, origem das versões e escolha humana registrada. Sem evidência
+do ambiente efetivo, esse campo permanece `NÃO_VERIFICADO`; sem escolha, a integração aguarda.
+
+### 1.2. Apresentar o diagnóstico e pedir a escolha
+
+Antes de copiar arquivos, o agente entrega uma tabela preenchida com evidências:
+
+| Componente | Configuração declarada | Onde é definida | Ambiente efetivo | Estado |
+| --- | --- | --- | --- | --- |
+| Alvo Java de compilação | Valor de release ou source/target | POM/parent/perfil e chave encontrados | Não representa JDK instalado | Confirmado ou pendente |
+| JDK que executa Maven / toolchain | Requisito encontrado | Ambiente, toolchains e regras do build | Versão observada no processo real ou NÃO_VERIFICADO | Confirmado ou pendente |
+| Quarkus | BOM e versão do plugin | Propriedade, parent ou valor literal encontrados | Dependências resolvidas ainda a verificar | Confirmado ou pendente |
+| Maven / Wrapper | Distribuição e versão do Wrapper, separadas | Arquivos reais em `.mvn/wrapper/` | Maven do Wrapper ou NÃO_VERIFICADO | Confirmado ou pendente |
+
+Confirme também IDE, CI, imagens, extensões, perfis e módulos aplicáveis. Não invente arquivos
+ausentes nem conclua que o ambiente local coincide com a configuração versionada.
+Não leia indiscriminadamente configurações pessoais ou variáveis de ambiente; registre somente
+dados de versão necessários, sem credenciais.
+
+O agente deve perguntar, mostrando antes a tabela:
+
+> Identifiquei estas versões e estas pendências. Deseja **manter a configuração existente**
+> e integrar o harness, ou **alterar JDK, Quarkus e/ou Maven**?
+> Se deseja alterar, indique os componentes e as versões-alvo; posso preparar opções antes da escolha.
+
+- **Manter:** registrar a resposta e preservar as versões. Planejar os controles nessa combinação,
+  apontando o que depende de ensaio ou adaptação; manter não significa compatibilidade comprovada.
+- **Alterar:** registrar os componentes escolhidos. Solicitar apenas os alvos ainda ausentes;
+  se o usuário pedir recomendação, consultar fontes oficiais e apresentar opções/impactos antes
+  da decisão. Componentes não selecionados permanecem como estão, salvo nova escolha explícita.
+- **Ainda não decidiu:** continuar somente leituras independentes. A cópia, instalação e mudanças
+  que dependam da escolha aguardam resposta; silêncio não significa “manter”.
+- **Decisão já registrada:** reutilizar a resposta válida para este produto; não perguntar novamente.
+  Nova evidência que torne a combinação inviável exige explicar o conflito antes de uma nova decisão.
+
+Escolha de versões, GO de aplicação, permissão para executar um comando e aceite final são
+registros distintos. “Alterar Quarkus” não autoriza atualizar também JDK ou Maven por suposição.
+
+### 1.3. Onde ajustar JDK, Quarkus e Maven
+
+Preencha esta matriz com os **caminhos realmente encontrados**. Ela orienta a proposta de diff;
+não é instrução para substituir o POM ou copiar o Wrapper do template.
+
+| Componente | Locais a inspecionar | Ajuste a propor somente se escolhido |
+| --- | --- | --- |
+| Alvo Java | `pom.xml`, POM pai e módulos/perfis; `maven.compiler.release`, ou `maven.compiler.source/target`, ou configuração de `maven-compiler-plugin` | Alterar a fonte que efetivamente governa o build; conferir plugins e regras Enforcer existentes. Não adicionar propriedades concorrentes nem mudar um parent compartilhado fora do escopo. |
+| JDK de execução/compilação | `JAVA_HOME`/resolução de `java`, toolchains Maven e configuração de plugins; `~/.m2/toolchains.xml` quando usado | Selecionar/instalar o JDK aprovado no ambiente correspondente e ajustar a seleção aplicável. Alterar release no POM não instala nem seleciona o JDK. |
+| Quarkus | Propriedades como `quarkus.platform.version`; BOM importado em `dependencyManagement`; `quarkus-maven-plugin`; parent/perfis, BOMs adicionais e extensões | Alinhar plataforma e plugin conforme a versão escolhida e conferir extensões/BOMs associados. Mudança de linha pode exigir migração de código/configuração, com plano próprio. |
+| Distribuição Maven | `.mvn/wrapper/maven-wrapper.properties`: `distributionUrl` e checksum quando presente | Apontar para a distribuição aprovada; atualizar `distributionSha256Sum` correspondente quando usado, sem remover verificação para contornar falha. `mvn` instalado globalmente não substitui o Maven selecionado por `mvnw`. |
+| Versão do Wrapper | `wrapperVersion`/`wrapperUrl`/`wrapperSha256Sum` quando existentes, `mvnw`, `mvnw.cmd` e arquivos auxiliares | Manter o Wrapper existente salvo necessidade demonstrada; sua atualização é diferente da atualização da distribuição Maven. Preservar o tipo e revisar o conjunto gerado se houver regeneração aprovada. |
+| IDE e CI | Configuração do projeto/IDE, `.vscode/settings.json` quando existente, workflows, `Jenkinsfile` e imagens dos jobs | Conferir JDK e Maven efetivos do build. Runtime da extensão Java da IDE pode ser diferente do JDK do produto; não alterar configuração pessoal global por suposição. |
+| Containers e execução | `Dockerfile*`, `src/main/docker/`, devcontainer e manifests quando existentes | Conferir versões das imagens de build e execução, inclusive native quando aplicável; ajustar somente as utilizadas e autorizadas. |
+
+Herança e perfis podem mudar o valor efetivo. Se a leitura não resolver a origem, marque a lacuna;
+comandos Maven para resolver configuração exigem inspeção prévia e autorização da etapa executável.
+Não imprima um POM efetivo ou configurações pessoais completos se puderem conter credenciais.
+
+Fundamentos: [release do compilador](https://maven.apache.org/plugins/maven-compiler-plugin/examples/set-compiler-release.html),
+[toolchains Maven](https://maven.apache.org/guides/mini/guide-using-toolchains.html),
+[distribuição e checksums do Wrapper](https://maven.apache.org/tools/wrapper/),
+[plataforma e tooling Quarkus](https://quarkus.io/guides/maven-tooling/) e
+[migração Quarkus](https://quarkus.io/guides/update-quarkus/).
+As fontes explicam os mecanismos; os requisitos da versão-alvo precisam ser conferidos quando escolhida.
+
+### 1.4. Registrar a escolha e validar a combinação
+
+No plano do produto, registre:
+
+```text
+Repositório / branch / HEAD:
+Diagnóstico declarado e ambiente efetivo (ou NÃO_VERIFICADO):
+Resposta humana: manter / alterar componentes / pendente
+JDK do Maven / toolchain / release Java: atual -> proposto ou mantido
+Quarkus BOM / plugin: atual -> proposto ou mantido
+Maven distribuição / Wrapper: atual -> proposto ou mantido
+Arquivos/chaves a alterar, origem herdada e impacto:
+IDE / CI / imagens envolvidas:
+Fontes de compatibilidade e lacunas:
+Plano de verificação, reversão e referência do GO:
+```
+
+Para **manter**, integre por diff somente os controles aprovados e compatíveis com o ambiente.
+Se uma dependência de teste ou scanner não funcionar nessa combinação, registre o controle afetado
+e proponha adaptação; não atualize a aplicação nem reduza critérios de qualidade automaticamente.
+
+Para **alterar**, apresente primeiro a proposta concreta de versões, arquivos, efeitos, testes
+e reversão. Após GO e baseline aplicável, execute a fatia aprovada. Mudança de linha Quarkus não se
+resume à troca de um número: confira o caminho oficial de migração e as integrações do produto.
+
+Na etapa executável autorizada, revise Wrapper, `.mvn/extensions.xml`, configurações Maven,
+plugins/perfis e seus efeitos antes de usar comandos. O Wrapper pode baixar componentes mesmo
+ao consultar sua versão. Então confira, no terminal efetivamente usado pelo agente:
+
+```powershell
+java -version
+javac -version
+.\mvnw.cmd --version
+```
+
+Use esses comandos somente quando presentes e autorizados; em POSIX, o equivalente é `./mvnw --version`.
+A saída do Maven identifica seu JDK, mas não prova por si só a seleção de uma toolchain de compilação.
+Compare o resultado com o diagnóstico e a escolha humana. Depois execute o build/testes aprovados
+do produto, confira o XML de cobertura e o checkpoint Sonar com URL/identidade próprios.
+Registre resultado real por controle; falha de build, ausência de testes/relatório ou falta de acesso
+não são aprovação. Esses comandos não são executados na rodada exclusivamente documental.
+
+### 1.5. Exemplo de diagnóstico do candidato
+
+A leitura do [POM de simtr-documento-assinc](https://github.com/edoardo-bianco/simtr-documento-assinc/blob/3ff62495d960936ed334187f57be3d5a21e37e4b/pom.xml)
+e do [Wrapper](https://github.com/edoardo-bianco/simtr-documento-assinc/blob/3ff62495d960936ed334187f57be3d5a21e37e4b/.mvn/wrapper/maven-wrapper.properties),
+no commit `3ff6249`, permite apresentar:
+
+| Componente | Valor declarado | Local |
+| --- | --- | --- |
+| Alvo Java | 11 | `pom.xml` → `maven.compiler.release` |
+| Quarkus | 2.16.7.Final | `pom.xml` → `quarkus.platform.version`, usada pelos BOMs Quarkus/Camel e pelo plugin Quarkus |
+| Maven | 3.8.8 | `.mvn/wrapper/maven-wrapper.properties` → `distributionUrl` |
+| Wrapper | 3.2.0 | Mesmo arquivo → `wrapperUrl` |
+| JDK efetivo | NÃO_VERIFICADO | Exige evidência do ambiente que executará o build |
+
+O agente deve apresentar a escolha do §1.2. Se o humano responder “manter”, o plano conserva
+essas versões e verifica a integração. Se responder “alterar”, o agente pede os alvos faltantes
+e prepara a matriz antes do GO. Nenhuma dessas respostas foi dada para esse candidato nesta entrega.
+A ausência de `src/test` na árvore inspecionada também precisa entrar no plano; dependências
+JUnit/JaCoCo no POM não comprovam cobertura. Nenhum build ou ensaio desse produto foi executado.
 
 ## 2. Preservar o produto e registrar o estado anterior
 
@@ -453,6 +577,10 @@ Leia AGENTS.md na raiz e siga as instruções aplicáveis ao arquivo trabalhado.
 O goal de adoção está em goals/adocao-harness/goal.md.
 Requisitos em specs/adocao-harness/spec.md; próximo item em tasks/features/adocao-harness/todo.md.
 Use as skills pertinentes de .agents/skills/ e confira seus recursos compartilhados.
+Antes da adoção, reconheça JDK/release, Quarkus, Maven/Wrapper e seus arquivos de configuração.
+Apresente valores declarados e efetivos ou NÃO_VERIFICADO; pergunte manter ou alterar componentes.
+Respeite a escolha já registrada; peça versões-alvo ausentes e mostre arquivos/chaves e impacto.
+Não imponha versões do template nem prometa compatibilidade sem ensaio.
 Confirme o GO da fatia antes de alterar código, build, scripts ou hooks.
 Para somente Markdown, não execute Maven nem Sonar.
 Execute o checkpoint Sonar pela ferramenta de terminal após cada incremento executável aprovado.
@@ -842,7 +970,10 @@ Marque somente fatos observados. Dado ausente vira pendência identificada, não
 
 - [ ] Responsável, repo, branch-base e revisão anterior confirmados.
 - [ ] Trabalho local existente preservado e branch de adoção isolada.
-- [ ] Compatibilidade de stack, módulos, caminhos e ferramentas diagnosticada.
+- [ ] Versões declaradas e efetivas, módulos, caminhos, herança/perfis e ferramentas diagnosticados.
+- [ ] Escolha humana manter/alterar registrada, com componentes e versões-alvo definidos quando aplicável.
+- [ ] Arquivos/chaves, impacto, fontes de compatibilidade e verificações das versões mapeados.
+- [ ] Controles verificados na combinação escolhida; limitações pendentes explícitas.
 - [ ] Revisões H/S e inventário de cópia registrados; pastas ocultas incluídas e colisões resolvidas.
 - [ ] Skills e recursos compartilhados instalados no escopo escolhido, com licença e origem.
 - [ ] Codex, Copilot CLI e/ou VS Code reconheceram as instruções e skills próprias.

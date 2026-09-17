@@ -297,7 +297,41 @@ token no processo efetivo sem exibir seu valor. Nenhum editor foi aberto/configu
 script/hook alterado e nenhum comando do roteiro, Maven ou Sonar foi executado.
 A devolutiva do ensaio e o aceite documental continuam humanos.
 
+## Reconhecimento do ambiente D10/D11 — 2026-09-17
+
+D9 registrado em `f0a8ee6`; D10 em `42afd20`. AGENTS passou a orientar o reconhecimento e a
+escolha humana; arquitetura/índice distinguem a adoção do scaffold e o ADR-0006 permanece Proposto.
+D11 alinha guia, prompt e ficha Copilot, README e evidências. Nenhuma versão executável mudou.
+
+| Critério | Evidência documental | Resultado |
+| --- | --- | --- |
+| A21 | Guia §1.1–1.2/1.5 e AGENTS: declarado/efetivo, origem, herança e lacunas | Conferido no texto |
+| A22 | Guia §1.2/1.4 e prompt Copilot §3: manter/alterar, alvos faltantes e resposta prévia | Conferido no texto |
+| A23 | Guia §1.3: matriz de POM/parent, JDK/toolchains, BOM/plugin, Wrapper, IDE/CI/imagens | Conferido no texto |
+| A24 | Guia §1.2/1.4, AGENTS e ADR proposto: versão não imposta, GO e validação por controle | Conferido no texto |
+| A25 | Guias, README e instruções alinhados; cenários abaixo | Conferido no texto |
+
+Revisão de cenários, sem execução de agente ou produto:
+
+| Cenário | Comportamento exigido pelo texto |
+| --- | --- |
+| Manter Java 11 / Quarkus 2.16.7 / Maven 3.8.8 | Preservar versões; planejar e ensaiar controles, sem declarar compatibilidade pronta |
+| Alterar apenas Quarkus, sem informar alvo | Pedir alvo ou preparar opções; não atualizar também JDK/Maven por suposição |
+| Alvos definidos, mas sem GO de aplicação | Apresentar matriz/impacto/plano; não editar arquivos executáveis |
+| Sem resposta | Prosseguir só com leituras independentes; integração aguarda |
+| Escolha já registrada na sessão | Respeitar a resposta sem repetir a pergunta |
+| POM declara release 11, JDK efetivo desconhecido ou divergente | Separar os valores e registrar lacuna/conflito; não inferir JDK nem aplicar correção automática |
+
+Verificação: 11 documentos, 99 links locais válidos (25 âncoras), 42 caminhos de referência.
+Os 18 blocos PowerShell do guia e os 7 do ensaio passaram na análise sintática em memória.
+Fontes oficiais Maven/Quarkus consultadas para release, toolchains, plataforma, migração e Wrapper.
+Revisão de diff e `git diff --check` sem erro; somente Markdown, sem segredo ou artefato gerado.
+
+O POM, Wrapper, scripts, hooks e testes do template não foram alterados. Maven, Sonar, instalação
+e ensaio em produto não foram executados. O candidato permanece com escolha de versões/GO pendentes;
+o ensaio nos agentes e o aceite documental/arquitetural continuam dependentes do humano.
+
 ## Checkpoint
 
-Submeter goal/spec/guia ao humano. Não solicitar GO de aplicação antes de existir repositório
+Submeter goal/spec/guia e ADR-0006 proposto ao humano. Não solicitar GO de aplicação antes de existir repositório
 piloto, inventário e plano específico revisável. Aceite e encerramento do novo goal permanecem pendentes.
