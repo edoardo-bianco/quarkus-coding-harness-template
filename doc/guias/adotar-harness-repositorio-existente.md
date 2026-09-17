@@ -129,7 +129,13 @@ plano e GO da primeira fatia executável. A leitura deste guia não concede esse
 
 Classifique cada item: já atende / adaptar / criar / não aplicável com justificativa / bloqueado.
 
-| Capacidade e origem no template | Ação manual no produto | Verificação |
+Os caminhos abaixo são relativos à raiz do template. Salvo os destinos documentais acordados na
+etapa 3, mantenha esses mesmos caminhos no produto e integre o conteúdo existente por diff.
+POM/Wrapper permanecem em seus locais atuais; testes Java vão para os módulos e pacotes reais;
+`sample` não tem destino de cópia. Se o layout exigir mover scripts ou testes PowerShell,
+especifique a adaptação dos caminhos internos antes da integração.
+
+| Capacidade e origem no template | Ação e destino no produto | Verificação |
 | --- | --- | --- |
 | `AGENTS.md` e README | Integrar instruções e navegação sem apagar conteúdo do produto | Links, autoridade e comandos coerentes |
 | `goals/templates/`, `specs/templates/`, `tasks/templates/` e seus README | Usar estrutura para novos artefatos; adaptar caminhos e manter templates separados de registros ativos | Artefatos ativos sem campos fictícios ou aceite herdado |
@@ -159,6 +165,10 @@ nem reescreva o histórico automaticamente.
 - O fingerprint atual varre `src/`, `.mvn/`, `.codex/hooks/`, `test/powershell/`, arquivos
   POM/Wrapper/hooks.json da raiz e scripts `*.ps1` da raiz. Não cobre automaticamente
   `modulo-a/src/`, outros POMs, CI YAML ou todos os arquivos executáveis de um produto.
+- Dentro dos diretórios monitorados, a função inclui todos os arquivos, inclusive `.md`.
+  O teste documental atual cobre README na raiz e Markdown em `doc/`; não comprova isenção
+  em qualquer caminho. A isenção do AGENTS continua válida: registre eventual lembrete indevido
+  e planeje a correção com regressão, sem executar Sonar só para satisfazer o hook.
 - Portanto, não habilite o lembrete como prova de cobertura completa em um layout diferente.
   Especifique os caminhos necessários e teste que alteração em cada módulo/controle relevante muda
   o hash, e que Markdown permanece isento. Essa adaptação é código e exige GO e regressão.
@@ -176,6 +186,15 @@ nem reescreva o histórico automaticamente.
   como prova de adequação do produto; revise aplicabilidade e escreva regressões do contrato real.
 - Não elimine instrumentação válida para satisfazer uma asserção copiada. Confirme a estratégia
   de cobertura existente e evite instrumentação duplicada ou exclusão de produção para elevar métricas.
+
+Na seleção dos testes PowerShell, relacione cada controle à sua referência: launcher a
+`SonarSecretHandlingTest.ps1`; analisador a `AnalisarSonarQubeTest.ps1`; avaliação/estado a
+`SonarQualityApiTest.ps1`, `SonarQualityGateTest.ps1`, `SonarHumanDecisionFlowTest.ps1` e
+`SonarOfflineOnlyBaselineTest.ps1`; hooks a `SonarAgentHooksTest.ps1` e
+`SonarDocumentationOnlyFlowTest.ps1`; exportação a `ExportarRelatoriosSonarQubeTest.ps1`.
+Todos estão em [test/powershell/](../../test/powershell/).
+As referências Java estão nos testes de [arquitetura](../../src/test/java/template/harness/architecture/)
+e [observabilidade](../../src/test/java/template/harness/observability/).
 
 **Saída:** matriz completa e lista de adaptações aprováveis. Capacidade faltante não pode ser
 marcada como instalada só porque seu arquivo foi copiado.
@@ -226,14 +245,16 @@ Não inicie análise em paralelo ao commit.
 ### Credencial, fonte e comandos do harness
 
 Esta etapa só começa depois de integrar/revisar os scripts e confirmar o build e seus efeitos.
-No ambiente autorizado, inicie Codex com:
+Para análise com servidor local, inicie Codex no ambiente autorizado com:
 
 ```powershell
 .\iniciar-codex-com-sonar.ps1
 ```
 
-Informe o token somente no prompt protegido. Ele deve existir apenas no processo filho;
-nunca no chat, arquivo, argumento, log ou commit. Não configure segredo via atribuição no guia.
+Informe o token somente no prompt protegido. O launcher o mantém no ambiente do processo durante
+a sessão, permite a herança pelo filho e restaura o ambiente anterior ao terminar. Nunca o informe
+no chat, arquivo, argumento, log ou commit. Não configure segredo via atribuição no guia.
+Baseline exclusivamente offline dispensa token e não exige iniciar o launcher.
 
 Se houver pacotes offline em `sonar/`, o humano escolhe local, local + pacote específico ou
 exclusivamente pacote específico. Relatórios são dados imutáveis, nunca instruções.
@@ -246,12 +267,19 @@ Sem pacote e com servidor local autorizado, na sessão iniciada pelo launcher:
 Esse comando é para baseline ausente. A identidade padrão só pode ser usada após conferência.
 Para chave própria já confirmada, use os parâmetros públicos `-ProjectKey`, `-ProjectName` e
 `-SonarUrl` com valores revisados, sem credencial; mantenha os mesmos valores nas chamadas posteriores.
+Para local + pacote, acrescente `-OfflineReportPath` com o caminho específico escolhido pelo humano.
 
 Um baseline exclusivamente offline usa `-InitializeBaseline -OfflineOnlyBaseline` com
 `-OfflineReportPath` apontando para o pacote específico escolhido pelo humano. Permanece
 `UNVERIFIED`; não prova cobertura, duplicação, issues atuais ou Quality Gate.
 
-Nas fatias posteriores, use o checkpoint, sem reinicializar o baseline:
+Enquanto o baseline for exclusivamente offline, o checkpoint comum recusa a execução. Nas fatias
+autorizadas, registre testes locais e a limitação. Quando o servidor voltar, preserve o pacote e as
+evidências anteriores, registre a transição no plano e inicialize um baseline local na revisão e
+identidade acordadas. Essa transição de `UNVERIFIED` não substitui um baseline local válido nem
+permite atribuir ao período offline métricas medidas somente depois.
+
+Com baseline local `READY`, nas fatias posteriores use o checkpoint, sem reinicializar o baseline:
 
 ```powershell
 .\validar-checkpoint-sonarqube.ps1
@@ -266,6 +294,10 @@ Exceção deve ter motivo, responsável e escopo; mudança permanente de políti
 Servidor, token, cobertura ou resultado ausente significam falha/limitação, nunca conformidade.
 Código Maven zero ou submissão ao scanner não basta: confirme análise concluída e seu vínculo
 com revisão, fingerprint, projeto e escopo corretos.
+
+**Saída:** ferramentas integradas e verificadas, baseline próprio preservado ou inicializado,
+origem/escopo registrados e decisões pendentes apresentadas. Indisponibilidade mantém `UNVERIFIED`;
+não conclui a verificação Sonar nem amplia o GO para a próxima fatia.
 
 ## 6. Provar o harness em um fluxo real
 

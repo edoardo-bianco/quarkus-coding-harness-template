@@ -1,6 +1,6 @@
 # Checklist — Preparação do guia de adoção
 
-- Estado: `EM_EXECUCAO` — pausa solicitada pelo humano; retomada pendente.
+- Estado: `EM_EXECUCAO` — retomada documental autorizada; revisão D1 preparada.
 - Goal: [adoção](../../../goals/adocao-harness-existente/goal.md).
 - Spec: [rascunho](../../../specs/adocao-harness-existente/spec.md).
 - Plano: [proposta](plan.md).
@@ -12,6 +12,7 @@
 | Data | Autoridade | Registro | Efeito |
 | --- | --- | --- | --- |
 | 2026-09-16 | Humano | Planejar adoção em repositório com produção e preparar primeiro guia manual | Preparação documental |
+| 2026-09-17 | Humano | Retomar revisão do guia/links, inclusão no README e apresentação para aprovação | Retomada documental; sem aplicação em produto |
 | — | Humano | Aprovação do novo goal/spec/plano | `PENDENTE` |
 | — | Humano | GO para aplicação no produto | `PENDENTE`; produto ainda não indicado |
 | — | Humano | Aceite/encerramento deste goal | `PENDENTE` |
@@ -24,7 +25,7 @@
 - [x] Registrar premissas, limitações e divergências encontradas.
 - [x] Criar rascunhos de goal/spec e proposta documental de plano.
 - [x] Preparar guia com matriz de artefatos, sequência, checkpoints e checklist de adoção.
-- [ ] Conferir os requisitos A01–A12, links e arquivos referenciados.
+- [x] Conferir os requisitos A01–A11, links e arquivos referenciados; A12 integra D2.
 - [ ] Revisar escopo e diff, sem segredos nem artefatos gerados.
 - [ ] Adicionar acesso pelo README e publicar os commits documentais.
 - [ ] Apresentar o conjunto para revisão humana.
@@ -37,13 +38,14 @@ Nenhum repositório de produto foi inspecionado ou alterado. Não houve teste, i
 análise ou ensaio de adoção. As contagens e métricas do bootstrap não se transferem a outro produto.
 
 Nesta entrega, Markdown é isento de Maven, testes PowerShell, baseline e checkpoint Sonar.
-Validação documental final: `PENDENTE`.
+Revisão D1: 37 links locais válidos nos cinco rascunhos e README; 42 caminhos de artefatos
+existentes. Inspeção de scripts/testes sem execução; matriz A01–A12 no plano.
+Validação documental final após D2: `PENDENTE`.
 
 ## Próximo item autorizado
 
-Aguardar a retomada solicitada pelo humano. Ao retomar, revisar os requisitos A01–A12 e o conteúdo
-do guia, conferir links/arquivos e corrigir inconsistências. Depois, adicionar navegação pelo README
-(D2 do plano), consolidar evidências documentais e apresentar os rascunhos para revisão humana.
+Concluir D2: adicionar navegação pelo README (A12), conferir novamente links e diff,
+consolidar evidências documentais, publicar os commits e apresentar os rascunhos para revisão humana.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.
 
