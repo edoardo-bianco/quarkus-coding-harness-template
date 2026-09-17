@@ -244,9 +244,10 @@
 - [x] Relacionar os 12 critérios da spec às evidências verificadas.
 - [x] Parar no checkpoint de verificação humana e apresentar a entrega.
 - [x] Registrar resposta humana `ACEITO` em 2026-09-16 para a entrega do commit `2be35ac`.
-- [ ] Registrar decisão humana de encerramento do goal.
+- [x] Registrar `ENCERRADO` por solicitação humana em 2026-09-16, após o aceite da entrega.
 
 ## Próximo item autorizado
 
-Aguardar decisão humana de encerramento do goal. O aceite da entrega está registrado;
-`ENCERRADO` permanece pendente.
+Nenhum incremento pendente neste goal, encerrado por decisão humana. O humano informou que
+pretende adicionar outro goal posteriormente; aguardar seu objetivo e preservar este checklist
+como histórico do bootstrap.

@@ -8,10 +8,11 @@
 - Especificação: `specs/template-harness/spec.md` (`Aprovado`)
 - Arquitetura: `doc/arquitetura/arquitetura-harness.md` (`Aceito`)
 - ADRs: `doc/adr/README.md` (`Aceitos`)
-- Incremento autorizado: **somente o Incremento 15**. Após a apresentação da entrega do
+- Último incremento autorizado: **Incremento 15, concluído**. Após a apresentação da entrega do
   Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando a verificação final.
 - Aceite final: `ACEITO` pelo humano em 2026-09-16 para a entrega do commit `2be35ac`.
-- Próxima decisão: encerramento humano do goal, ainda pendente.
+- Execução: `ENCERRADO` por solicitação humana em 2026-09-16.
+- Próximo objetivo: será definido em outro goal; este plano fica preservado como histórico.
 - Sonar neste estágio: baseline local preservado e checkpoint da retomada do Incremento 14
   `COMPLIANT` em 2026-09-16 (26 testes Maven, 11 testes PowerShell, cobertura 97,6%, duplicação 0%,
   zero issue nova ou bloqueante). As evidências e limitações estão na seção do Incremento 14.
@@ -770,11 +771,14 @@ e preservação dos arquivos executáveis de produção e de `.codex`.
 Incremento 14 e a solicitação de GO para o 15. Não autoriza aceite, encerramento, merge, release,
 alteração de visibilidade ou habilitação do repositório como template GitHub.
 
-**Estado:** `ACEITO` pelo humano em 2026-09-16; encerramento do goal pendente.
+**Estado:** `ACEITO` e goal `ENCERRADO` por decisões humanas em 2026-09-16.
 
 **Decisão humana posterior à entrega:** resposta literal `ACEITO`, após a apresentação do commit
-`2be35ac8ed4362961a06661d43d781eddc510153`. Registrado somente o aceite; `ENCERRADO` não foi
-declarado. Este registro altera apenas Markdown, sem nova execução Maven ou Sonar.
+`2be35ac8ed4362961a06661d43d781eddc510153`. O aceite foi registrado no commit `33ab843`.
+Na sequência, o humano solicitou explicitamente encerrar o goal e manifestou intenção de
+adicionar outro posteriormente. Registra-se `ENCERRADO` em 2026-09-16, preservando este plano
+como histórico e aguardando a definição do novo objetivo. O registro altera apenas Markdown,
+sem nova execução Maven ou Sonar.
 
 **Escopo desta fatia:** somente Markdown para consolidar a entrega. Confirmar offline que o
 fingerprint corresponde às suítes e ao checkpoint já executados no Incremento 14, auditar arquivos
@@ -858,7 +862,7 @@ As seis issues preexistentes continuam abertas dentro da política aprovada. A b
 não é uma auditoria exaustiva de todo tipo de segredo; links externos e anchors não foram
 validados. CI/CD, deploy e uso produtivo dependem de requisitos próprios. A preservação da fonte
 é sustentada pelo escopo observado, sem certificação retrospectiva de seu histórico.
-O humano aceitou a entrega após sua apresentação; o encerramento formal permanece pendente.
+O humano aceitou a entrega e posteriormente solicitou o encerramento formal, agora registrado.
 
 ## Estratégia de testes
 
@@ -932,4 +936,5 @@ o humano aprovou o Checkpoint D e registrou `GO` em 2026-08-29 para executar som
 14. Essa autorização não alcançava o Incremento 15 nem o encerramento do goal. Após a entrega do
 Incremento 14, o humano respondeu "pode proceder" em 2026-09-16, autorizando o Incremento 15.
 A conclusão técnica foi consolidada e o humano respondeu `ACEITO` em 2026-09-16 à entrega do
-commit `2be35ac`. O encerramento permanece pendente de decisão humana.
+commit `2be35ac`. Depois, solicitou o encerramento do goal em 2026-09-16 e informou que deseja
+adicionar outro goal futuramente. O bootstrap está `ENCERRADO`; não há novo incremento autorizado.
