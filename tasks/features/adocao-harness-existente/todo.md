@@ -125,9 +125,28 @@ Somente Markdown; Maven, Sonar e ensaio real não executados.
 
 ## Próximo item autorizado
 
-Apresentar D11 e ADR-0006 proposto para revisão documental e decisão humana.
-Nenhum GO de aplicação, aceite ou encerramento foi dado. O candidato foi inspecionado por leitura
-remota; não executar o roteiro nele nem escolher suas versões. O checklist reutilizável fica no guia.
+Trabalho pausado por solicitação humana em 2026-09-17; retomar em 2026-09-18 com a preparação
+do teste. D11 foi apresentado; aceite documental e ADR-0006 continuam pendentes.
+Na retomada, confirmar checkout/branch do candidato e seguir o diagnóstico do guia: reconhecer
+o ambiente, apresentar manter/alterar versões e registrar a escolha humana antes da integração.
+Preparar a fatia e as verificações do ensaio em Copilot CLI e VS Code; executar somente após
+cumprir as pré-condições e o GO aplicável. O pedido de retomar amanhã não escolhe versões nem
+autoriza executar passos hoje. O checklist reutilizável fica no guia.
+
+## Checkpoint de pausa — 2026-09-17
+
+- Humano solicitou parar hoje e retornar amanhã com o teste.
+- Branch: `docs/adocao-harness-existente`; entrega D11 publicada no commit `2b67129`.
+- Instruções, guia e prompts exigem reconhecer o ambiente e perguntar manter/alterar JDK,
+  Quarkus e Maven, com mapa dos locais de ajuste e validação por controle.
+- Candidato: `edoardo-bianco/simtr-documento-assinc`, `main` inspecionada no commit `3ff6249`.
+  Release Java 11, Quarkus 2.16.7.Final, Maven 3.8.8; ambiente local ainda não verificado.
+- Retomar pelo §1 do guia de adoção e pela preparação do roteiro Copilot. Caminho local,
+  branch de trabalho, escolha de versões e plano/GO de aplicação permanecem por confirmar.
+- Verificação documental D11: 99 links, 25 âncoras, 42 caminhos e sintaxe de 25 exemplos
+  PowerShell conferidos. Não equivalem a ensaio real nos agentes ou no produto.
+- Nenhum arquivo do candidato foi alterado; Maven, Sonar e teste piloto não foram executados.
+- A pausa não aceita ADR, não aprova a entrega nem encerra o goal.
 
 ## Checkpoint de pausa — 2026-09-16 (histórico; retomado em 2026-09-17)
 
