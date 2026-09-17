@@ -47,6 +47,14 @@ contratos e histórico. A proposta inclui [goal](goals/adocao-harness-existente/
 [spec](specs/adocao-harness-existente/spec.md), [plano](tasks/features/adocao-harness-existente/plan.md)
 e [checklist](tasks/features/adocao-harness-existente/todo.md).
 
+Para reconstruir manualmente o ambiente, consulte
+[pastas e árvore de destino](doc/guias/adotar-harness-repositorio-existente.md#42-árvore-de-destino),
+[scripts a copiar](doc/guias/adotar-harness-repositorio-existente.md#44-scripts-e-hooks-origem--destino),
+[skills Addy Osmani](doc/guias/adotar-harness-repositorio-existente.md#46-instalar-manualmente-as-skills-addy-osmani),
+[Codex](doc/guias/adotar-harness-repositorio-existente.md#47-conectar-o-codex),
+[Copilot CLI e VS Code](doc/guias/adotar-harness-repositorio-existente.md#48-conectar-o-github-copilot-cli-e-o-vs-code)
+e [Sonar já instalado com URL própria](doc/guias/adotar-harness-repositorio-existente.md#credencial-fonte-e-comandos-do-harness).
+
 O conjunto está em `RASCUNHO PARA REVISÃO`, com aprovação humana pendente. A revisão foi documental;
 nenhuma adoção em produto foi executada. A aplicação exige inventário e GO específicos.
 
