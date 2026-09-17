@@ -42,6 +42,11 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 - Inventário completo, recursos compartilhados das skills e verificação por agente.
 - Operação manual comum e limites dos hooks específicos; suporte não ensaiado fica explícito.
 
+Em 2026-09-17, o usuário solicitou um ensaio conduzido por ele no Copilot CLI e no VS Code,
+sem mudar o comportamento do harness: agente prepara e aguarda, desenvolvedor executa o script
+e devolve a evidência, agente retoma. A integração de lembretes equivalentes pode ser planejada;
+esta entrega prepara instruções e não implementa hooks.
+
 ## Fora de escopo
 
 - Alterar qualquer repositório de produção nesta entrega.
@@ -62,6 +67,7 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
+- [ ] Roteiro de ensaio humano distingue fluxo manual, retomada e verificação futura dos lembretes Copilot.
 - [x] Evidências documentais foram apresentadas; execução no produto permanece `NÃO_EXECUTADA`.
 
 A entrega documental não comprova adoção em um produto. Um piloto real exige identificação do

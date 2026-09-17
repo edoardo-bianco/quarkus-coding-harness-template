@@ -57,6 +57,20 @@ Os resultados D1/D2 abaixo são históricos e não comprovam esses novos critér
 - Parada: revisão humana documental; sem instalar skills, alterar tooling, habilitar hooks
   Copilot, acessar produto ou executar Sonar/Maven.
 
+## Ensaio humano solicitado — D5 e D6
+
+- D5: registrar A18–A20 em goal/spec/plano/checklist, antes de redigir o roteiro.
+- D6: criar guia de ensaio, vinculá-lo ao guia de adoção e registrar evidências em goal/plano/todo
+  (cinco arquivos). Verificar links e sintaxe dos exemplos sem executá-los.
+- Fluxo: diagnóstico sem Sonar; preparação/baseline conforme estado; incremento já autorizado;
+  agente prepara comando e para; humano executa; humano informa resultado; agente confere e retoma.
+- Não introduzir alteração fictícia de produção para testar o fluxo. CLI e VS Code são ensaiados
+  separadamente, sem análise concorrente, reset do baseline ou suposição de conversa compartilhada.
+- Lembretes Copilot equivalentes são uma etapa de integração possível. Documentar critérios e como
+  pedir proposta ao agente; não criar, ativar ou simular como instalados esses hooks nesta entrega.
+- Parada desta preparação: entregar instruções ao usuário; execução e resultados ficam pendentes
+  de sua devolutiva. Isso não representa aceite do conjunto documental nem GO para alterar produto.
+
 ## Proposta de execução futura no produto
 
 O guia decompõe o trabalho em diagnóstico, governança, bootstrap técnico, cobertura/baseline,
