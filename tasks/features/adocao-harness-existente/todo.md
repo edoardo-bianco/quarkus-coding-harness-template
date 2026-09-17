@@ -1,6 +1,6 @@
 # Checklist — Preparação do guia de adoção
 
-- Estado: `EM_REVISAO_DOCUMENTAL` — ampliação solicitada pelo humano; rascunhos sem aceite.
+- Estado: `AGUARDANDO_REVISAO_HUMANA` — revisão ampliada preparada; rascunhos sem aceite.
 - Goal: [adoção](../../../goals/adocao-harness-existente/goal.md).
 - Spec: [rascunho](../../../specs/adocao-harness-existente/spec.md).
 - Plano: [proposta](plan.md).
@@ -37,13 +37,13 @@ A preparação acima registra D1/D2. O feedback humano reabriu o detalhamento op
 essas marcações não significam aceite nem cumprimento de A13–A17.
 
 - [x] Registrar escopo e critérios ampliados antes de reescrever o guia.
-- [ ] Conferir fontes oficiais de Codex/Copilot e instalação das skills.
-- [ ] Explicitar diretórios, arquivos, colisões, dependências e sequência de cópia.
-- [ ] Documentar skills completas, referências compartilhadas e descoberta por agente.
-- [ ] Documentar sessões Codex/Copilot CLI/VS Code e limites dos hooks.
-- [ ] Dar comandos completos com URL/identidade Sonar consistentes.
-- [ ] Validar A01–A17, links, sintaxe dos exemplos e escopo do diff.
-- [ ] Publicar a revisão documental e apresentar o checkpoint humano.
+- [x] Conferir fontes oficiais de Codex/Copilot e instalação das skills.
+- [x] Explicitar diretórios, arquivos, colisões, dependências e sequência de cópia.
+- [x] Documentar skills completas, referências compartilhadas e descoberta por agente.
+- [x] Documentar sessões Codex/Copilot CLI/VS Code e limites dos hooks.
+- [x] Dar comandos completos com URL/identidade Sonar consistentes.
+- [x] Validar A01–A17, links, sintaxe dos exemplos e escopo do diff.
+- [x] Preparar a revisão documental em commit separado para publicação e checkpoint humano.
 
 ## Evidências anteriores — D1/D2
 
@@ -59,9 +59,26 @@ Validação documental D2: 48 links locais válidos nos seis documentos e 42 cam
 existentes; `git diff --check` e revisão do diff/staging sem alteração executável, segredo ou
 artefato gerado. Commit D1: `945dc12`; navegação e evidências D2 em commit separado na mesma branch.
 
+## Evidências da revisão ampliada — D3/D4
+
+- D3 registrado no commit `878a545`: goal/spec/plano/checklist atualizados antes do guia.
+- D4 detalha origem/destino e ordem, skills com recursos/licença, três agentes e Sonar com URL própria.
+- Fontes oficiais OpenAI, GitHub, VS Code e do pacote Addy Osmani consultadas em 2026-09-17.
+- Conferência dos seis documentos: 63 links locais válidos, incluindo 15 âncoras; 42 caminhos
+  reais de referência existentes. Os 14 links externos são referências às fontes consultadas.
+- Os 16 blocos PowerShell do guia passaram na análise sintática em memória; nenhum foi executado.
+- Parâmetros conferidos no código: o exportador não aceita ProjectName; a URL deve ser repetida
+  nas chamadas de análise/baseline/checkpoint/exportação. O launcher apenas inicia o processo filho.
+- Inspeção local encontrou ausente `~/.agents/references/definition-of-done.md`, embora skills
+  o referenciem. Nenhuma skill pessoal foi modificada; §4.6 explica como evitar a cópia incompleta.
+- Hooks Sonar nativos Copilot continuam ausentes; sessões reais Copilot CLI/VS Code e instalação
+  no produto permanecem `NÃO_ENSAIADAS`. O procedimento manual não é evidência de integração automática.
+- Revisão A01–A17 no plano; somente Markdown, sem Maven, testes do harness, API/baseline Sonar,
+  instalação ou alteração em produto. Nenhuma decisão humana foi inferida.
+
 ## Próximo item autorizado
 
-Concluir D4 conforme a revisão ampliada, publicar a documentação e apresentar as evidências.
+Apresentar D4 e aguardar revisão humana do goal/spec/plano/guia.
 Nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.

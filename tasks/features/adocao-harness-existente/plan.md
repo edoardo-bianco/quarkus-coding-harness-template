@@ -150,6 +150,39 @@ a navegação e estas evidências em commit separado.
 As divergências do fingerprint/Markdown e da narrativa histórica do guia Sonar ficam registradas
 para tarefas futuras; não foram corrigidas no tooling nem nos documentos do bootstrap.
 
+## Reconstrução manual e verificação documental D4 — 2026-09-17
+
+D3 foi registrado em `878a545` antes da reescrita. D4 reúne guia, navegação no README e
+evidências neste plano, no goal e no checklist, sem alterar scripts ou instalar componentes.
+
+| Critério reaberto/novo | Evidência no guia | Resultado documental |
+| --- | --- | --- |
+| A03 e A15 | §4.1–4.5: origens H/S/P, árvore, documentos, oito arquivos de scripts/hooks, testes, build e exclusões | Conferido |
+| A08 | Limitações em §4: fingerprint, módulos, Markdown, perfis, identidade e testes; §4.8: hooks Copilot ausentes | Conferido |
+| A10 | Sequência §4–5, pré-condições/saídas e matriz/checklist em §7 | Conferido |
+| A13 | §4.7–4.8 e sessão segura §5: Codex, Copilot CLI e VS Code com passos próprios | Conferido |
+| A14 | §4.6: revisão SHA, cópia completa, referências compartilhadas, licença, escopo, descoberta e atualização | Conferido |
+| A16 | §5: servidor existente, URL/chave/nome, sessão e chamadas completas; exportador sem ProjectName | Conferido |
+| A17 | §7: evidência por componente/agente; hooks Copilot ausentes e rotas reais não ensaiadas | Conferido |
+
+A01, A02, A04–A07, A09, A11 e A12 foram reconferidos nas seções correspondentes da matriz D1/D2
+e permanecem atendidos documentalmente. Esta avaliação não é aprovação humana nem ensaio em produto.
+
+A validação dos seis documentos encontrou 63 links locais válidos, incluindo 15 âncoras, e
+42 caminhos de referência existentes. Há 14 referências externas às fontes oficiais consultadas
+em 2026-09-17, citadas junto às instruções no guia. Os 16 blocos PowerShell passaram na análise
+sintática em memória, sem execução. Parâmetros foram comparados aos scripts existentes.
+`git diff --check` e revisão do diff confirmam escopo Markdown, sem segredo ou artefato gerado.
+
+A inspeção local também identificou ausência de `~/.agents/references/definition-of-done.md`
+na instalação pessoal, embora skills apontem para esse recurso. O roteiro exige copiar
+`skills/` e `references/` da mesma revisão. A instalação pessoal não foi corrigida nesta entrega.
+A compatibilidade dos hooks Codex no runtime instalado, os lançamentos reais Copilot e a
+integração com um Sonar externo permanecem verificações do produto; os scripts não foram alterados.
+
+Maven, testes do harness, baseline, API e checkpoint Sonar não foram executados. Nenhum conteúdo
+de `sonar/` foi inspecionado. Publicação documental não autoriza instalação, aplicação ou aceite.
+
 ## Checkpoint
 
 Submeter goal/spec/guia ao humano. Não solicitar GO de aplicação antes de existir repositório

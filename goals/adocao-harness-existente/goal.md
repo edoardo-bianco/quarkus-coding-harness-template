@@ -55,10 +55,10 @@ adoção; tratamento de dívida e incompatibilidades; checkpoints e reversão se
 
 - [ ] Humano revisou o objetivo, limites e critérios da spec.
 - [x] Guia distingue adoção de produto existente da materialização de um produto novo.
-- [ ] Inventário operacional detalha pastas, origem, destino, ação e verificação de cada capacidade.
-- [ ] Skills e recursos compartilhados possuem instalação e descoberta por agente documentadas.
-- [ ] Codex, Copilot CLI e VS Code possuem passos próprios, limites e critérios de verificação.
-- [ ] Sonar existente com outra URL possui exemplos completos e identidade consistente.
+- [x] Inventário operacional detalha pastas, origem, destino, ação e verificação de cada capacidade.
+- [x] Skills e recursos compartilhados possuem instalação e descoberta por agente documentadas.
+- [x] Codex, Copilot CLI e VS Code possuem passos próprios, limites e critérios de verificação.
+- [x] Sonar existente com outra URL possui exemplos completos e identidade consistente.
 - [x] Roteiro cobre diagnóstico, preservação, governança, testes, Sonar, hooks, observabilidade e reversão.
 - [x] Limitações reais dos scripts e casos de dívida/indisponibilidade estão explícitos.
 - [x] Links, arquivos referenciados e escopo documental foram conferidos.
@@ -73,7 +73,7 @@ repositório, plano próprio, aprovação e GO antes de alterações executávei
 | --- | --- | --- |
 | Guia manual e checklist de adoção | [Guia](../../doc/guias/adotar-harness-repositorio-existente.md) | Revisado documentalmente em 2026-09-17; aprovação pendente |
 | Requisitos e critérios | Spec relacionada | Rascunho |
-| Inspeções e revisão documental | Checklist da feature | 48 links locais e 42 caminhos conferidos; matriz A01–A12 no plano |
+| Inspeções e revisão documental | Checklist da feature | 63 links locais (15 âncoras), 42 caminhos e 16 blocos PowerShell conferidos; matriz A01–A17 no plano |
 | Adoção ou testes em produto | Futuro repositório piloto | `NÃO_EXECUTADO`; fora desta entrega |
 | Maven/Sonar do template nesta entrega | Não aplicável: somente Markdown | Isenção do AGENTS.md |
 
