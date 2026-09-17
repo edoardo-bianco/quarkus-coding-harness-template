@@ -95,14 +95,20 @@ Nenhum teste em produto, instalação ou alteração executável foi realizado.
 
 - [x] Registrar esclarecimento humano: agente executa em CLI/VS Code; humano autoriza e decide.
 - [x] Atualizar A18–A20 e escopo antes dos guias.
-- [ ] Alinhar roteiro, guia de adoção, prompts, credencial, matrizes e README.
-- [ ] Manter execução humana como alternativa e hooks como lembretes independentes.
-- [ ] Conferir documentos, links, sintaxe e ausência de alterações executáveis.
+- [x] Alinhar roteiro, guia de adoção, prompts, credencial, matrizes e README.
+- [x] Manter execução humana como alternativa e hooks como lembretes independentes.
+- [x] Conferir documentos, links, sintaxe e ausência de alterações executáveis.
 - [ ] Receber evidências do ensaio real nos dois ambientes.
+
+Evidências D8: 72 links locais (20 âncoras), 42 caminhos e 24 exemplos PowerShell válidos
+sintaticamente (17 no guia e 7 no roteiro); nenhum exemplo executado. Instruções antigas
+permanecem somente no histórico substituído ou na alternativa manual. D7: `8b807aa`.
+Fluxo principal: agente executa/aguarda/avalia; humano decide; agente registra/ajusta/testa/revalida.
+Somente Markdown; nenhum script, hook, editor, configuração, Maven ou Sonar alterado/executado.
 
 ## Próximo item autorizado
 
-Concluir D8 e apresentar os documentos alinhados; aguardar ensaio e revisão documental humanos.
+Apresentar D8 e aguardar revisão documental e devolutiva do ensaio nos dois ambientes.
 Nenhum GO de aplicação, aceite ou encerramento foi dado.
 Não executar o roteiro em produto nem iniciar automação. O checklist operacional reutilizável
 fica no próprio guia e deve ser copiado/adaptado ao contexto do futuro produto.

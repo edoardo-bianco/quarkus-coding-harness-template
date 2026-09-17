@@ -1,159 +1,186 @@
-# Ensaio humano — Copilot CLI e VS Code com o harness atual
+# Ensaio supervisionado — Copilot CLI e VS Code executam o harness
 
-## O que vamos verificar
+## Fluxo principal e responsabilidades
 
-Você executa o ensaio e devolve as evidências. Este roteiro foi preparado em 2026-09-17;
-nenhum passo foi executado por sua elaboração. O comportamento dos scripts, dos hooks Codex,
-dos critérios Sonar e da autoridade humana permanece o mesmo.
+Este roteiro foi alinhado em 2026-09-17 ao fluxo solicitado pelo usuário:
+**agente desenvolve/testa → executa checkpoint autorizado → avalia resultado → humano decide
+quando necessário → agente registra a decisão, ajusta e revalida**.
 
-O fluxo combinado é:
+O próprio Copilot executa os scripts pela ferramenta de terminal e recebe a saída, tanto no CLI
+quanto no VS Code em modo agente. O usuário fornece a credencial no mecanismo seguro, concede as
+permissões solicitadas e toma as decisões. Execução pelo desenvolvedor é alternativa no §7.
+O nome histórico `ensaio-manual-copilot.md` foi preservado para manter os links.
 
-1. Copilot lê o contexto e ajuda na tarefa autorizada.
-2. Ao precisar de baseline ou checkpoint, prepara o comando e encerra sua resposta aguardando você.
-3. Você executa o script no terminal seguro e espera o resultado completo.
-4. Você envia uma nova mensagem com a evidência na mesma conversa.
-5. Copilot confere o resultado e retoma somente o próximo passo já autorizado.
-
-Neste roteiro, **aguardar** significa terminar a resposta e esperar uma nova mensagem sua.
-Não deixar um comando do agente monitorando o terminal nem presumir retomada automática.
-
-Há duas verificações distintas:
-
-| Verificação | Condição atual |
+| Interação | Efeito |
 | --- | --- |
-| Instruções, skills e fluxo acima no CLI/VS Code | Pode ser ensaiado após a montagem manual e os pré-requisitos |
-| Lembretes automáticos equivalentes aos do Codex | Integração Copilot ainda precisa ser preparada e testada; veja §8 |
+| GO da fatia | Autoriza o escopo de trabalho definido no plano |
+| Permissão da ferramenta para executar script | Permite aquele comando; não aceita seu resultado |
+| Reprovar / AceitarExcepcionalmente / ContinuarAjustes | Decisão humana sobre NON_COMPLIANT; agente registra somente a resposta recebida |
+| Aceite final | Decisão humana sobre a entrega; não decorre de COMPLIANT |
 
-Configurar lembretes equivalentes é uma adaptação de integração possível. O teste manual não
-comprova que esses hooks estão instalados. A futura configuração deve manter o papel de lembrete,
-sem disparar Sonar, bloquear o trabalho ou decidir aprovação.
+O ciclo pelo agente independe de hooks. Os hooks do harness apenas lembram pendências; não
+disparam Sonar, bloqueiam o trabalho ou decidem. A configuração equivalente no Copilot continua
+como integração separada a ensaiar, descrita no §8.
 
-A montagem de pastas, arquivos e skills está no [guia de adoção](adotar-harness-repositorio-existente.md).
-Este roteiro acrescenta a sequência do ensaio; não substitui a montagem.
+Fontes: [execução e permissões no CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools),
+[ferramentas de terminal do VS Code](https://code.visualstudio.com/docs/agents/run/tools) e
+[permissões no VS Code](https://code.visualstudio.com/docs/agents/run/approvals).
+Capacidade documentada não substitui o ensaio neste produto. Nenhum passo abaixo foi executado
+durante a elaboração do roteiro.
 
-## 1. Preencher a ficha e conferir a montagem
+## 1. Preparar a rodada
 
-Registre no checklist do produto:
+Faça uma rodada por vez. Registre no checklist do produto:
 
 ```text
-Ambiente da rodada: Copilot CLI / Copilot no VS Code
-Caminho do repositório:
-Branch e HEAD:
-Versão do Copilot CLI ou VS Code + extensão:
+Ambiente: Copilot CLI / Copilot em modo agente no VS Code
+Versões do agente/editor/extensão:
+Caminho do repositório, branch e HEAD:
 Revisões do template e das skills:
-Caminhos do goal, spec, plano e checklist do produto:
+Caminhos do goal, spec, plano e checklist:
 URL Sonar, ProjectKey e ProjectName autorizados (sem credencial):
-Situação do baseline: ausente / READY / OFFLINE_ONLY_READY / UNVERIFIED
-Próxima fatia autorizada e referência do GO, se houver:
+Baseline: ausente / READY / OFFLINE_ONLY_READY / UNVERIFIED
+Fatia executável e referência do GO:
+Modo escolhido: execução pelo agente / alternativa pelo desenvolvedor
 ```
 
-Confira a [árvore e a cópia dos arquivos](adotar-harness-repositorio-existente.md#42-árvore-de-destino),
-as [skills e referências compartilhadas](adotar-harness-repositorio-existente.md#46-instalar-manualmente-as-skills-addy-osmani)
+Confira a [montagem](adotar-harness-repositorio-existente.md#42-árvore-de-destino),
+as [skills e seus recursos](adotar-harness-repositorio-existente.md#46-instalar-manualmente-as-skills-addy-osmani)
 e as [instruções Copilot](adotar-harness-repositorio-existente.md#48-conectar-o-github-copilot-cli-e-o-vs-code).
-Capacidade ausente vira pendência; não peça ao agente para instalar ou corrigir tudo implicitamente.
+Scripts, build, efeitos dos testes e servidor/projeto precisam estar revisados.
 
-Faça uma rodada por vez no mesmo checkout. Não mantenha CLI e VS Code alterando arquivos,
-executando checkpoints ou escrevendo o mesmo estado simultaneamente.
+Se a rodada for só leitura de contexto ou Markdown, abra o agente normalmente e use apenas o
+prompt de diagnóstico do §3. Não peça token nem inspecione `sonar/` ou execute Maven/Sonar nessa rodada.
+Não crie alteração artificial de produção apenas para exercitar o checkpoint.
+A etapa executável exige uma fatia real autorizada; sua ausência fica registrada como pendência.
 
-Para começar, basta testar a leitura do contexto. A etapa com Sonar exige scripts/build revisados,
-servidor/projeto autorizados e uma necessidade executável real. Revisão somente Markdown permanece
-isenta: não crie mudança artificial nem execute Sonar para tornar esse teste mais completo.
+Este procedimento de sessão cobre Windows local com PowerShell 7. Terminal remoto, WSL,
+container ou outra máquina exige preparação de credencial e conectividade no processo real,
+a registrar separadamente. Não mantenha os dois agentes escrevendo no mesmo checkout/estado
+ou analisando o mesmo projeto simultaneamente.
 
-## 2. Abrir o agente e conferir contexto
+## 2. Abrir a sessão para trabalho executável com Sonar
 
-**Copilot CLI:** abra um terminal na raiz do produto, inicie `copilot`, autentique-se se necessário
-e use `/skills list` para conferir descoberta.
+Estes passos se aplicam quando a análise com servidor for necessária. Baseline exclusivamente
+offline dispensa token. Forneça a credencial somente no prompt protegido do launcher.
+Autenticação GitHub/Copilot e credencial Sonar são independentes.
 
-**VS Code:** abra a mesma pasta do produto, use uma conversa Copilot em modo agente, confira as
-instruções carregadas e use `/skills` para conferir as skills. Registre a versão da extensão.
+### Copilot CLI
 
-As instruções de skills estão nas fontes de [Copilot CLI](https://github.com/addyosmani/agent-skills/blob/main/docs/copilot-cli-setup.md)
-e [VS Code](https://code.visualstudio.com/docs/agent-customization/agent-skills).
-As duas conversas devem receber seus próprios prompts. Não presuma transferência automática
-de conversa, autorizações ou memória entre CLI e VS Code.
-
-Cole este prompt no ambiente da rodada:
-
-```text
-Vamos ensaiar o harness preservando seu comportamento atual.
-Nesta etapa, apenas leia e explique: não altere arquivos, não execute Maven/Sonar,
-não inspecione sonar/, não solicite token e não configure hooks.
-
-Identifique AGENTS.md e as demais instruções aplicáveis, goal, spec, plano e checklist.
-Informe o próximo item autorizado e onde precisa parar.
-Abra uma skill pertinente à revisão do plano, informe seu caminho e confira um recurso
-compartilhado referenciado por ela. Se faltar algo, registre a ausência sem instalar.
-
-Nos próximos passos deste ensaio, eu executarei manualmente os scripts Sonar.
-Você deve preparar o comando exato, explicar o resultado esperado e encerrar sua resposta
-aguardando minha mensagem. Não execute o comando, não monitore em segundo plano
-e não trate ausência de resposta como aprovação.
-```
-
-**Esperado:** caminhos reais, referências legíveis e próximo passo correto; nenhuma execução
-Sonar, instalação ou alteração de arquivo. Informe-me qualquer divergência antes de continuar.
-Se só deseja testar leitura e skills, encerre aqui e devolva a ficha do §7.
-
-## 3. Preparar o ponto de passagem para o desenvolvedor
-
-Esta etapa corresponde a uma fatia executável real já autorizada no produto.
-Se não houver uma, mantenha-a `NÃO_EXECUTADA`; o teste inicial não autoriza criar uma feature.
-
-Antes da primeira alteração executável, o agente deve conferir a situação do baseline.
-Se estiver ausente, deve preparar o comando de inicialização e aguardar sua execução.
-Preserve baseline válido. Se houver pacotes offline, a fonte é escolhida por você.
-As três rotas estão em [inicialização de baseline](adotar-harness-repositorio-existente.md#inicializar-somente-o-baseline-ausente).
-Não reinicialize baseline apenas para mudar de agente ou limpar uma pendência.
-
-Após cumprir essa pré-condição, use este prompt, preenchendo a referência da tarefa autorizada:
-
-```text
-Trabalhe somente na fatia autorizada identificada no checklist: [referência real].
-Siga os testes e checkpoints já previstos. Preserve scripts, hooks e política do harness.
-Se houver pré-condição pendente, pare e explique antes de alterar arquivos.
-
-Ao chegar ao checkpoint Sonar, não o execute. Informe:
-- raiz do repositório, branch e HEAD;
-- arquivos alterados e testes já realizados;
-- URL, ProjectKey e ProjectName do plano;
-- comando PowerShell completo para eu executar;
-- qual saída devo conferir e qual será o próximo passo autorizado.
-
-Registre a pendência no checklist documental e encerre sua resposta com
-AGUARDANDO_EXECUCAO_HUMANA_DO_CHECKPOINT.
-Não altere mais arquivos nem faça commit enquanto eu executar a análise.
-```
-
-A frase final é um marcador de conversa, sem criar novo status nos scripts.
-O comando esperado para baseline é diferente do checkpoint comum. Confirme qual foi pedido.
-
-## 4. Desenvolvedor executa no terminal seguro
-
-Use outro terminal PowerShell 7 na raiz do produto; pode ser um terminal integrado do VS Code.
-O terminal deve permanecer sob seu controle, sem execução simultânea pelo agente.
-
-Após a revisão do build e autorização de análise descritas no guia, execute:
+Em PowerShell, na raiz do produto, inicie:
 
 ```powershell
-.\iniciar-codex-com-sonar.ps1 -CodexCommand "pwsh" -CodexArguments @("-NoProfile", "-NoExit")
+.\iniciar-codex-com-sonar.ps1 -CodexCommand "copilot"
 ```
 
-Digite o token somente no prompt protegido do launcher. O PowerShell filho que fica aberto é
-o terminal dos próximos comandos. O agente pode permanecer em sua própria conversa sem token.
-O nome do launcher não obriga usar Codex; o parâmetro de processo filho já existe.
+O launcher existente passa a credencial pelo ambiente do processo filho. Confirme autenticação,
+pasta e skills (`/skills list`). A herança até a ferramenta que executará o checkpoint será
+verificada no §3, sem imprimir o token.
 
-**Dentro do filho**, confirme a pasta, branch e revisão:
+### Copilot no VS Code local
+
+Prepare a sessão do editor para que seus terminais possam herdar a credencial:
+
+1. Salve seu trabalho. Nas configurações locais do VS Code, anote o valor atual de
+   `terminal.integrated.enablePersistentSessions` e desative-o para a sessão com credencial.
+   Isso evita restauração de processos de terminal com seu ambiente anterior; não grave token
+   em settings, perfil PowerShell ou arquivo de ambiente.
+2. Feche normalmente as janelas e processos do VS Code da instância usada. Não encerre à força
+   trabalho aberto. Uma janela nova de uma instância existente pode herdar o ambiente antigo.
+3. Em um PowerShell **externo ao VS Code**, na raiz do produto, confira que `code` está disponível
+   e abra a primeira instância usando o launcher:
+
+```powershell
+.\iniciar-codex-com-sonar.ps1 -CodexCommand "code" -CodexArguments @("--new-window", "--wait", ".")
+```
+
+4. Digite o token no prompt protegido. Na janela aberta, use Copilot em modo agente, habilite a
+   ferramenta de terminal conforme sua política e use PowerShell 7 local. Confira as skills com
+   `/skills`. Não restaure um terminal antigo para essa análise.
+5. Peça a verificação do §3 pelo terminal que o agente efetivamente usará. Se o token não estiver
+   disponível ali, registre o impedimento e corrija a sessão; não transfira a credencial pelo chat.
+
+A primeira instância herda o ambiente do processo que a iniciou; instâncias seguintes podem usar
+o ambiente da primeira. O VS Code também oferece restauração de terminais com o ambiente original.
+Por isso a preparação acima faz parte deste ensaio. Fontes:
+[ambiente e sessões persistentes](https://code.visualstudio.com/docs/terminal/advanced) e
+[opções da linha de comando](https://code.visualstudio.com/docs/configure/command-line).
+A rota usa parâmetros já existentes do launcher e ainda precisa ser comprovada no ambiente real.
+
+Ao terminar, encerre os terminais/processos filhos e a sessão do agente; no VS Code, feche a
+instância usada e aguarde o launcher retornar. Restaurar o ambiente do launcher não encerra
+processos filhos deixados vivos. Após encerrar a sessão com credencial, você pode restaurar a
+preferência anterior de persistência dos terminais. Nenhum ajuste de editor é realizado por este documento.
+
+## 3. Conferir contexto, ferramenta e credencial
+
+Cole este prompt no agente da rodada, inclusive na rodada apenas documental:
+
+```text
+Vamos conferir o harness. Por enquanto, apenas leia e explique: não altere arquivos,
+não execute Maven/Sonar, não inspecione sonar/ e não configure hooks.
+
+Identifique AGENTS.md, instruções aplicáveis, goal, spec, plano e checklist.
+Informe o próximo item autorizado e os checkpoints.
+Abra uma skill pertinente ao plano, informe sua origem e confira um recurso compartilhado.
+Registre ausências sem instalar nem corrigir por suposição.
+
+O fluxo principal será você executar os scripts autorizados pela ferramenta de terminal,
+aguardar o resultado e analisá-lo. Eu autorizo comandos quando solicitado e decido sobre
+NON_COMPLIANT. Não exiba credenciais nem deduza uma decisão humana.
+```
+
+**Esperado:** referências reais, skill/recurso legíveis, item autorizado correto e nenhum build.
+Se esta for uma rodada documental, encerre e devolva a ficha do §9.
+
+Para a etapa executável com servidor e sessão do §2 preparada, peça que **o agente execute pela
+sua ferramenta** a verificação abaixo, aprovando a chamada se solicitado:
 
 ```powershell
 git rev-parse --show-toplevel
 git branch --show-current
 git rev-parse --verify HEAD
 git status -sb
+if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process"))) {
+    throw "SONAR_TOKEN ausente no processo desta ferramenta; revisar a sessão segura."
+}
+Write-Output "Credencial Sonar disponível neste processo; valor não exibido."
 ```
 
-Compare com o pedido do agente. Não altere arquivos, faça checkout ou commit durante a análise.
+Permissão de comando não fornece token nem acesso ao servidor. Se a verificação falhar, o agente
+deve explicar a pendência. A regra de credencial não exige que você execute pessoalmente a análise.
 
-Defina os três dados públicos aprovados; substitua todos os valores de exemplo:
+## 4. Executar baseline e checkpoint pelo agente
+
+Antes da primeira alteração executável, o agente confere o baseline do produto. Baseline válido
+é preservado. Se estiver ausente, use a [rota de inicialização](adotar-harness-repositorio-existente.md#inicializar-somente-o-baseline-ausente)
+escolhida pelo humano e autorize o agente a executá-la. Se houver pacotes offline, você escolhe
+a fonte; o agente não decide isso por suposição. Trate eventual decisão pendente antes de prosseguir.
+
+Com os pré-requisitos atendidos, preencha a referência real da fatia neste prompt:
+
+```text
+Execute somente a fatia autorizada [referência no checklist], com os testes previstos.
+Preserve contratos, scripts, hooks, critérios Sonar e baseline válido.
+
+Ao chegar ao checkpoint, execute validar-checkpoint-sonarqube.ps1 pela sua ferramenta
+de terminal, usando a URL, ProjectKey e ProjectName do plano.
+Mostre o comando na solicitação de permissão quando o ambiente exigir.
+Confira a disponibilidade da credencial sem mostrar seu valor.
+
+Aguarde o comando terminar e o processamento Sonar concluir. Se a ferramenta devolver
+controle antes do fim, acompanhe a mesma execução até obter o resultado final.
+Não inicie análise duplicada nem altere arquivos ou faça commit durante a análise.
+
+Leia a saída e o estado correspondente, confira identidade, revisão/conteúdo e atualidade,
+e registre evidências no checklist. Em NON_COMPLIANT, apresente as violações e peça minha
+decisão. Só registre -HumanDecision depois de minha resposta explícita.
+Com COMPLIANT, siga apenas o próximo passo já autorizado; aceite final continua humano.
+```
+
+O agente deve montar uma chamada como esta com os dados reais aprovados. Os valores abaixo são
+exemplos a substituir, e precisam ser definidos na própria chamada de ferramenta quando
+não houver garantia de persistência das variáveis entre comandos:
 
 ```powershell
 $sonarDestino = @{
@@ -161,28 +188,26 @@ $sonarDestino = @{
     ProjectKey = "grupo:produto"
     ProjectName = "Nome do Produto"
 }
-```
-
-Se o pedido for **inicializar baseline ausente**, execute somente a rota escolhida no §3 e
-devolva o resultado ao agente antes de qualquer alteração executável.
-
-Se o pedido for **checkpoint**, com baseline local READY e sem decisão humana pendente, execute:
-
-```powershell
+if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable("SONAR_TOKEN", "Process"))) {
+    throw "Credencial ausente; não executar análise sem a sessão preparada."
+}
 .\validar-checkpoint-sonarqube.ps1 @sonarDestino
 ```
 
-Aguarde o script terminar e o prompt voltar. Ele já chama build/análise e espera o processamento
-Sonar. Não execute o analisador isolado antes dele nem inicie outra análise paralela.
+Esse comando comum pressupõe baseline local READY e ausência de decisão pendente.
+O checkpoint já chama build/análise e aguarda o processamento Sonar; não execute o analisador
+isolado antes dele. Aprovar a ferramenta permite o comando, sem aprovar seu resultado.
 
-Confira as linhas finais: issues abertas/novas, HIGH/BLOCKER/CRITICAL, cobertura, duplicação,
-violações e situação técnica. Mensagem de indisponibilidade, exceção ou UNVERIFIED não comprova análise.
-Ausência de erro de processo também não comprova conformidade.
+**Esperado:** você autoriza quando solicitado, o agente executa, recebe a saída e continua sua
+avaliação. Não precisa copiar a saída de volta para a conversa no fluxo principal.
+Timeout da ferramenta ou devolução parcial de saída não significa que a análise terminou.
 
-Anote horário e resultado desta execução. Um checkpoint anterior pode permanecer no arquivo de
-estado se a execução atual falhar; não o apresente como resultado novo.
-Para ajudar a identificar o checkpoint, após uma execução concluída, esta leitura seleciona
-somente campos técnicos do estado local:
+## 5. Conferir resultado e decidir
+
+O agente apresenta issues abertas/novas, HIGH/BLOCKER/CRITICAL, cobertura, duplicação,
+violações e situação técnica. Ele vincula a evidência à execução e ao conteúdo analisado.
+
+Esta leitura complementar do estado pode ser feita pelo agente depois da execução:
 
 ```powershell
 $estadoEnsaio = Get-Content -Raw -LiteralPath ".\.codex\.state\session.json" | ConvertFrom-Json
@@ -191,121 +216,121 @@ $estadoEnsaio.lastCheckpoint | Select-Object checkedAtUtc, computeEngineTaskId, 
     codeFingerprint, technicalStatus, humanDecision, coverage, duplicatedLinesDensity
 ```
 
-Para inicialização, `lastCheckpoint` pode estar vazio: use a saída do baseline, sem inventar
-um checkpoint. A leitura acima é complementar e não substitui o resultado da execução.
-Nunca cole token, dump de ambiente ou logs completos sem revisão.
+Um erro atual pode deixar um checkpoint antigo no arquivo. Conferir horário, identidade e
+fingerprint é obrigatório; HEAD sozinho não representa alterações ainda não commitadas.
+Na inicialização, lastCheckpoint pode estar vazio: use a evidência de baseline.
 
-## 5. Desenvolvedor devolve o resultado; agente retoma
-
-Volte à **mesma conversa** que aguardou e cole, preenchendo os campos com fatos:
-
-```text
-Terminei a execução humana solicitada.
-Ambiente desta rodada: [CLI ou VS Code].
-Comando executado: [comando sem segredo].
-Branch e HEAD: [valores].
-Horário da execução: [valor].
-Arquivos permaneceram sem novas alterações durante a análise: [sim/não].
-Resultado: [COMPLIANT / NON_COMPLIANT / UNVERIFIED / erro].
-Evidência: [linhas finais revisadas, análise/CE/horário quando disponíveis].
-
-Retome pela conferência desta evidência e do estado local, sem executar Sonar novamente.
-Confira URL/projeto, atualidade do resultado e vínculo com o conteúdo analisado.
-Não aprove, reinicialize baseline, configure hooks nem corrija pendências por suposição.
-Atualize o checklist documental. Se não houver impedimento, identifique e execute apenas
-o próximo passo que já estiver autorizado. Se faltar autorização, apresente esse passo e pare.
-```
-
-**Esperado conforme o resultado:**
-
-| Resultado observado | Ação esperada do agente |
+| Resultado | Próxima ação |
 | --- | --- |
-| COMPLIANT com evidência atual e conteúdo correspondente | Registrar; seguir somente o próximo passo autorizado; aceite final continua humano |
-| NON_COMPLIANT | Apresentar violações e aguardar sua escolha entre Reprovar, AceitarExcepcionalmente e ContinuarAjustes |
-| UNVERIFIED, erro ou evidência antiga/incompleta | Registrar limitação, explicar impedimento e preparar orientação; não declarar sucesso |
-| Código alterado durante/depois da análise | Não aplicar o resultado ao novo conteúdo; avaliar necessidade de novo checkpoint |
-| Execução informou pendência de decisão anterior | Resolver a decisão com o humano antes de outro checkpoint |
+| COMPLIANT atual e correspondente ao conteúdo | Agente registra e segue somente o próximo item autorizado |
+| NON_COMPLIANT | Agente apresenta evidências e aguarda Reprovar, AceitarExcepcionalmente ou ContinuarAjustes |
+| UNVERIFIED, erro ou evidência insuficiente | Agente registra limitação e prepara diagnóstico; não declara sucesso |
+| Conteúdo mudou durante/depois da análise | Agente não atribui o resultado antigo ao novo conteúdo; avalia novo checkpoint |
+| Decisão humana anterior pendente | Agente solicita a decisão antes de outro checkpoint |
 
-Se houver decisão humana, você a informa explicitamente. Para registrá-la no terminal,
-conforme o fluxo atual:
+Ausência de erro de processo e Quality Gate não equivalem ao aceite da entrega.
+O agente não escolhe sua resposta nem resolve a pendência reinicializando baseline.
+
+## 6. Registrar sua decisão, ajustar e repetir
+
+Se você responder **ContinuarAjustes**, o agente registra a resposta antes do novo checkpoint:
 
 ```powershell
-$decisaoEnsaio = Read-Host "Sua decisão: Reprovar, AceitarExcepcionalmente ou ContinuarAjustes"
-.\validar-checkpoint-sonarqube.ps1 -HumanDecision $decisaoEnsaio
+.\validar-checkpoint-sonarqube.ps1 -HumanDecision ContinuarAjustes
 ```
 
-Esse comando registra uma decisão; não executa outra análise nem muda a situação técnica.
-Devolva a confirmação ao agente. Ao terminar os comandos Sonar, use `exit` para encerrar o
-PowerShell filho e permitir que o launcher restaure o ambiente anterior.
+Esse exemplo só se aplica depois de sua escolha real. Para Reprovar ou AceitarExcepcionalmente,
+o argumento deve ser exatamente a decisão recebida. A ferramenta pode solicitar permissão para
+registrá-la; essa permissão não substitui a resposta humana sobre a não conformidade.
 
-Não há retomada automática por término do Sonar neste ensaio. Você envia a mensagem de retorno;
-o agente então lê a evidência e retoma a conversa. Se perder a sessão, abra outra e forneça
-goal/checklist/branch/HEAD e o registro da pendência, antes de pedir continuidade.
+Depois de ContinuarAjustes, o agente:
 
-## 6. Repetir no outro ambiente
+1. confirma o registro da decisão e identifica as correções dentro do escopo autorizado;
+2. aplica os ajustes e executa os testes pertinentes;
+3. executa novo checkpoint após o incremento coerente;
+4. apresenta o novo resultado e volta ao §5.
 
-Comece, por exemplo, no CLI; depois confira a leitura do contexto e a retomada no VS Code.
-Use outra conversa, o mesmo contexto documental e nenhuma escrita simultânea.
+Se a correção mudar contrato, arquitetura, segurança, observabilidade ou escopo, mantém o
+checkpoint humano já exigido pelo produto. Não reduz thresholds nem inventa aceite.
+Reprovar e AceitarExcepcionalmente seguem seus efeitos atuais, com motivo/escopo registrados.
+Não provoque uma não conformidade artificial: se não ocorrer, marque este ciclo como não exercitado.
 
-Se o código continua igual e o checkpoint é atual, o outro agente pode conferir essa evidência.
-Marque `EVIDÊNCIA_REUTILIZADA`, não uma execução nova naquele ambiente.
-Para ensaiar também a execução humana solicitada pelo segundo agente, use o próximo incremento
-executável autorizado que demande checkpoint. Não reinicialize baseline ou rode Sonar por mudança
-somente Markdown. Cada rodada informa exatamente o que foi e o que não foi exercitado.
+## 7. Alternativa: desenvolvedor executa o script
 
-## 7. O que devolver para revisão
+Use esta alternativa se preferir ou se o ambiente do agente estiver impedido. Registre o motivo;
+isso não comprova execução pelo agente naquele ambiente.
 
-Envie um registro por ambiente, inclusive se parar antes da análise:
+Peça ao agente o comando completo e que aguarde. Abra um PowerShell protegido na raiz do produto:
+
+```powershell
+.\iniciar-codex-com-sonar.ps1 -CodexCommand "pwsh" -CodexArguments @("-NoProfile", "-NoExit")
+```
+
+Dentro do filho, execute o comando aprovado com URL/identidade explícitas e espere o resultado.
+Mantenha os arquivos sem novas alterações durante a análise. Depois, envie na mesma conversa:
+
+```text
+Terminei a execução alternativa pelo desenvolvedor.
+Comando sem segredo, branch/HEAD e horário: [valores].
+Resultado e evidência revisada: [COMPLIANT / NON_COMPLIANT / UNVERIFIED / erro].
+Conteúdo permaneceu sem novas alterações durante a análise: [sim/não].
+Confira a evidência e o estado local. Retome conforme o resultado e a autorização vigente,
+sem executar uma análise duplicada nem inferir decisão humana.
+```
+
+Somente nesta alternativa a mensagem de retorno transfere o resultado ao agente.
+Ao terminar, use exit para encerrar o filho. Não envie token, dump de ambiente ou logs não revisados.
+
+## 8. Lembretes automáticos equivalentes
+
+A execução dos scripts pelo agente já pode ser ensaiada sem a integração dos hooks.
+Para ensaiar os lembretes, precisa existir configuração Copilot revisada e testada;
+o template atual entrega somente a configuração Codex.
+
+Copilot pode preparar uma proposta de integração com esta instrução:
+
+```text
+Proponha a configuração dos lembretes existentes para Copilot CLI e VS Code.
+Não implemente nem ative nesta etapa. Compare código real e fontes oficiais.
+Preserve a função atual: lembrar baseline, checkpoint e decisão pendentes.
+O hook não executa Sonar, bloqueia trabalho nem registra decisão humana.
+Mostre arquivos/diferenças, eventos/entrada/saída e como os avisos chegam ao humano/agente.
+Proponha testes separados nos dois ambientes e apresente para revisão.
+```
+
+Fontes: [hooks CLI](https://docs.github.com/en/copilot/reference/hooks-reference) e
+[hooks VS Code](https://code.visualstudio.com/docs/agent-customization/hooks).
+Após preparar e autorizar a integração, ensaie início/retomada, mudança executável sem checkpoint,
+checkpoint correspondente, isenção Markdown, offline e decisão pendente. Confirme avisos visíveis,
+sem análise pelo hook, bloqueio, decisão inventada ou repetição contínua.
+Até lá, informe os lembretes como não verificados, sem impedir o ciclo principal pelo agente.
+
+## 9. Repetir no outro ambiente e devolver evidências
+
+Ensaie CLI e VS Code separadamente, com seus próprios prompts e registros. Não presuma memória
+ou autorização transferida entre conversas. Se reutilizar evidência válida do mesmo conteúdo,
+marque evidência reutilizada; isso não prova execução pelo segundo agente.
+Para comprovar a execução também no outro ambiente, use o próximo incremento executável autorizado
+que demande checkpoint. Preserve baseline; não rode Sonar só por mudar de editor ou alterar Markdown.
+
+Devolva um registro por ambiente:
 
 ```text
 Ambiente e versões:
 Branch/HEAD e revisões do template/skills:
-Etapa alcançada:
-Instruções e skill/recurso compartilhado encontrados: sim/não + caminhos
-Agente preparou comando e aguardou: sim/não/não exercitado
-URL/projeto do comando corretos: sim/não/não exercitado
-Execução humana: executada / não executada / evidência reutilizada
-Resultado técnico e horário/identificador, quando disponíveis:
-Agente conferiu a evidência e retomou corretamente: sim/não/não exercitado
-Algum arquivo/hook/política foi alterado indevidamente:
-Erro ou passo confuso (texto revisado, sem credencial):
+Etapa alcançada e tarefa autorizada:
+Instruções, skill e recurso encontrados: sim/não + caminhos
+Credencial disponível no processo da ferramenta, sem exibição: sim/não/não verificado
+Quem executou: agente / desenvolvedor / não executado / evidência reutilizada
+Permissão de comando solicitada e respeitada:
+Resultado técnico e horário/identificador:
+Agente aguardou o fim, leu o resultado e retomou: sim/não/não exercitado
+Em NON_COMPLIANT, pediu decisão e registrou somente minha resposta:
+Ciclo de ajustes/testes/novo checkpoint: exercitado/não exercitado + evidência
 Lembretes automáticos Copilot: não configurados / pendentes / ensaiados separadamente
+Erro ou passo confuso (texto revisado, sem credencial):
 Minha avaliação do roteiro: claro / precisa de ajuste
 ```
 
-Sem evidência, mantenha o item pendente. O teste manual bem-sucedido comprova a passagem entre
-agente e desenvolvedor, não toda a adoção, equivalência dos hooks ou aceite do produto.
-
-## 8. Como incluir os lembretes automáticos sem mudar sua função
-
-Esta parte continua no objetivo de integração. Ela depende de uma configuração Copilot revisável
-e de ensaios no runtime: o template atual entrega somente a configuração de hooks Codex.
-
-Copilot pode ajudar a preparar essa configuração. O primeiro pedido deve produzir uma proposta
-de arquivos e testes, preservando a função de lembrete:
-
-```text
-Prepare uma proposta para conectar Copilot CLI e VS Code aos lembretes existentes do harness.
-Não implemente nem ative nada nesta etapa. Inspecione os hooks reais e as fontes oficiais.
-
-Preserve exatamente a função atual: lembrar baseline, checkpoint e decisão pendentes.
-Não execute Sonar no hook, não bloqueie trabalho, não registre decisão humana automaticamente.
-Não altere thresholds, fingerprint, scripts de análise ou política sem apontar a necessidade.
-
-Mostre arquivos e diferenças necessárias, compatibilidade de eventos/entrada/saída,
-como o aviso chega ao humano/agente e testes separados para CLI e VS Code.
-Registre limitações e apresente o plano e o diff proposto para revisão antes da ativação.
-```
-
-A configuração pode aproveitar compatibilidade entre os agentes, mas precisa verificar caminhos,
-eventos, valores de entrada e formato de resposta. Fontes oficiais:
-[hooks Copilot CLI](https://docs.github.com/en/copilot/reference/hooks-reference) e
-[hooks VS Code](https://code.visualstudio.com/docs/agent-customization/hooks).
-
-Após preparação e autorização da integração executável, o ensaio dos lembretes deve comprovar:
-início/retomada de sessão; pendência real após mudança executável; ausência da pendência após
-checkpoint correspondente; isenção Markdown; estado offline; decisão humana pendente; avisos
-visíveis; nenhuma análise automática, bloqueio, decisão inventada ou repetição contínua.
-
-Enquanto isso não for executado nos dois ambientes, registre `HOOKS_COPILOT_NÃO_VERIFICADOS`.
-Esse rótulo pertence ao relatório do ensaio; não modifica os estados do harness.
+O resultado verifica somente as etapas efetivamente exercitadas. Instalação, execução pelo agente,
+ciclo de decisões e hooks possuem evidências distintas; nenhum item pendente equivale a aceite.

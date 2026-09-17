@@ -55,6 +55,10 @@ Para reconstruir manualmente o ambiente, consulte
 [Copilot CLI e VS Code](doc/guias/adotar-harness-repositorio-existente.md#48-conectar-o-github-copilot-cli-e-o-vs-code)
 e [Sonar já instalado com URL própria](doc/guias/adotar-harness-repositorio-existente.md#credencial-fonte-e-comandos-do-harness).
 
+O [roteiro supervisionado de ensaio Copilot](doc/guias/ensaio-manual-copilot.md) testa CLI e VS Code
+com o agente executando o checkpoint autorizado, avaliando o resultado e aplicando ajustes após
+sua decisão. A execução pelo desenvolvedor é alternativa; hooks continuam apenas como lembretes.
+
 O conjunto está em `RASCUNHO PARA REVISÃO`, com aprovação humana pendente. A revisão foi documental;
 nenhuma adoção em produto foi executada. A aplicação exige inventário e GO específicos.
 
