@@ -45,11 +45,19 @@ adoção real for iniciada. Não são bloqueios para elaborar este documento gen
 | A15 | Listar todas as pastas e arquivos do harness por origem/destino, necessidade, ordem de cópia e colisões; incluir arquivos ocultos e testes. |
 | A16 | Documentar Sonar já instalado com URL própria: pré-requisitos, identidade, sessão segura e exemplos completos de análise, baseline, checkpoint e exportação. |
 | A17 | Fornecer verificação por agente/componente; declarar hooks Copilot ausentes e instalações/sessões não ensaiadas. |
+| A18 | Fornecer ensaio humano em Copilot CLI e VS Code: pré-condições, prompts, ações do desenvolvedor, resultados esperados e formulário de retorno. |
+| A19 | Descrever pausa explícita, execução humana do checkpoint, conferência de resultado/revisão e retomada por mensagem na mesma conversa; sem esperar retomada automática. |
+| A20 | Preservar scripts, política e autoridade; separar teste manual de futura configuração de lembretes Copilot equivalentes, com critérios de ensaio e sem execução automática de Sonar. |
 
 Revisão ampliada solicitada em 2026-09-17: A03, A08 e A10 exigem detalhamento operacional;
 A13–A17 cobrem Codex, Copilot CLI/VS Code, skills e Sonar existente. Aprovação humana pendente.
 Copilot cloud agent fica fora do escopo. A operação local por Copilot pode usar checkpoints
 manuais; hooks automáticos exigem tarefa executável própria e evidência do runtime.
+
+A orientação humana adicional é testar o comportamento existente. Copilot pode preparar comandos
+ou uma proposta de configuração; o desenvolvedor executa o checkpoint. Hooks equivalentes não
+estão excluídos do objetivo de integração, mas sua implementação e ativação exigem preparação
+executável própria. Esta entrega acrescenta o roteiro, sem executar o ensaio pelo usuário.
 
 ## Comandos e verificações
 
@@ -69,6 +77,7 @@ dos perfis e efeitos. O guia inclui comandos do harness somente após integraç�
 - `specs/adocao-harness-existente/spec.md`: requisitos desta entrega.
 - `tasks/features/adocao-harness-existente/`: plano/checklist desta feature documental.
 - `doc/guias/adotar-harness-repositorio-existente.md`: procedimento manual e checklist para o produto.
+- `doc/guias/ensaio-manual-copilot.md`: roteiro de execução humana e devolutiva.
 - `README.md`: acesso ao novo goal e guia.
 
 Usar português, passos manuais e comandos condicionados a pré-requisitos. Exemplos de destinos
