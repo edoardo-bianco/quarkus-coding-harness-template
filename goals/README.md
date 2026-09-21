@@ -12,10 +12,12 @@ Goals tornam persistente o significado de sucesso e de parada. Eles registram **
 
 Um projeto derivado cria goals próprios. Não copie `goals/template-harness/goal.md` como histórico do produto; ele pertence à construção deste template.
 
-## Rascunho em preparação
+## Goal em revisão
 
-- [Novo repositório a partir do guia MTA](novo-repositorio-mta/goal.md): local preparado para
-  receber o documento de origem; finalidade e requisitos aguardam explicação humana.
+- [Template independente JBoss EAP](novo-repositorio-mta/goal.md): preparar o harness para
+  Copilot/DevSquad, PowerShell 5.1, MTA e Sonar corporativo; migração conservadora com Java 8
+  e arquitetura preservada em etapa posterior. Trabalho documental em `docs/goal-origem-mta`,
+  com componentes reutilizados exclusivamente do snapshot definido da `main`.
 
 ## O que pertence ao goal
 
