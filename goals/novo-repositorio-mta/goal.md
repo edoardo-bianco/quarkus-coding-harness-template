@@ -10,8 +10,11 @@
 - Requisitos de origem: [prompt fornecido pelo usuário](origem/prompt-codex-criar-novo-repositorio-template-jboss-eap-main-arquitetura-preserv.md).
 - Referência para a migração posterior: [guia MTA, VS Code e EAP](../../doc/guias/guia-completo-mta-vscode-jboss-eap70-eap74-copilot-java8.md).
 - Inventário dos documentos: [origem/README.md](origem/README.md).
-- Spec, arquitetura/ADRs e plan/todo da construção: a preparar após o diagnóstico H00;
-  os históricos dos goals anteriores não são o plano deste novo produto.
+- [Spec proposta](../../specs/novo-repositorio-mta/spec.md),
+  [diagnóstico e plano H00–H07](../../tasks/features/novo-repositorio-mta/plan.md) e
+  [checklist](../../tasks/features/novo-repositorio-mta/todo.md): `EM_REVISAO`.
+  Arquitetura/ADRs próprios serão propostos no destino; os históricos dos goals anteriores
+  não são o plano deste novo produto.
 
 ## Problema e valor esperado
 
@@ -40,10 +43,11 @@ com plano e autorização próprios.
 
 | Papel | Definição |
 | --- | --- |
-| Trabalho documental atual com Codex | `docs/goal-origem-mta`, no repositório Quarkus; revisão do goal e dos documentos recebidos autorizada pelo usuário |
+| Trabalho documental atual com Codex | `chore/preparacao-jboss-harness`, no repositório Quarkus; diagnóstico e planejamento do goal |
+| Máquina de trabalho do usuário | Acompanha `main`; ambiente distinto e ainda não inspecionado nesta sessão |
 | Fonte exclusiva dos componentes reutilizados | Snapshot de `refs/heads/main` do repositório Quarkus; não é o working tree desta branch documental |
-| SHA local observado de `main` | `094ebab9fa776e5b737b830f599b0cc67529f93a` |
-| Referência remota armazenada localmente | `origin/main` aponta para o mesmo SHA após fetch de conferência do PR nesta revisão |
+| SHA fixado de `main` no H00 | `22512766897bca4146e940cdca39ab9089f545f4` |
+| Referência remota armazenada localmente | `origin/main` aponta para o mesmo SHA após fetch do H00 |
 | Origem local | `C:\desenvolvimento\repositorio\quarkus-coding-harness-template` |
 | Destino local definido | `C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template` |
 | Git do novo produto | Independente, sem histórico, remotes, tags, branches ou estado herdados |
@@ -51,12 +55,13 @@ com plano e autorização próprios.
 | GitHub proposto | `edoardo-bianco/jboss-eap-copilot-harness-template`, privado e Template repository; publicação depende de autorização externa específica |
 
 Trabalhar nesta branch não muda a fonte técnica `main` definida no prompt. O prompt e o guia
-fornecidos pelo usuário são entradas de requisitos/referência deste trabalho; não devem ser
-apresentados como componentes existentes no SHA da `main`.
+fornecidos pelo usuário são entradas de requisitos/referência deste trabalho. Agora integram
+o snapshot consolidado, mas não são classificados como controles executáveis reutilizados.
 
-H00 deve conferir a correspondência com o remoto, inspecionar os arquivos desse snapshot e
-fixar o SHA no plano e no futuro manifesto canônico `doc/origem-harness.md`. Divergência ou
-avanço de `main` exige registro explícito; não misturar snapshots nem mudar a base silenciosamente.
+O H00 conferiu a correspondência local/remota e registrou o inventário no plano. A referência
+anterior `094ebab9fa776e5b737b830f599b0cc67529f93a` avançou após integração do PR #2;
+`docs/goal-origem-mta` foi integrada e removida. O novo SHA deverá constar no futuro manifesto
+canônico `doc/origem-harness.md`. Avanços posteriores exigem registro explícito, sem misturar snapshots.
 
 A autorização documental atual permite estas revisões na branch de trabalho. Durante a
 materialização, a origem técnica permanece somente leitura: adaptações executáveis acontecem
@@ -131,8 +136,8 @@ A sequência requerida no prompt orienta o futuro plano; não constitui GO cumul
 
 | Etapa | Resultado e checkpoint |
 | --- | --- |
-| Revisão atual | Consolidar os documentos e abrir PR para `main`; execução do goal somente depois dessa integração |
-| H00 | Diagnóstico/inventário do snapshot `main`, procedência e plano específico para revisão; somente leitura |
+| Consolidação anterior | PR #2 integrado à `main`; branch documental anterior removida |
+| H00 | Diagnóstico somente leitura do snapshot realizado; spec/plano/checklist preparados nesta branch documental para revisão, sem materialização |
 | H01 | Após GO local: Git independente, manifesto, governança e configuração de exemplo |
 | H02 | Scripts/testes PS5.1 e separação das toolchains |
 | H03 | Sonar corporativo, sessão segura e regressão dos controles |
@@ -174,9 +179,10 @@ próprias; não são resultados implícitos da preparação local. O agente não
 | --- | --- |
 | Objetivo real | Prompt recebido e lido; decisões explícitas incorporadas neste goal |
 | Guia de migração | Recebido em `doc/guias/`, para uso posterior à preparação; nenhum comando executado |
-| Branch de trabalho | `docs/goal-origem-mta`, mantida |
-| Referência técnica | SHAs de `main` e `origin/main` coincidentes após fetch para o PR; inventário técnico H00 permanece pendente |
-| Novo destino | Caminho definido; existência/conteúdo ainda não inspecionados; repositório não criado nesta rodada |
+| Branch de trabalho | `chore/preparacao-jboss-harness`; usuário acompanha `main` na máquina de trabalho |
+| Referência técnica | SHAs de `main` e `origin/main` coincidentes após fetch H00; matriz e incompatibilidades registradas no plano |
+| Novo destino | `Test-Path` retornou `False` no H00; repositório ainda não criado |
+| PowerShell desta máquina | `powershell.exe` 5.1.26100.9444; parâmetros/APIs inspecionados, sem executar scripts do harness; não comprova ambiente corporativo |
 | Ambiente corporativo | Versões completas dos EAPs/JDKs/Maven/MTA/DevSquad e acesso Sonar ainda a verificar |
 | Sonar | URL/identidade/permissões ainda a confirmar; nenhuma credencial solicitada nesta revisão |
 | Execução | Maven, Sonar, MTA, EAPs, instalação/atualização de plugins e migração `NÃO EXECUTADOS` |
@@ -208,6 +214,12 @@ adotar as instruções próprias do destino e não importar implicitamente as re
 | 2026-09-21 | Prompt em `origem/` contém o objetivo real; seguir trabalhando em `docs/goal-origem-mta` | Revisão documental deste goal na branch atual; topologia, destino e restrições definidos pelo prompt |
 | 2026-09-21 | Guia em `doc/guias/` será usado após preparar o ambiente | Guia passa a referência da migração posterior, sem mover/copiar para `origem/` |
 | 2026-09-21 | Consolidar tudo e abrir PR para `main` antes de partir para o goal | Somente consolidação documental nesta rodada; diagnóstico H00 e execução ficam para depois |
+
+Registros humanos posteriores à consolidação:
+
+- Criar branch para perseguir o goal após a limpeza: criada `chore/preparacao-jboss-harness`.
+- Na máquina de trabalho seguir `main`; aqui prosseguir com o goal e referenciar a branch correta:
+  retomar H00 e planejamento na branch atual, sem reescrever o prompt original.
 
 A revisão incorpora os requisitos fornecidos; aprovação formal dos artefatos, GO de cada
 incremento, autorização de publicação do novo template, aceite e encerramento continuam pendentes. Somente

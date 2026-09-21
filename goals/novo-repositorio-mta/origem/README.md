@@ -25,9 +25,14 @@ mantido em `doc/guias/`.
 
 ## Branch de trabalho e procedência técnica
 
-Trabalhamos nos documentos em `docs/goal-origem-mta`. A fonte exclusiva dos componentes do
-harness continua sendo o SHA da `main` definido no diagnóstico. Os documentos recebidos nesta
-branch são entradas humanas; não são componentes reutilizados daquele snapshot.
+Trabalhamos no diagnóstico e nos documentos em `chore/preparacao-jboss-harness`. Na máquina
+de trabalho, o usuário acompanha `main`. A fonte exclusiva dos componentes reutilizados é
+`main` em `22512766897bca4146e940cdca39ab9089f545f4`, conferido local/remoto no H00.
+O [plano](../../../tasks/features/novo-repositorio-mta/plan.md) registra evidências e adaptações.
+
+A branch anterior `docs/goal-origem-mta` foi integrada pelo PR #2 e removida. O SHA anterior
+`094ebab9fa776e5b737b830f599b0cc67529f93a` fica somente como registro histórico. Prompt e guia
+já estão na main consolidada; continuam entradas humanas, não controles executáveis reutilizados.
 
 A leitura exclusiva da origem durante a materialização protege a `main` e o harness executável.
 A revisão documental atual foi solicitada pelo usuário e não autoriza copiar arquivos,
@@ -46,8 +51,10 @@ Os comandos do guia e a migração continuam não executados; os ensaios pertenc
 ## Consolidação anterior à execução do goal
 
 Em 2026-09-21, o usuário solicitou consolidar todos os documentos e abrir PR para `main`
-antes de prosseguir. Essa publicação documental está autorizada; criação do novo template,
-instalações, diagnóstico técnico H00 e migração ficam para a etapa posterior.
+antes de prosseguir. O PR #2 foi integrado e a limpeza das branches foi concluída. Em seguida,
+o usuário autorizou retomar o goal aqui, mantendo a máquina de trabalho na main. O H00 e o
+planejamento foram retomados; criação do novo template, instalações e migração continuam
+sujeitas aos checkpoints próprios. Aprovação da spec/plano e GO H01A ainda estão pendentes.
 
 Verificação documental: seis arquivos Markdown, dez links locais válidos, treze blocos
 PowerShell analisados sintaticamente em memória e quatro exemplos JSON válidos. Nenhum
