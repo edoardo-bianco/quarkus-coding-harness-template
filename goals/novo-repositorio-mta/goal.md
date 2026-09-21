@@ -1,9 +1,13 @@
 # Goal — Construir um template independente para migração conservadora JBoss EAP
 
+> Continuidade transferida para C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template,
+> branch chore/bootstrap-jboss-harness. Este documento preserva a referência da origem;
+> os artefatos de construção ativos pertencem ao novo checkout.
+
 ## Identificação
 
 - ID: `novo-repositorio-mta`; caminho preservado desde o rascunho inicial.
-- Estado: `EM_REVISAO`; objetivo detalhado recebido, sem GO de materialização/implementação.
+- Estado: `EM_PREPARACAO_NO_DESTINO`; GO H01A recebido e fundação documental criada; aceite final pendente.
 - Responsável e autoridade de aceite: usuário solicitante.
 - Criado em: 2026-09-21. Última revisão: 2026-09-21.
 - Nome do novo produto: `jboss-eap-copilot-harness-template`.
@@ -51,7 +55,7 @@ com plano e autorização próprios.
 | Origem local | `C:\desenvolvimento\repositorio\quarkus-coding-harness-template` |
 | Destino local definido | `C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template` |
 | Git do novo produto | Independente, sem histórico, remotes, tags, branches ou estado herdados |
-| Branches pretendidas no destino | `main` e `chore/bootstrap-jboss-harness` para implementação; criação depende do GO local |
+| Branches no destino | `main` com fundação documental e `chore/bootstrap-jboss-harness` para continuidade; H01B e executáveis aguardam GO |
 | GitHub proposto | `edoardo-bianco/jboss-eap-copilot-harness-template`, privado e Template repository; publicação depende de autorização externa específica |
 
 Trabalhar nesta branch não muda a fonte técnica `main` definida no prompt. O prompt e o guia
@@ -181,7 +185,7 @@ próprias; não são resultados implícitos da preparação local. O agente não
 | Guia de migração | Recebido em `doc/guias/`, para uso posterior à preparação; nenhum comando executado |
 | Branch de trabalho | `chore/preparacao-jboss-harness`; usuário acompanha `main` na máquina de trabalho |
 | Referência técnica | SHAs de `main` e `origin/main` coincidentes após fetch H00; matriz e incompatibilidades registradas no plano |
-| Novo destino | `Test-Path` retornou `False` no H00; repositório ainda não criado |
+| Novo destino | H01A materializado com seis documentos e Git independente; primeiro commit `c0b6d5d981383cb496ae590ece8e15a65d0058f8`; sem remoto |
 | PowerShell desta máquina | `powershell.exe` 5.1.26100.9444; parâmetros/APIs inspecionados, sem executar scripts do harness; não comprova ambiente corporativo |
 | Ambiente corporativo | Versões completas dos EAPs/JDKs/Maven/MTA/DevSquad e acesso Sonar ainda a verificar |
 | Sonar | URL/identidade/permissões ainda a confirmar; nenhuma credencial solicitada nesta revisão |
@@ -221,6 +225,11 @@ Registros humanos posteriores à consolidação:
 - Na máquina de trabalho seguir `main`; aqui prosseguir com o goal e referenciar a branch correta:
   retomar H00 e planejamento na branch atual, sem reescrever o prompt original.
 
-A revisão incorpora os requisitos fornecidos; aprovação formal dos artefatos, GO de cada
-incremento, autorização de publicação do novo template, aceite e encerramento continuam pendentes. Somente
+Em 2026-09-21, o usuário respondeu “Autoriza o H01A”. O GO limitou-se ao Git independente
+e aos seis documentos iniciais. A continuação canônica está no novo destino, em
+`goals/preparacao-harness/goal.md` e `tasks/features/preparacao-harness/`.
+Este registro permanece como origem; não é um segundo goal de execução.
+
+Aprovação global dos artefatos, GOs posteriores ao H01A, publicação do novo template,
+aceite e encerramento continuam pendentes. Somente
 as respostas humanas correspondentes poderão mudar esses estados.
