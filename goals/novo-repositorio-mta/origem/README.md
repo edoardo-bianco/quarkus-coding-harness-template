@@ -1,5 +1,9 @@
 # Origem dos requisitos do template JBoss EAP
 
+> Continuidade transferida para C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template,
+> branch chore/bootstrap-jboss-harness. Este documento preserva a referência da origem;
+> os artefatos de construção ativos pertencem ao novo checkout.
+
 Esta pasta registra o material fornecido pelo usuário para o [goal](../goal.md).
 
 ## Prompt recebido
@@ -54,7 +58,9 @@ Em 2026-09-21, o usuário solicitou consolidar todos os documentos e abrir PR pa
 antes de prosseguir. O PR #2 foi integrado e a limpeza das branches foi concluída. Em seguida,
 o usuário autorizou retomar o goal aqui, mantendo a máquina de trabalho na main. O H00 e o
 planejamento foram retomados; criação do novo template, instalações e migração continuam
-sujeitas aos checkpoints próprios. Aprovação da spec/plano e GO H01A ainda estão pendentes.
+sujeitas aos checkpoints próprios. Depois, o usuário respondeu “Autoriza o H01A”: a fundação
+foi materializada no destino independente, com primeiro commit `c0b6d5d981383cb496ae590ece8e15a65d0058f8`.
+Aprovação global da spec/plano, GO H01B e publicação continuam pendentes.
 
 Verificação documental: seis arquivos Markdown, dez links locais válidos, treze blocos
 PowerShell analisados sintaticamente em memória e quatro exemplos JSON válidos. Nenhum

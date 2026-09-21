@@ -1,6 +1,13 @@
 # Plano — Construção do harness JBoss EAP
 
-- Estado: `EM_REVISAO`; não constitui GO de implementação.
+> Continuidade transferida para C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template,
+> branch chore/bootstrap-jboss-harness. Este documento preserva a referência da origem;
+> os artefatos de construção ativos pertencem ao novo checkout.
+
+- Estado: `REFERENCIA_H00_TRANSFERIDA`; não manter este plano como execução paralela.
+- H01A recebeu GO explícito em 2026-09-21 e criou a fundação no novo destino.
+- Plano canônico: `tasks/features/preparacao-harness/plan.md` no checkout JBoss indicado abaixo.
+- O restante deste documento preserva o diagnóstico/proposta H00; seus checkpoints futuros não são novos GOs.
 - Data: 2026-09-21.
 - [Goal](../../../goals/novo-repositorio-mta/goal.md), [spec proposta](../../../specs/novo-repositorio-mta/spec.md) e [checklist](todo.md).
 - Branch documental: `chore/preparacao-jboss-harness`.

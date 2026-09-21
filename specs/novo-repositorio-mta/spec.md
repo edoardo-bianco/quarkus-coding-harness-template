@@ -1,6 +1,12 @@
 # Especificação — Harness independente JBoss EAP
 
-- Estado: `EM_REVISAO`; aprovação e GO de materialização pendentes.
+> Continuidade transferida para C:\desenvolvimento\repositorio\jboss-eap-copilot-harness-template,
+> branch chore/bootstrap-jboss-harness. Este documento preserva a referência da origem;
+> os artefatos de construção ativos pertencem ao novo checkout.
+
+- Estado: `REFERENCIA_H00_TRANSFERIDA`; proposta preservada, sem aprovação global inferida.
+- H01A autorizado por “Autoriza o H01A” em 2026-09-21 e materializado no novo destino.
+- Spec canônica da construção: `specs/preparacao-harness/spec.md` no checkout JBoss indicado abaixo.
 - Data: 2026-09-21.
 - Goal: [novo-repositorio-mta](../../goals/novo-repositorio-mta/goal.md).
 - Requisitos recebidos: [prompt original](../../goals/novo-repositorio-mta/origem/prompt-codex-criar-novo-repositorio-template-jboss-eap-main-arquitetura-preserv.md).
