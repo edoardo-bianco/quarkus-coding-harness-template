@@ -17,6 +17,7 @@
 | 2026-09-17 | Humano | Corrigir todos os documentos: execução autorizada pelo agente em CLI/VS Code, decisão humana e ciclo de ajustes | Alinhamento documental; sem execução do ensaio nesta entrega |
 | — | Humano | Aprovação do novo goal/spec/plano | `PENDENTE` |
 | 2026-09-17 | Humano | Reconhecer ambiente existente, perguntar manter/alterar JDK, Quarkus e Maven e mostrar locais de ajuste | D9–D11 documentais; sem escolher versões nem aplicar ao produto |
+| 2026-09-21 | Humano | Consolidar todo o trabalho em PR para `main` antes de prosseguir | D12: publicar a consolidação para revisão; diagnóstico do candidato e ensaio ficam para depois |
 | — | Humano | GO para aplicação no produto | `PENDENTE`; candidato `simtr-documento-assinc` indicado; escolha de versões e plano próprio pendentes |
 | — | Humano | Aceite/encerramento deste goal | `PENDENTE` |
 
@@ -125,15 +126,37 @@ Somente Markdown; Maven, Sonar e ensaio real não executados.
 
 ## Próximo item autorizado
 
-Trabalho pausado por solicitação humana em 2026-09-17; retomar em 2026-09-18 com a preparação
-do teste. D11 foi apresentado; aceite documental e ADR-0006 continuam pendentes.
-Na retomada, confirmar checkout/branch do candidato e seguir o diagnóstico do guia: reconhecer
-o ambiente, apresentar manter/alterar versões e registrar a escolha humana antes da integração.
-Preparar a fatia e as verificações do ensaio em Copilot CLI e VS Code; executar somente após
-cumprir as pré-condições e o GO aplicável. O pedido de retomar amanhã não escolhe versões nem
-autoriza executar passos hoje. O checklist reutilizável fica no guia.
+Consolidar o trabalho no PR para `main`, conforme esclarecimento humano de 2026-09-21.
+Revisar e publicar o conjunto antes de retomar o diagnóstico do candidato ou preparar sua
+integração. Aceite documental, ADR-0006 e merge continuam sujeitos à decisão humana.
 
-## Checkpoint de pausa — 2026-09-17
+Após essa etapa, retomar pelo diagnóstico do guia: confirmar checkout/branch, reconhecer
+o ambiente, apresentar manter/alterar versões e registrar a escolha antes da integração.
+Preparar então a fatia e as verificações do ensaio Copilot CLI/VS Code; executar somente
+após as pré-condições e o GO aplicável. Nenhuma versão ou autorização de aplicação foi inferida.
+
+## Consolidação para PR — D12 (2026-09-21)
+
+- [x] Registrar a prioridade humana antes de prosseguir com o candidato.
+- [x] Confirmar árvore limpa em `ffce5e5`, atualizar referências remotas e identificar o PR #1.
+- [x] Confirmar que `main` contém a inicialização e que o PR existente ainda usa descrição dos Incrementos 1–10.
+- [x] Validar o incremento documental D1–D12, distinguindo evidências históricas do bootstrap.
+- [ ] Publicar os commits e consolidar a branch do PR por fast-forward.
+- [ ] Atualizar o PR #1 para `main`, disponibilizar para revisão e conferir branch/HEAD publicados.
+- [ ] Receber revisão humana antes de prosseguir com diagnóstico e ensaio.
+
+Verificação D12: os 11 documentos do incremento desde `88e68b2` contêm 99 links locais e
+25 âncoras válidos. Os 25 blocos PowerShell dos dois guias passaram na análise sintática em
+memória, sem execução. `git diff --check` passou no incremento e no conjunto para `main`.
+O diff posterior ao bootstrap contém somente Markdown; a evidência executável de 2026-09-16
+permanece histórica, sem nova execução ou declaração de compatibilidade do candidato.
+PR de consolidação: [#1 — quarkus-coding-harness-template](https://github.com/edoardo-bianco/quarkus-coding-harness-template/pull/1).
+O bootstrap continua aceito e encerrado no seu histórico; goal/spec de adoção e ADR-0006
+continuam em revisão. Nesta rodada, nenhum arquivo do candidato foi alterado e nenhum teste,
+Maven ou Sonar foi executado. A localização do checkout e o ambiente efetivo do produto seguem
+`NÃO_VERIFICADOS`; a pergunta sobre o candidato foi adiada pelo esclarecimento humano.
+
+## Checkpoint de pausa — 2026-09-17 (histórico; prioridade revista em D12)
 
 - Humano solicitou parar hoje e retornar amanhã com o teste.
 - Branch: `docs/adocao-harness-existente`; entrega D11 publicada no commit `2b67129`.
