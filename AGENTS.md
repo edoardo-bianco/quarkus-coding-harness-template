@@ -182,7 +182,7 @@ ainda `Proposto`; o agente não deve registrá-lo como aceito nem transferir ADR
 
 ## Materialização de projeto derivado
 
-Para materializar um projeto novo, obtenha nome/descrição, `groupId`, `artifactId`, versão, pacote-base, goal inicial, capacidades necessárias, destino local, destino GitHub, visibilidade e branch. A fundação verificada desta materialização é Java 25 + Quarkus LTS + Maven; outra stack exige plano próprio. Para um repositório existente, aplique a seção de adoção acima.
+Para materializar um projeto novo, obtenha nome/descrição, `groupId`, `artifactId`, versão, pacote-base, goal inicial, capacidades necessárias, destino local, destino GitHub, visibilidade e branch. A fundação verificada desta materialização é Java 25 + Quarkus LTS + Maven; outra stack exige plano próprio. Conforme o ADR-0001, mudar Java, linha LTS ou build tool exige novo ADR substituto aprovado antes da alteração. Para um repositório existente, aplique a seção de adoção acima.
 
 Não copie histórico operacional do template para o produto. Crie identidade, goal, tasks e baseline próprios. Não crie nem envie repositório remoto sem destino e autorização explícitos.
 

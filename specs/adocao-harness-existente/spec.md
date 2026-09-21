@@ -4,7 +4,7 @@
 - Data: 2026-09-16.
 - Goal: [adoção manual](../../goals/adocao-harness-existente/goal.md).
 - Arquitetura de referência: [harness](../../doc/arquitetura/arquitetura-harness.md).
-- ADRs consultados: 0001 (compatibilidade), 0002 (fronteiras), 0003 (autoridade) e 0004 (Sonar).
+- ADRs consultados: 0001 (compatibilidade), 0002 (fronteiras), 0003 (autoridade), 0004 (Sonar) e 0006 (adoção com reconhecimento do ambiente; `Proposto`).
 - Entrega solicitada: documentação para revisão, sem aplicação em repositório de produção.
 
 ## Objetivo e usuário
