@@ -12,6 +12,11 @@ Goals tornam persistente o significado de sucesso e de parada. Eles registram **
 
 Um projeto derivado cria goals próprios. Não copie `goals/template-harness/goal.md` como histórico do produto; ele pertence à construção deste template.
 
+## Rascunho em preparação
+
+- [Novo repositório a partir do guia MTA](novo-repositorio-mta/goal.md): local preparado para
+  receber o documento de origem; finalidade e requisitos aguardam explicação humana.
+
 ## O que pertence ao goal
 
 - problema e valor esperado;
