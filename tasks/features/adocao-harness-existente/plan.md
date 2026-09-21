@@ -331,7 +331,32 @@ O POM, Wrapper, scripts, hooks e testes do template não foram alterados. Maven,
 e ensaio em produto não foram executados. O candidato permanece com escolha de versões/GO pendentes;
 o ensaio nos agentes e o aceite documental/arquitetural continuam dependentes do humano.
 
+## Consolidação para revisão em main — D12
+
+Em 2026-09-21, o humano esclareceu a prioridade: consolidar todo o trabalho em PR para `main`
+antes de prosseguir com o diagnóstico do candidato e o ensaio Copilot. A solicitação autoriza
+consolidação, publicação e atualização do PR; não é pedido de merge, aceite do ADR-0006 ou GO
+de aplicação no produto.
+
+- Atualizar este plano e o checklist com a ordem solicitada, preservando o histórico da pausa.
+- Conferir as referências remotas e reunir o bootstrap já aceito com a documentação D1–D11.
+  A `main` está em `77a17dd`; o PR #1 existente usa `docs/bootstrap-template`, em `88e68b2`,
+  ancestral de `docs/adocao-harness-existente`, em `ffce5e5` no início desta consolidação.
+- Avançar a branch do PR por fast-forward, sem reescrever commits, e atualizar título/descrição
+  para refletir o conjunto. Publicar o PR para revisão humana, mantendo `main` inalterada.
+- Verificar diff, links locais, âncoras e sintaxe dos exemplos PowerShell sem executá-los.
+  Confirmar que o incremento desde `88e68b2` permanece exclusivamente Markdown.
+- Referenciar as evidências históricas do bootstrap como históricas. Esta consolidação não
+  executa Maven, testes PowerShell, Sonar ou o piloto; não produz nova medição de qualidade.
+- Parar com o PR disponível para revisão. Checkout do candidato, escolha de versões, plano/GO
+  do produto e ensaio CLI/VS Code ficam para depois da revisão/integração solicitada.
+
+Arquivos deste incremento: este plano e `todo.md`. Risco principal: a descrição antiga do PR
+menciona somente Incrementos 1–10 e pendências já resolvidas no bootstrap; substituí-la por uma
+descrição do estado final, distinguindo bootstrap aceito, documentação proposta e ensaio pendente.
+
 ## Checkpoint
 
-Submeter goal/spec/guia e ADR-0006 proposto ao humano. Não solicitar GO de aplicação antes de existir repositório
-piloto, inventário e plano específico revisável. Aceite e encerramento do novo goal permanecem pendentes.
+Submeter o conjunto consolidado no PR para `main`, incluindo goal/spec/guia e ADR-0006 proposto.
+Não solicitar GO de aplicação antes de existir repositório piloto, inventário e plano específico
+revisável. Aceite e encerramento do novo goal permanecem pendentes.
