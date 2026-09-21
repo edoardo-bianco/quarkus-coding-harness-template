@@ -126,8 +126,8 @@ Somente Markdown; Maven, Sonar e ensaio real não executados.
 
 ## Próximo item autorizado
 
-Consolidar o trabalho no PR para `main`, conforme esclarecimento humano de 2026-09-21.
-Revisar e publicar o conjunto antes de retomar o diagnóstico do candidato ou preparar sua
+Consolidação publicada no PR #1 para `main`, conforme esclarecimento humano de 2026-09-21.
+Aguardar a revisão humana do conjunto antes de retomar o diagnóstico do candidato ou preparar sua
 integração. Aceite documental, ADR-0006 e merge continuam sujeitos à decisão humana.
 
 Após essa etapa, retomar pelo diagnóstico do guia: confirmar checkout/branch, reconhecer
@@ -141,8 +141,8 @@ após as pré-condições e o GO aplicável. Nenhuma versão ou autorização de
 - [x] Confirmar árvore limpa em `ffce5e5`, atualizar referências remotas e identificar o PR #1.
 - [x] Confirmar que `main` contém a inicialização e que o PR existente ainda usa descrição dos Incrementos 1–10.
 - [x] Validar o incremento documental D1–D12, distinguindo evidências históricas do bootstrap.
-- [ ] Publicar os commits e consolidar a branch do PR por fast-forward.
-- [ ] Atualizar o PR #1 para `main`, disponibilizar para revisão e conferir branch/HEAD publicados.
+- [x] Publicar os commits e consolidar a branch do PR por fast-forward.
+- [x] Atualizar o PR #1 para `main`, disponibilizar para revisão e conferir branch/HEAD publicados.
 - [ ] Receber revisão humana antes de prosseguir com diagnóstico e ensaio.
 
 Verificação D12: os 11 documentos do incremento desde `88e68b2` contêm 99 links locais e
@@ -150,6 +150,13 @@ Verificação D12: os 11 documentos do incremento desde `88e68b2` contêm 99 lin
 memória, sem execução. `git diff --check` passou no incremento e no conjunto para `main`.
 O diff posterior ao bootstrap contém somente Markdown; a evidência executável de 2026-09-16
 permanece histórica, sem nova execução ou declaração de compatibilidade do candidato.
+
+Revisão D12: os ajustes de clareza em AGENTS e na lista de ADRs da spec foram conferidos contra
+o ADR-0001 aceito; ADR-0006 permanece Proposto. O PR #1 recebeu os commits até `9618731` por
+fast-forward, título/descrição consolidados e estado aberto para revisão (fora de draft), com
+base `main`, branch `docs/bootstrap-template` e sem conflito indicado pelo GitHub. Não havia
+checks de CI reportados nessa consulta; isso não equivale a teste aprovado. Os ajustes desta
+revisão e este registro seguem na mesma branch do PR. Nenhum merge ou aceite foi registrado.
 PR de consolidação: [#1 — quarkus-coding-harness-template](https://github.com/edoardo-bianco/quarkus-coding-harness-template/pull/1).
 O bootstrap continua aceito e encerrado no seu histórico; goal/spec de adoção e ADR-0006
 continuam em revisão. Nesta rodada, nenhum arquivo do candidato foi alterado e nenhum teste,

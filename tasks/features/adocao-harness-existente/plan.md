@@ -351,7 +351,10 @@ de aplicação no produto.
 - Parar com o PR disponível para revisão. Checkout do candidato, escolha de versões, plano/GO
   do produto e ensaio CLI/VS Code ficam para depois da revisão/integração solicitada.
 
-Arquivos deste incremento: este plano e `todo.md`. Risco principal: a descrição antiga do PR
+Arquivos deste incremento: este plano, `todo.md`, `AGENTS.md` e a spec de adoção. A revisão documental
+identificou dois ajustes de clareza: explicitar em AGENTS a exigência já aceita do ADR-0001 para
+mudança de Java/linha LTS/build tool e incluir o ADR-0006 Proposto entre as referências da spec.
+Não há nova decisão arquitetural nem mudança executável. Risco principal: a descrição antiga do PR
 menciona somente Incrementos 1–10 e pendências já resolvidas no bootstrap; substituí-la por uma
 descrição do estado final, distinguindo bootstrap aceito, documentação proposta e ensaio pendente.
 
